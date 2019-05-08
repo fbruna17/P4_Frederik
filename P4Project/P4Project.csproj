@@ -53,6 +53,7 @@
     <Compile Include="CreateStudProfileV2.Designer.cs">
       <DependentUpon>CreateStudProfileV2.cs</DependentUpon>
     </Compile>
+    <Compile Include="SQLControl.cs" />
     <Compile Include="TestForm.cs">
       <SubType>Form</SubType>
     </Compile>

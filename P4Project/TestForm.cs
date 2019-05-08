@@ -155,6 +155,7 @@ namespace P4Project
             this.Hide();
             var stud = new CreateStudProfileV2();
             stud.ShowDialog();
+            this.Show();
         }
     }
 }
