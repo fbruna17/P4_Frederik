@@ -18,9 +18,12 @@ namespace P4Project
         private string myConnectionString = "server=mysql33.unoeuro.com;uid=blo_store_dk;pwd=3pdaxzyt;database=blo_store_dk_db_wd";
         private MySqlConnection connection = null;
 
+        private SQLControl SQL;
+
         public TestForm()
         {
             InitializeComponent();
+            SQL = new SQLControl();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -32,10 +35,9 @@ namespace P4Project
         {
             try
             {
-                connection = new MySqlConnection(myConnectionString);
-                connection.Open();
-                MessageBox.Show("Connection Open  !");
-                connection.Close();
+                SQL.Open();
+                MessageBox.Show("Connection is open!");
+                SQL.Close();
             }
             catch (MySqlException ex)
             {
@@ -146,6 +148,14 @@ namespace P4Project
                 if (connection != null)
                     connection.Close();
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var stud = new CreateStudProfileV2();
+            stud.ShowDialog();
+            this.Show();
         }
     }
 }
