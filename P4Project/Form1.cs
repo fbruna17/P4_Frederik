@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Web;
+using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -23,15 +25,24 @@ namespace P4Project
 
         }
 
-        private void Connect_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            string connetionString;
-            SqlConnection cnn;
-            connetionString = @"Data Source=WIN-50GP30FGO75;Initial Catalog=Demodb;User ID=sa;Password=demol23";
-            cnn = new SqlConnection(connetionString);
-            cnn.Open();
-            MessageBox.Show("Connection Open  !");
-            cnn.Close();
+            MySqlConnection conn;
+            string myConnectionString;
+
+            myConnectionString = "server=mysql33.unoeuro.com;uid=blo_store_dk;pwd=3pdaxzyt;database=blo_store_dk_db_wd";
+
+            try
+            {
+                conn = new MySqlConnection(myConnectionString);
+                conn.Open();
+                MessageBox.Show("Connection Open  !");
+                conn.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
