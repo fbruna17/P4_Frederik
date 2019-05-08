@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace P4Project
 {
-    public partial class CreateStudProfile : Form
+    public partial class CreateStudProfileV2 : Form
     {
-        public CreateStudProfile()
+        public CreateStudProfileV2()
         {
             InitializeComponent();
         }
@@ -23,6 +23,11 @@ namespace P4Project
             string lastname = LastNameText.Text;
             string mail = EmailText.Text;
             MessageBox.Show("Your name: " + firstname + " " + lastname);
+        }
+
+        private void CreateStudProfileV2_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

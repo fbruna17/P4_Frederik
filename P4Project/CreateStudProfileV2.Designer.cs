@@ -1,6 +1,6 @@
 ﻿namespace P4Project
 {
-    partial class CreateStudProfile
+    partial class CreateStudProfileV2
     {
         /// <summary>
         /// Required designer variable.
