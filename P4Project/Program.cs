@@ -16,7 +16,7 @@ namespace P4Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CreateStudProfile());
+            Application.Run(new TestForm());
         }
     }
 }
