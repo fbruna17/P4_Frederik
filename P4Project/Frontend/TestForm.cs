@@ -15,22 +15,30 @@ namespace P4Project
 {
     public partial class TestForm : Form
     {
+        #region Instance Variables & Properties
         private string myConnectionString = "server=mysql33.unoeuro.com;uid=blo_store_dk;pwd=3pdaxzyt;database=blo_store_dk_db_wd";
         private MySqlConnection connection = null;
 
         private SQLControl SQL;
+        #endregion
 
+        #region Constructor(s)
         public TestForm()
         {
             InitializeComponent();
             SQL = new SQLControl();
         }
+        #endregion
 
+        #region Load
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
+        #endregion
 
+        #region Button Functionality
+        //Connect button:
         private void button2_Click(object sender, EventArgs e)
         {
             try
@@ -45,6 +53,7 @@ namespace P4Project
             }
         }
 
+        //Add Skill button:
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -68,6 +77,7 @@ namespace P4Project
             }
         }
 
+        //Show Skills button:
         private void button3_Click(object sender, EventArgs e)
         {
             try
@@ -95,6 +105,7 @@ namespace P4Project
             }
         }
 
+        //Add Student button:
         private void AddStudent_Click(object sender, EventArgs e)
         {
             try
@@ -123,6 +134,7 @@ namespace P4Project
             }
         }
 
+        //Show Student button:
         private void button4_Click(object sender, EventArgs e)
         {
             try
@@ -150,6 +162,7 @@ namespace P4Project
             }
         }
 
+        //RealAddStudent button:
         private void button5_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -158,6 +171,7 @@ namespace P4Project
             this.Show();
         }
 
+        //Add SME Profile button:
         private void SMERegister_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -165,5 +179,6 @@ namespace P4Project
             sme.ShowDialog();
             Show();
         }
+        #endregion
     }
 }

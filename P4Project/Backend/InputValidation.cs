@@ -10,8 +10,15 @@ namespace P4Project
 {
     class UserInputValidation
     {
-        public UserInputValidation() { }
+        #region Instance Variables & Properties
 
+        #endregion
+
+        #region Constructor(s)
+        public UserInputValidation() { }
+        #endregion
+
+        #region SME input
         public void VerifySMERegistration(string name, string pass, string confirm, string email)
         {
             VerifySMEName(name);
@@ -24,6 +31,9 @@ namespace P4Project
             if (name.Length < 3 || name.Length > 100) throw new InvalidNameException(name);
         }
 
+        #endregion
+
+        #region Universal input
         public void VerifyRegPassword(string pass, string confirm)
         {
             if (pass != confirm) throw new PasswordsDoesNotMatchException();
@@ -34,5 +44,6 @@ namespace P4Project
         {
             if (!email.Contains("@") || !email.Contains(".") || email.Contains(" ")) throw new InvalidEmailException(email);
         }
+        #endregion
     }
 }

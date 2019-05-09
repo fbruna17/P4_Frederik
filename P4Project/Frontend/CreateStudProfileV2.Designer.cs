@@ -31,13 +31,13 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.StudCrTitle = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.fNameLabel = new System.Windows.Forms.Label();
-            this.lNamelabel = new System.Windows.Forms.Label();
-            this.MailLabel = new System.Windows.Forms.Label();
-            this.FirstNameText = new System.Windows.Forms.TextBox();
-            this.LastNameText = new System.Windows.Forms.TextBox();
-            this.EmailText = new System.Windows.Forms.TextBox();
             this.basicSaveBut = new System.Windows.Forms.Button();
+            this.EmailText = new System.Windows.Forms.TextBox();
+            this.LastNameText = new System.Windows.Forms.TextBox();
+            this.FirstNameText = new System.Windows.Forms.TextBox();
+            this.MailLabel = new System.Windows.Forms.Label();
+            this.lNamelabel = new System.Windows.Forms.Label();
+            this.fNameLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -75,54 +75,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // fNameLabel
-            // 
-            this.fNameLabel.AutoSize = true;
-            this.fNameLabel.Location = new System.Drawing.Point(7, 45);
-            this.fNameLabel.Name = "fNameLabel";
-            this.fNameLabel.Size = new System.Drawing.Size(80, 17);
-            this.fNameLabel.TabIndex = 0;
-            this.fNameLabel.Text = "First Name:";
-            // 
-            // lNamelabel
-            // 
-            this.lNamelabel.AutoSize = true;
-            this.lNamelabel.Location = new System.Drawing.Point(183, 45);
-            this.lNamelabel.Name = "lNamelabel";
-            this.lNamelabel.Size = new System.Drawing.Size(80, 17);
-            this.lNamelabel.TabIndex = 1;
-            this.lNamelabel.Text = "Last Name:";
-            // 
-            // MailLabel
-            // 
-            this.MailLabel.AutoSize = true;
-            this.MailLabel.Location = new System.Drawing.Point(7, 108);
-            this.MailLabel.Name = "MailLabel";
-            this.MailLabel.Size = new System.Drawing.Size(46, 17);
-            this.MailLabel.TabIndex = 2;
-            this.MailLabel.Text = "Email:";
-            // 
-            // FirstNameText
-            // 
-            this.FirstNameText.Location = new System.Drawing.Point(10, 66);
-            this.FirstNameText.Name = "FirstNameText";
-            this.FirstNameText.Size = new System.Drawing.Size(100, 22);
-            this.FirstNameText.TabIndex = 3;
-            // 
-            // LastNameText
-            // 
-            this.LastNameText.Location = new System.Drawing.Point(186, 65);
-            this.LastNameText.Name = "LastNameText";
-            this.LastNameText.Size = new System.Drawing.Size(100, 22);
-            this.LastNameText.TabIndex = 4;
-            // 
-            // EmailText
-            // 
-            this.EmailText.Location = new System.Drawing.Point(10, 129);
-            this.EmailText.Name = "EmailText";
-            this.EmailText.Size = new System.Drawing.Size(100, 22);
-            this.EmailText.TabIndex = 5;
-            // 
             // basicSaveBut
             // 
             this.basicSaveBut.Location = new System.Drawing.Point(208, 160);
@@ -133,7 +85,55 @@
             this.basicSaveBut.UseVisualStyleBackColor = true;
             this.basicSaveBut.Click += new System.EventHandler(this.basicSaveBut_Click);
             // 
-            // CreateStudProfile
+            // EmailText
+            // 
+            this.EmailText.Location = new System.Drawing.Point(10, 129);
+            this.EmailText.Name = "EmailText";
+            this.EmailText.Size = new System.Drawing.Size(100, 22);
+            this.EmailText.TabIndex = 5;
+            // 
+            // LastNameText
+            // 
+            this.LastNameText.Location = new System.Drawing.Point(186, 65);
+            this.LastNameText.Name = "LastNameText";
+            this.LastNameText.Size = new System.Drawing.Size(100, 22);
+            this.LastNameText.TabIndex = 4;
+            // 
+            // FirstNameText
+            // 
+            this.FirstNameText.Location = new System.Drawing.Point(10, 66);
+            this.FirstNameText.Name = "FirstNameText";
+            this.FirstNameText.Size = new System.Drawing.Size(100, 22);
+            this.FirstNameText.TabIndex = 3;
+            // 
+            // MailLabel
+            // 
+            this.MailLabel.AutoSize = true;
+            this.MailLabel.Location = new System.Drawing.Point(7, 108);
+            this.MailLabel.Name = "MailLabel";
+            this.MailLabel.Size = new System.Drawing.Size(46, 17);
+            this.MailLabel.TabIndex = 2;
+            this.MailLabel.Text = "Email:";
+            // 
+            // lNamelabel
+            // 
+            this.lNamelabel.AutoSize = true;
+            this.lNamelabel.Location = new System.Drawing.Point(183, 45);
+            this.lNamelabel.Name = "lNamelabel";
+            this.lNamelabel.Size = new System.Drawing.Size(80, 17);
+            this.lNamelabel.TabIndex = 1;
+            this.lNamelabel.Text = "Last Name:";
+            // 
+            // fNameLabel
+            // 
+            this.fNameLabel.AutoSize = true;
+            this.fNameLabel.Location = new System.Drawing.Point(7, 45);
+            this.fNameLabel.Name = "fNameLabel";
+            this.fNameLabel.Size = new System.Drawing.Size(80, 17);
+            this.fNameLabel.TabIndex = 0;
+            this.fNameLabel.Text = "First Name:";
+            // 
+            // CreateStudProfileV2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -141,8 +141,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.StudCrTitle);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "CreateStudProfile";
+            this.Name = "CreateStudProfileV2";
             this.Text = "CreateStudProfile";
+            this.Load += new System.EventHandler(this.CreateStudProfileV2_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
