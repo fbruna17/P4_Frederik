@@ -10,14 +10,19 @@ namespace P4Project
 {
     class SQLControl
     {
+        #region Instance Variables & Properties
         private string MyConnectionString = "server=mysql33.unoeuro.com;uid=blo_store_dk;pwd=3pdaxzyt;database=blo_store_dk_db_wd";
         private MySqlConnection Connection { get; set; }
+        #endregion
 
+        #region Constructor(s)
         public SQLControl()
         {
             Connection = new MySqlConnection(MyConnectionString);
         }
+        #endregion
 
+        #region Universal SQL
         public void Open()
         {
             Connection.Open();
@@ -27,28 +32,9 @@ namespace P4Project
         {
             Connection.Close();
         }
+        #endregion
 
-        public void AddStudent(string firstname, string lastname, string email)
-        {
-            try
-            {
-                Open();
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = Connection;
-                cmd.CommandText = "INSERT INTO Student(Firstname,Lastname,Email) VALUES(@Firstname,@Lastname,@Email)";
-                cmd.Prepare();
-
-                cmd.Parameters.AddWithValue("@Firstname", firstname);
-                cmd.Parameters.AddWithValue("@Lastname", lastname);
-                cmd.Parameters.AddWithValue("@Email", email);
-                cmd.ExecuteNonQuery();
-            }
-            finally
-            {
-                if (Connection != null) Close();
-            }
-        }
-
+        #region SME-specific SQL
         public void RegisterSMEProfile(string companyName, string email, string password)
         {
             // MySQL commandoen udføres:
@@ -76,6 +62,37 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
+        #endregion
+
+        #region Student-specific SQL
+        public void AddStudent(string firstname, string lastname, string email)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = Connection;
+                cmd.CommandText = "INSERT INTO Student(Firstname,Lastname,Email) VALUES(@Firstname,@Lastname,@Email)";
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@Firstname", firstname);
+                cmd.Parameters.AddWithValue("@Lastname", lastname);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+        #endregion
+
+        #region Task-specific SQL
+
+        #endregion
+
+
+        
 
 
 

@@ -14,16 +14,21 @@ namespace P4Project
 {
     public partial class RegisterSMEProfile : Form
     {
+        #region Instance Variables & Properties
         private SQLControl SQL;
         private UserInputValidation InputValidation;
+        #endregion
 
+        #region Constructor(s)
         public RegisterSMEProfile()
         {
             InitializeComponent();
             SQL = new SQLControl();
             InputValidation = new UserInputValidation();
         }
+        #endregion
 
+        #region Text functionality
         private void CompanyName_TextChanged(object sender, EventArgs e)
         {
 
@@ -33,7 +38,9 @@ namespace P4Project
         {
 
         }
+        #endregion
 
+        #region Button functionality
         private void RegisterSave_Click(object sender, EventArgs e)
         {
             string companyName = CompanyName.Text;
@@ -69,5 +76,13 @@ namespace P4Project
                 MessageBox.Show(ex.Message);
             }
         }
+        #endregion
+
+        #region Load
+        private void RegisterSMEProfile_Load(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

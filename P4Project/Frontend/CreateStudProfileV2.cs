@@ -13,14 +13,19 @@ namespace P4Project
 {
     public partial class CreateStudProfileV2 : Form
     {
+        #region Instance Variables & Properties
         private SQLControl SQL;
+        #endregion
 
+        #region Constructor(s)
         public CreateStudProfileV2()
         {
             InitializeComponent();
             SQL = new SQLControl();
         }
+        #endregion
 
+        #region Buttons
         private void basicSaveBut_Click(object sender, EventArgs e)
         {
             string firstname = FirstNameText.Text;
@@ -38,10 +43,18 @@ namespace P4Project
             }
 
         }
+        #endregion
 
+        #region Load
         private void CreateStudProfileV2_Load(object sender, EventArgs e)
         {
 
         }
+
+        private void CreateStudProfileV2_Load_1(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }
