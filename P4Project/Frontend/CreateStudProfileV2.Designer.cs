@@ -40,7 +40,6 @@
             this.lNamelabel = new System.Windows.Forms.Label();
             this.fNameLabel = new System.Windows.Forms.Label();
             this.imageChooseBtn = new System.Windows.Forms.Button();
-            this.imageUploadBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -51,7 +50,7 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(338, 40);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(194, 223);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -79,9 +78,9 @@
             this.groupBox1.Controls.Add(this.lNamelabel);
             this.groupBox1.Controls.Add(this.fNameLabel);
             this.groupBox1.Location = new System.Drawing.Point(14, 189);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(230, 149);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
@@ -90,7 +89,7 @@
             // basicSaveBut
             // 
             this.basicSaveBut.Location = new System.Drawing.Point(156, 130);
-            this.basicSaveBut.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.basicSaveBut.Margin = new System.Windows.Forms.Padding(2);
             this.basicSaveBut.Name = "basicSaveBut";
             this.basicSaveBut.Size = new System.Drawing.Size(74, 19);
             this.basicSaveBut.TabIndex = 6;
@@ -101,7 +100,7 @@
             // EmailText
             // 
             this.EmailText.Location = new System.Drawing.Point(8, 105);
-            this.EmailText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EmailText.Margin = new System.Windows.Forms.Padding(2);
             this.EmailText.Name = "EmailText";
             this.EmailText.Size = new System.Drawing.Size(76, 20);
             this.EmailText.TabIndex = 5;
@@ -109,7 +108,7 @@
             // LastNameText
             // 
             this.LastNameText.Location = new System.Drawing.Point(140, 53);
-            this.LastNameText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LastNameText.Margin = new System.Windows.Forms.Padding(2);
             this.LastNameText.Name = "LastNameText";
             this.LastNameText.Size = new System.Drawing.Size(76, 20);
             this.LastNameText.TabIndex = 4;
@@ -117,7 +116,7 @@
             // FirstNameText
             // 
             this.FirstNameText.Location = new System.Drawing.Point(8, 54);
-            this.FirstNameText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FirstNameText.Margin = new System.Windows.Forms.Padding(2);
             this.FirstNameText.Name = "FirstNameText";
             this.FirstNameText.Size = new System.Drawing.Size(76, 20);
             this.FirstNameText.TabIndex = 3;
@@ -154,35 +153,24 @@
             // 
             // imageChooseBtn
             // 
-            this.imageChooseBtn.Location = new System.Drawing.Point(347, 277);
+            this.imageChooseBtn.Location = new System.Drawing.Point(353, 277);
             this.imageChooseBtn.Name = "imageChooseBtn";
-            this.imageChooseBtn.Size = new System.Drawing.Size(88, 23);
+            this.imageChooseBtn.Size = new System.Drawing.Size(164, 23);
             this.imageChooseBtn.TabIndex = 4;
             this.imageChooseBtn.Text = "Choose Picture";
             this.imageChooseBtn.UseVisualStyleBackColor = true;
             this.imageChooseBtn.Click += new System.EventHandler(this.ImageChooseBtn_Click);
-            // 
-            // imageUploadBtn
-            // 
-            this.imageUploadBtn.Location = new System.Drawing.Point(441, 277);
-            this.imageUploadBtn.Name = "imageUploadBtn";
-            this.imageUploadBtn.Size = new System.Drawing.Size(88, 23);
-            this.imageUploadBtn.TabIndex = 5;
-            this.imageUploadBtn.Text = "Upload Picture";
-            this.imageUploadBtn.UseVisualStyleBackColor = true;
-            this.imageUploadBtn.Click += new System.EventHandler(this.ImageUploadBtn_Click);
             // 
             // CreateStudProfileV2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 366);
-            this.Controls.Add(this.imageUploadBtn);
             this.Controls.Add(this.imageChooseBtn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.StudCrTitle);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreateStudProfileV2";
             this.Text = "CreateStudProfile";
             this.Load += new System.EventHandler(this.CreateStudProfileV2_Load_1);
@@ -207,6 +195,5 @@
         private System.Windows.Forms.Label lNamelabel;
         private System.Windows.Forms.Label fNameLabel;
         private System.Windows.Forms.Button imageChooseBtn;
-        private System.Windows.Forms.Button imageUploadBtn;
     }
 }

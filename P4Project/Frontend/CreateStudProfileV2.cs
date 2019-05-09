@@ -31,12 +31,17 @@ namespace P4Project
         #region Buttons
         private void basicSaveBut_Click(object sender, EventArgs e)
         {
+            MemoryStream ms = new MemoryStream();
+            pictureBox1.Image.Save(ms, pictureBox1.Image.RawFormat);
+
+            byte[] img = ms.ToArray();
             string firstname = FirstNameText.Text;
             string lastname = LastNameText.Text;
             string email = EmailText.Text;
+            
             try
-            {
-                SQL.AddStudent(firstname, lastname, email);
+            { 
+                SQL.AddStudent(firstname, lastname, email, img);
                 MessageBox.Show("Student has been added to the database!");
                 this.Hide();
             }
@@ -72,36 +77,6 @@ namespace P4Project
 
         private void PictureBox1_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void ImageUploadBtn_Click(object sender, EventArgs e)
-        {
-
-            MemoryStream ms = new MemoryStream();
-            pictureBox1.Image.Save(ms,pictureBox1.Image.RawFormat);
-            byte[] img = ms.ToArray();
-
-            string insertQuery = "INSERT INTO blo_store_dk_db_wd.Student(PictureDIR) VALUES(@PictureDIR)";
-
-            connection = new MySqlConnection(myConnectionString);
-
-            connection.Open();
-
-            MySqlCommand cmd = new MySqlCommand(insertQuery, connection);
-
-            cmd.Parameters.Add("@PictureDIR", MySqlDbType.Blob);
-
-            cmd.Parameters["@PictureDIR"].Value = img;
-
-            if(cmd.ExecuteNonQuery() == 1)
-            {
-                MessageBox.Show("Data inserted");
-            }
-
-            connection.Close();
-
-
 
         }
     }
