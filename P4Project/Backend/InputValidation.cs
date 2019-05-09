@@ -11,11 +11,14 @@ namespace P4Project
     class UserInputValidation
     {
         #region Instance Variables & Properties
-
+        private SQLControl SQL;
         #endregion
 
         #region Constructor(s)
-        public UserInputValidation() { }
+        public UserInputValidation()
+        {
+            SQL = new SQLControl();
+        }
         #endregion
 
         #region SME input
@@ -45,5 +48,18 @@ namespace P4Project
             if (!email.Contains("@") || !email.Contains(".") || email.Contains(" ")) throw new InvalidEmailException(email);
         }
         #endregion
+        public int VerifySMELogin(string username, string password)
+        {
+            string SMEID;
+            int ID;
+            // Sikrer der er et input:
+            if (username == "") throw new NoUsernameInputException();
+            if (password == "") throw new NoPasswordInputException();
+            // Der forespørges i Databasen efter en bruger:
+            if ((SMEID = SQL.SMELogInRequest(username, password)) == "") throw new SMEUserDoesNotExistException();
+            // ID laves til int og returneres:
+            int.TryParse(SMEID, out ID);
+            return ID;
+        }
     }
 }

@@ -14,3 +14,5 @@ C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csproj
 C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.TestForm.resources
 C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.CreateStudProfileV2.resources
 C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.RegisterSMEProfile.resources
+C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.SMELogInPage.resources
+C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.SMEProfileView.resources

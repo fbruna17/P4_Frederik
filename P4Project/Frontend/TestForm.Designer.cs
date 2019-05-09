@@ -35,6 +35,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.SMERegister = new System.Windows.Forms.Button();
+            this.SMELogIn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button2
@@ -107,11 +108,22 @@
             this.SMERegister.UseVisualStyleBackColor = true;
             this.SMERegister.Click += new System.EventHandler(this.SMERegister_Click);
             // 
+            // SMELogIn
+            // 
+            this.SMELogIn.Location = new System.Drawing.Point(337, 222);
+            this.SMELogIn.Name = "SMELogIn";
+            this.SMELogIn.Size = new System.Drawing.Size(131, 46);
+            this.SMELogIn.TabIndex = 8;
+            this.SMELogIn.Text = "SME Log in";
+            this.SMELogIn.UseVisualStyleBackColor = true;
+            this.SMELogIn.Click += new System.EventHandler(this.SMELogIn_Click);
+            // 
             // TestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SMELogIn);
             this.Controls.Add(this.SMERegister);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -134,6 +146,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button SMERegister;
+        private System.Windows.Forms.Button SMELogIn;
     }
 }
 

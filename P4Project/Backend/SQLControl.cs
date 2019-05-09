@@ -92,10 +92,72 @@ namespace P4Project
         #endregion
 
 
-        
 
 
+        public string SMELogInRequest(string username, string password)
+        {
+            string SMEID = "";
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT SMEID FROM SME WHERE Name = @Name AND Password = @Password"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@Name", username);
+                cmd.Parameters.AddWithValue("@Password", password);
 
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    SMEID = reader.GetString(0);
+                }
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+            return SMEID;
+        }
 
+        public List<Task> FetchTasksForSME()
+        {
+            var taskList = new List<Task>();
+            return taskList;
+        }
+
+        public SMEBase FetchSMEBaseInformation(int ID)
+        {
+            string name = "";
+            string email = "";
+            // string profilePicturePath = "";
+
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT Name,Email FROM SME WHERE SMEID = @SMEID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@SMEID", ID);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    name = reader.GetString(0);
+                    email = reader.GetString(1);
+                }
+                var SME = new SMEBase(ID, name, email);
+                return SME;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
     }
 }
