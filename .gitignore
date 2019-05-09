@@ -6,3 +6,6 @@
 /.vs/P4Project/v16/Server/sqlite3/storage.ide
 /.vs/P4Project/v16/Server/sqlite3/storage.ide-shm
 /.vs/P4Project/v16/Server/sqlite3/storage.ide-wal
+*.ide
+.vs/P4Project/v16/Server/sqlite3/storage.ide-shm
+.vs/P4Project/v16/Server/sqlite3/storage.ide-wal
