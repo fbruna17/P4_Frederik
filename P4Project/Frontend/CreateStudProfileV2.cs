@@ -56,5 +56,20 @@ namespace P4Project
 
         }
         #endregion
+
+        private void ImageChooseBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opf = new OpenFileDialog();
+            opf.Filter = "Choose image(*.jpg; *.png;)|*.jpg; *.png;";
+            if (opf.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.Image = Image.FromFile(opf.FileName);
+            }
+        }
+
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
