@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Backend\InputValidation.cs" />
+    <Compile Include="Exceptions\PasswordsDoesNotMatchException.cs" />
+    <Compile Include="Exceptions\PasswordToShortException.cs" />
     <Compile Include="Frontend\CreateStudProfileV2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,7 +64,7 @@
     <Compile Include="Frontend\RegisterSMEProfile.Designer.cs">
       <DependentUpon>RegisterSMEProfile.cs</DependentUpon>
     </Compile>
-    <Compile Include="SQLControl.cs" />
+    <Compile Include="Backend\SQLControl.cs" />
     <Compile Include="Frontend\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Backend\Recommendation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

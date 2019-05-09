@@ -51,10 +51,6 @@ namespace P4Project
 
         public void RegisterSMEProfile(string companyName, string email, string password)
         {
-            // Strengene undersøges for om de er valide:
-            if (companyName.Length < 3 || companyName.Length > 100) throw new InvalidNameException(companyName);
-            if (!email.Contains("@") || !email.Contains(".")) throw new InvalidEmailException(email);
-
             // MySQL commandoen udføres:
             try
             {
