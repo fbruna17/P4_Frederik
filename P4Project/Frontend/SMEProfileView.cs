@@ -18,6 +18,7 @@ namespace P4Project.Frontend
         {
             InitializeComponent();
             this.SME = SME;
+            companyName.Text = SME.Name;
         }
     }
 }

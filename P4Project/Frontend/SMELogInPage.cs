@@ -31,8 +31,10 @@ namespace P4Project.Frontend
             {
                 int SMEID = InputValidation.VerifySMELogin(username, password);
                 SMEBase SME = SQL.FetchSMEBaseInformation(SMEID);
-                MessageBox.Show("Gudav" + SMEID);
+                var sme = new SMEProfileView(SME);
                 Hide();
+                Close();
+                sme.ShowDialog();
             }
             catch(NoUsernameInputException)
             {
