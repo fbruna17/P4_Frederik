@@ -47,36 +47,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreateStudProfileV2.cs">
+    <Compile Include="Backend\InputValidation.cs" />
+    <Compile Include="Exceptions\PasswordsDoesNotMatchException.cs" />
+    <Compile Include="Exceptions\PasswordToShortException.cs" />
+    <Compile Include="Frontend\CreateStudProfileV2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateStudProfileV2.Designer.cs">
+    <Compile Include="Frontend\CreateStudProfileV2.Designer.cs">
       <DependentUpon>CreateStudProfileV2.cs</DependentUpon>
     </Compile>
     <Compile Include="Exceptions\InvalidEmailException.cs" />
     <Compile Include="Exceptions\InvalidNameException.cs" />
-    <Compile Include="RegisterSMEProfile.cs">
+    <Compile Include="Frontend\RegisterSMEProfile.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegisterSMEProfile.Designer.cs">
+    <Compile Include="Frontend\RegisterSMEProfile.Designer.cs">
       <DependentUpon>RegisterSMEProfile.cs</DependentUpon>
     </Compile>
-    <Compile Include="SQLControl.cs" />
-    <Compile Include="TestForm.cs">
+    <Compile Include="Backend\SQLControl.cs" />
+    <Compile Include="Frontend\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TestForm.Designer.cs">
+    <Compile Include="Frontend\TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CreateStudProfileV2.resx">
+    <EmbeddedResource Include="Frontend\CreateStudProfileV2.resx">
       <DependentUpon>CreateStudProfileV2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RegisterSMEProfile.resx">
+    <EmbeddedResource Include="Frontend\RegisterSMEProfile.resx">
       <DependentUpon>RegisterSMEProfile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestForm.resx">
+    <EmbeddedResource Include="Frontend\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -100,6 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Backend\Recommendation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

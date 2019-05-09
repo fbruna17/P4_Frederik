@@ -15,11 +15,13 @@ namespace P4Project
     public partial class RegisterSMEProfile : Form
     {
         private SQLControl SQL;
+        private UserInputValidation InputValidation;
 
         public RegisterSMEProfile()
         {
             InitializeComponent();
             SQL = new SQLControl();
+            InputValidation = new UserInputValidation();
         }
 
         private void CompanyName_TextChanged(object sender, EventArgs e)
@@ -41,6 +43,7 @@ namespace P4Project
 
             try
             {
+                InputValidation.VerifySMERegistration(companyName, password, confirmPass, email);
                 SQL.RegisterSMEProfile(companyName, email, password);
                 MessageBox.Show("A new SME user has ben created!");
                 this.Hide();
@@ -53,13 +56,18 @@ namespace P4Project
             {
                 MessageBox.Show("Invalid Company name! " + ex.i);
             }
+            catch(PasswordsDoesNotMatchException)
+            {
+                MessageBox.Show("Passwords does not match!");
+            }
+            catch(PasswordToShortException)
+            {
+                MessageBox.Show("Your Password is to short! Password must be atleast 8 characters!");
+            }
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-
-
         }
     }
 }
