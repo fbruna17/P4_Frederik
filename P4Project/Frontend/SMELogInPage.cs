@@ -14,11 +14,13 @@ namespace P4Project.Frontend
     public partial class SMELogInPage : Form
     {
         private UserInputValidation InputValidation;
+        private SQLControl SQL;
 
         public SMELogInPage()
         {
             InitializeComponent();
             InputValidation = new UserInputValidation();
+            SQL = new SQLControl();
         }
 
         private void LogIn_Click(object sender, EventArgs e)
@@ -28,10 +30,11 @@ namespace P4Project.Frontend
             try
             {
                 int SMEID = InputValidation.VerifySMELogin(username, password);
+                SMEBase SME = SQL.FetchSMEBaseInformation(SMEID);
                 MessageBox.Show("Gudav" + SMEID);
                 Hide();
             }
-            catch(NoUsernameInputException) 
+            catch(NoUsernameInputException)
             {
                 MessageBox.Show("Please input a username!");
             }

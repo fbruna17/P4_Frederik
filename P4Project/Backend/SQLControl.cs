@@ -107,6 +107,42 @@ namespace P4Project
             return SMEID;
         }
 
+        public List<Task> FetchTasksForSME()
+        {
+            var taskList = new List<Task>();
+            return taskList;
+        }
 
+        public SMEBase FetchSMEBaseInformation(int ID)
+        {
+            string name = "";
+            string email = "";
+            // string profilePicturePath = "";
+
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT Name,Email FROM SME WHERE SMEID = @SMEID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@SMEID", ID);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    name = reader.GetString(0);
+                    email = reader.GetString(1);
+                }
+                var SME = new SMEBase(ID, name, email);
+                return SME;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
     }
 }
