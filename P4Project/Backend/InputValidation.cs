@@ -10,7 +10,11 @@ namespace P4Project
 {
     class UserInputValidation
     {
-        public UserInputValidation() { }
+        private SQLControl SQL;
+        public UserInputValidation()
+        {
+            SQL = new SQLControl();
+        }
 
         public void VerifySMERegistration(string name, string pass, string confirm, string email)
         {
@@ -33,6 +37,20 @@ namespace P4Project
         public void VerifyEmail(string email)
         {
             if (!email.Contains("@") || !email.Contains(".") || email.Contains(" ")) throw new InvalidEmailException(email);
+        }
+
+        public int VerifySMELogin(string username, string password)
+        {
+            string SMEID;
+            int ID;
+            // Sikrer der er et input:
+            if (username == "") throw new NoUsernameInputException();
+            if (password == "") throw new NoPasswordInputException();
+            // Der forespørges i Databasen efter en bruger:
+            if ((SMEID = SQL.SMELogInRequest(username, password)) == "") throw new SMEUserDoesNotExistException();
+            // ID laves til int og returneres: 
+            int.TryParse(SMEID, out ID);
+            return ID;
         }
     }
 }

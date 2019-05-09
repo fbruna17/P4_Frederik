@@ -57,10 +57,12 @@ namespace P4Project
                 // Forbindelsen åbnes:
                 Open();
                 //Der initialiseres en instans til command håndtering:
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = Connection;
-                // Commandoen defineres og forberedes:
-                cmd.CommandText = "INSERT INTO SME(Name,Email,Password) VALUES(@Name,@Email,@Password)";
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    // Commandoen defineres og forberedes:
+                    CommandText = "INSERT INTO SME(Name,Email,Password) VALUES(@Name,@Email,@Password)"
+                };
                 cmd.Prepare();
 
                 // Parametrene tilføjes:
@@ -77,7 +79,33 @@ namespace P4Project
             }
         }
 
+        public string SMELogInRequest(string username, string password)
+        {
+            string SMEID = "";
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT SMEID FROM SME WHERE Name = @Name AND Password = @Password"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@Name", username);
+                cmd.Parameters.AddWithValue("@Password", password);
 
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    SMEID = reader.GetString(0);
+                }
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+            return SMEID;
+        }
 
 
     }

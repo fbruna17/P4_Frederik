@@ -48,8 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Backend\InputValidation.cs" />
+    <Compile Include="Exceptions\NoPasswordInputException.cs" />
+    <Compile Include="Exceptions\NoUsernameInputException.cs" />
     <Compile Include="Exceptions\PasswordsDoesNotMatchException.cs" />
     <Compile Include="Exceptions\PasswordToShortException.cs" />
+    <Compile Include="Exceptions\SMEUserDoesNotExistException.cs" />
     <Compile Include="Frontend\CreateStudProfileV2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +68,12 @@
       <DependentUpon>RegisterSMEProfile.cs</DependentUpon>
     </Compile>
     <Compile Include="Backend\SQLControl.cs" />
+    <Compile Include="Frontend\SMELogInPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frontend\SMELogInPage.Designer.cs">
+      <DependentUpon>SMELogInPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frontend\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +87,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\RegisterSMEProfile.resx">
       <DependentUpon>RegisterSMEProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frontend\SMELogInPage.resx">
+      <DependentUpon>SMELogInPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>

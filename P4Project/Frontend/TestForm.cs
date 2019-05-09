@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using P4Project.Frontend;
 
 namespace P4Project
 {
@@ -163,6 +164,14 @@ namespace P4Project
             this.Hide();
             var sme = new RegisterSMEProfile();
             sme.ShowDialog();
+            Show();
+        }
+
+        private void SMELogIn_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var SMElog = new SMELogInPage();
+            SMElog.ShowDialog();
             Show();
         }
     }

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ConfirmPass = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.Password = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.RegisterSave = new System.Windows.Forms.Button();
@@ -36,8 +38,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.CompanyName = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.ConfirmPass = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +58,23 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Register";
+            // 
+            // ConfirmPass
+            // 
+            this.ConfirmPass.Location = new System.Drawing.Point(158, 87);
+            this.ConfirmPass.Name = "ConfirmPass";
+            this.ConfirmPass.PasswordChar = '*';
+            this.ConfirmPass.Size = new System.Drawing.Size(178, 22);
+            this.ConfirmPass.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 87);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(121, 17);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Confirm Password";
             // 
             // Password
             // 
@@ -119,23 +136,6 @@
             this.CompanyName.Size = new System.Drawing.Size(178, 22);
             this.CompanyName.TabIndex = 0;
             this.CompanyName.TextChanged += new System.EventHandler(this.CompanyName_TextChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 87);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(121, 17);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Confirm Password";
-            // 
-            // ConfirmPass
-            // 
-            this.ConfirmPass.Location = new System.Drawing.Point(158, 87);
-            this.ConfirmPass.Name = "ConfirmPass";
-            this.ConfirmPass.PasswordChar = '*';
-            this.ConfirmPass.Size = new System.Drawing.Size(178, 22);
-            this.ConfirmPass.TabIndex = 7;
             // 
             // RegisterSMEProfile
             // 
