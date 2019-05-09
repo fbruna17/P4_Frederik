@@ -53,6 +53,12 @@
     <Compile Include="CreateStudProfileV2.Designer.cs">
       <DependentUpon>CreateStudProfileV2.cs</DependentUpon>
     </Compile>
+    <Compile Include="RegisterSMEProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterSMEProfile.Designer.cs">
+      <DependentUpon>RegisterSMEProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="SQLControl.cs" />
     <Compile Include="TestForm.cs">
       <SubType>Form</SubType>
@@ -64,6 +70,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CreateStudProfileV2.resx">
       <DependentUpon>CreateStudProfileV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterSMEProfile.resx">
+      <DependentUpon>RegisterSMEProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>

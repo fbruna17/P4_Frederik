@@ -48,6 +48,11 @@ namespace P4Project
             }
         }
 
+        public void RegisterSMEProfile(string companyName, string email, string password)
+        {
+
+        }
+
 
 
 
