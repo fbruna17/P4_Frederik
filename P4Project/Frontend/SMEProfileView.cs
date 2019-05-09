@@ -18,7 +18,13 @@ namespace P4Project.Frontend
         {
             InitializeComponent();
             this.SME = SME;
-            companyName.Text = SME.Name;
+            companyName.Text = "Welcome to TaskDistributer2000 " + SME.Name;
+            email.Text = SME.Email;
+        }
+
+        private void createTask_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
