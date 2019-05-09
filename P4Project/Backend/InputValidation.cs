@@ -52,5 +52,13 @@ namespace P4Project
             int.TryParse(SMEID, out ID);
             return ID;
         }
+
+        public void VerifyTask(string title, string description, string location)
+        {
+            // Tilføj ordentlig validation eks. nummer:
+            if (title == "" || title.Contains("@")) throw new InvalidTaskTitleException(title);
+            if (description == "") throw new InvalidTaskDescriptionExeption(description);
+            if (location == "") throw new InvalidTaskLocationException(location);
+        }
     }
 }

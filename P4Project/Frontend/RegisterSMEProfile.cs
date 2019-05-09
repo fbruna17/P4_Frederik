@@ -69,5 +69,15 @@ namespace P4Project
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void RegisterSMEProfile_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RegisterSMEProfile_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

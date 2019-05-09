@@ -50,6 +50,9 @@
     <Compile Include="Backend\Classes\SMEBase.cs" />
     <Compile Include="Backend\Classes\TaskBase.cs" />
     <Compile Include="Backend\InputValidation.cs" />
+    <Compile Include="Exceptions\InvalidTaskDescriptionExeption.cs" />
+    <Compile Include="Exceptions\InvalidTaskLocationException.cs" />
+    <Compile Include="Exceptions\InvalidTaskTitleException.cs" />
     <Compile Include="Exceptions\NoPasswordInputException.cs" />
     <Compile Include="Exceptions\NoUsernameInputException.cs" />
     <Compile Include="Exceptions\PasswordsDoesNotMatchException.cs" />
@@ -63,6 +66,12 @@
     </Compile>
     <Compile Include="Exceptions\InvalidEmailException.cs" />
     <Compile Include="Exceptions\InvalidNameException.cs" />
+    <Compile Include="Frontend\CreateTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frontend\CreateTask.Designer.cs">
+      <DependentUpon>CreateTask.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frontend\RegisterSMEProfile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +101,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Frontend\CreateStudProfileV2.resx">
       <DependentUpon>CreateStudProfileV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frontend\CreateTask.resx">
+      <DependentUpon>CreateTask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\RegisterSMEProfile.resx">
       <DependentUpon>RegisterSMEProfile.cs</DependentUpon>

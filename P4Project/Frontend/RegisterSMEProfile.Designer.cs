@@ -145,6 +145,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "RegisterSMEProfile";
             this.Text = "RegisterSMEProfile";
+            this.Load += new System.EventHandler(this.RegisterSMEProfile_Load_1);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

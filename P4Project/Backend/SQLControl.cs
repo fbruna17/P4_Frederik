@@ -144,5 +144,36 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
+
+        public void CreateNewTask(int SMEID, string title, string description, string location)
+        {
+            // MySQL commandoen udføres:
+            try
+            {
+                // Forbindelsen åbnes:
+                Open();
+                //Der initialiseres en instans til command håndtering:
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    // Commandoen defineres og forberedes:
+                    CommandText = "INSERT INTO Task(SMEID,Title,Description,Location) VALUES (@sme,@title,@description,@location)"
+                };
+                cmd.Prepare();
+
+                // Parametrene tilføjes:
+                cmd.Parameters.AddWithValue("@sme", SMEID);
+                cmd.Parameters.AddWithValue("@title", title);
+                cmd.Parameters.AddWithValue("@Edescription", description);
+                cmd.Parameters.AddWithValue("@Plocation", location);
+                // Kaldet udføres, og tasken bliver tilføjet til databasen:
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                // Forbindelsen lukkes:
+                if (Connection != null) Close();
+            }
+        }
     }
 }
