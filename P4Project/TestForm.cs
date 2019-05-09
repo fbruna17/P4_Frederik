@@ -157,5 +157,13 @@ namespace P4Project
             stud.ShowDialog();
             this.Show();
         }
+
+        private void SMERegister_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var sme = new RegisterSMEProfile();
+            sme.ShowDialog();
+            Show();
+        }
     }
 }

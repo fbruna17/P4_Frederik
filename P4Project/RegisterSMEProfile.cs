@@ -7,14 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using P4Project.Exceptions;
+using MySql.Data.MySqlClient;
 
 namespace P4Project
 {
     public partial class RegisterSMEProfile : Form
     {
+        private SQLControl SQL;
+
         public RegisterSMEProfile()
         {
             InitializeComponent();
+            SQL = new SQLControl();
         }
 
         private void CompanyName_TextChanged(object sender, EventArgs e)
@@ -24,7 +29,37 @@ namespace P4Project
 
         private void Password_TextChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(e.ToString());
+
+        }
+
+        private void RegisterSave_Click(object sender, EventArgs e)
+        {
+            string companyName = CompanyName.Text;
+            string password = Password.Text;
+            string confirmPass = ConfirmPass.Text;
+            string email = CompanyEmail.Text;
+
+            try
+            {
+                SQL.RegisterSMEProfile(companyName, email, password);
+                MessageBox.Show("A new SME user has ben created!");
+                this.Hide();
+            }
+            catch(InvalidEmailException ex)
+            {
+                MessageBox.Show("Invalid Email Address! " + ex.i);
+            }
+            catch(InvalidNameException ex)
+            {
+                MessageBox.Show("Invalid Company name! " + ex.i);
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+
         }
     }
 }

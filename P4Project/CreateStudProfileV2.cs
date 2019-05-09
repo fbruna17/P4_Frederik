@@ -30,12 +30,13 @@ namespace P4Project
             {
                 SQL.AddStudent(firstname, lastname, email);
                 MessageBox.Show("Student has been added to the database!");
+                this.Hide();
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            this.Hide();
+
         }
 
         private void CreateStudProfileV2_Load(object sender, EventArgs e)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using P4Project.Exceptions;
 
 namespace P4Project
 {
@@ -50,7 +51,34 @@ namespace P4Project
 
         public void RegisterSMEProfile(string companyName, string email, string password)
         {
+            // Strengene undersøges for om de er valide:
+            if (companyName.Length < 3 || companyName.Length > 100) throw new InvalidNameException(companyName);
+            if (!email.Contains("@") || !email.Contains(".")) throw new InvalidEmailException(email);
 
+            // MySQL commandoen udføres:
+            try
+            {
+                // Forbindelsen åbnes:
+                Open();
+                //Der initialiseres en instans til command håndtering:
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = Connection;
+                // Commandoen defineres og forberedes:
+                cmd.CommandText = "INSERT INTO SME(Name,Email,Password) VALUES(@Name,@Email,@Password)";
+                cmd.Prepare();
+
+                // Parametrene tilføjes:
+                cmd.Parameters.AddWithValue("@Name", companyName);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Password", password);
+                // Kaldet udføres, og SME profilen bliver tilføjet til databasen:
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                // Forbindelsen lukkes:
+                if (Connection != null) Close();
+            }
         }
 
 

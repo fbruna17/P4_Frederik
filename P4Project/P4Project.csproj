@@ -53,6 +53,8 @@
     <Compile Include="CreateStudProfileV2.Designer.cs">
       <DependentUpon>CreateStudProfileV2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Exceptions\InvalidEmailException.cs" />
+    <Compile Include="Exceptions\InvalidNameException.cs" />
     <Compile Include="RegisterSMEProfile.cs">
       <SubType>Form</SubType>
     </Compile>
