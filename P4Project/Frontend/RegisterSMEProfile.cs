@@ -57,9 +57,6 @@ namespace P4Project
             {
                 MessageBox.Show(ex.Message);
             }
-
-
-
         }
     }
 }
