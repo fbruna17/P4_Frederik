@@ -71,5 +71,10 @@ namespace P4Project
         {
 
         }
+
+        private void ImageUploadBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

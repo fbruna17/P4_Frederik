@@ -170,6 +170,7 @@
             this.imageUploadBtn.TabIndex = 5;
             this.imageUploadBtn.Text = "Upload Picture";
             this.imageUploadBtn.UseVisualStyleBackColor = true;
+            this.imageUploadBtn.Click += new System.EventHandler(this.ImageUploadBtn_Click);
             // 
             // CreateStudProfileV2
             // 
