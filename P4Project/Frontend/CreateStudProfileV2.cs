@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace P4Project
 {
@@ -15,6 +16,8 @@ namespace P4Project
     {
         #region Instance Variables & Properties
         private SQLControl SQL;
+                private string myConnectionString = "server=mysql33.unoeuro.com;uid=blo_store_dk;pwd=3pdaxzyt;database=blo_store_dk_db_wd";
+        private MySqlConnection connection = null;
         #endregion
 
         #region Constructor(s)
@@ -74,6 +77,31 @@ namespace P4Project
 
         private void ImageUploadBtn_Click(object sender, EventArgs e)
         {
+
+            MemoryStream ms = new MemoryStream();
+            pictureBox1.Image.Save(ms,pictureBox1.Image.RawFormat);
+            byte[] img = ms.ToArray();
+
+            string insertQuery = "INSERT INTO blo_store_dk_db_wd.Student(PictureDIR) VALUES(@PictureDIR)";
+
+            connection = new MySqlConnection(myConnectionString);
+
+            connection.Open();
+
+            MySqlCommand cmd = new MySqlCommand(insertQuery, connection);
+
+            cmd.Parameters.Add("@PictureDIR", MySqlDbType.Blob);
+
+            cmd.Parameters["@PictureDIR"].Value = img;
+
+            if(cmd.ExecuteNonQuery() == 1)
+            {
+                MessageBox.Show("Data inserted");
+            }
+
+            connection.Close();
+
+
 
         }
     }
