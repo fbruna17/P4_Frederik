@@ -84,5 +84,10 @@ namespace P4Project
 
         }
         #endregion
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
