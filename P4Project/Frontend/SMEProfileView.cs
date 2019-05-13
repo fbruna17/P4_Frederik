@@ -24,7 +24,10 @@ namespace P4Project.Frontend
 
         private void createTask_Click(object sender, EventArgs e)
         {
-
+            var taskCreate = new CreateTask(SME);
+            Hide();
+            taskCreate.ShowDialog();
+            Show();
         }
     }
 }

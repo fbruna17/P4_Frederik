@@ -65,16 +65,17 @@ namespace P4Project
         #endregion
 
         #region Student-specific SQL
-        public void AddStudent(string firstname, string lastname, string email)
+        public void AddStudent(string firstname, string lastname, string email, byte[] img)
         {
             try
             {
                 Open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = Connection;
-                cmd.CommandText = "INSERT INTO Student(Firstname,Lastname,Email) VALUES(@Firstname,@Lastname,@Email)";
+                cmd.CommandText = "INSERT INTO Student(Firstname,Lastname,Email,Profile_Picture) VALUES(@Firstname,@Lastname,@Email,@Profile_Picture)";
                 cmd.Prepare();
 
+                cmd.Parameters.AddWithValue("@Profile_Picture", img);
                 cmd.Parameters.AddWithValue("@Firstname", firstname);
                 cmd.Parameters.AddWithValue("@Lastname", lastname);
                 cmd.Parameters.AddWithValue("@Email", email);
@@ -179,8 +180,8 @@ namespace P4Project
                 // Parametrene tilføjes:
                 cmd.Parameters.AddWithValue("@sme", SMEID);
                 cmd.Parameters.AddWithValue("@title", title);
-                cmd.Parameters.AddWithValue("@Edescription", description);
-                cmd.Parameters.AddWithValue("@Plocation", location);
+                cmd.Parameters.AddWithValue("@description", description);
+                cmd.Parameters.AddWithValue("@location", location);
                 // Kaldet udføres, og tasken bliver tilføjet til databasen:
                 cmd.ExecuteNonQuery();
             }
