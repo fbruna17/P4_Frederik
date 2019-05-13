@@ -75,7 +75,6 @@ namespace P4Project
                 cmd.CommandText = "INSERT INTO Student(Firstname,Lastname,Email,Profile_Picture) VALUES(@Firstname,@Lastname,@Email,@Profile_Picture)";
                 cmd.Prepare();
 
-                cmd.Parameters.Add("@Picture_Picture", MySqlDbType.Blob);
                 cmd.Parameters.AddWithValue("@Profile_Picture", img);
                 cmd.Parameters.AddWithValue("@Firstname", firstname);
                 cmd.Parameters.AddWithValue("@Lastname", lastname);
