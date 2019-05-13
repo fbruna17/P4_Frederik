@@ -124,6 +124,34 @@ namespace P4Project
             return SMEID;
         }
 
+        public string StudLogInRequest(string username, string password)
+        {
+            string StudID = "";
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT StudentID FROM Student WHERE FirstName = @FirstName AND Password = @Password"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@FirstName", username);
+                cmd.Parameters.AddWithValue("@Password", password);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    StudID = reader.GetString(0);
+                }
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+            return StudID;
+        }
+
         public List<Task> FetchTasksForSME()
         {
             var taskList = new List<Task>();
@@ -155,6 +183,40 @@ namespace P4Project
                 }
                 var SME = new SMEBase(ID, name, email);
                 return SME;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
+        public StudentBase FetchStudBaseInformation(int ID)
+        {
+            string firstName = "";
+            string lastName = "";
+            string email = "";
+            // string profilePicturePath = "";
+
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT FirstName,LastName,Email FROM Student WHERE StudentID = @StudentID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@StudentID", ID);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    firstName = reader.GetString(0);
+                    lastName = reader.GetString(1);
+                    email = reader.GetString(2);
+                }
+                var Student = new StudentBase(ID, firstName, lastName, email);
+                return Student;
             }
             finally
             {

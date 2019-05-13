@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Backend\Classes\SMEBase.cs" />
+    <Compile Include="Backend\Classes\StudBase.cs" />
     <Compile Include="Backend\Classes\TaskBase.cs" />
     <Compile Include="Backend\InputValidation.cs" />
     <Compile Include="Exceptions\InvalidTaskDescriptionExeption.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Exceptions\PasswordsDoesNotMatchException.cs" />
     <Compile Include="Exceptions\PasswordToShortException.cs" />
     <Compile Include="Exceptions\SMEUserDoesNotExistException.cs" />
+    <Compile Include="Exceptions\StudUserDoesNotExistsException.cs" />
     <Compile Include="Frontend\CreateStudProfileV2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +93,12 @@
     <Compile Include="Frontend\SMEProfileView.Designer.cs">
       <DependentUpon>SMEProfileView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\StudentLoginPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frontend\StudentLoginPage.Designer.cs">
+      <DependentUpon>StudentLoginPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frontend\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\SMEProfileView.resx">
       <DependentUpon>SMEProfileView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frontend\StudentLoginPage.resx">
+      <DependentUpon>StudentLoginPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>

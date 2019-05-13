@@ -62,6 +62,20 @@ namespace P4Project
             return ID;
         }
 
+        public int VerifyStudLogin(string username, string password)
+        {
+            string StudID;
+            int ID;
+
+            if (username == "") throw new NoUsernameInputException();
+            if (password == "") throw new NoPasswordInputException();
+
+            if ((StudID = SQL.StudLogInRequest(username, password)) == "") throw new StudUserDoesNotExistsException();
+
+            int.TryParse(StudID, out ID);
+            return ID;
+        }
+
         public void VerifyTask(string title, string description, string location)
         {
             // Tilføj ordentlig validation eks. nummer:
