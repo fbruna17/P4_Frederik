@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using P4Project.Exceptions;
 using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace P4Project
 {
@@ -43,6 +44,10 @@ namespace P4Project
         #region Button functionality
         private void RegisterSave_Click(object sender, EventArgs e)
         {
+            MemoryStream ms = new MemoryStream();
+            pictureBox1_SME.Image.Save(ms, pictureBox1_SME.Image.RawFormat);
+
+            byte[] img_SME = ms.ToArray();
             string companyName = CompanyName.Text;
             string password = Password.Text;
             string confirmPass = ConfirmPass.Text;
@@ -51,8 +56,8 @@ namespace P4Project
             try
             {
                 InputValidation.VerifySMERegistration(companyName, password, confirmPass, email);
-                SQL.RegisterSMEProfile(companyName, email, password);
-                MessageBox.Show("A new SME user has ben created!");
+                SQL.RegisterSMEProfile(img_SME, companyName, email, password);
+                MessageBox.Show("A new SME user has been created!");
                 this.Hide();
             }
             catch(InvalidEmailException ex)
@@ -86,6 +91,21 @@ namespace P4Project
         #endregion
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ChooseLogoBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opf = new OpenFileDialog();
+            opf.Filter = "Choose image(*.jpg; *.png;)|*.jpg; *.png;";
+            if (opf.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1_SME.Image = Image.FromFile(opf.FileName);
+            }
+        }
+
+        private void PictureBox1_SME_Click(object sender, EventArgs e)
         {
 
         }
