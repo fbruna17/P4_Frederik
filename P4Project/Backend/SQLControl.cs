@@ -179,8 +179,8 @@ namespace P4Project
                 // Parametrene tilføjes:
                 cmd.Parameters.AddWithValue("@sme", SMEID);
                 cmd.Parameters.AddWithValue("@title", title);
-                cmd.Parameters.AddWithValue("@Edescription", description);
-                cmd.Parameters.AddWithValue("@Plocation", location);
+                cmd.Parameters.AddWithValue("@description", description);
+                cmd.Parameters.AddWithValue("@location", location);
                 // Kaldet udføres, og tasken bliver tilføjet til databasen:
                 cmd.ExecuteNonQuery();
             }
