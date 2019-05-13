@@ -31,6 +31,8 @@
             this.companyName = new System.Windows.Forms.TextBox();
             this.email = new System.Windows.Forms.TextBox();
             this.createTask = new System.Windows.Forms.Button();
+            this.btnShowPublicTask = new System.Windows.Forms.Button();
+            this.SMETaskList = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // companyName
@@ -61,11 +63,33 @@
             this.createTask.UseVisualStyleBackColor = true;
             this.createTask.Click += new System.EventHandler(this.createTask_Click);
             // 
+            // btnShowPublicTask
+            // 
+            this.btnShowPublicTask.Location = new System.Drawing.Point(65, 208);
+            this.btnShowPublicTask.Name = "btnShowPublicTask";
+            this.btnShowPublicTask.Size = new System.Drawing.Size(75, 23);
+            this.btnShowPublicTask.TabIndex = 3;
+            this.btnShowPublicTask.Text = "Public Tasks";
+            this.btnShowPublicTask.UseVisualStyleBackColor = true;
+            this.btnShowPublicTask.Click += new System.EventHandler(this.btnShowPublicTask_Click);
+            // 
+            // SMETaskList
+            // 
+            this.SMETaskList.BackColor = System.Drawing.SystemColors.Info;
+            this.SMETaskList.GridLines = true;
+            this.SMETaskList.Location = new System.Drawing.Point(65, 237);
+            this.SMETaskList.Name = "SMETaskList";
+            this.SMETaskList.Size = new System.Drawing.Size(642, 201);
+            this.SMETaskList.TabIndex = 4;
+            this.SMETaskList.UseCompatibleStateImageBehavior = false;
+            // 
             // SMEProfileView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SMETaskList);
+            this.Controls.Add(this.btnShowPublicTask);
             this.Controls.Add(this.createTask);
             this.Controls.Add(this.email);
             this.Controls.Add(this.companyName);
@@ -81,5 +105,7 @@
         private System.Windows.Forms.TextBox companyName;
         private System.Windows.Forms.TextBox email;
         private System.Windows.Forms.Button createTask;
+        private System.Windows.Forms.Button btnShowPublicTask;
+        private System.Windows.Forms.ListView SMETaskList;
     }
 }
