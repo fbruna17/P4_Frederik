@@ -47,8 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Backend\Classes\DetailedTask.cs" />
+    <Compile Include="Backend\Classes\SearchedTask.cs" />
     <Compile Include="Backend\Classes\SMEBase.cs" />
     <Compile Include="Backend\Classes\TaskBase.cs" />
+    <Compile Include="Backend\Classes\TaskRecommend.cs" />
     <Compile Include="Backend\InputValidation.cs" />
     <Compile Include="Exceptions\InvalidTaskDescriptionExeption.cs" />
     <Compile Include="Exceptions\InvalidTaskLocationException.cs" />
@@ -90,6 +93,12 @@
     </Compile>
     <Compile Include="Frontend\SMEProfileView.Designer.cs">
       <DependentUpon>SMEProfileView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\StudentTaskView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frontend\StudentTaskView.Designer.cs">
+      <DependentUpon>StudentTaskView.cs</DependentUpon>
     </Compile>
     <Compile Include="Frontend\TestForm.cs">
       <SubType>Form</SubType>

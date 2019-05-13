@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace P4Project.Backend.Classes
 {
+    // Dette er superklassen for Tasks:
     class TaskBase
     {
         public int ID { get; }
@@ -15,7 +16,7 @@ namespace P4Project.Backend.Classes
         {
             ID = id;
         }
-
+        // Base klassen kan også håndterer hvis der kommer et SMEID med:
         public TaskBase(int id, int smeID)
         {
             ID = id;

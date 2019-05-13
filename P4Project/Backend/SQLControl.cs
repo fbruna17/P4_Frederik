@@ -90,7 +90,41 @@ namespace P4Project
         #endregion
 
         #region Task-specific SQL
-
+        public List<int> FetchRequiredSkills(int taskID)
+        {
+            var resList = new List<int>();
+            string resString = "";
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT Required_Skill FROM Task WHERE TaskID = @TaskID LIMIT 1"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    resString = reader.GetString(0);
+                }
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+            // Strengen fra SQL kaldet deles op ved , :
+            string[] tempres = resString.Split(',');
+            foreach(string s in tempres)
+            {   // Der burde nu blot være tale om ints, så de tilføjes til resultats listen og returneres:
+                if(int.TryParse(s, out int i))
+                {
+                    resList.Add(i);
+                }
+            }
+            return resList;
+        }
         #endregion
 
 
