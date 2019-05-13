@@ -138,6 +138,7 @@ namespace P4Project
         //Show Student button:
         private void button4_Click(object sender, EventArgs e)
         {
+            string output = "";
             try
             {
                 connection = new MySqlConnection(myConnectionString);
@@ -153,8 +154,9 @@ namespace P4Project
                     string someStringFromColumnZero = reader.GetString(0);
                     string someStringFromColumnOne = reader.GetString(1);
                     string someStringFromColumnTwo = reader.GetString(2);
-                    MessageBox.Show(someStringFromColumnZero + "," + someStringFromColumnOne + "," + someStringFromColumnTwo);
+                    output = output + someStringFromColumnZero + " " + someStringFromColumnOne + ", " + someStringFromColumnTwo + "\n";
                 }
+                MessageBox.Show(output);
             }
             finally
             {
