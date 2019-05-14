@@ -134,10 +134,39 @@ namespace P4Project
         }
 
         // Funktion der henter alle tasks lavet af en given SME:
-        public List<TaskSearched> FetchTasksForSME(int smeID)
+        public List<TaskSearched> FetchAllTasksForSME(int smeID)
         {
             var taskList = new List<TaskSearched>();
 
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT TaskID,Title,Location,Hours,StartDate,Application_Deadline,Completion,StateID FROM Task WHERE SMEID = @SMEID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@SMEID", smeID);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int taskID = reader.GetInt32(0);
+                    string title = reader.GetString(1);
+                    string location = reader.GetString(2);
+                    int hours = reader.GetInt32(3);
+                    DateTime startDate = reader.GetDateTime(4);
+                    DateTime applicationDeadline = reader.GetDateTime(5);
+                    DateTime estCompletion = reader.GetDateTime(6);
+                    int stateID = reader.GetInt32(7);
+                    taskList.Add(new TaskSearched(taskID, smeID, title, location, hours, startDate, applicationDeadline, estCompletion, stateID));
+                }
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
             return taskList;
         }
         
@@ -169,7 +198,7 @@ namespace P4Project
                     DateTime startDate = reader.GetDateTime(5);
                     DateTime applicationDeadline = reader.GetDateTime(6);
                     DateTime estCompletion = reader.GetDateTime(7);
-                    result.Add(new TaskSearched(taskID, smeID, title, location, hours, startDate, applicationDeadline, estCompletion));
+                    result.Add(new TaskSearched(taskID, smeID, title, location, hours, startDate, applicationDeadline, estCompletion, stateID));
                 }
             }
             finally
@@ -226,8 +255,6 @@ namespace P4Project
 
             return result;
         }
-
-
         #endregion
 
         public string SMELogInRequest(string username, string password)
