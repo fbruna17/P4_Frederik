@@ -191,13 +191,5 @@ namespace P4Project
             SMElog.ShowDialog();
             Show();
         }
-
-        private void StudentLoginBtn_Click(object sender, EventArgs e)
-        {
-            Hide();
-            var SMElog = new StudentLoginPage();
-            SMElog.ShowDialog();
-            Show();
-        }
     }
 }

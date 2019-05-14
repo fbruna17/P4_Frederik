@@ -36,11 +36,10 @@
             this.button5 = new System.Windows.Forms.Button();
             this.SMERegister = new System.Windows.Forms.Button();
             this.SMELogIn = new System.Windows.Forms.Button();
-            this.studentLoginBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // button2
-            // 
+            //
             this.button2.Location = new System.Drawing.Point(9, 10);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
@@ -49,9 +48,9 @@
             this.button2.Text = "Connect";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
+            //
             // button1
-            // 
+            //
             this.button1.Location = new System.Drawing.Point(132, 10);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
@@ -60,9 +59,9 @@
             this.button1.Text = "Add Skill";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
+            //
             // button3
-            // 
+            //
             this.button3.Location = new System.Drawing.Point(261, 9);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
@@ -71,9 +70,9 @@
             this.button3.Text = "Show Skills";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
+            //
             // AddStudent
-            // 
+            //
             this.AddStudent.Location = new System.Drawing.Point(388, 9);
             this.AddStudent.Margin = new System.Windows.Forms.Padding(2);
             this.AddStudent.Name = "AddStudent";
@@ -82,9 +81,9 @@
             this.AddStudent.Text = "Add Student";
             this.AddStudent.UseVisualStyleBackColor = true;
             this.AddStudent.Click += new System.EventHandler(this.AddStudent_Click);
-            // 
+            //
             // button4
-            // 
+            //
             this.button4.Location = new System.Drawing.Point(484, 10);
             this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
@@ -93,9 +92,9 @@
             this.button4.Text = "Show Student";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
+            //
             // button5
-            // 
+            //
             this.button5.Location = new System.Drawing.Point(132, 64);
             this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
@@ -104,9 +103,9 @@
             this.button5.Text = "RealAddStudent";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
+            //
             // SMERegister
-            // 
+            //
             this.SMERegister.Location = new System.Drawing.Point(9, 57);
             this.SMERegister.Margin = new System.Windows.Forms.Padding(2);
             this.SMERegister.Name = "SMERegister";
@@ -115,9 +114,9 @@
             this.SMERegister.Text = "Add SME Profile";
             this.SMERegister.UseVisualStyleBackColor = true;
             this.SMERegister.Click += new System.EventHandler(this.SMERegister_Click);
-            // 
+            //
             // SMELogIn
-            // 
+            //
             this.SMELogIn.Location = new System.Drawing.Point(337, 222);
             this.SMELogIn.Name = "SMELogIn";
             this.SMELogIn.Size = new System.Drawing.Size(131, 46);
@@ -125,23 +124,12 @@
             this.SMELogIn.Text = "SME Log in";
             this.SMELogIn.UseVisualStyleBackColor = true;
             this.SMELogIn.Click += new System.EventHandler(this.SMELogIn_Click);
-            // 
-            // studentLoginBtn
-            // 
-            this.studentLoginBtn.Location = new System.Drawing.Point(337, 286);
-            this.studentLoginBtn.Name = "studentLoginBtn";
-            this.studentLoginBtn.Size = new System.Drawing.Size(129, 46);
-            this.studentLoginBtn.TabIndex = 9;
-            this.studentLoginBtn.Text = "Student Log In";
-            this.studentLoginBtn.UseVisualStyleBackColor = true;
-            this.studentLoginBtn.Click += new System.EventHandler(this.StudentLoginBtn_Click);
-            // 
+            //
             // TestForm
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.studentLoginBtn);
             this.Controls.Add(this.SMELogIn);
             this.Controls.Add(this.SMERegister);
             this.Controls.Add(this.button5);
@@ -167,6 +155,5 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button SMERegister;
         private System.Windows.Forms.Button SMELogIn;
-        private System.Windows.Forms.Button studentLoginBtn;
     }
 }

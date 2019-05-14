@@ -36,17 +36,6 @@ namespace P4Project
 
         #endregion
 
-        #region Student input
-
-        public void VerifyStudentRegistration(string username, string password, string confirmpassword, string email)
-        {
-            VerifyStudentUsername(username);
-            VerifyRegPassword(password, confirmpassword);
-            VerifyEmail(email);
-        }
-
-        #endregion
-
         #region Universal input
         public void VerifyRegPassword(string pass, string confirm)
         {
@@ -58,14 +47,7 @@ namespace P4Project
         {
             if (!email.Contains("@") || !email.Contains(".") || email.Contains(" ")) throw new InvalidEmailException(email);
         }
-
-        public void VerifyStudentUsername(string username)
-        {
-            if (username.Length < 5)
-            if (SQL.StudentCheckUsername(username) != 0) throw new UserNameAlreadyExistsException();
-        }
-        #endregion //End of Universal Input
-
+        #endregion
         public int VerifySMELogin(string username, string password)
         {
             string SMEID;
@@ -77,20 +59,6 @@ namespace P4Project
             if ((SMEID = SQL.SMELogInRequest(username, password)) == "") throw new SMEUserDoesNotExistException();
             // ID laves til int og returneres:
             int.TryParse(SMEID, out ID);
-            return ID;
-        }
-
-        public int VerifyStudLogin(string username, string password)
-        {
-            string StudID;
-            int ID;
-
-            if (username == "") throw new NoUsernameInputException();
-            if (password == "") throw new NoPasswordInputException();
-
-            if ((StudID = SQL.StudLogInRequest(username, password)) == "") throw new StudUserDoesNotExistsException();
-
-            int.TryParse(StudID, out ID);
             return ID;
         }
 
