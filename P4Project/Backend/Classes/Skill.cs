@@ -4,21 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P4Project
+namespace P4Project.Backend.Classes
 {
-    public class SMEBase
+    public class Skill
     {
-        public int ID { get; }
-
+        private int ID { get; }
         public string Name { get; }
+        public string Catagory { get; }
 
-        public string Email { get; }
-
-        public SMEBase(int id, string name, string email)
+        public Skill(int id, string name, string catagory)
         {
             ID = id;
             Name = name;
-            Email = email;
+            Catagory = catagory;
         }
     }
 }

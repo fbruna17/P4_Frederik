@@ -18,6 +18,7 @@ namespace P4Project.Frontend
         private SQLControl SQL;
         private UserInputValidation InputValidation;
         SMEBase SME;
+        private List<string> SkillList;
         #endregion
 
         #region Constructor(s)
@@ -53,6 +54,12 @@ namespace P4Project.Frontend
             string description = txtTaskDesc.Text;
             string location = txtLocation.Text;
 
+            //STARTER LEG
+            string hours = txtHours.Text;
+             
+            
+            //SLUTTER LEG
+
             try
             {
                 InputValidation.VerifyTask(title, description, location);
@@ -62,7 +69,7 @@ namespace P4Project.Frontend
             }
             catch(InvalidTaskTitleException ex)
             {
-                MessageBox.Show("Please enter a valid tite input. Your input was: " + ex.input);
+                MessageBox.Show("Please enter a valid title input. Your input was: " + ex.input);
             }
             catch(InvalidTaskDescriptionExeption ex)
             {
@@ -72,6 +79,33 @@ namespace P4Project.Frontend
             {
                 MessageBox.Show("Please enter a valid description input. Your input was: " + ex.input);
             }
+        }
+
+        private void AddSkillButton_Click(object sender, EventArgs e)
+        {
+            
+            SkillList = SQL.FetchAllSkills();
+            foreach (string s in SkillList)
+            {
+                AddSkillReqList.Items.Add(s);
+            }
+            AddSkillReqList.Show();
+            btnConfirmSkillAdd.Show();
+        }
+
+        private void btnConfirmSkillAdd_Click(object sender, EventArgs e)
+        {
+            foreach (string itemChecked in AddSkillReqList.CheckedItems)
+            {
+                ReqSkillList.Items.Add(itemChecked);
+            }
+            AddSkillReqList.Hide();
+            btnConfirmSkillAdd.Hide();
+        }
+
+        private void ClearSkillsButton_Click(object sender, EventArgs e)
+        {
+            ReqSkillList.Items.Clear();
         }
     }
 }
