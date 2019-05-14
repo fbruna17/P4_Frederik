@@ -32,6 +32,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.StudCrTitle = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ConfirmPasswordText = new System.Windows.Forms.TextBox();
+            this.PasswordText = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.UsernameText = new System.Windows.Forms.TextBox();
             this.basicSaveBut = new System.Windows.Forms.Button();
             this.EmailText = new System.Windows.Forms.TextBox();
             this.LastNameText = new System.Windows.Forms.TextBox();
@@ -40,12 +46,6 @@
             this.lNamelabel = new System.Windows.Forms.Label();
             this.fNameLabel = new System.Windows.Forms.Label();
             this.imageChooseBtn = new System.Windows.Forms.Button();
-            this.UsernameText = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.PasswordText = new System.Windows.Forms.TextBox();
-            this.ConfirmPasswordText = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -96,7 +96,55 @@
             this.groupBox1.Size = new System.Drawing.Size(230, 298);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 106);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(94, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Confirm Password:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Password:";
+            this.label2.Click += new System.EventHandler(this.Label2_Click);
+            // 
+            // ConfirmPasswordText
+            // 
+            this.ConfirmPasswordText.Location = new System.Drawing.Point(7, 122);
+            this.ConfirmPasswordText.Name = "ConfirmPasswordText";
+            this.ConfirmPasswordText.Size = new System.Drawing.Size(143, 20);
+            this.ConfirmPasswordText.TabIndex = 10;
+            // 
+            // PasswordText
+            // 
+            this.PasswordText.Location = new System.Drawing.Point(7, 79);
+            this.PasswordText.Name = "PasswordText";
+            this.PasswordText.Size = new System.Drawing.Size(143, 20);
+            this.PasswordText.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Username:";
+            // 
+            // UsernameText
+            // 
+            this.UsernameText.Location = new System.Drawing.Point(7, 34);
+            this.UsernameText.Name = "UsernameText";
+            this.UsernameText.Size = new System.Drawing.Size(143, 20);
+            this.UsernameText.TabIndex = 7;
             // 
             // basicSaveBut
             // 
@@ -172,55 +220,6 @@
             this.imageChooseBtn.Text = "Choose Picture";
             this.imageChooseBtn.UseVisualStyleBackColor = true;
             this.imageChooseBtn.Click += new System.EventHandler(this.ImageChooseBtn_Click);
-            // 
-            // UsernameText
-            // 
-            this.UsernameText.Location = new System.Drawing.Point(7, 34);
-            this.UsernameText.Name = "UsernameText";
-            this.UsernameText.Size = new System.Drawing.Size(143, 20);
-            this.UsernameText.TabIndex = 7;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Username:";
-            // 
-            // PasswordText
-            // 
-            this.PasswordText.Location = new System.Drawing.Point(7, 79);
-            this.PasswordText.Name = "PasswordText";
-            this.PasswordText.Size = new System.Drawing.Size(143, 20);
-            this.PasswordText.TabIndex = 9;
-            // 
-            // ConfirmPasswordText
-            // 
-            this.ConfirmPasswordText.Location = new System.Drawing.Point(7, 122);
-            this.ConfirmPasswordText.Name = "ConfirmPasswordText";
-            this.ConfirmPasswordText.Size = new System.Drawing.Size(143, 20);
-            this.ConfirmPasswordText.TabIndex = 10;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Password:";
-            this.label2.Click += new System.EventHandler(this.Label2_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 106);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 13);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Confirm Password:";
             // 
             // CreateStudProfileV2
             // 

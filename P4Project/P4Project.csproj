@@ -85,6 +85,12 @@
     <Compile Include="Frontend\CreateTask.Designer.cs">
       <DependentUpon>CreateTask.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\LandingPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frontend\LandingPage.Designer.cs">
+      <DependentUpon>LandingPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frontend\RegisterSMEProfile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\CreateTask.resx">
       <DependentUpon>CreateTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frontend\LandingPage.resx">
+      <DependentUpon>LandingPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\RegisterSMEProfile.resx">
       <DependentUpon>RegisterSMEProfile.cs</DependentUpon>

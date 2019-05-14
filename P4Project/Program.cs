@@ -16,7 +16,7 @@ namespace P4Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TestForm());
+            Application.Run(new LandingPage());
         }
     }
 }
