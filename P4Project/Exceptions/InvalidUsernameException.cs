@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace P4Project.Exceptions
 {
-    class InvalidUsernameException
+    class InvalidUsernameException : Exception
     {
+        public string i;
+        public InvalidUsernameException() : base()
+        { }
+
+        public InvalidUsernameException(string input) : base()
+        {
+            i = input;
+        }
     }
 }

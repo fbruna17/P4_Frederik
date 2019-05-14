@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
+using P4Project.Exceptions;
 
 namespace P4Project
 {
@@ -16,6 +17,7 @@ namespace P4Project
     {
         #region Instance Variables & Properties
         private SQLControl SQL;
+        UserInputValidation InputValidation;
         #endregion
 
         #region Constructor(s)
@@ -24,6 +26,7 @@ namespace P4Project
         {
             InitializeComponent();
             SQL = new SQLControl();
+            InputValidation = new UserInputValidation();
         }
         #endregion
 
@@ -34,21 +37,58 @@ namespace P4Project
             pictureBox1.Image.Save(ms, pictureBox1.Image.RawFormat);
 
             byte[] img = ms.ToArray();
+            string username = UsernameText.Text;
+            string password = PasswordText.Text;
+            string confirmpassword = ConfirmPasswordText.Text;
             string firstname = FirstNameText.Text;
             string lastname = LastNameText.Text;
             string email = EmailText.Text;
             
             try
-            { 
-                SQL.AddStudent(firstname, lastname, email, img);
+            {
+                InputValidation.VerifyStudentRegistration(username, password, confirmpassword, email);
+                SQL.AddStudent(username, password, firstname, lastname, email, img);
                 MessageBox.Show("Student has been added to the database!");
                 this.Hide();
             }
+            catch (InvalidEmailException ex)
+            {
+                MessageBox.Show("Invalid Email Address! " + ex.i);
+            }
+            catch (InvalidUsernameException ex)
+            {
+                MessageBox.Show("Invalid Username! " + ex.i);
+            }
+            catch (PasswordsDoesNotMatchException)
+            {
+                MessageBox.Show("Passwords does not match!");
+            }
+            catch (PasswordToShortException)
+            {
+                MessageBox.Show("Your Password is to short! Password must be atleast 8 characters!");
+            }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
-            }
+                int errorcode = ex.Number;
+                string ErrorOutput = ex.Message;
 
+                if ((errorcode == 1062))
+                {
+                    ErrorOutput = "This username is already in use!";
+                }
+
+                MessageBox.Show(ErrorOutput);
+            }
+        }
+
+        private void ImageChooseBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opf = new OpenFileDialog();
+            opf.Filter = "Choose image(*.jpg; *.png;)|*.jpg; *.png;";
+            if (opf.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.Image = Image.FromFile(opf.FileName);
+            }
         }
         #endregion
 
@@ -64,17 +104,14 @@ namespace P4Project
         }
         #endregion
 
-        private void ImageChooseBtn_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog opf = new OpenFileDialog();
-            opf.Filter = "Choose image(*.jpg; *.png;)|*.jpg; *.png;";
-            if (opf.ShowDialog() == DialogResult.OK)
-            {
-                pictureBox1.Image = Image.FromFile(opf.FileName);
-            }
-        }
+       
 
         private void PictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label2_Click(object sender, EventArgs e)
         {
 
         }

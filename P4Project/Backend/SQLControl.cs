@@ -66,16 +66,18 @@ namespace P4Project
         #endregion
 
         #region Student-specific SQL
-        public void AddStudent(string firstname, string lastname, string email, byte[] img)
+        public void AddStudent(string username, string password, string firstname, string lastname, string email, byte[] img)
         {
             try
             {
                 Open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = Connection;
-                cmd.CommandText = "INSERT INTO Student(Firstname,Lastname,Email,Profile_Picture) VALUES(@Firstname,@Lastname,@Email,@Profile_Picture)";
+                cmd.CommandText = "INSERT INTO Student(Username,Password,Firstname,Lastname,Email,Profile_Picture) VALUES(@Username,@Password,@Firstname,@Lastname,@Email,@Profile_Picture)";
                 cmd.Prepare();
 
+                cmd.Parameters.AddWithValue("@Username", username);
+                cmd.Parameters.AddWithValue("@Password", password);
                 cmd.Parameters.AddWithValue("@Profile_Picture", img);
                 cmd.Parameters.AddWithValue("@Firstname", firstname);
                 cmd.Parameters.AddWithValue("@Lastname", lastname);
@@ -87,6 +89,8 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
+
+        
         #endregion
 
         #region Task-specific SQL
