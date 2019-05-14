@@ -17,7 +17,9 @@ namespace P4Project.Frontend
         #region Instance Variables
         private SQLControl SQL;
         private UserInputValidation InputValidation;
-        SMEBase SME;
+        private SMEBase SME;
+        private string myConnectionString = "server=mysql33.unoeuro.com;uid=blo_store_dk;pwd=3pdaxzyt;database=blo_store_dk_db_wd";
+        private MySqlConnection connection = null;
         #endregion
 
         #region Constructor(s)
@@ -27,25 +29,16 @@ namespace P4Project.Frontend
             SQL = new SQLControl();
             InputValidation = new UserInputValidation();
             SME = sme;
+            SkillList.Hide();
         }
         #endregion
 
         #region Load
         private void CreateTask_Load(object sender, EventArgs e)
         {
-
+            
         }
         #endregion
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnSubmitTask_Click(object sender, EventArgs e)
         {
@@ -72,6 +65,16 @@ namespace P4Project.Frontend
             {
                 MessageBox.Show("Please enter a valid description input. Your input was: " + ex.input);
             }
+        }
+
+        private void AddSkillButton_Click(object sender, EventArgs e)
+        {
+            SkillList.Show();
+        }
+
+        private void FillSkillList()
+        {
+
         }
     }
 }

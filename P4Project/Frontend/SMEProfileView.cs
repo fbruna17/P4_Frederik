@@ -41,28 +41,31 @@ namespace P4Project.Frontend
 
         private void btnShowPublicTask_Click(object sender, EventArgs e)
         {
-            string output = "";
             try
             {
                 connection = new MySqlConnection(myConnectionString);
                 connection.Open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "SELECT Title,Description,Location FROM Task WHERE TaskID='3';"; //&& SMEID
+                cmd.CommandText = "SELECT Title,Description,Location FROM Task WHERE StateID='0';"; //&& SMEID
                 cmd.Prepare();
 
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    string someStringFromColumnZero = reader.GetString(0);
-                    string someStringFromColumnOne = reader.GetString(1);
-                    string someStringFromColumnTwo = reader.GetString(2);
-                    output = output + someStringFromColumnZero + " " + someStringFromColumnOne + " " + someStringFromColumnTwo + "\n";
-                    SMETaskList.Items.Add(output);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        string output = "";
+                        string someStringFromColumnZero = reader.GetString(0);
+                        string someStringFromColumnOne = reader.GetString(1);
+                        string someStringFromColumnTwo = reader.GetString(2);
+                        output = output + someStringFromColumnZero + " " + someStringFromColumnOne + " " + someStringFromColumnTwo + "\n";
+                        SMETaskList.Items.Add(output);
+                        i++;
+                    }
                 }
-               // SMETaskList.Items.Clear();
-
-                SMETaskList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                //SMETaskList.Items.Clear();
+                
             }
             finally
             {

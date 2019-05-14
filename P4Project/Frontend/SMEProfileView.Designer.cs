@@ -79,9 +79,10 @@
             this.SMETaskList.GridLines = true;
             this.SMETaskList.Location = new System.Drawing.Point(65, 237);
             this.SMETaskList.Name = "SMETaskList";
-            this.SMETaskList.Size = new System.Drawing.Size(642, 201);
+            this.SMETaskList.Size = new System.Drawing.Size(497, 201);
             this.SMETaskList.TabIndex = 4;
             this.SMETaskList.UseCompatibleStateImageBehavior = false;
+            this.SMETaskList.View = System.Windows.Forms.View.List;
             // 
             // SMEProfileView
             // 
