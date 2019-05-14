@@ -92,7 +92,7 @@ namespace P4Project
       //  public StudentDetailed FetchStudentDetailed(int id)
       //  {
       //      StudentDetailed res
-      //      return 
+      //      return
       //  }
         #endregion
 
@@ -241,8 +241,8 @@ namespace P4Project
             }
             return taskList;
         }
-        
-        // Henter alle tasks en given student er Assigned til, ud fra en givent State: 
+
+        // Henter alle tasks en given student er Assigned til, ud fra en givent State:
         public List<TaskSearched> FetchStudentAssignedTasks(int studentID, int stateID)
         {
             var result = new List<TaskSearched>();
@@ -403,7 +403,7 @@ namespace P4Project
                 {
                     Connection = Connection,
                     // Commandoen defineres og forberedes:
-                    CommandText = "INSERT INTO Task(SMEID,Title,Description,Location) VALUES (@sme,@title,@description,@location)"
+                    CommandText = "INSERT INTO Task(SMEID,Title,Description,Location,StartDate) VALUES (@sme,@title,@description,@location)"
                 };
                 cmd.Prepare();
 
@@ -420,6 +420,39 @@ namespace P4Project
                 // Forbindelsen lukkes:
                 if (Connection != null) Close();
             }
+        }
+
+        public List<string> FetchAllSkills()
+        {
+            var resList = new List<string>();
+            string resString = "";
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT SkillName FROM Skill"
+                };
+                cmd.Prepare();
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    resString += reader.GetString(0) + ',';
+                }
+                string[] tempres = resString.Split(',');
+
+                foreach (string s in tempres)
+                {
+                    resList.Add(s);
+                }
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+            return resList;
         }
     }
 }

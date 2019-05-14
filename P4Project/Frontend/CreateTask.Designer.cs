@@ -35,13 +35,21 @@
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.txtLocation = new System.Windows.Forms.TextBox();
             this.txtHours = new System.Windows.Forms.TextBox();
-            this.lblDeadline = new System.Windows.Forms.Label();
+            this.lblAppDeadline = new System.Windows.Forms.Label();
             this.ReqSkillList = new System.Windows.Forms.ListView();
             this.AddSkillButton = new System.Windows.Forms.Button();
             this.lblTaskDesc = new System.Windows.Forms.Label();
             this.txtTaskDesc = new System.Windows.Forms.TextBox();
             this.RemoteCheck = new System.Windows.Forms.CheckBox();
             this.btnSubmitTask = new System.Windows.Forms.Button();
+            this.AddSkillReqList = new System.Windows.Forms.CheckedListBox();
+            this.btnConfirmSkillAdd = new System.Windows.Forms.Button();
+            this.ClearSkillsButton = new System.Windows.Forms.Button();
+            this.lblStartDeadline = new System.Windows.Forms.Label();
+            this.lblCompletionDate = new System.Windows.Forms.Label();
+            this.ApplicationDeadlinePicker = new System.Windows.Forms.DateTimePicker();
+            this.StartDeadlinePicker = new System.Windows.Forms.DateTimePicker();
+            this.CompDeadlinePicker = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -103,14 +111,14 @@
             this.txtHours.Size = new System.Drawing.Size(100, 22);
             this.txtHours.TabIndex = 6;
             // 
-            // lblDeadline
+            // lblAppDeadline
             // 
-            this.lblDeadline.AutoSize = true;
-            this.lblDeadline.Location = new System.Drawing.Point(599, 41);
-            this.lblDeadline.Name = "lblDeadline";
-            this.lblDeadline.Size = new System.Drawing.Size(64, 17);
-            this.lblDeadline.TabIndex = 8;
-            this.lblDeadline.Text = "Deadline";
+            this.lblAppDeadline.AutoSize = true;
+            this.lblAppDeadline.Location = new System.Drawing.Point(578, 38);
+            this.lblAppDeadline.Name = "lblAppDeadline";
+            this.lblAppDeadline.Size = new System.Drawing.Size(141, 17);
+            this.lblAppDeadline.TabIndex = 8;
+            this.lblAppDeadline.Text = "Application Deadline:";
             // 
             // ReqSkillList
             // 
@@ -122,17 +130,18 @@
             // 
             // AddSkillButton
             // 
-            this.AddSkillButton.Location = new System.Drawing.Point(311, 216);
+            this.AddSkillButton.Location = new System.Drawing.Point(311, 142);
             this.AddSkillButton.Name = "AddSkillButton";
-            this.AddSkillButton.Size = new System.Drawing.Size(49, 23);
+            this.AddSkillButton.Size = new System.Drawing.Size(72, 23);
             this.AddSkillButton.TabIndex = 10;
             this.AddSkillButton.Text = "Add";
             this.AddSkillButton.UseVisualStyleBackColor = true;
+            this.AddSkillButton.Click += new System.EventHandler(this.AddSkillButton_Click);
             // 
             // lblTaskDesc
             // 
             this.lblTaskDesc.AutoSize = true;
-            this.lblTaskDesc.Location = new System.Drawing.Point(67, 289);
+            this.lblTaskDesc.Location = new System.Drawing.Point(12, 290);
             this.lblTaskDesc.Name = "lblTaskDesc";
             this.lblTaskDesc.Size = new System.Drawing.Size(79, 17);
             this.lblTaskDesc.TabIndex = 11;
@@ -140,7 +149,7 @@
             // 
             // txtTaskDesc
             // 
-            this.txtTaskDesc.Location = new System.Drawing.Point(70, 310);
+            this.txtTaskDesc.Location = new System.Drawing.Point(15, 310);
             this.txtTaskDesc.Name = "txtTaskDesc";
             this.txtTaskDesc.Size = new System.Drawing.Size(290, 22);
             this.txtTaskDesc.TabIndex = 12;
@@ -165,18 +174,95 @@
             this.btnSubmitTask.UseVisualStyleBackColor = true;
             this.btnSubmitTask.Click += new System.EventHandler(this.btnSubmitTask_Click);
             // 
+            // AddSkillReqList
+            // 
+            this.AddSkillReqList.FormattingEnabled = true;
+            this.AddSkillReqList.Location = new System.Drawing.Point(389, 141);
+            this.AddSkillReqList.Name = "AddSkillReqList";
+            this.AddSkillReqList.Size = new System.Drawing.Size(128, 191);
+            this.AddSkillReqList.TabIndex = 15;
+            this.AddSkillReqList.Visible = false;
+            // 
+            // btnConfirmSkillAdd
+            // 
+            this.btnConfirmSkillAdd.Location = new System.Drawing.Point(442, 329);
+            this.btnConfirmSkillAdd.Name = "btnConfirmSkillAdd";
+            this.btnConfirmSkillAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnConfirmSkillAdd.TabIndex = 16;
+            this.btnConfirmSkillAdd.Text = "Confirm";
+            this.btnConfirmSkillAdd.UseVisualStyleBackColor = true;
+            this.btnConfirmSkillAdd.Visible = false;
+            this.btnConfirmSkillAdd.Click += new System.EventHandler(this.btnConfirmSkillAdd_Click);
+            // 
+            // ClearSkillsButton
+            // 
+            this.ClearSkillsButton.Location = new System.Drawing.Point(311, 171);
+            this.ClearSkillsButton.Name = "ClearSkillsButton";
+            this.ClearSkillsButton.Size = new System.Drawing.Size(72, 23);
+            this.ClearSkillsButton.TabIndex = 17;
+            this.ClearSkillsButton.Text = "Clear";
+            this.ClearSkillsButton.UseVisualStyleBackColor = true;
+            this.ClearSkillsButton.Click += new System.EventHandler(this.ClearSkillsButton_Click);
+            // 
+            // lblStartDeadline
+            // 
+            this.lblStartDeadline.AutoSize = true;
+            this.lblStartDeadline.Location = new System.Drawing.Point(578, 111);
+            this.lblStartDeadline.Name = "lblStartDeadline";
+            this.lblStartDeadline.Size = new System.Drawing.Size(102, 17);
+            this.lblStartDeadline.TabIndex = 18;
+            this.lblStartDeadline.Text = "Start Deadline:";
+            // 
+            // lblCompletionDate
+            // 
+            this.lblCompletionDate.AutoSize = true;
+            this.lblCompletionDate.Location = new System.Drawing.Point(578, 177);
+            this.lblCompletionDate.Name = "lblCompletionDate";
+            this.lblCompletionDate.Size = new System.Drawing.Size(182, 17);
+            this.lblCompletionDate.TabIndex = 19;
+            this.lblCompletionDate.Text = "Estimated Completion Date:";
+            // 
+            // ApplicationDeadlinePicker
+            // 
+            this.ApplicationDeadlinePicker.Location = new System.Drawing.Point(581, 61);
+            this.ApplicationDeadlinePicker.Name = "ApplicationDeadlinePicker";
+            this.ApplicationDeadlinePicker.Size = new System.Drawing.Size(200, 22);
+            this.ApplicationDeadlinePicker.TabIndex = 20;
+            // 
+            // StartDeadlinePicker
+            // 
+            this.StartDeadlinePicker.Location = new System.Drawing.Point(581, 132);
+            this.StartDeadlinePicker.Name = "StartDeadlinePicker";
+            this.StartDeadlinePicker.Size = new System.Drawing.Size(200, 22);
+            this.StartDeadlinePicker.TabIndex = 21;
+            // 
+            // CompDeadlinePicker
+            // 
+            this.CompDeadlinePicker.Location = new System.Drawing.Point(581, 198);
+            this.CompDeadlinePicker.Name = "CompDeadlinePicker";
+            this.CompDeadlinePicker.Size = new System.Drawing.Size(200, 22);
+            this.CompDeadlinePicker.TabIndex = 22;
+            // 
             // CreateTask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.CompDeadlinePicker);
+            this.Controls.Add(this.StartDeadlinePicker);
+            this.Controls.Add(this.ApplicationDeadlinePicker);
+            this.Controls.Add(this.lblCompletionDate);
+            this.Controls.Add(this.lblStartDeadline);
+            this.Controls.Add(this.ClearSkillsButton);
+            this.Controls.Add(this.btnConfirmSkillAdd);
+            this.Controls.Add(this.AddSkillReqList);
             this.Controls.Add(this.btnSubmitTask);
             this.Controls.Add(this.RemoteCheck);
             this.Controls.Add(this.txtTaskDesc);
             this.Controls.Add(this.lblTaskDesc);
             this.Controls.Add(this.AddSkillButton);
             this.Controls.Add(this.ReqSkillList);
-            this.Controls.Add(this.lblDeadline);
+            this.Controls.Add(this.lblAppDeadline);
             this.Controls.Add(this.txtHours);
             this.Controls.Add(this.txtLocation);
             this.Controls.Add(this.txtTitle);
@@ -201,12 +287,20 @@
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.TextBox txtLocation;
         private System.Windows.Forms.TextBox txtHours;
-        private System.Windows.Forms.Label lblDeadline;
+        private System.Windows.Forms.Label lblAppDeadline;
         private System.Windows.Forms.ListView ReqSkillList;
         private System.Windows.Forms.Button AddSkillButton;
         private System.Windows.Forms.Label lblTaskDesc;
         private System.Windows.Forms.TextBox txtTaskDesc;
         private System.Windows.Forms.CheckBox RemoteCheck;
         private System.Windows.Forms.Button btnSubmitTask;
+        private System.Windows.Forms.CheckedListBox AddSkillReqList;
+        private System.Windows.Forms.Button btnConfirmSkillAdd;
+        private System.Windows.Forms.Button ClearSkillsButton;
+        private System.Windows.Forms.Label lblStartDeadline;
+        private System.Windows.Forms.Label lblCompletionDate;
+        private System.Windows.Forms.DateTimePicker ApplicationDeadlinePicker;
+        private System.Windows.Forms.DateTimePicker StartDeadlinePicker;
+        private System.Windows.Forms.DateTimePicker CompDeadlinePicker;
     }
 }
