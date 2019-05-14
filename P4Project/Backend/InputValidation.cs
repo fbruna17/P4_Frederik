@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using P4Project.Exceptions;
 using MySql.Data.MySqlClient;
+using System.Text.RegularExpressions;
 
 namespace P4Project
 {
@@ -61,6 +62,8 @@ namespace P4Project
 
         public void VerifyStudentUsername(string username)
         {
+            string username = new Regex()
+            //if (username.Contains("@") || username.Contains(".") || username.Contains(",") || username.Contains("!")) throw new InvalidUsernameException;
             if (username.Length < 5)
             if (SQL.StudentCheckUsername(username) != 0) throw new UserNameAlreadyExistsException();
         }
