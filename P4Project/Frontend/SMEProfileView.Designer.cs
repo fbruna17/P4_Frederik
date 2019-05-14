@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.companyName = new System.Windows.Forms.TextBox();
-            this.email = new System.Windows.Forms.TextBox();
             this.createTask = new System.Windows.Forms.Button();
+            this.email = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // companyName
@@ -42,15 +42,6 @@
             this.companyName.Size = new System.Drawing.Size(309, 32);
             this.companyName.TabIndex = 0;
             // 
-            // email
-            // 
-            this.email.Location = new System.Drawing.Point(65, 91);
-            this.email.Multiline = true;
-            this.email.Name = "email";
-            this.email.ReadOnly = true;
-            this.email.Size = new System.Drawing.Size(100, 22);
-            this.email.TabIndex = 1;
-            // 
             // createTask
             // 
             this.createTask.Location = new System.Drawing.Point(592, 91);
@@ -60,6 +51,15 @@
             this.createTask.Text = "Create Task";
             this.createTask.UseVisualStyleBackColor = true;
             this.createTask.Click += new System.EventHandler(this.createTask_Click);
+            // 
+            // email
+            // 
+            this.email.Location = new System.Drawing.Point(65, 91);
+            this.email.Multiline = true;
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
+            this.email.Size = new System.Drawing.Size(100, 22);
+            this.email.TabIndex = 1;
             // 
             // SMEProfileView
             // 
@@ -79,7 +79,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox companyName;
-        private System.Windows.Forms.TextBox email;
         private System.Windows.Forms.Button createTask;
+        private System.Windows.Forms.TextBox email;
     }
 }

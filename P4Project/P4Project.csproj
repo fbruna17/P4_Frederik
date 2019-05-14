@@ -122,6 +122,12 @@
     <Compile Include="Frontend\TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\ViewTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frontend\ViewTask.Designer.cs">
+      <DependentUpon>ViewTask.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Frontend\CreateStudProfileV2.resx">
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frontend\ViewTask.resx">
+      <DependentUpon>ViewTask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
