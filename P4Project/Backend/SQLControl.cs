@@ -134,9 +134,6 @@ namespace P4Project
         }
         #endregion
 
-
-
-
         public string SMELogInRequest(string username, string password)
         {
             string SMEID = "";
@@ -215,7 +212,7 @@ namespace P4Project
                 {
                     Connection = Connection,
                     // Commandoen defineres og forberedes:
-                    CommandText = "INSERT INTO Task(SMEID,Title,Description,Location) VALUES (@sme,@title,@description,@location)"
+                    CommandText = "INSERT INTO Task(SMEID,Title,Description,Location,StartDate) VALUES (@sme,@title,@description,@location)"
                 };
                 cmd.Prepare();
 
@@ -232,6 +229,39 @@ namespace P4Project
                 // Forbindelsen lukkes:
                 if (Connection != null) Close();
             }
+        }
+
+        public List<string> FetchAllSkills()
+        {
+            var resList = new List<string>();
+            string resString = "";
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT SkillName FROM Skill"
+                };
+                cmd.Prepare();
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    resString += reader.GetString(0) + ',';
+                }
+                string[] tempres = resString.Split(',');
+
+                foreach (string s in tempres)
+                {
+                    resList.Add(s);
+                }
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+            return resList;
         }
     }
 }
