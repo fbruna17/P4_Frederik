@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace P4Project.Backend.Classes
+{
+    class StudentApplicant : StudentBase
+    {
+        public string Email { get; }
+
+        public string Education { get; }
+
+        // public int RecommendationScore { get; }
+
+        public StudentApplicant(string firstName, string lastName, int id, string email, string education) : base(firstName, lastName, id)
+        {
+            Email = email;
+            Education = education;
+        }
+
+        // public void GetRecommendation() { }
+
+    }
+}
