@@ -42,6 +42,7 @@
             this.txtTaskDesc = new System.Windows.Forms.TextBox();
             this.RemoteCheck = new System.Windows.Forms.CheckBox();
             this.btnSubmitTask = new System.Windows.Forms.Button();
+            this.SkillList = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -86,7 +87,6 @@
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(100, 22);
             this.txtTitle.TabIndex = 4;
-            this.txtTitle.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // txtLocation
             // 
@@ -94,7 +94,6 @@
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(100, 22);
             this.txtLocation.TabIndex = 5;
-            this.txtLocation.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // txtHours
             // 
@@ -128,6 +127,7 @@
             this.AddSkillButton.TabIndex = 10;
             this.AddSkillButton.Text = "Add";
             this.AddSkillButton.UseVisualStyleBackColor = true;
+            this.AddSkillButton.Click += new System.EventHandler(this.AddSkillButton_Click);
             // 
             // lblTaskDesc
             // 
@@ -165,11 +165,20 @@
             this.btnSubmitTask.UseVisualStyleBackColor = true;
             this.btnSubmitTask.Click += new System.EventHandler(this.btnSubmitTask_Click);
             // 
+            // SkillList
+            // 
+            this.SkillList.FormattingEnabled = true;
+            this.SkillList.Location = new System.Drawing.Point(429, 142);
+            this.SkillList.Name = "SkillList";
+            this.SkillList.Size = new System.Drawing.Size(217, 140);
+            this.SkillList.TabIndex = 15;
+            // 
             // CreateTask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SkillList);
             this.Controls.Add(this.btnSubmitTask);
             this.Controls.Add(this.RemoteCheck);
             this.Controls.Add(this.txtTaskDesc);
@@ -208,5 +217,6 @@
         private System.Windows.Forms.TextBox txtTaskDesc;
         private System.Windows.Forms.CheckBox RemoteCheck;
         private System.Windows.Forms.Button btnSubmitTask;
+        private System.Windows.Forms.CheckedListBox SkillList;
     }
 }
