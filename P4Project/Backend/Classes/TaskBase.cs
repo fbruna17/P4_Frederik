@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace P4Project.Backend.Classes
 {
     // Dette er superklassen for Tasks:
-    class TaskBase
+    public class TaskBase
     {
         public int ID { get; }
         public string Title { get; }

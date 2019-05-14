@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace P4Project.Backend.Classes
 {
     // Denne klasse bruges til at opbevare data til en task der blot skal vise få informationer (for eksempel i "SearchViewed")
-    class TaskSearched : TaskBase
+    public class TaskSearched : TaskBase
     {
         public string Location { get; }
         public int Hours { get; }

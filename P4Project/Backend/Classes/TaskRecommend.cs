@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace P4Project.Backend.Classes
 {
     // Denne klasse bruges til recommendation algoritmen, og indeholder blot en liste af SkillIDs:
-    class TaskRecommend : TaskBase
+    public class TaskRecommend : TaskBase
     {
         // Listen over required skills der hentes fra databasen:
         private List<int> RequiredSkills { get; }

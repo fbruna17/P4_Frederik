@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace P4Project.Backend.Classes
 {
     // Denne klasse bruges til at håndterer alle detaljerne der er om en task:
-    class TaskDetailed : TaskSearched
+    public class TaskDetailed : TaskSearched
     {
         public List<Skill> RequiredSkills { get; }
         public string Description { get; }

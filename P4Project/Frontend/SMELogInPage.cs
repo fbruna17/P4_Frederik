@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using P4Project.Exceptions;
+using P4Project.Backend.Classes;
 
 namespace P4Project.Frontend
 {
@@ -29,12 +30,12 @@ namespace P4Project.Frontend
             string password = Password.Text;
             try
             {
-                int SMEID = InputValidation.VerifySMELogin(username, password);
-                SMEBase SME = SQL.FetchSMEBaseInformation(SMEID); // Fetch detailed SME INFORMATION
-                var sme = new SMEProfileView(SME);
-                Hide();
+                int smeID = InputValidation.VerifySMELogin(username, password);
+                SMEDetailed tSME = SQL.FetchSMEDetailedInformation(smeID);
+                SMELoggedIn sme = new SMELoggedIn(username, password, tSME);
+                var smeLandingPage = new SMELandingPage(sme);
                 Close();
-                sme.ShowDialog();
+                smeLandingPage.ShowDialog();
             }
             catch(NoUsernameInputException)
             {

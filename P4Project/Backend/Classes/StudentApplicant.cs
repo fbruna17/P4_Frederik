@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P4Project.Backend.Classes
 {
-    class StudentApplicant : StudentBase
+    public class StudentApplicant : StudentBase
     {
         public string Email { get; }
 

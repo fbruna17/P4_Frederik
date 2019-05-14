@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P4Project.Backend.Classes
 {
-    class StudentLoggedIn : StudentDetailed
+    public class StudentLoggedIn : StudentDetailed
     {
         private string Username { get; }
         private string Password { get; }

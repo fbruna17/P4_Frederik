@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P4Project.Backend.Classes
 {
-    class StudentDetailed : StudentApplicant
+    public class StudentDetailed : StudentApplicant
     {
         public List<TaskBase> CompletedTasks { get; protected set; }
         public string Description { get; protected set; }

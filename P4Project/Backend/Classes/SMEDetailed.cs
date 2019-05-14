@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P4Project.Backend.Classes
 {
-    class SMEDetailed : SMEBase
+    public class SMEDetailed : SMEBase
     {
         public List<TaskSearched> Tasks { get; }
         public byte[] Logo { get; protected set; }

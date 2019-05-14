@@ -65,6 +65,37 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
+
+        public SMEDetailed FetchSMEDetailedInformation(int smeID)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT Name,Email,Description,LogoDIR FROM SME WHERE SMEID = @SMEID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@SMEID", smeID);
+
+                var reader = cmd.ExecuteReader();
+                reader.Read();
+                string name = reader.GetString(0);
+                string email = reader.GetString(1);
+                string description = reader.GetString(2);
+                //byte[] logo = reader.GetByte(3); // Halp!
+                byte[] logo = new byte[1];
+                var tempSME = new SMEBase(smeID, name, email);
+                List<TaskSearched> tasks = FetchAllTasksForSME(tempSME);
+                var SME = new SMEDetailed(smeID, name, email, tasks, logo, description);
+                return SME;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
         #endregion
 
         #region Student-specific SQL
