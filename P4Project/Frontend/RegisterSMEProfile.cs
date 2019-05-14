@@ -52,11 +52,12 @@ namespace P4Project
             string password = Password.Text;
             string confirmPass = ConfirmPass.Text;
             string email = CompanyEmail.Text;
+            string username = SMEUsername.Text;
 
             try
             {
-                InputValidation.VerifySMERegistration(companyName, password, confirmPass, email);
-                SQL.RegisterSMEProfile(img_SME, companyName, email, password);
+                InputValidation.VerifySMERegistration(companyName, password, confirmPass, email, username);
+                SQL.RegisterSMEProfile(img_SME, companyName, email, password, username);
                 MessageBox.Show("A new SME user has been created!");
                 this.Hide();
             }

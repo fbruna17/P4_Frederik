@@ -36,7 +36,7 @@ namespace P4Project
         #endregion
 
         #region SME-specific SQL
-        public void RegisterSMEProfile(byte[] img_SME, string companyName, string email, string password)
+        public void RegisterSMEProfile(byte[] img_SME, string companyName, string email, string password, string username)
         {
             // MySQL commandoen udføres:
             try
@@ -47,7 +47,7 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = Connection;
                 // Commandoen defineres og forberedes:
-                cmd.CommandText = "INSERT INTO SME(Name,Email,Password,LogoDIR) VALUES(@Name,@Email,@Password,@LogoDIR)";
+                cmd.CommandText = "INSERT INTO SME(Name,Email,Password,LogoDIR,Username) VALUES(@Name,@Email,@Password,@LogoDIR,@Username)";
                 cmd.Prepare();
 
                 // Parametrene tilføjes:
@@ -55,6 +55,7 @@ namespace P4Project
                 cmd.Parameters.AddWithValue("@Name", companyName);
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Password", password);
+                cmd.Parameters.AddWithValue("@Username", username);
                 // Kaldet udføres, og SME profilen bliver tilføjet til databasen:
                 cmd.ExecuteNonQuery();
             }
@@ -340,10 +341,10 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT SMEID FROM SME WHERE Name = @Name AND Password = @Password"
+                    CommandText = "SELECT SMEID FROM SME WHERE Username = @Username AND Password = @Password"
                 };
                 cmd.Prepare();
-                cmd.Parameters.AddWithValue("@Name", username);
+                cmd.Parameters.AddWithValue("@Username", username);
                 cmd.Parameters.AddWithValue("@Password", password);
 
                 var reader = cmd.ExecuteReader();

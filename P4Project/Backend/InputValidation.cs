@@ -23,11 +23,12 @@ namespace P4Project
         #endregion
 
         #region SME input
-        public void VerifySMERegistration(string name, string pass, string confirm, string email)
+        public void VerifySMERegistration(string name, string pass, string confirm, string email, string username)
         {
             VerifySMEName(name);
             VerifyRegPassword(pass, confirm);
             VerifyEmail(email);
+            VerifyUsername(username);
         }
 
         public void VerifySMEName(string name)
@@ -41,7 +42,7 @@ namespace P4Project
 
         public void VerifyStudentRegistration(string username, string password, string confirmpassword, string email)
         {
-            VerifyStudentUsername(username);
+            VerifyUsername(username);
             VerifyRegPassword(password, confirmpassword);
             VerifyEmail(email);
         }
@@ -60,7 +61,7 @@ namespace P4Project
             if (!email.Contains("@") || !email.Contains(".") || email.Contains(" ")) throw new InvalidEmailException(email);
         }
 
-        public void VerifyStudentUsername(string username)
+        public void VerifyUsername(string username)
         {
             if (username.Contains("@") || username.Contains(".") || username.Contains(",") || username.Contains("!")) throw new InvalidUsernameException(username);
             if (username.Length < 5);

@@ -70,3 +70,4 @@ C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.cspro
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.exe
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.pdb
 C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.LandingPage.resources
+C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.LandingPage.resources

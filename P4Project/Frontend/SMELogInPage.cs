@@ -30,7 +30,7 @@ namespace P4Project.Frontend
             try
             {
                 int SMEID = InputValidation.VerifySMELogin(username, password);
-                SMEBase SME = SQL.FetchSMEBaseInformation(SMEID);
+                SMEBase SME = SQL.FetchSMEBaseInformation(SMEID); // Fetch detailed SME INFORMATION
                 var sme = new SMEProfileView(SME);
                 Hide();
                 Close();
