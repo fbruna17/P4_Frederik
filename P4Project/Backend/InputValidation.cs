@@ -49,13 +49,13 @@ namespace P4Project
             if (!email.Contains("@") || !email.Contains(".") || email.Contains(" ")) throw new InvalidEmailException(email);
         }
 
-        public void VerifyStudentUsername(string username)
-        {
-            string username = new Regex()
-            //if (username.Contains("@") || username.Contains(".") || username.Contains(",") || username.Contains("!")) throw new InvalidUsernameException;
-            if (username.Length < 5)
-            if (SQL.StudentCheckUsername(username) != 0) throw new UserNameAlreadyExistsException();
-        }
+   //     public void VerifyStudentUsername(string username)
+   //     {
+   //         string username = new Regex();
+   //         //if (username.Contains("@") || username.Contains(".") || username.Contains(",") || username.Contains("!")) throw new InvalidUsernameException;
+   //         if (username.Length < 5)
+   //         if (SQL.StudentCheckUsername(username) != 0) throw new UserNameAlreadyExistsException();
+   //     }
         #endregion //End of Universal Input
 
         public int VerifySMELogin(string username, string password)
