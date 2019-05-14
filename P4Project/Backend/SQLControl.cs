@@ -114,7 +114,7 @@ namespace P4Project
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    resString = reader.GetString(0);
+                    resString += reader.GetString(0);
                 }
             }
             finally
@@ -132,10 +132,103 @@ namespace P4Project
             }
             return resList;
         }
+
+        // Funktion der henter alle tasks lavet af en given SME:
+        public List<TaskSearched> FetchTasksForSME(int smeID)
+        {
+            var taskList = new List<TaskSearched>();
+
+            return taskList;
+        }
+        
+        // Henter alle tasks en given student er Assigned til, ud fra en givent State: 
+        public List<TaskSearched> FetchStudentAssignedTasks(int studentID, int stateID)
+        {
+            var result = new List<TaskSearched>();
+
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT TaskID,SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task WHERE Assigned_Student = @Assigned_Student AND StateID = @StateID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@Assigned_Student", studentID);
+                cmd.Parameters.AddWithValue("@StateID", stateID);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int taskID = reader.GetInt32(0);
+                    int smeID = reader.GetInt32(1);
+                    string title = reader.GetString(2);
+                    string location = reader.GetString(3);
+                    int hours = reader.GetInt32(4);
+                    DateTime startDate = reader.GetDateTime(5);
+                    DateTime applicationDeadline = reader.GetDateTime(6);
+                    DateTime estCompletion = reader.GetDateTime(7);
+                    result.Add(new TaskSearched(taskID, smeID, title, location, hours, startDate, applicationDeadline, estCompletion));
+                }
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+
+            return result;
+        }
+
+        // Henter alle tasks en given student har applied for:
+        public List<TaskSearched> FetchStudentAppliedForTasks(int studentID)
+        {
+            var result = new List<TaskSearched>();
+            var taskIDs = new List<int>();
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT TaskID FROM Application WHERE StudentID = @StudentID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    taskIDs.Add(reader.GetInt32(0));
+                }
+                foreach (int i in taskIDs)
+                {
+                    cmd.CommandText = "SELECT SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task WHERE TaskID = @TaskID";
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@TaskID", i);
+                    while(reader.Read())
+                    {
+                        int smeID = reader.GetInt32(0);
+                        string title = reader.GetString(1);
+                        string location = reader.GetString(2);
+                        int hours = reader.GetInt32(3);
+                        DateTime startDate = reader.GetDateTime(4);
+                        DateTime applicationDeadline = reader.GetDateTime(5);
+                        DateTime estCompletion = reader.GetDateTime(6);
+                        result.Add(new TaskSearched(i, smeID, title, location, hours, startDate, applicationDeadline, estCompletion));
+                    }
+                }
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+
+            return result;
+        }
+
+
         #endregion
-
-
-
 
         public string SMELogInRequest(string username, string password)
         {
@@ -165,11 +258,7 @@ namespace P4Project
             return SMEID;
         }
 
-        public List<Task> FetchTasksForSME()
-        {
-            var taskList = new List<Task>();
-            return taskList;
-        }
+
 
         public SMEBase FetchSMEBaseInformation(int ID)
         {
