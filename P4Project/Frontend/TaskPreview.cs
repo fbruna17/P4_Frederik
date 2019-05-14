@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace P4Project.Frontend
 {
-    public partial class ViewTask : Form
+    public partial class TaskPreview : Form
     {
-        public ViewTask()
+        public TaskPreview()
         {
             InitializeComponent();
         }

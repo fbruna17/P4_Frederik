@@ -50,6 +50,7 @@ namespace P4Project.Frontend
 
         private void btnSubmitTask_Click(object sender, EventArgs e)
         {
+            //TODO: taskid needs to be set automatically.
             int taskid = 8;
             string title = txtTitle.Text;
             string description = txtTaskDesc.Text;
