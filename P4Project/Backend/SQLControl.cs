@@ -97,6 +97,7 @@ namespace P4Project
         #endregion
 
         #region Task-specific SQL
+        // Funktion der henter de skills der er Required for en task:
         public List<int> FetchRequiredSkills(int taskID)
         {
             var resList = new List<int>();
@@ -131,6 +132,77 @@ namespace P4Project
                 }
             }
             return resList;
+        }
+
+        public List<Skill> FetchSkillInfo(List<int> skillIDs)
+        {
+            var resList = new List<Skill>();
+            try
+            {
+                Open();
+                foreach (int skillID in skillIDs)
+                {
+                    MySqlCommand cmd = new MySqlCommand
+                    {
+                        Connection = Connection,
+                        CommandText = "SELECT SkillName,Catagory FROM Skill WHERE SkillID = @SkillID"
+                    };
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@SkillID", skillID);
+                    var reader = cmd.ExecuteReader();
+                    reader.Read();
+                    string skillName = reader.GetString(0);
+                    string catagory = reader.GetString(1);
+                    resList.Add(new Skill(skillID, skillName, catagory));
+                }
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+            return resList;
+        }
+
+        // Funktion der henter detailed view af en task:
+        public TaskDetailed FetchTaskDetailed(int taskID)
+        {
+            // Resultats variablen declareres:
+            TaskDetailed result;
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion,StateID,Description FROM Task WHERE TaskID = @TaskID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+
+                // Readeren gøres klar:
+                var reader = cmd.ExecuteReader();
+                reader.Read();
+
+                // Der laves en liste af de required skills:
+                List<int> reqSkillIDs = FetchRequiredSkills(taskID);
+                List<Skill> reqSkills = FetchSkillInfo(reqSkillIDs);
+                // Dataen samles:
+                int smeID = reader.GetInt32(0);
+                string title = reader.GetString(1);
+                string location = reader.GetString(2);
+                int hours = reader.GetInt32(3);
+                DateTime startDate = reader.GetDateTime(4);
+                DateTime applicationDeadline = reader.GetDateTime(5);
+                DateTime estCompletion = reader.GetDateTime(6);
+                int stateID = reader.GetInt32(7);
+                string description = reader.GetString(8);
+                // Resultatet instansieres og returneres:
+                return result = new TaskDetailed(taskID, smeID, title, location, hours, description, startDate, applicationDeadline, estCompletion, stateID, reqSkills);
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
         }
 
         // Funktion der henter alle tasks lavet af en given SME:
