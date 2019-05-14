@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using P4Project.Exceptions;
+using P4Project.Backend.Classes;
 
 namespace P4Project
 {
@@ -86,6 +87,12 @@ namespace P4Project
             {
                 if (Connection != null) Close();
             }
+        }
+
+        public StudentDetailed FetchStudentDetailed(int id)
+        {
+            StudentDetailed res
+            return 
         }
         #endregion
 

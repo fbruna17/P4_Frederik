@@ -10,6 +10,7 @@ namespace P4Project.Backend.Classes
     class TaskBase
     {
         public int ID { get; }
+        public string Title { get; }
         public int SMEID { get; }
 
         public TaskBase(int id)
@@ -21,6 +22,13 @@ namespace P4Project.Backend.Classes
         {
             ID = id;
             SMEID = smeID;
+        }
+        // Og hvis der kommer title med:
+        public TaskBase(int id, int smeID, string title)
+        {
+            ID = id;
+            SMEID = smeID;
+            Title = title;
         }
     }
 }
