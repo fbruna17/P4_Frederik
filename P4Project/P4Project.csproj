@@ -47,11 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Backend\Classes\DetailedTask.cs" />
-    <Compile Include="Backend\Classes\SearchedTask.cs" />
     <Compile Include="Backend\Classes\SMEBase.cs" />
+    <Compile Include="Backend\Classes\SMEDetailed.cs" />
+    <Compile Include="Backend\Classes\SMELoggedIn.cs" />
+    <Compile Include="Backend\Classes\StudentApplicant.cs" />
+    <Compile Include="Backend\Classes\StudentBase.cs" />
+    <Compile Include="Backend\Classes\StudentDetailed.cs" />
+    <Compile Include="Backend\Classes\StudentLoggedIn.cs" />
     <Compile Include="Backend\Classes\TaskBase.cs" />
+    <Compile Include="Backend\Classes\TaskDetailed.cs" />
     <Compile Include="Backend\Classes\TaskRecommend.cs" />
+    <Compile Include="Backend\Classes\TaskSearched.cs" />
     <Compile Include="Backend\InputValidation.cs" />
     <Compile Include="Exceptions\InvalidTaskDescriptionExeption.cs" />
     <Compile Include="Exceptions\InvalidTaskLocationException.cs" />

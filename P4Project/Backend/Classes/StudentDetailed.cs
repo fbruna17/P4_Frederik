@@ -18,7 +18,7 @@ namespace P4Project.Backend.Classes
 
         public void GetDetailedInformation()
         {
-            SQL.
+            //SQL.
         }
 
     }
