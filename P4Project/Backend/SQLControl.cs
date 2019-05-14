@@ -32,7 +32,20 @@ namespace P4Project
         {
             Connection.Close();
         }
-        #endregion
+
+        public int StudentCheckUsername(string username)
+        {
+        
+            Open();
+            MySqlCommand check_User_Name = new MySqlCommand("SELECT COUNT(Username) FROM [Student] WHERE ([Username] = @username)");
+            check_User_Name.Parameters.AddWithValue("@username", username);
+            int UserExist = (int)check_User_Name.ExecuteScalar();
+
+            Close();
+            return UserExist;
+       
+        }
+        #endregion // End of Universal SQL 
 
         #region SME-specific SQL
         public void RegisterSMEProfile(byte[] img_SME, string companyName, string email, string password)
@@ -66,17 +79,19 @@ namespace P4Project
         #endregion
 
         #region Student-specific SQL
-        public void AddStudent(string firstname, string lastname, string email, byte[] img)
+        public void AddStudent(string username, string password, string firstname, string lastname, string email, byte[] img)
         {
             try
             {
                 Open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = Connection;
-                cmd.CommandText = "INSERT INTO Student(Firstname,Lastname,Email,Profile_Picture) VALUES(@Firstname,@Lastname,@Email,@Profile_Picture)";
+                cmd.CommandText = "INSERT INTO Student(Username,Password,Firstname,Lastname,Email,Profile_Picture) VALUES(@Username,@Password@Firstname,@Lastname,@Email,@Profile_Picture)";
                 cmd.Prepare();
 
                 cmd.Parameters.AddWithValue("@Profile_Picture", img);
+                cmd.Parameters.AddWithValue("@Username", username);
+                cmd.Parameters.AddWithValue("@Password", password);
                 cmd.Parameters.AddWithValue("@Firstname", firstname);
                 cmd.Parameters.AddWithValue("@Lastname", lastname);
                 cmd.Parameters.AddWithValue("@Email", email);
@@ -133,7 +148,7 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT StudentID FROM Student WHERE FirstName = @FirstName AND Password = @Password"
+                    CommandText = "SELECT StudentID FROM Student WHERE Username = @Username AND Password = @Password"
                 };
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@FirstName", username);

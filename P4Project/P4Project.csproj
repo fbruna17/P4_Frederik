@@ -60,6 +60,7 @@
     <Compile Include="Exceptions\PasswordToShortException.cs" />
     <Compile Include="Exceptions\SMEUserDoesNotExistException.cs" />
     <Compile Include="Exceptions\StudUserDoesNotExistsException.cs" />
+    <Compile Include="Exceptions\UserNameAlreadyExistsException.cs" />
     <Compile Include="Frontend\CreateStudProfileV2.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -36,6 +36,17 @@ namespace P4Project
 
         #endregion
 
+        #region Student input
+
+        public void VerifyStudentRegistration(string username, string password, string confirmpassword, string email)
+        {
+            VerifyStudentUsername(username);
+            VerifyRegPassword(password, confirmpassword);
+            VerifyEmail(email);
+        }
+
+        #endregion
+
         #region Universal input
         public void VerifyRegPassword(string pass, string confirm)
         {
@@ -47,7 +58,14 @@ namespace P4Project
         {
             if (!email.Contains("@") || !email.Contains(".") || email.Contains(" ")) throw new InvalidEmailException(email);
         }
-        #endregion
+
+        public void VerifyStudentUsername(string username)
+        {
+            if (username.Length < 5)
+            if (SQL.StudentCheckUsername(username) != 0) throw new UserNameAlreadyExistsException();
+        }
+        #endregion //End of Universal Input
+
         public int VerifySMELogin(string username, string password)
         {
             string SMEID;
