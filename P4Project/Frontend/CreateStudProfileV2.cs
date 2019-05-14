@@ -16,8 +16,7 @@ namespace P4Project
     {
         #region Instance Variables & Properties
         private SQLControl SQL;
-                private string myConnectionString = "server=mysql33.unoeuro.com;uid=blo_store_dk;pwd=3pdaxzyt;database=blo_store_dk_db_wd";
-        private MySqlConnection connection = null;
+        UserInputValidation inputValidation; 
         #endregion
 
         #region Constructor(s)
@@ -35,13 +34,17 @@ namespace P4Project
             pictureBox1.Image.Save(ms, pictureBox1.Image.RawFormat);
 
             byte[] img = ms.ToArray();
+            string username = UsernameText.Text;
+            string password = PasswordText.Text;
+            string confirmpassword = ConfirmPasswordText.Text;
             string firstname = FirstNameText.Text;
             string lastname = LastNameText.Text;
             string email = EmailText.Text;
             
             try
             { 
-                SQL.AddStudent(firstname, lastname, email, img);
+                
+                SQL.AddStudent(username, password, firstname, lastname, email, img);
                 MessageBox.Show("Student has been added to the database!");
                 this.Hide();
             }
@@ -76,6 +79,11 @@ namespace P4Project
         }
 
         private void PictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UsernameText_TextChanged(object sender, EventArgs e)
         {
 
         }

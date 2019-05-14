@@ -40,6 +40,12 @@
             this.lNamelabel = new System.Windows.Forms.Label();
             this.fNameLabel = new System.Windows.Forms.Label();
             this.imageChooseBtn = new System.Windows.Forms.Button();
+            this.ConfirmPasswordText = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.PasswordText = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.UsernameText = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +55,7 @@
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(338, 40);
+            this.pictureBox1.Location = new System.Drawing.Point(236, 71);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(194, 223);
@@ -70,6 +76,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.UsernameText);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.PasswordText);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.ConfirmPasswordText);
             this.groupBox1.Controls.Add(this.basicSaveBut);
             this.groupBox1.Controls.Add(this.EmailText);
             this.groupBox1.Controls.Add(this.LastNameText);
@@ -77,21 +89,21 @@
             this.groupBox1.Controls.Add(this.MailLabel);
             this.groupBox1.Controls.Add(this.lNamelabel);
             this.groupBox1.Controls.Add(this.fNameLabel);
-            this.groupBox1.Location = new System.Drawing.Point(14, 189);
+            this.groupBox1.Location = new System.Drawing.Point(11, 22);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(230, 149);
+            this.groupBox1.Size = new System.Drawing.Size(211, 333);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
             // basicSaveBut
             // 
-            this.basicSaveBut.Location = new System.Drawing.Point(156, 130);
+            this.basicSaveBut.Location = new System.Drawing.Point(35, 291);
             this.basicSaveBut.Margin = new System.Windows.Forms.Padding(2);
             this.basicSaveBut.Name = "basicSaveBut";
-            this.basicSaveBut.Size = new System.Drawing.Size(74, 19);
+            this.basicSaveBut.Size = new System.Drawing.Size(124, 19);
             this.basicSaveBut.TabIndex = 6;
             this.basicSaveBut.Text = "Save";
             this.basicSaveBut.UseVisualStyleBackColor = true;
@@ -99,32 +111,32 @@
             // 
             // EmailText
             // 
-            this.EmailText.Location = new System.Drawing.Point(8, 105);
+            this.EmailText.Location = new System.Drawing.Point(15, 178);
             this.EmailText.Margin = new System.Windows.Forms.Padding(2);
             this.EmailText.Name = "EmailText";
-            this.EmailText.Size = new System.Drawing.Size(76, 20);
+            this.EmailText.Size = new System.Drawing.Size(144, 20);
             this.EmailText.TabIndex = 5;
             // 
             // LastNameText
             // 
-            this.LastNameText.Location = new System.Drawing.Point(140, 53);
+            this.LastNameText.Location = new System.Drawing.Point(15, 252);
             this.LastNameText.Margin = new System.Windows.Forms.Padding(2);
             this.LastNameText.Name = "LastNameText";
-            this.LastNameText.Size = new System.Drawing.Size(76, 20);
+            this.LastNameText.Size = new System.Drawing.Size(144, 20);
             this.LastNameText.TabIndex = 4;
             // 
             // FirstNameText
             // 
-            this.FirstNameText.Location = new System.Drawing.Point(8, 54);
+            this.FirstNameText.Location = new System.Drawing.Point(15, 215);
             this.FirstNameText.Margin = new System.Windows.Forms.Padding(2);
             this.FirstNameText.Name = "FirstNameText";
-            this.FirstNameText.Size = new System.Drawing.Size(76, 20);
+            this.FirstNameText.Size = new System.Drawing.Size(144, 20);
             this.FirstNameText.TabIndex = 3;
             // 
             // MailLabel
             // 
             this.MailLabel.AutoSize = true;
-            this.MailLabel.Location = new System.Drawing.Point(5, 88);
+            this.MailLabel.Location = new System.Drawing.Point(15, 163);
             this.MailLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.MailLabel.Name = "MailLabel";
             this.MailLabel.Size = new System.Drawing.Size(35, 13);
@@ -134,7 +146,7 @@
             // lNamelabel
             // 
             this.lNamelabel.AutoSize = true;
-            this.lNamelabel.Location = new System.Drawing.Point(137, 37);
+            this.lNamelabel.Location = new System.Drawing.Point(15, 237);
             this.lNamelabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lNamelabel.Name = "lNamelabel";
             this.lNamelabel.Size = new System.Drawing.Size(61, 13);
@@ -144,7 +156,7 @@
             // fNameLabel
             // 
             this.fNameLabel.AutoSize = true;
-            this.fNameLabel.Location = new System.Drawing.Point(5, 37);
+            this.fNameLabel.Location = new System.Drawing.Point(15, 200);
             this.fNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.fNameLabel.Name = "fNameLabel";
             this.fNameLabel.Size = new System.Drawing.Size(60, 13);
@@ -153,7 +165,7 @@
             // 
             // imageChooseBtn
             // 
-            this.imageChooseBtn.Location = new System.Drawing.Point(353, 277);
+            this.imageChooseBtn.Location = new System.Drawing.Point(251, 308);
             this.imageChooseBtn.Name = "imageChooseBtn";
             this.imageChooseBtn.Size = new System.Drawing.Size(164, 23);
             this.imageChooseBtn.TabIndex = 4;
@@ -161,11 +173,60 @@
             this.imageChooseBtn.UseVisualStyleBackColor = true;
             this.imageChooseBtn.Click += new System.EventHandler(this.ImageChooseBtn_Click);
             // 
+            // ConfirmPasswordText
+            // 
+            this.ConfirmPasswordText.Location = new System.Drawing.Point(15, 140);
+            this.ConfirmPasswordText.Name = "ConfirmPasswordText";
+            this.ConfirmPasswordText.Size = new System.Drawing.Size(144, 20);
+            this.ConfirmPasswordText.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 121);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Confirm Password:";
+            // 
+            // PasswordText
+            // 
+            this.PasswordText.Location = new System.Drawing.Point(15, 98);
+            this.PasswordText.Name = "PasswordText";
+            this.PasswordText.Size = new System.Drawing.Size(144, 20);
+            this.PasswordText.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 79);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Password:";
+            // 
+            // UsernameText
+            // 
+            this.UsernameText.Location = new System.Drawing.Point(15, 56);
+            this.UsernameText.Name = "UsernameText";
+            this.UsernameText.Size = new System.Drawing.Size(144, 20);
+            this.UsernameText.TabIndex = 11;
+            this.UsernameText.TextChanged += new System.EventHandler(this.UsernameText_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 37);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Username:";
+            // 
             // CreateStudProfileV2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(450, 366);
             this.Controls.Add(this.imageChooseBtn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.StudCrTitle);
@@ -195,5 +256,11 @@
         private System.Windows.Forms.Label lNamelabel;
         private System.Windows.Forms.Label fNameLabel;
         private System.Windows.Forms.Button imageChooseBtn;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox UsernameText;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox PasswordText;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox ConfirmPasswordText;
     }
 }
