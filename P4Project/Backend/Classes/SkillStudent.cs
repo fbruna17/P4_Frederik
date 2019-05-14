@@ -10,7 +10,7 @@ namespace P4Project.Backend.Classes
     {
         public bool Verified { get; }
 
-        public SkillStudent(int id, string name, string catagory, bool verified) : base(id, name, catagory)
+        public SkillStudent(int id, string name, string category, bool verified) : base(id, name, category)
         {
             Verified = verified;
         }

@@ -40,7 +40,7 @@ namespace P4Project
             
             try
             { 
-                SQL.AddStudent(firstname, lastname, email, img);
+                SQL.RegisterStudentProfile(firstname, lastname, email, img);
                 MessageBox.Show("Student has been added to the database!");
                 this.Hide();
             }

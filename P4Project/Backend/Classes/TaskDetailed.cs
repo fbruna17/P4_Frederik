@@ -13,9 +13,9 @@ namespace P4Project.Backend.Classes
         public string Description { get; }
 
         // Denne constructer tager alle de nødvendige informationer for at kunne displaye en Task for en bruger:
-        public TaskDetailed(int id, int smeID, string title, string location, int hours, string description, 
+        public TaskDetailed(int id, SMEBase owner, string title, string location, int hours, string description, 
                                DateTime startdate, DateTime applicationDeadline, DateTime estCompletionDate, int stateID, List<Skill> requiredSkills) 
-                               : base(id, smeID, title, location, hours, startdate, applicationDeadline, estCompletionDate, stateID)
+                               : base(id, owner, title, location, hours, startdate, applicationDeadline, estCompletionDate, stateID)
         {
             // Dataene ligges i de korrekte properties:
             RequiredSkills = requiredSkills;
