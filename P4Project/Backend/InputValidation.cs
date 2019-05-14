@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using P4Project.Exceptions;
 using MySql.Data.MySqlClient;
+using System.Text.RegularExpressions;
 
 namespace P4Project
 {
@@ -47,7 +48,16 @@ namespace P4Project
         {
             if (!email.Contains("@") || !email.Contains(".") || email.Contains(" ")) throw new InvalidEmailException(email);
         }
-        #endregion
+
+        public void VerifyStudentUsername(string username)
+        {
+            string username = new Regex()
+            //if (username.Contains("@") || username.Contains(".") || username.Contains(",") || username.Contains("!")) throw new InvalidUsernameException;
+            if (username.Length < 5)
+            if (SQL.StudentCheckUsername(username) != 0) throw new UserNameAlreadyExistsException();
+        }
+        #endregion //End of Universal Input
+
         public int VerifySMELogin(string username, string password)
         {
             string SMEID;

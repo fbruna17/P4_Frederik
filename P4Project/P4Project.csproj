@@ -62,6 +62,7 @@
     <Compile Include="Exceptions\InvalidTaskDescriptionExeption.cs" />
     <Compile Include="Exceptions\InvalidTaskLocationException.cs" />
     <Compile Include="Exceptions\InvalidTaskTitleException.cs" />
+    <Compile Include="Exceptions\InvalidUsernameException.cs" />
     <Compile Include="Exceptions\NoPasswordInputException.cs" />
     <Compile Include="Exceptions\NoUsernameInputException.cs" />
     <Compile Include="Exceptions\PasswordsDoesNotMatchException.cs" />
