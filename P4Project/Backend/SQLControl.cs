@@ -395,21 +395,17 @@ namespace P4Project
 
         public void CreateNewTask(int SMEID, string title, string description, string location)
         {
-            // MySQL commandoen udføres:
             try
             {
-                // Forbindelsen åbnes:
                 Open();
-                //Der initialiseres en instans til command håndtering:
-                MySqlCommand cmd = new MySqlCommand
-                {
-                    Connection = Connection,
-                    // Commandoen defineres og forberedes:
-                    CommandText = "INSERT INTO Task(SMEID,Title,Description,Location,StartDate) VALUES (@sme,@title,@description,@location)"
-                };
+                MySqlCommand cmd = new MySqlCommand();
+                Connection = Connection,
+                // Commandoen defineres og forberedes:
+                cmd.CommandText = "INSERT INTO Task(TaskID,SMEID,Title,Description,Location,StartDate,) VALUES (@sme,@title,@description,@location)";
                 cmd.Prepare();
 
                 // Parametrene tilføjes:
+                cmd.Parameters.AddWithValue("@id", 0);
                 cmd.Parameters.AddWithValue("@sme", SMEID);
                 cmd.Parameters.AddWithValue("@title", title);
                 cmd.Parameters.AddWithValue("@description", description);

@@ -72,3 +72,17 @@ C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.pdb
 C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.LandingPage.resources
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.LandingPage.resources
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.ViewTask.resources
+C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csprojAssemblyReference.cache
+C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.CreateStudProfileV2.resources
+C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.CreateTask.resources
+C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.LandingPage.resources
+C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.RegisterSMEProfile.resources
+C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.SMELogInPage.resources
+C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.SMEProfileView.resources
+C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.TestForm.resources
+C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.ViewTask.resources
+C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Properties.Resources.resources
+C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csproj.GenerateResource.cache
+C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csproj.CoreCompileInputs.cache
+C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.exe
+C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.pdb
