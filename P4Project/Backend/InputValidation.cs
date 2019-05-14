@@ -63,7 +63,7 @@ namespace P4Project
         public void VerifyStudentUsername(string username)
         {
             if (username.Contains("@") || username.Contains(".") || username.Contains(",") || username.Contains("!")) throw new InvalidUsernameException(username);
-            if (username.Length < 5) ;
+            if (username.Length < 5);
         }
         #endregion //End of Universal Input
 

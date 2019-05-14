@@ -19,8 +19,6 @@ namespace P4Project
     {
 
         #region Instance Variables & Properties
-        private string myConnectionString = "server=mysql33.unoeuro.com;uid=blo_store_dk;pwd=3pdaxzyt;database=blo_store_dk_db_wd";
-        private MySqlConnection connection = null;
 
         private SQLControl SQL;
         #endregion // End of Variables Region

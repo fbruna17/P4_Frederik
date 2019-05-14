@@ -67,7 +67,7 @@ namespace P4Project
         #endregion
 
         #region Student-specific SQL
-        public void RegisterStudentProfile(string firstname, string lastname, string email, byte[] img)
+        public void RegisterStudentProfile(string username, string password, string firstname, string lastname, string email, byte[] img)
         {
             try
             {
