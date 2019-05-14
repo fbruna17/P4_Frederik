@@ -43,11 +43,11 @@ namespace P4Project
             string firstname = FirstNameText.Text;
             string lastname = LastNameText.Text;
             string email = EmailText.Text;
-            
+
             try
             {
                 InputValidation.VerifyStudentRegistration(username, password, confirmpassword, email);
-                SQL.AddStudent(username, password, firstname, lastname, email, img);
+                SQL.RegisterStudentProfile(username, password, firstname, lastname, email, img);
                 MessageBox.Show("Student has been added to the database!");
                 this.Hide();
             }
@@ -104,7 +104,7 @@ namespace P4Project
         }
         #endregion
 
-       
+
 
         private void PictureBox1_Click(object sender, EventArgs e)
         {

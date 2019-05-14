@@ -67,7 +67,7 @@ namespace P4Project
         #endregion
 
         #region Student-specific SQL
-        public void AddStudent(string username, string password, string firstname, string lastname, string email, byte[] img)
+        public void RegisterStudentProfile(string firstname, string lastname, string email, byte[] img)
         {
             try
             {
@@ -147,15 +147,15 @@ namespace P4Project
                     MySqlCommand cmd = new MySqlCommand
                     {
                         Connection = Connection,
-                        CommandText = "SELECT SkillName,Catagory FROM Skill WHERE SkillID = @SkillID"
+                        CommandText = "SELECT SkillName,Category FROM Skill WHERE SkillID = @SkillID"
                     };
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@SkillID", skillID);
                     var reader = cmd.ExecuteReader();
                     reader.Read();
                     string skillName = reader.GetString(0);
-                    string catagory = reader.GetString(1);
-                    resList.Add(new Skill(skillID, skillName, catagory));
+                    string category = reader.GetString(1);
+                    resList.Add(new Skill(skillID, skillName, category));
                 }
             }
             finally
@@ -189,7 +189,7 @@ namespace P4Project
                 List<int> reqSkillIDs = FetchRequiredSkills(taskID);
                 List<Skill> reqSkills = FetchSkillInfo(reqSkillIDs);
                 // Dataen samles:
-                int smeID = reader.GetInt32(0);
+                SMEBase owner = FetchSMEBaseInformation(reader.GetInt32(0));
                 string title = reader.GetString(1);
                 string location = reader.GetString(2);
                 int hours = reader.GetInt32(3);
@@ -199,7 +199,7 @@ namespace P4Project
                 int stateID = reader.GetInt32(7);
                 string description = reader.GetString(8);
                 // Resultatet instansieres og returneres:
-                return result = new TaskDetailed(taskID, smeID, title, location, hours, description, startDate, applicationDeadline, estCompletion, stateID, reqSkills);
+                return result = new TaskDetailed(taskID, owner, title, location, hours, description, startDate, applicationDeadline, estCompletion, stateID, reqSkills);
             }
             finally
             {
@@ -208,7 +208,7 @@ namespace P4Project
         }
 
         // Funktion der henter alle tasks lavet af en given SME:
-        public List<TaskSearched> FetchAllTasksForSME(int smeID)
+        public List<TaskSearched> FetchAllTasksForSME(SMEBase owner)
         {
             var taskList = new List<TaskSearched>();
 
@@ -221,7 +221,7 @@ namespace P4Project
                     CommandText = "SELECT TaskID,Title,Location,Hours,StartDate,Application_Deadline,Completion,StateID FROM Task WHERE SMEID = @SMEID"
                 };
                 cmd.Prepare();
-                cmd.Parameters.AddWithValue("@SMEID", smeID);
+                cmd.Parameters.AddWithValue("@SMEID", owner.ID);
 
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -234,7 +234,7 @@ namespace P4Project
                     DateTime applicationDeadline = reader.GetDateTime(5);
                     DateTime estCompletion = reader.GetDateTime(6);
                     int stateID = reader.GetInt32(7);
-                    taskList.Add(new TaskSearched(taskID, smeID, title, location, hours, startDate, applicationDeadline, estCompletion, stateID));
+                    taskList.Add(new TaskSearched(taskID, owner, title, location, hours, startDate, applicationDeadline, estCompletion, stateID));
                 }
             }
             finally
@@ -265,14 +265,14 @@ namespace P4Project
                 while (reader.Read())
                 {
                     int taskID = reader.GetInt32(0);
-                    int smeID = reader.GetInt32(1);
+                    SMEBase owner = FetchSMEBaseInformation(reader.GetInt32(1));
                     string title = reader.GetString(2);
                     string location = reader.GetString(3);
                     int hours = reader.GetInt32(4);
                     DateTime startDate = reader.GetDateTime(5);
                     DateTime applicationDeadline = reader.GetDateTime(6);
                     DateTime estCompletion = reader.GetDateTime(7);
-                    result.Add(new TaskSearched(taskID, smeID, title, location, hours, startDate, applicationDeadline, estCompletion, stateID));
+                    result.Add(new TaskSearched(taskID, owner, title, location, hours, startDate, applicationDeadline, estCompletion, stateID));
                 }
             }
             finally
@@ -311,14 +311,14 @@ namespace P4Project
                     cmd.Parameters.AddWithValue("@TaskID", i);
                     while(reader.Read())
                     {
-                        int smeID = reader.GetInt32(0);
+                        SMEBase owner = FetchSMEBaseInformation(reader.GetInt32(0));
                         string title = reader.GetString(1);
                         string location = reader.GetString(2);
                         int hours = reader.GetInt32(3);
                         DateTime startDate = reader.GetDateTime(4);
                         DateTime applicationDeadline = reader.GetDateTime(5);
                         DateTime estCompletion = reader.GetDateTime(6);
-                        result.Add(new TaskSearched(i, smeID, title, location, hours, startDate, applicationDeadline, estCompletion));
+                        result.Add(new TaskSearched(i, owner, title, location, hours, startDate, applicationDeadline, estCompletion));
                     }
                 }
             }
@@ -360,7 +360,7 @@ namespace P4Project
         }
 
 
-
+        //
         public SMEBase FetchSMEBaseInformation(int ID)
         {
             string name = "";

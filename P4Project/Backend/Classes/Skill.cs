@@ -10,13 +10,13 @@ namespace P4Project.Backend.Classes
     {
         private int ID { get; }
         public string Name { get; }
-        public string Catagory { get; }
+        public string Category { get; }
 
-        public Skill(int id, string name, string catagory)
+        public Skill(int id, string name, string category)
         {
             ID = id;
             Name = name;
-            Catagory = catagory;
+            Category = category;
         }
     }
 }
