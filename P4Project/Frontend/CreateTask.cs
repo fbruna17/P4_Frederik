@@ -64,7 +64,7 @@ namespace P4Project.Frontend
 
             try
             {
-                InputValidation.VerifyTask(title, description, location);
+                //InputValidation.VerifyTask(title, description, location);
                 SQL.CreateNewTask(taskid, SME.ID, title, description, location, startdate, completion);
                 MessageBox.Show("Your task has been added to the database.");
                 this.Hide();

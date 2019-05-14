@@ -398,10 +398,11 @@ namespace P4Project
             try
             {
                 Open();
-                MySqlCommand cmd = new MySqlCommand();
-                Connection = Connection;
-                // Commandoen defineres og forberedes:
-                cmd.CommandText = "INSERT INTO Task(TaskID,SMEID,Title,Description,Location,StartDate,Completion) VALUES (@taskid,@sme,@title,@description,@location,@startdate,@completion)";
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "INSERT INTO Task(TaskID,SMEID,Title,Description,Location,StartDate,Completion) VALUES (@taskid,@sme,@title,@description,@location,@startdate,@completion)"
+                };
                 cmd.Prepare();
 
                 // Parametrene tilføjes:
