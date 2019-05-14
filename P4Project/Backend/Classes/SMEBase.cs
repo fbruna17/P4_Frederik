@@ -20,10 +20,5 @@ namespace P4Project
             Name = name;
             Email = email;
         }
-
-        public void GetTasks()
-        {
-
-        }
     }
 }

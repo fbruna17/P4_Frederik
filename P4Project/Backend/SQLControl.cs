@@ -89,11 +89,11 @@ namespace P4Project
             }
         }
 
-        public StudentDetailed FetchStudentDetailed(int id)
-        {
-            StudentDetailed res
-            return 
-        }
+      //  public StudentDetailed FetchStudentDetailed(int id)
+      //  {
+      //      StudentDetailed res
+      //      return 
+      //  }
         #endregion
 
         #region Task-specific SQL
