@@ -26,5 +26,10 @@ namespace P4Project.Frontend
         {
 
         }
+
+        private void StudentResumeLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }
