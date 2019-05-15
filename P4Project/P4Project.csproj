@@ -116,12 +116,6 @@
     <Compile Include="Frontend\SMEProfileView.Designer.cs">
       <DependentUpon>SMEProfileView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frontend\StudentProfileView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frontend\StudentProfileView.Designer.cs">
-      <DependentUpon>StudentProfileView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Frontend\StudentTaskView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,9 +156,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\SMEProfileView.resx">
       <DependentUpon>SMEProfileView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Frontend\StudentProfileView.resx">
-      <DependentUpon>StudentProfileView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>

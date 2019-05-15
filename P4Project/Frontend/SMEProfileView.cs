@@ -29,10 +29,5 @@ namespace P4Project.Frontend
             taskCreate.ShowDialog();
             Show();
         }
-
-        private void CompanyName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
