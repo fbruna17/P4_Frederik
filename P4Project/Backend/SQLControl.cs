@@ -393,7 +393,7 @@ namespace P4Project
             }
         }
 
-        public void CreateNewTask(int TaskID, int SMEID, string title, string description, string location, DateTime startdate, DateTime completion)
+        public void CreateNewTask(int SMEID, string title, string description, string location, DateTime startdate, DateTime completion)
         {
             try
             {
@@ -401,12 +401,12 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "INSERT INTO Task(TaskID,SMEID,Title,Description,Location,StartDate,Completion) VALUES (@taskid,@sme,@title,@description,@location,@startdate,@completion)"
+                    CommandText = "INSERT INTO Task(SMEID,Title,Description,Location,StartDate,Completion) " +
+                    "VALUES (@sme,@title,@description,@location,@startdate,@completion)"
                 };
                 cmd.Prepare();
 
                 // Parametrene tilføjes:
-                cmd.Parameters.AddWithValue("@taskid", TaskID);
                 cmd.Parameters.AddWithValue("@sme", SMEID);
                 cmd.Parameters.AddWithValue("@title", title);
                 cmd.Parameters.AddWithValue("@description", description);

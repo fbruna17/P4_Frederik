@@ -51,7 +51,6 @@ namespace P4Project.Frontend
         private void btnSubmitTask_Click(object sender, EventArgs e)
         {
             //TODO: taskid needs to be set automatically.
-            int taskid = 8;
             string title = txtTitle.Text;
             string description = txtTaskDesc.Text;
             string location = txtLocation.Text;
@@ -66,7 +65,7 @@ namespace P4Project.Frontend
             try
             {
                 //InputValidation.VerifyTask(title, description, location);
-                SQL.CreateNewTask(taskid, SME.ID, title, description, location, startdate, completion);
+                SQL.CreateNewTask(SME.ID, title, description, location, startdate, completion);
                 MessageBox.Show("Your task has been added to the database.");
                 this.Hide();
             }

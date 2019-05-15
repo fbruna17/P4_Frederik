@@ -71,7 +71,6 @@ C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.exe
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.pdb
 C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.LandingPage.resources
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.LandingPage.resources
-C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.ViewTask.resources
 C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csprojAssemblyReference.cache
 C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.CreateStudProfileV2.resources
 C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.CreateTask.resources
@@ -92,3 +91,4 @@ C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\Google.Protobuf.
 C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\MySql.Data.xml
 C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.TaskPreview.resources
 C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csproj.CopyComplete
+C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.TaskPreview.resources

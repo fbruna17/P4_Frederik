@@ -28,56 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblCompanyName = new System.Windows.Forms.Label();
+            this.lblTaskPreviewTitle = new System.Windows.Forms.Label();
             this.grp1 = new System.Windows.Forms.GroupBox();
             this.lblTaskViewDesc = new System.Windows.Forms.Label();
             this.txtTaskViewDescription = new System.Windows.Forms.RichTextBox();
             this.lblTaskPreviewSMEName = new System.Windows.Forms.Label();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.grpTaskPreviewPractical = new System.Windows.Forms.GroupBox();
+            this.lblPracticalTitle = new System.Windows.Forms.Label();
             this.grp1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.SuspendLayout();
+            this.grpTaskPreviewPractical.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblCompanyName
+            // lblTaskPreviewTitle
             // 
-            this.lblCompanyName.AutoSize = true;
-            this.lblCompanyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCompanyName.Location = new System.Drawing.Point(31, 15);
-            this.lblCompanyName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblCompanyName.Name = "lblCompanyName";
-            this.lblCompanyName.Size = new System.Drawing.Size(146, 26);
-            this.lblCompanyName.TabIndex = 0;
-            this.lblCompanyName.Text = "No title added";
+            this.lblTaskPreviewTitle.AutoSize = true;
+            this.lblTaskPreviewTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTaskPreviewTitle.Location = new System.Drawing.Point(108, 17);
+            this.lblTaskPreviewTitle.Name = "lblTaskPreviewTitle";
+            this.lblTaskPreviewTitle.Size = new System.Drawing.Size(66, 31);
+            this.lblTaskPreviewTitle.TabIndex = 0;
+            this.lblTaskPreviewTitle.Text = "Title";
             // 
             // grp1
             // 
             this.grp1.Controls.Add(this.lblTaskViewDesc);
             this.grp1.Controls.Add(this.txtTaskViewDescription);
-            this.grp1.Controls.Add(this.lblCompanyName);
-            this.grp1.Location = new System.Drawing.Point(34, 58);
-            this.grp1.Margin = new System.Windows.Forms.Padding(2);
+            this.grp1.Controls.Add(this.lblTaskPreviewTitle);
+            this.grp1.Location = new System.Drawing.Point(45, 71);
+            this.grp1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grp1.Name = "grp1";
-            this.grp1.Padding = new System.Windows.Forms.Padding(2);
-            this.grp1.Size = new System.Drawing.Size(212, 250);
+            this.grp1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.grp1.Size = new System.Drawing.Size(283, 308);
             this.grp1.TabIndex = 0;
             this.grp1.TabStop = false;
             // 
             // lblTaskViewDesc
             // 
             this.lblTaskViewDesc.AutoSize = true;
-            this.lblTaskViewDesc.Location = new System.Drawing.Point(5, 76);
+            this.lblTaskViewDesc.Location = new System.Drawing.Point(7, 94);
+            this.lblTaskViewDesc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTaskViewDesc.Name = "lblTaskViewDesc";
-            this.lblTaskViewDesc.Size = new System.Drawing.Size(63, 13);
+            this.lblTaskViewDesc.Size = new System.Drawing.Size(83, 17);
             this.lblTaskViewDesc.TabIndex = 2;
             this.lblTaskViewDesc.Text = "Description:";
             // 
             // txtTaskViewDescription
             // 
-            this.txtTaskViewDescription.Location = new System.Drawing.Point(4, 91);
-            this.txtTaskViewDescription.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTaskViewDescription.Location = new System.Drawing.Point(5, 112);
+            this.txtTaskViewDescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTaskViewDescription.Name = "txtTaskViewDescription";
-            this.txtTaskViewDescription.Size = new System.Drawing.Size(204, 155);
+            this.txtTaskViewDescription.Size = new System.Drawing.Size(271, 190);
             this.txtTaskViewDescription.TabIndex = 1;
             this.txtTaskViewDescription.Text = "";
             // 
@@ -85,36 +85,46 @@
             // 
             this.lblTaskPreviewSMEName.AutoSize = true;
             this.lblTaskPreviewSMEName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTaskPreviewSMEName.Location = new System.Drawing.Point(188, 9);
+            this.lblTaskPreviewSMEName.Location = new System.Drawing.Point(251, 11);
+            this.lblTaskPreviewSMEName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTaskPreviewSMEName.Name = "lblTaskPreviewSMEName";
-            this.lblTaskPreviewSMEName.Size = new System.Drawing.Size(209, 31);
+            this.lblTaskPreviewSMEName.Size = new System.Drawing.Size(263, 39);
             this.lblTaskPreviewSMEName.TabIndex = 2;
             this.lblTaskPreviewSMEName.Text = "Company Name";
             // 
-            // splitContainer1
+            // grpTaskPreviewPractical
             // 
-            this.splitContainer1.Location = new System.Drawing.Point(286, 58);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.splitContainer1.Size = new System.Drawing.Size(302, 246);
-            this.splitContainer1.SplitterDistance = 45;
-            this.splitContainer1.TabIndex = 3;
+            this.grpTaskPreviewPractical.Controls.Add(this.lblPracticalTitle);
+            this.grpTaskPreviewPractical.Location = new System.Drawing.Point(393, 71);
+            this.grpTaskPreviewPractical.Name = "grpTaskPreviewPractical";
+            this.grpTaskPreviewPractical.Size = new System.Drawing.Size(395, 308);
+            this.grpTaskPreviewPractical.TabIndex = 3;
+            this.grpTaskPreviewPractical.TabStop = false;
+            // 
+            // lblPracticalTitle
+            // 
+            this.lblPracticalTitle.AutoSize = true;
+            this.lblPracticalTitle.Location = new System.Drawing.Point(188, 17);
+            this.lblPracticalTitle.Name = "lblPracticalTitle";
+            this.lblPracticalTitle.Size = new System.Drawing.Size(46, 17);
+            this.lblPracticalTitle.TabIndex = 0;
+            this.lblPracticalTitle.Text = "label1";
             // 
             // TaskPreview
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
-            this.Controls.Add(this.splitContainer1);
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.grpTaskPreviewPractical);
             this.Controls.Add(this.lblTaskPreviewSMEName);
             this.Controls.Add(this.grp1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "TaskPreview";
             this.Text = "ViewTask";
             this.grp1.ResumeLayout(false);
             this.grp1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.grpTaskPreviewPractical.ResumeLayout(false);
+            this.grpTaskPreviewPractical.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,11 +132,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblCompanyName;
+        private System.Windows.Forms.Label lblTaskPreviewTitle;
         private System.Windows.Forms.GroupBox grp1;
         private System.Windows.Forms.RichTextBox txtTaskViewDescription;
         private System.Windows.Forms.Label lblTaskViewDesc;
         private System.Windows.Forms.Label lblTaskPreviewSMEName;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.GroupBox grpTaskPreviewPractical;
+        private System.Windows.Forms.Label lblPracticalTitle;
     }
 }
