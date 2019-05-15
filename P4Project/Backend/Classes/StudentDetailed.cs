@@ -15,7 +15,7 @@ namespace P4Project.Backend.Classes
 
         public StudentDetailed(string firstName, string lastName, int id, string email, string education,
             List<SkillStudent> skills, List<TaskBase> completedTasks, string description, byte[] profilePicture) 
-            : base(firstName, lastName, id, email, education, skills)
+            : base(firstName, lastName, id, email, description, education, skills)
         {
             CompletedTasks = completedTasks;
             Description = description;

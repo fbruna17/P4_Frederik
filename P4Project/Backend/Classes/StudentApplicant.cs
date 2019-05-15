@@ -16,14 +16,14 @@ namespace P4Project.Backend.Classes
 
         // public int RecommendationScore { get; }
 
-        public StudentApplicant(string firstName, string lastName, int id, string email, string education) : base(firstName, lastName, id)
+        public StudentApplicant(string firstName, string lastName, int id, string email, string description, string education) : base(firstName, lastName, id, email, description, education)
         {
             Email = email;
             Education = education;
         }
 
-        public StudentApplicant(string firstName, string lastName, int id, string email, string education, List<SkillStudent> skills) 
-            : base(firstName, lastName, id)
+        public StudentApplicant(string firstName, string lastName, int id, string email, string description, string education, List<SkillStudent> skills) 
+            : base(firstName, lastName, id, email, description, education)
         {
             Email = email;
             Education = education;
