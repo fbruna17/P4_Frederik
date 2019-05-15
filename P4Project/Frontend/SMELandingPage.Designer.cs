@@ -38,6 +38,7 @@
             this.SeePrivateTasks = new System.Windows.Forms.Button();
             this.SeePublicTasks = new System.Windows.Forms.Button();
             this.EditProfile = new System.Windows.Forms.Button();
+            this.ViewTask = new System.Windows.Forms.Button();
             this.TaskOverViewGroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,6 +72,7 @@
             // 
             // TaskOverViewGroup
             // 
+            this.TaskOverViewGroup.Controls.Add(this.ViewTask);
             this.TaskOverViewGroup.Controls.Add(this.SeeAllTasks);
             this.TaskOverViewGroup.Controls.Add(this.SeeCompletedTasks);
             this.TaskOverViewGroup.Controls.Add(this.SeeOnGoingTasks);
@@ -143,6 +145,16 @@
             this.EditProfile.Text = "Edit Profile";
             this.EditProfile.UseVisualStyleBackColor = true;
             // 
+            // ViewTask
+            // 
+            this.ViewTask.Location = new System.Drawing.Point(458, 233);
+            this.ViewTask.Name = "ViewTask";
+            this.ViewTask.Size = new System.Drawing.Size(113, 29);
+            this.ViewTask.TabIndex = 8;
+            this.ViewTask.Text = "View Task";
+            this.ViewTask.UseVisualStyleBackColor = true;
+            this.ViewTask.Click += new System.EventHandler(this.ViewTask_Click);
+            // 
             // SMELandingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -172,5 +184,6 @@
         private System.Windows.Forms.Button SeePrivateTasks;
         private System.Windows.Forms.Button SeePublicTasks;
         private System.Windows.Forms.Button EditProfile;
+        private System.Windows.Forms.Button ViewTask;
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using P4Project.Exceptions;
 using P4Project.Backend.Classes;
+using System.Data;
 
 namespace P4Project
 {
@@ -25,13 +26,23 @@ namespace P4Project
 
         #region Universal SQL
         public void Open()
-        {
-            Connection.Open();
+        {         
+            if(Connection.State != ConnectionState.Open)
+            {
+                Connection.Close();
+                Connection.Open();
+            }
         }
 
         public void Close()
         {
             Connection.Close();
+        }
+
+        private string GetSafeString(MySqlDataReader reader, int index)
+        {
+            if (!reader.IsDBNull(index)) return reader.GetString(index);
+            return string.Empty;
         }
         #endregion
 
@@ -81,11 +92,13 @@ namespace P4Project
 
                 var reader = cmd.ExecuteReader();
                 reader.Read();
-                string name = reader.GetString(0);
-                string email = reader.GetString(1);
-                string description = reader.GetString(2);
+                string name = GetSafeString(reader, 0);
+                string email = GetSafeString(reader, 1);
+                string description = GetSafeString(reader, 2);
                 //byte[] logo = reader.GetByte(3); // Halp!
                 byte[] logo = new byte[1];
+                // Readeren lukkes:
+                reader.Close();
                 var tempSME = new SMEBase(smeID, name, email);
                 List<TaskSearched> tasks = FetchAllTasksForSME(tempSME);
                 var SME = new SMEDetailed(smeID, name, email, tasks, logo, description);
@@ -391,7 +404,6 @@ namespace P4Project
             return SMEID;
         }
 
-
         //
         public SMEBase FetchSMEBaseInformation(int ID)
         {
@@ -488,5 +500,6 @@ namespace P4Project
             }
             return resList;
         }
+
     }
 }

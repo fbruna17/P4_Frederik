@@ -20,6 +20,21 @@ namespace P4Project.Frontend
             ThisSME = thisSME;
             InitializeComponent();
             CompanyNameBox.Text = "Welcome " + ThisSME.Name;
+            InformUserOfTaskDates();
+        }
+
+        private void InformUserOfTaskDates()
+        {
+            string taskAppNames = "";
+            string taskBeginNames = "";
+            foreach (TaskSearched task in ThisSME.Tasks)
+            {
+                if (task.ApplicationDeadline < DateTime.Now && task.StateID == 2) taskAppNames += task.Title + "";
+                if (task.Startdate < DateTime.Now && task.StateID == 1 && task.StateID == 2 ) taskBeginNames += task.Title + "";
+            }
+
+            if (taskAppNames != "") MessageBox.Show("Your task(s): " + taskAppNames + " has exceded Application Deadline!");
+            if (taskBeginNames != "") MessageBox.Show("Your task(s): " + taskBeginNames + " Should be in progress but are not.");
         }
 
         private void Create_New_Task_Click(object sender, EventArgs e)
@@ -32,7 +47,11 @@ namespace P4Project.Frontend
 
         private void SeePublicTasks_Click(object sender, EventArgs e)
         {
-
+            List<TaskSearched> tasks = ThisSME.GetListOfTasks(2);
+            foreach(TaskSearched task in tasks)
+            {
+                SMETasksDisplay.Items.Add(task);
+            }
         }
 
         private void SeePrivateTasks_Click(object sender, EventArgs e)
@@ -58,6 +77,11 @@ namespace P4Project.Frontend
         private void SMETasksDisplay_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ViewTask_Click(object sender, EventArgs e)
+        {
+            // Display task der er valgt.
         }
     }
 }
