@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace P4Project.Exceptions
 {
-    public class SMEUserDoesNotExistException : Exception
+    public class UserDoesNotExistException : Exception
     {
         public string username;
         public string password;
 
-        public SMEUserDoesNotExistException() : base()
+        public UserDoesNotExistException() : base()
         { }
 
-        public SMEUserDoesNotExistException(string username, string password) : base()
+        public UserDoesNotExistException(string username, string password) : base()
         {
             this.username = username;
             this.password = password;

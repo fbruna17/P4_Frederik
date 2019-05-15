@@ -61,6 +61,7 @@
     <Compile Include="Backend\Classes\TaskRecommend.cs" />
     <Compile Include="Backend\Classes\TaskSearched.cs" />
     <Compile Include="Backend\InputValidation.cs" />
+    <Compile Include="Exceptions\DataErrorInDataBaseException.cs" />
     <Compile Include="Exceptions\InvalidTaskDescriptionExeption.cs" />
     <Compile Include="Exceptions\InvalidTaskLocationException.cs" />
     <Compile Include="Exceptions\InvalidTaskTitleException.cs" />
@@ -116,6 +117,12 @@
     <Compile Include="Frontend\SMEProfileView.Designer.cs">
       <DependentUpon>SMEProfileView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\StudentLogInPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frontend\StudentLogInPage.Designer.cs">
+      <DependentUpon>StudentLogInPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frontend\StudentProfileView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\SMEProfileView.resx">
       <DependentUpon>SMEProfileView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frontend\StudentLogInPage.resx">
+      <DependentUpon>StudentLogInPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\StudentProfileView.resx">
       <DependentUpon>StudentProfileView.cs</DependentUpon>

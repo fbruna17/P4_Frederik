@@ -68,18 +68,18 @@ namespace P4Project
         }
         #endregion //End of Universal Input
 
-        public int VerifySMELogin(string username, string password)
+        public int VerifyLogin(string username, string password, string type)
         {
-            string SMEID;
-            int ID;
+            string ID;
+            int iD;
             // Sikrer der er et input:
             if (username == "") throw new NoUsernameInputException();
             if (password == "") throw new NoPasswordInputException();
             // Der forespørges i Databasen efter en bruger:
-            if ((SMEID = SQL.SMELogInRequest(username, password)) == "") throw new SMEUserDoesNotExistException();
+            if ((ID = SQL.LogInRequest(username, password, type)) == "") throw new UserDoesNotExistException();
             // ID laves til int og returneres:
-            int.TryParse(SMEID, out ID);
-            return ID;
+            int.TryParse(ID, out iD);
+            return iD;
         }
 
         public void VerifyTask(string title, string description, string location)

@@ -7,17 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using P4Project.Exceptions;
 using P4Project.Backend.Classes;
+using P4Project.Exceptions;
 
 namespace P4Project.Frontend
 {
-    public partial class SMELogInPage : Form
+    public partial class StudentLogInPage : Form
     {
         private UserInputValidation InputValidation;
         private SQLControl SQL;
 
-        public SMELogInPage()
+        public StudentLogInPage()
         {
             InitializeComponent();
             InputValidation = new UserInputValidation();
@@ -30,24 +30,28 @@ namespace P4Project.Frontend
             string password = Password.Text;
             try
             {
-                int smeID = InputValidation.VerifyLogin(username, password, "SME");
-                SMEDetailed tSME = SQL.FetchSMEDetailedInformation(smeID);
-                SMELoggedIn sme = new SMELoggedIn(username, password, tSME);
-                var smeLandingPage = new SMELandingPage(sme);
+                int studID = InputValidation.VerifyLogin(username, password, "Student");
+                StudentDetailed tStudent = SQL.FetchStudentDetailed(studID);
+                StudentLoggedIn student = new StudentLoggedIn(username, password, tStudent);
+              //  var studLandingPage = new StudentProfileView(student);
                 Close();
-                smeLandingPage.ShowDialog();
+                //studLandingPage.ShowDialog();
             }
-            catch(NoUsernameInputException)
+            catch (NoUsernameInputException)
             {
                 MessageBox.Show("Please input a username!");
             }
-            catch(NoPasswordInputException)
+            catch (NoPasswordInputException)
             {
                 MessageBox.Show("Please input a password!");
             }
-            catch(UserDoesNotExistException)
+            catch (UserDoesNotExistException)
             {
                 MessageBox.Show("Wrong Username or password!");
+            }
+            catch (DataErrorInDataBaseException)
+            {
+                MessageBox.Show("There was an error in the data loaded! Please contact system administrators!");
             }
         }
     }

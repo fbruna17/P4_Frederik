@@ -136,11 +136,47 @@ namespace P4Project
             }
         }
 
-      //  public StudentDetailed FetchStudentDetailed(int id)
-      //  {
-      //      StudentDetailed res
-      //      return
-      //  }
+        public StudentDetailed FetchStudentDetailed(int id)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT FirstName,LastName,Email,Description,EducationID,Profile_Picture,Unverified_SkillSet,Verified_SkillSet FROM Student WHERE StudentID = @StudentID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@SMEID", id);
+
+                var reader = cmd.ExecuteReader();
+                reader.Read();
+                string firstname = GetSafeString(reader, 0);
+                string lastname = GetSafeString(reader, 1);
+                string email = GetSafeString(reader, 2);
+                string description = GetSafeString(reader, 3);
+                int eduID = reader.GetInt32(4);
+                //byte[] logo = reader.GetByte(3); // Halp!
+                byte[] profilepicture = new byte[1];
+                List<string> suvSkills = GetSafeString(reader, 6).Split(',').ToList();
+                List<string> svSkills = GetSafeString(reader, 7).Split(',').ToList();
+                // Readeren lukkes:
+                reader.Close();
+                // Skill listerne laves:
+                List<SkillStudent> uvSkills = MakeStudentSkillList(FetchSkillInfo(StringListToIntList(suvSkills)), false);
+                List<SkillStudent> vSkills = MakeStudentSkillList(FetchSkillInfo(StringListToIntList(svSkills)), true);
+                List<SkillStudent> skills = uvSkills.Concat(vSkills).ToList();
+                // Education navnet findes:
+                string education = GetEducationName(eduID);
+
+                var student = new StudentDetailed(firstname, lastname, id, email, education, skills, description, profilepicture);
+                return student;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
         #endregion
 
         #region Task-specific SQL
@@ -220,7 +256,7 @@ namespace P4Project
                     MySqlCommand cmd = new MySqlCommand
                     {
                         Connection = Connection,
-                        CommandText = "SELECT SkillName,Category FROM Skill WHERE SkillID = @SkillID"
+                        CommandText = "SELECT SkillName,Category FROM Skill WHERE SkillID = @SkillID LIMIT 1"
                     };
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@SkillID", skillID);
@@ -441,35 +477,67 @@ namespace P4Project
             return resList;
         }
 
-
+        private List<SkillStudent> MakeStudentSkillList(List<Skill> skills, bool verified)
+        {
+            List<SkillStudent> res = new List<SkillStudent>();
+            foreach(Skill skill in skills)
+            {
+                res.Add(new SkillStudent(skill.ID, skill.Name, skill.Category, verified));
+            }
+            return res;
+        }
         #endregion
 
-        public string SMELogInRequest(string username, string password)
+        private string GetEducationName(int eduID)
         {
-            string SMEID = "";
             try
             {
                 Open();
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT SMEID FROM SME WHERE Username = @Username AND Password = @Password"
+                    CommandText = "SELECT EduName FROM Education WHERE EducationID = @EducationID LIMIT 1"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@EducationID", eduID);
+                var reader = cmd.ExecuteReader();
+                reader.Read();
+                string EducationName = reader.GetString(0);
+                return EducationName;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
+        public string LogInRequest(string username, string password, string table)
+        {
+            string ID = "";
+            string column;
+            try
+            {
+                if (table == "Student") column = "StudentID";
+                else column = "SMEID";
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT " + column +" FROM " + table + " WHERE Username = @Username AND Password = @Password"
                 };
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@Username", username);
                 cmd.Parameters.AddWithValue("@Password", password);
 
                 var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    SMEID = reader.GetString(0);
-                }
+                reader.Read();
+                ID = reader.GetString(0);
             }
             finally
             {
                 if (Connection != null) Close();
             }
-            return SMEID;
+            return ID;
         }
 
         //
@@ -536,6 +604,17 @@ namespace P4Project
                 // Forbindelsen lukkes:
                 if (Connection != null) Close();
             }
+        }
+
+        private List<int> StringListToIntList(List<string> strings)
+        {
+            List<int> res = new List<int>();
+            foreach(string s in strings)
+            {
+                if (int.TryParse(s, out int i)) res.Add(i);
+                else throw new DataErrorInDataBaseException();
+            }
+            return res;
         }
 
     }

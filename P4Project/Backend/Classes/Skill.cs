@@ -8,7 +8,7 @@ namespace P4Project.Backend.Classes
 {
     public class Skill
     {
-        private int ID { get; }
+        public int ID { get; }
         public string Name { get; }
         public string Category { get; }
 

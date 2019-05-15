@@ -50,7 +50,10 @@ namespace P4Project
 
         private void StudentLoginBtn_Click(object sender, EventArgs e)
         {
-   
+            this.Hide();
+            var stud = new StudentLogInPage();
+            stud.ShowDialog();
+            this.Show();
         }
 
         private void StudentRegisterBtn_Click(object sender, EventArgs e)
