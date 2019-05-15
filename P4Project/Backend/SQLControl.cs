@@ -144,6 +144,34 @@ namespace P4Project
         #endregion
 
         #region Task-specific SQL
+        public List<Skill> FetchAllSkills()
+        {
+            var resList = new List<Skill>();
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT SkillID,SkillName,Category FROM Skill"
+                };
+                cmd.Prepare();
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int skillid = reader.GetInt32(0);
+                    string skillname = reader.GetString(1);
+                    string category = reader.GetString(2);
+                    resList.Add(new Skill(skillid, skillname, category));
+                }
+                return resList;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
         // Funktion der henter de skills der er Required for en task:
         public List<int> FetchRequiredSkills(int taskID)
         {
@@ -468,39 +496,6 @@ namespace P4Project
                 // Forbindelsen lukkes:
                 if (Connection != null) Close();
             }
-        }
-
-        public List<string> FetchAllSkills()
-        {
-            var resList = new List<string>();
-            string resString = "";
-            try
-            {
-                Open();
-                MySqlCommand cmd = new MySqlCommand
-                {
-                    Connection = Connection,
-                    CommandText = "SELECT SkillName FROM Skill"
-                };
-                cmd.Prepare();
-
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    resString += reader.GetString(0) + ',';
-                }
-                string[] tempres = resString.Split(',');
-
-                foreach (string s in tempres)
-                {
-                    resList.Add(s);
-                }
-            }
-            finally
-            {
-                if (Connection != null) Close();
-            }
-            return resList;
         }
 
     }
