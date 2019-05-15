@@ -445,13 +445,13 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "INSERT INTO Task(SMEID,Title,Description,StartDate,Location,Application_Deadline,Completion,Hours) " +
-                    "VALUES (@sme,@title,@description,@startdate,@location,@applicationdeadline,@completion,@hours)"
+                    CommandText = "INSERT INTO Task(SMEID,Title,Description,StartDate,Location,Application_Deadline,Completion,Hours,StateID) " +
+                    "VALUES (@sme,@title,@description,@startdate,@location,@applicationdeadline,@completion,@hours,@stateID)"
                 };
                 cmd.Prepare();
 
                 // Parametrene tilføjes:
-                cmd.Parameters.AddWithValue("@sme", thisTask.Owner);
+                cmd.Parameters.AddWithValue("@sme", thisTask.Owner.ID);
                 cmd.Parameters.AddWithValue("@title", thisTask.Title);
                 cmd.Parameters.AddWithValue("@description", thisTask.Description);
                 cmd.Parameters.AddWithValue("@startdate", thisTask.Startdate);
@@ -459,6 +459,7 @@ namespace P4Project
                 cmd.Parameters.AddWithValue("@applicationdeadline", thisTask.ApplicationDeadline);
                 cmd.Parameters.AddWithValue("@completion", thisTask.EstCompletionDate);
                 cmd.Parameters.AddWithValue("@hours", thisTask.Hours);
+                cmd.Parameters.AddWithValue("@stateID", thisTask.StateID);
                 // Kaldet udføres, og tasken bliver tilføjet til databasen:
                 cmd.ExecuteNonQuery();
             }

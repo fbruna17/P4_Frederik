@@ -56,22 +56,37 @@ namespace P4Project.Frontend
 
         private void SeePrivateTasks_Click(object sender, EventArgs e)
         {
-
+            List<TaskSearched> tasks = ThisSME.GetListOfTasks(1);
+            foreach (TaskSearched task in tasks)
+            {
+                SMETasksDisplay.Items.Add(task);
+            }
         }
 
         private void SeeOnGoingTasks_Click(object sender, EventArgs e)
         {
-
+            List<TaskSearched> tasks = ThisSME.GetListOfTasks(3);
+            foreach (TaskSearched task in tasks)
+            {
+                SMETasksDisplay.Items.Add(task);
+            }
         }
 
         private void SeeCompletedTasks_Click(object sender, EventArgs e)
         {
-
+            List<TaskSearched> tasks = ThisSME.GetListOfTasks(4);
+            foreach (TaskSearched task in tasks)
+            {
+                SMETasksDisplay.Items.Add(task);
+            }
         }
 
         private void SeeAllTasks_Click(object sender, EventArgs e)
         {
-
+            foreach(TaskSearched task in ThisSME.Tasks)
+            {
+                SMETasksDisplay.Items.Add(task);
+            }
         }
 
         private void SMETasksDisplay_SelectedIndexChanged(object sender, EventArgs e)
