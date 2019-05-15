@@ -30,16 +30,21 @@
         {
             this.Create_New_Task = new System.Windows.Forms.Button();
             this.CompanyNameBox = new System.Windows.Forms.TextBox();
-            this.SMETasksDisplay = new System.Windows.Forms.ListBox();
             this.TaskOverViewGroup = new System.Windows.Forms.GroupBox();
+            this.ViewTask = new System.Windows.Forms.Button();
             this.SeeAllTasks = new System.Windows.Forms.Button();
             this.SeeCompletedTasks = new System.Windows.Forms.Button();
             this.SeeOnGoingTasks = new System.Windows.Forms.Button();
             this.SeePrivateTasks = new System.Windows.Forms.Button();
             this.SeePublicTasks = new System.Windows.Forms.Button();
             this.EditProfile = new System.Windows.Forms.Button();
-            this.ViewTask = new System.Windows.Forms.Button();
+            this.TaskView = new System.Windows.Forms.DataGridView();
+            this.TaskTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ApplicationDeadline = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstComplete = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TaskOverViewGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TaskView)).BeginInit();
             this.SuspendLayout();
             // 
             // Create_New_Task
@@ -60,31 +65,31 @@
             this.CompanyNameBox.Size = new System.Drawing.Size(100, 22);
             this.CompanyNameBox.TabIndex = 1;
             // 
-            // SMETasksDisplay
-            // 
-            this.SMETasksDisplay.FormattingEnabled = true;
-            this.SMETasksDisplay.ItemHeight = 16;
-            this.SMETasksDisplay.Location = new System.Drawing.Point(106, 31);
-            this.SMETasksDisplay.Name = "SMETasksDisplay";
-            this.SMETasksDisplay.Size = new System.Drawing.Size(465, 196);
-            this.SMETasksDisplay.TabIndex = 2;
-            this.SMETasksDisplay.SelectedIndexChanged += new System.EventHandler(this.SMETasksDisplay_SelectedIndexChanged);
-            // 
             // TaskOverViewGroup
             // 
+            this.TaskOverViewGroup.Controls.Add(this.TaskView);
             this.TaskOverViewGroup.Controls.Add(this.ViewTask);
             this.TaskOverViewGroup.Controls.Add(this.SeeAllTasks);
             this.TaskOverViewGroup.Controls.Add(this.SeeCompletedTasks);
             this.TaskOverViewGroup.Controls.Add(this.SeeOnGoingTasks);
             this.TaskOverViewGroup.Controls.Add(this.SeePrivateTasks);
             this.TaskOverViewGroup.Controls.Add(this.SeePublicTasks);
-            this.TaskOverViewGroup.Controls.Add(this.SMETasksDisplay);
             this.TaskOverViewGroup.Location = new System.Drawing.Point(186, 170);
             this.TaskOverViewGroup.Name = "TaskOverViewGroup";
             this.TaskOverViewGroup.Size = new System.Drawing.Size(577, 268);
             this.TaskOverViewGroup.TabIndex = 3;
             this.TaskOverViewGroup.TabStop = false;
             this.TaskOverViewGroup.Text = "Task Overview:";
+            // 
+            // ViewTask
+            // 
+            this.ViewTask.Location = new System.Drawing.Point(458, 233);
+            this.ViewTask.Name = "ViewTask";
+            this.ViewTask.Size = new System.Drawing.Size(113, 29);
+            this.ViewTask.TabIndex = 8;
+            this.ViewTask.Text = "View Task";
+            this.ViewTask.UseVisualStyleBackColor = true;
+            this.ViewTask.Click += new System.EventHandler(this.ViewTask_Click);
             // 
             // SeeAllTasks
             // 
@@ -145,15 +150,52 @@
             this.EditProfile.Text = "Edit Profile";
             this.EditProfile.UseVisualStyleBackColor = true;
             // 
-            // ViewTask
+            // TaskView
             // 
-            this.ViewTask.Location = new System.Drawing.Point(458, 233);
-            this.ViewTask.Name = "ViewTask";
-            this.ViewTask.Size = new System.Drawing.Size(113, 29);
-            this.ViewTask.TabIndex = 8;
-            this.ViewTask.Text = "View Task";
-            this.ViewTask.UseVisualStyleBackColor = true;
-            this.ViewTask.Click += new System.EventHandler(this.ViewTask_Click);
+            this.TaskView.AllowUserToAddRows = false;
+            this.TaskView.AllowUserToDeleteRows = false;
+            this.TaskView.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.TaskView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TaskView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TaskTitle,
+            this.ApplicationDeadline,
+            this.StartDate,
+            this.EstComplete});
+            this.TaskView.Location = new System.Drawing.Point(128, 24);
+            this.TaskView.MultiSelect = false;
+            this.TaskView.Name = "TaskView";
+            this.TaskView.ReadOnly = true;
+            this.TaskView.RowTemplate.Height = 24;
+            this.TaskView.Size = new System.Drawing.Size(443, 203);
+            this.TaskView.TabIndex = 5;
+            // 
+            // TaskTitle
+            // 
+            this.TaskTitle.Frozen = true;
+            this.TaskTitle.HeaderText = "Task Title";
+            this.TaskTitle.Name = "TaskTitle";
+            this.TaskTitle.ReadOnly = true;
+            // 
+            // ApplicationDeadline
+            // 
+            this.ApplicationDeadline.Frozen = true;
+            this.ApplicationDeadline.HeaderText = "Application Deadline";
+            this.ApplicationDeadline.Name = "ApplicationDeadline";
+            this.ApplicationDeadline.ReadOnly = true;
+            // 
+            // StartDate
+            // 
+            this.StartDate.Frozen = true;
+            this.StartDate.HeaderText = "Start Date";
+            this.StartDate.Name = "StartDate";
+            this.StartDate.ReadOnly = true;
+            // 
+            // EstComplete
+            // 
+            this.EstComplete.Frozen = true;
+            this.EstComplete.HeaderText = "Est. Completion";
+            this.EstComplete.Name = "EstComplete";
+            this.EstComplete.ReadOnly = true;
             // 
             // SMELandingPage
             // 
@@ -167,6 +209,7 @@
             this.Name = "SMELandingPage";
             this.Text = "SMELandingPage";
             this.TaskOverViewGroup.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TaskView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,7 +219,6 @@
 
         private System.Windows.Forms.Button Create_New_Task;
         private System.Windows.Forms.TextBox CompanyNameBox;
-        private System.Windows.Forms.ListBox SMETasksDisplay;
         private System.Windows.Forms.GroupBox TaskOverViewGroup;
         private System.Windows.Forms.Button SeeAllTasks;
         private System.Windows.Forms.Button SeeCompletedTasks;
@@ -185,5 +227,10 @@
         private System.Windows.Forms.Button SeePublicTasks;
         private System.Windows.Forms.Button EditProfile;
         private System.Windows.Forms.Button ViewTask;
+        private System.Windows.Forms.DataGridView TaskView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TaskTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ApplicationDeadline;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StartDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EstComplete;
     }
 }

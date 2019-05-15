@@ -21,6 +21,10 @@ namespace P4Project.Frontend
             InitializeComponent();
             CompanyNameBox.Text = "Welcome " + ThisSME.Name;
             InformUserOfTaskDates();
+            foreach (TaskSearched task in ThisSME.GetListOfTasks(2))
+            {
+                TaskView.Rows.Add(task.MakeDataViewString());
+            }
         }
 
         private void InformUserOfTaskDates()
@@ -47,37 +51,37 @@ namespace P4Project.Frontend
 
         private void SeePublicTasks_Click(object sender, EventArgs e)
         {
-            List<TaskSearched> tasks = ThisSME.GetListOfTasks(2);
-            foreach(TaskSearched task in tasks)
+            TaskView.Rows.Clear();
+            TaskView.Refresh();
+            foreach (TaskSearched task in ThisSME.GetListOfTasks(2))
             {
-                SMETasksDisplay.Items.Add(task);
+                TaskView.Rows.Add(task.MakeDataViewString());
             }
         }
 
         private void SeePrivateTasks_Click(object sender, EventArgs e)
         {
-            List<TaskSearched> tasks = ThisSME.GetListOfTasks(1);
-            foreach (TaskSearched task in tasks)
+            TaskView.Rows.Clear();
+            TaskView.Refresh();
+            foreach (TaskSearched task in ThisSME.GetListOfTasks(1))
             {
-                SMETasksDisplay.Items.Add(task);
+                TaskView.Rows.Add(task.MakeDataViewString());
             }
         }
 
         private void SeeOnGoingTasks_Click(object sender, EventArgs e)
         {
-            List<TaskSearched> tasks = ThisSME.GetListOfTasks(3);
-            foreach (TaskSearched task in tasks)
+            foreach (TaskSearched task in ThisSME.GetListOfTasks(3))
             {
-                SMETasksDisplay.Items.Add(task);
+                TaskView.Rows.Add(task.MakeDataViewString());
             }
         }
 
         private void SeeCompletedTasks_Click(object sender, EventArgs e)
         {
-            List<TaskSearched> tasks = ThisSME.GetListOfTasks(4);
-            foreach (TaskSearched task in tasks)
+            foreach (TaskSearched task in ThisSME.GetListOfTasks(4))
             {
-                SMETasksDisplay.Items.Add(task);
+                TaskView.Rows.Add(task.MakeDataViewString());
             }
         }
 
@@ -85,7 +89,7 @@ namespace P4Project.Frontend
         {
             foreach(TaskSearched task in ThisSME.Tasks)
             {
-                SMETasksDisplay.Items.Add(task);
+                TaskView.Rows.Add(task.MakeDataViewString());
             }
         }
 

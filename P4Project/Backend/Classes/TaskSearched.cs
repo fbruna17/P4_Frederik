@@ -42,5 +42,11 @@ namespace P4Project.Backend.Classes
             StateID = stateID;
             Owner = owner;
         }
+
+        public string[] MakeDataViewString()
+        {
+            string[] output = { Title, ApplicationDeadline.ToString(), Startdate.ToString(), EstCompletionDate.ToString() };
+            return output;
+        }
     }
 }
