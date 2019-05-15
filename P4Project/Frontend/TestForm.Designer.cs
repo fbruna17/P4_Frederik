@@ -41,10 +41,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 12);
+            this.button2.Location = new System.Drawing.Point(103, 181);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(150, 50);
             this.button2.TabIndex = 1;
             this.button2.Text = "Connect";
             this.button2.UseVisualStyleBackColor = true;
@@ -52,10 +52,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(176, 12);
+            this.button1.Location = new System.Drawing.Point(267, 181);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(150, 50);
             this.button1.TabIndex = 2;
             this.button1.Text = "Add Skill";
             this.button1.UseVisualStyleBackColor = true;
@@ -63,10 +63,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(348, 11);
+            this.button3.Location = new System.Drawing.Point(439, 180);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(93, 23);
+            this.button3.Size = new System.Drawing.Size(150, 50);
             this.button3.TabIndex = 3;
             this.button3.Text = "Show Skills";
             this.button3.UseVisualStyleBackColor = true;
@@ -74,10 +74,10 @@
             // 
             // AddStudent
             // 
-            this.AddStudent.Location = new System.Drawing.Point(517, 11);
+            this.AddStudent.Location = new System.Drawing.Point(608, 180);
             this.AddStudent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddStudent.Name = "AddStudent";
-            this.AddStudent.Size = new System.Drawing.Size(104, 23);
+            this.AddStudent.Size = new System.Drawing.Size(150, 50);
             this.AddStudent.TabIndex = 4;
             this.AddStudent.Text = "Add Student";
             this.AddStudent.UseVisualStyleBackColor = true;
@@ -85,10 +85,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(645, 12);
+            this.button4.Location = new System.Drawing.Point(774, 180);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(124, 37);
+            this.button4.Size = new System.Drawing.Size(150, 50);
             this.button4.TabIndex = 5;
             this.button4.Text = "Show Student";
             this.button4.UseVisualStyleBackColor = true;
@@ -96,10 +96,10 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(176, 79);
+            this.button5.Location = new System.Drawing.Point(267, 239);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(179, 44);
+            this.button5.Size = new System.Drawing.Size(150, 50);
             this.button5.TabIndex = 6;
             this.button5.Text = "RealAddStudent";
             this.button5.UseVisualStyleBackColor = true;
@@ -107,10 +107,10 @@
             // 
             // SMERegister
             // 
-            this.SMERegister.Location = new System.Drawing.Point(12, 70);
+            this.SMERegister.Location = new System.Drawing.Point(103, 239);
             this.SMERegister.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SMERegister.Name = "SMERegister";
-            this.SMERegister.Size = new System.Drawing.Size(129, 62);
+            this.SMERegister.Size = new System.Drawing.Size(150, 50);
             this.SMERegister.TabIndex = 7;
             this.SMERegister.Text = "Add SME Profile";
             this.SMERegister.UseVisualStyleBackColor = true;
@@ -118,10 +118,10 @@
             // 
             // SMELogIn
             // 
-            this.SMELogIn.Location = new System.Drawing.Point(449, 273);
-            this.SMELogIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SMELogIn.Location = new System.Drawing.Point(608, 239);
+            this.SMELogIn.Margin = new System.Windows.Forms.Padding(4);
             this.SMELogIn.Name = "SMELogIn";
-            this.SMELogIn.Size = new System.Drawing.Size(175, 57);
+            this.SMELogIn.Size = new System.Drawing.Size(150, 50);
             this.SMELogIn.TabIndex = 8;
             this.SMELogIn.Text = "SME Log in";
             this.SMELogIn.UseVisualStyleBackColor = true;
@@ -129,9 +129,9 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(464, 124);
+            this.button6.Location = new System.Drawing.Point(439, 239);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(176, 45);
+            this.button6.Size = new System.Drawing.Size(150, 50);
             this.button6.TabIndex = 9;
             this.button6.Text = "Student Profile View";
             this.button6.UseVisualStyleBackColor = true;
