@@ -437,27 +437,28 @@ namespace P4Project
             }
         }
 
-        public void CreateNewTask(int SMEID, string title, string description, string location)
+        public void CreateNewTask(TaskDetailed thisTask)
         {
-            // MySQL commandoen udføres:
             try
             {
-                // Forbindelsen åbnes:
                 Open();
-                //Der initialiseres en instans til command håndtering:
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    // Commandoen defineres og forberedes:
-                    CommandText = "INSERT INTO Task(SMEID,Title,Description,Location,StartDate) VALUES (@sme,@title,@description,@location)"
+                    CommandText = "INSERT INTO Task(SMEID,Title,Description,StartDate,Location,Application_Deadline,Completion,Hours) " +
+                    "VALUES (@sme,@title,@description,@startdate,@location,@applicationdeadline,@completion,@hours)"
                 };
                 cmd.Prepare();
 
                 // Parametrene tilføjes:
-                cmd.Parameters.AddWithValue("@sme", SMEID);
-                cmd.Parameters.AddWithValue("@title", title);
-                cmd.Parameters.AddWithValue("@description", description);
-                cmd.Parameters.AddWithValue("@location", location);
+                cmd.Parameters.AddWithValue("@sme", thisTask.Owner);
+                cmd.Parameters.AddWithValue("@title", thisTask.Title);
+                cmd.Parameters.AddWithValue("@description", thisTask.Description);
+                cmd.Parameters.AddWithValue("@startdate", thisTask.Startdate);
+                cmd.Parameters.AddWithValue("@location", thisTask.Location);
+                cmd.Parameters.AddWithValue("@applicationdeadline", thisTask.ApplicationDeadline);
+                cmd.Parameters.AddWithValue("@completion", thisTask.EstCompletionDate);
+                cmd.Parameters.AddWithValue("@hours", thisTask.Hours);
                 // Kaldet udføres, og tasken bliver tilføjet til databasen:
                 cmd.ExecuteNonQuery();
             }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using P4Project.Exceptions;
 using MySql.Data.MySqlClient;
+using P4Project.Backend.Classes;
 
 namespace P4Project.Frontend
 {
@@ -50,20 +51,24 @@ namespace P4Project.Frontend
 
         private void btnSubmitTask_Click(object sender, EventArgs e)
         {
+            //TODO: taskid needs to be set automatically.
             string title = txtTitle.Text;
             string description = txtTaskDesc.Text;
             string location = txtLocation.Text;
+            int hours = 0;
+            int stateid = 1;
+            List<Skill> SkillList = new List<Skill>();
+            DateTime startdate = StartDeadlinePicker.Value;
+            DateTime applicationdeadline = ApplicationDeadlinePicker.Value;
+            DateTime completion = CompDeadlinePicker.Value;
 
-            //STARTER LEG
-            string hours = txtHours.Text;
-             
-            
-            //SLUTTER LEG
+
+            TaskDetailed newtask = new TaskDetailed(0, SME, title, location, hours, description, startdate, applicationdeadline, completion, stateid, SkillList);
 
             try
             {
-                InputValidation.VerifyTask(title, description, location);
-                SQL.CreateNewTask(SME.ID, title, description, location);
+                //InputValidation.VerifyTask(title, description, location);
+                SQL.CreateNewTask(newtask);
                 MessageBox.Show("Your task has been added to the database.");
                 this.Hide();
             }
