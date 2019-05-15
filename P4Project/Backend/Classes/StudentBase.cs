@@ -24,7 +24,7 @@ namespace P4Project.Backend.Classes
             Email = email;
             Description = description;
             Education = education;
-            
+            //Gris
         }
 
         public StudentBase(int id)

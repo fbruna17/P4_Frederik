@@ -14,7 +14,7 @@ namespace P4Project.Frontend
 {
     public partial class StudentProfileView : Form
     {
-        private StudentBase Student;
+        private StudentDetailed Student;
         private TaskBase Task;
         private string myConnectionString = "server=mysql33.unoeuro.com;uid=blo_store_dk;pwd=3pdaxzyt;database=blo_store_dk_db_wd";
         private MySqlConnection connection = null;
@@ -24,28 +24,7 @@ namespace P4Project.Frontend
 
         public StudentProfileView()
         {
-
-            try
-            {
-                connection = new MySqlConnection(myConnectionString);
-                connection.Open();
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = connection;
-                cmd.CommandText = "SELECT SkillName FROM Skill";
-                cmd.Prepare();
-
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    string someStringFromColumnZero = reader.GetString(0);
-                    MessageBox.Show(someStringFromColumnZero);
-                }
-            }
-            finally
-            {
-                if (connection != null)
-                    connection.Close();
-            }
+            //Student = student;
 
             InitializeComponent();
             WelcomeText.Text = "Welcome to your profile "; // + Student.FirstName + Student.LastName
@@ -87,12 +66,8 @@ namespace P4Project.Frontend
         {
             
         }
-        int SkillID;
         private void StudSkillList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SQL.FetchStudentSkills(SkillID);
-
-            StudSkillList.Text = Task.Title;
         }
     }
 }
