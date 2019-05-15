@@ -393,7 +393,7 @@ namespace P4Project
             }
         }
 
-        public void CreateNewTask(int SMEID, string title, string description, string location, DateTime startdate, DateTime completion)
+        public void CreateNewTask(TaskDetailed thisTask)
         {
             try
             {
@@ -407,12 +407,12 @@ namespace P4Project
                 cmd.Prepare();
 
                 // Parametrene tilføjes:
-                cmd.Parameters.AddWithValue("@sme", SMEID);
-                cmd.Parameters.AddWithValue("@title", title);
-                cmd.Parameters.AddWithValue("@description", description);
-                cmd.Parameters.AddWithValue("@location", location);
-                cmd.Parameters.AddWithValue("@startdate", startdate);
-                cmd.Parameters.AddWithValue("@completion", completion);
+                cmd.Parameters.AddWithValue("@sme", thisTask.Owner);
+                cmd.Parameters.AddWithValue("@title", thisTask.Title);
+                cmd.Parameters.AddWithValue("@description", thisTask.Description);
+                cmd.Parameters.AddWithValue("@location", thisTask.Location);
+                cmd.Parameters.AddWithValue("@startdate", thisTask.Startdate);
+                cmd.Parameters.AddWithValue("@completion", thisTask.EstCompletionDate);
                 // Kaldet udføres, og tasken bliver tilføjet til databasen:
                 cmd.ExecuteNonQuery();
             }
