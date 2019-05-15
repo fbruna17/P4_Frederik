@@ -191,5 +191,13 @@ namespace P4Project
             SMElog.ShowDialog();
             Show();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var Studview = new StudentProfileView();
+            Studview.ShowDialog();
+            Show();
+        }
     }
 }
