@@ -19,7 +19,7 @@ namespace P4Project.Frontend
         private SQLControl SQL;
         private UserInputValidation InputValidation;
         SMEBase SME;
-        private List<string> SkillList;
+        private List<Skill> SkillList;
         #endregion
 
         #region Constructor(s)
@@ -90,9 +90,9 @@ namespace P4Project.Frontend
         {
             
             SkillList = SQL.FetchAllSkills();
-            foreach (string s in SkillList)
+            foreach (Skill s in SkillList)
             {
-                AddSkillReqList.Items.Add(s);
+                AddSkillReqList.Items.Add(s.Name);
             }
             AddSkillReqList.Show();
             btnConfirmSkillAdd.Show();

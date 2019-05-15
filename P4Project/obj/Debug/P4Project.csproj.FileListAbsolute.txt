@@ -95,4 +95,4 @@ C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csproj
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.TaskPreview.resources
 C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.LandingPage.resources
 C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.TaskPreview.resources
-C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.DataGridTest.resources
+C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.SMELandingPage.resources
