@@ -35,28 +35,20 @@ namespace P4Project.Frontend
         #region Load
         private void CreateTask_Load(object sender, EventArgs e)
         {
-
+            
         }
         #endregion
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnSubmitTask_Click(object sender, EventArgs e)
         {
             string title = txtTitle.Text;
             string description = txtTaskDesc.Text;
             string location = txtLocation.Text;
-            int hours = 0;
+            int hours = Convert.ToInt32(numHours.Value);
             int stateid = 1;
+
             SkillList = new List<Skill>();
+
             DateTime startdate = StartDeadlinePicker.Value;
             DateTime applicationdeadline = ApplicationDeadlinePicker.Value;
             DateTime completion = CompDeadlinePicker.Value;
@@ -87,17 +79,15 @@ namespace P4Project.Frontend
 
         private void AddSkillButton_Click(object sender, EventArgs e)
         {
-            AddSkillReqList.Items.Clear();
-
+            //Adding a list of skill id's:
             List<int> SkillInts = SQL.FetchAllSkills();
 
-            SkillList = SQL.FetchSkillInfo(SkillInts);
-
-            foreach (Skill s in SkillList)
+            //Inserting the name of the skill with a given id 'i' into the list:
+            foreach (int i in SkillInts)
             {
-                AddSkillReqList.Items.Add(s.Name);
+                var skill = SQL.HammersFetchSkillInfo(i);
+                AddSkillReqList.Items.Add(skill.Name);
             }
-            
             AddSkillReqList.Show();
             btnConfirmSkillAdd.Show();
         }

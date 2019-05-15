@@ -144,12 +144,11 @@ namespace P4Project
         #endregion
 
         #region Task-specific SQL
-
+        //Gets all skill id's:
         public List<int> FetchAllSkills()
         {
             var resList = new List<int>();
-
-            //string resString = "";
+            int result = 0;
             try
             {
                 Open();
@@ -163,24 +162,15 @@ namespace P4Project
                 while (reader.Read())
                 {
                     resList.Add(reader.GetInt32(0));
-                    //resString += reader.GetString(0);
                 }
+                
+                resList.Add(result);
                 return resList;
             }
             finally
             {
                 if (Connection != null) Close();
             }
-            
-            //string[] tempres = resString.Split(',');
-            //foreach (string s in tempres)
-            //{
-            //    if (int.TryParse(s, out int i))
-            //    {
-            //        resList.Add(i);
-            //    }
-            //}
-
         }
 
         // Funktion der henter de skills der er Required for en task:
@@ -218,6 +208,37 @@ namespace P4Project
                 }
             }
             return resList;
+        }
+
+        //Funktion der kun fetcher information til et enkelt ID giver mere fleksibilitet (ikke bundet til en list).
+        public Skill HammersFetchSkillInfo(int id)
+        {
+            Skill result;
+            string skillName = "";
+            string category = "";
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT SkillName FROM Skill WHERE SkillID = @id"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@id", id);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    skillName = reader.GetString(0);
+                    category = "No Category";
+                }
+                result = new Skill(id, skillName, category);
+                return result;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
         }
 
         public List<Skill> FetchSkillInfo(List<int> skillIDs)
