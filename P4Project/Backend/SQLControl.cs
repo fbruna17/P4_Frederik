@@ -136,34 +136,34 @@ namespace P4Project
             }
         }
 
-      //  public StudentDetailed FetchStudentDetailed(int id)
-      //  {
-      //      StudentDetailed res
-      //      return
-      //  }
+        //  public StudentDetailed FetchStudentDetailed(int id)
+        //  {
+        //      StudentDetailed res
+        //      return
+        //  }
         #endregion
 
         #region Task-specific SQL
-        public List<Skill> FetchAllSkills()
+
+        public List<int> FetchAllSkills()
         {
-            var resList = new List<Skill>();
+            var resList = new List<int>();
+
+            //string resString = "";
             try
             {
                 Open();
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT SkillID,SkillName,Category FROM Skill"
+                    CommandText = "SELECT SkillID FROM Skill"
                 };
                 cmd.Prepare();
-
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    int skillid = reader.GetInt32(0);
-                    string skillname = reader.GetString(1);
-                    string category = reader.GetString(2);
-                    resList.Add(new Skill(skillid, skillname, category));
+                    resList.Add(reader.GetInt32(0));
+                    //resString += reader.GetString(0);
                 }
                 return resList;
             }
@@ -171,7 +171,18 @@ namespace P4Project
             {
                 if (Connection != null) Close();
             }
+            
+            //string[] tempres = resString.Split(',');
+            //foreach (string s in tempres)
+            //{
+            //    if (int.TryParse(s, out int i))
+            //    {
+            //        resList.Add(i);
+            //    }
+            //}
+
         }
+
         // Funktion der henter de skills der er Required for en task:
         public List<int> FetchRequiredSkills(int taskID)
         {
@@ -537,6 +548,5 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
-
     }
 }

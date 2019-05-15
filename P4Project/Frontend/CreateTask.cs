@@ -51,13 +51,12 @@ namespace P4Project.Frontend
 
         private void btnSubmitTask_Click(object sender, EventArgs e)
         {
-            //TODO: taskid needs to be set automatically.
             string title = txtTitle.Text;
             string description = txtTaskDesc.Text;
             string location = txtLocation.Text;
             int hours = 0;
             int stateid = 1;
-            List<Skill> SkillList = new List<Skill>();
+            SkillList = new List<Skill>();
             DateTime startdate = StartDeadlinePicker.Value;
             DateTime applicationdeadline = ApplicationDeadlinePicker.Value;
             DateTime completion = CompDeadlinePicker.Value;
@@ -88,12 +87,17 @@ namespace P4Project.Frontend
 
         private void AddSkillButton_Click(object sender, EventArgs e)
         {
-            
-            SkillList = SQL.FetchAllSkills();
+            AddSkillReqList.Items.Clear();
+
+            List<int> SkillInts = SQL.FetchAllSkills();
+
+            SkillList = SQL.FetchSkillInfo(SkillInts);
+
             foreach (Skill s in SkillList)
             {
                 AddSkillReqList.Items.Add(s.Name);
             }
+            
             AddSkillReqList.Show();
             btnConfirmSkillAdd.Show();
         }
