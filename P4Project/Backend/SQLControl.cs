@@ -404,6 +404,46 @@ namespace P4Project
         }
         #endregion
 
+        #region Skills
+        public List<int> FetchStudentSkills(int SkillID)
+        {
+            var resList = new List<int>();
+            string resString = "";
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT SkillName FROM Skill WHERE SkillID = @SkillID LIMIT 1"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@SkillID", SkillID);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    resString += reader.GetString(0);
+                }
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+            // Strengen fra SQL kaldet deles op ved , :
+            string[] tempres = resString.Split(',');
+            foreach (string s in tempres)
+            {   // Der burde nu blot være tale om ints, så de tilføjes til resultats listen og returneres:
+                if (int.TryParse(s, out int i))
+                {
+                    resList.Add(i);
+                }
+            }
+            return resList;
+        }
+
+
+        #endregion
+
         public string SMELogInRequest(string username, string password)
         {
             string SMEID = "";
