@@ -71,14 +71,13 @@ namespace P4Project
         public int VerifyLogin(string username, string password, string type)
         {
             string ID;
-            int iD;
             // Sikrer der er et input:
             if (username == "") throw new NoUsernameInputException();
             if (password == "") throw new NoPasswordInputException();
             // Der forespørges i Databasen efter en bruger:
-            if ((ID = SQL.LogInRequest(username, password, type)) == "") throw new UserDoesNotExistException();
+            if ((ID = SQL.LogInRequest(username, password, type)) == string.Empty) throw new UserDoesNotExistException();
             // ID laves til int og returneres:
-            int.TryParse(ID, out iD);
+            int.TryParse(ID, out int iD);
             return iD;
         }
 

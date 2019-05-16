@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using P4Project.Backend.Classes;
 using P4Project.Exceptions;
+using MySql.Data.MySqlClient;
 
 namespace P4Project.Frontend
 {
@@ -33,6 +34,7 @@ namespace P4Project.Frontend
                 int studID = InputValidation.VerifyLogin(username, password, "Student");
                 StudentDetailed tStudent = SQL.FetchStudentDetailed(studID);
                 StudentLoggedIn student = new StudentLoggedIn(username, password, tStudent);
+                MessageBox.Show("Great succes!");
               //  var studLandingPage = new StudentProfileView(student);
                 Close();
                 //studLandingPage.ShowDialog();
@@ -52,6 +54,10 @@ namespace P4Project.Frontend
             catch (DataErrorInDataBaseException)
             {
                 MessageBox.Show("There was an error in the data loaded! Please contact system administrators!");
+            }
+            catch (MySqlException ex) 
+            {
+                MessageBox.Show("An unexpected SQL error has occures! Error Number: " + ex.Number + " Error message: " + ex.Message);
             }
         }
     }

@@ -38,11 +38,23 @@ namespace P4Project
         {
             Connection.Close();
         }
-
+        // En funktion der sikrer at der ikke opstår exceptione hvis feltet i databasen er null:
         private string GetSafeString(MySqlDataReader reader, int index)
         {
             if (!reader.IsDBNull(index)) return reader.GetString(index);
             return string.Empty;
+        }
+        // En funktion der sikrer at der ikke opstår exception hvis et Int felt er null i databasen:
+        private int GetSafeInt(MySqlDataReader reader, int index)
+        {
+            if (!reader.IsDBNull(index)) return reader.GetInt32(index);
+            return 0;
+        }
+
+        private int GetSafeIntMustNotBeNull(MySqlDataReader reader, int index)
+        {
+            if (!reader.IsDBNull(index)) return reader.GetInt32(index);
+            throw new DataErrorInDataBaseException();
         }
         #endregion
 
@@ -147,7 +159,7 @@ namespace P4Project
                     CommandText = "SELECT FirstName,LastName,Email,Description,EducationID,Profile_Picture,Unverified_SkillSet,Verified_SkillSet FROM Student WHERE StudentID = @StudentID"
                 };
                 cmd.Prepare();
-                cmd.Parameters.AddWithValue("@SMEID", id);
+                cmd.Parameters.AddWithValue("@StudentID", id);
 
                 var reader = cmd.ExecuteReader();
                 reader.Read();
@@ -155,19 +167,29 @@ namespace P4Project
                 string lastname = GetSafeString(reader, 1);
                 string email = GetSafeString(reader, 2);
                 string description = GetSafeString(reader, 3);
-                int eduID = reader.GetInt32(4);
+                int eduID = GetSafeInt(reader, 4);
                 //byte[] logo = reader.GetByte(3); // Halp!
                 byte[] profilepicture = new byte[1];
-                List<string> suvSkills = GetSafeString(reader, 6).Split(',').ToList();
-                List<string> svSkills = GetSafeString(reader, 7).Split(',').ToList();
+                var suvSkills = GetSafeString(reader, 6).Split(',').ToList();
+                var svSkills = GetSafeString(reader, 7).Split(',').ToList();
                 // Readeren lukkes:
                 reader.Close();
                 // Skill listerne laves:
-                List<SkillStudent> uvSkills = MakeStudentSkillList(FetchSkillInfo(StringListToIntList(suvSkills)), false);
-                List<SkillStudent> vSkills = MakeStudentSkillList(FetchSkillInfo(StringListToIntList(svSkills)), true);
+                var uvSkills = new List<SkillStudent>();
+                var vSkills = new List<SkillStudent>();
+                if (suvSkills[0] != string.Empty)
+                {
+                    uvSkills = MakeStudentSkillList(FetchSkillInfo(StringListToIntList(suvSkills)), false);
+                }
+                if (svSkills[0] != string.Empty)
+                {
+                    vSkills = MakeStudentSkillList(FetchSkillInfo(StringListToIntList(svSkills)), true);
+                }
+
                 List<SkillStudent> skills = uvSkills.Concat(vSkills).ToList();
                 // Education navnet findes:
-                string education = GetEducationName(eduID);
+                string education = string.Empty;
+                if (eduID != 0) education = GetEducationName(eduID);
 
                 var student = new StudentDetailed(firstname, lastname, id, email, education, skills, description, profilepicture);
                 return student;
@@ -212,7 +234,7 @@ namespace P4Project
         public List<int> FetchRequiredSkills(int taskID)
         {
             var resList = new List<int>();
-            string resString = "";
+            string resString = string.Empty;
             try
             {
                 Open();
@@ -224,10 +246,8 @@ namespace P4Project
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@TaskID", taskID);
                 var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    resString += reader.GetString(0);
-                }
+                reader.Read();
+                resString = GetSafeString(reader, 0);
             }
             finally
             {
@@ -237,10 +257,11 @@ namespace P4Project
             string[] tempres = resString.Split(',');
             foreach(string s in tempres)
             {   // Der burde nu blot være tale om ints, så de tilføjes til resultats listen og returneres:
-                if(int.TryParse(s, out int i))
+                if (int.TryParse(s, out int i))
                 {
                     resList.Add(i);
                 }
+                else throw new DataErrorInDataBaseException();
             }
             return resList;
         }
@@ -262,16 +283,17 @@ namespace P4Project
                     cmd.Parameters.AddWithValue("@SkillID", skillID);
                     var reader = cmd.ExecuteReader();
                     reader.Read();
-                    string skillName = reader.GetString(0);
-                    string category = reader.GetString(1);
+                    string skillName = GetSafeString(reader, 0);
+                    string category = GetSafeString(reader, 1);
                     resList.Add(new Skill(skillID, skillName, category));
+                    reader.Close();
                 }
+                return resList;
             }
             finally
             {
                 if (Connection != null) Close();
             }
-            return resList;
         }
 
         // Funktion der henter detailed view af en task:
@@ -441,42 +463,7 @@ namespace P4Project
         #endregion
 
         #region Skills
-        public List<int> FetchStudentSkills(int SkillID)
-        {
-            var resList = new List<int>();
-            string resString = "";
-            try
-            {
-                Open();
-                MySqlCommand cmd = new MySqlCommand
-                {
-                    Connection = Connection,
-                    CommandText = "SELECT SkillName FROM Skill WHERE SkillID = @SkillID LIMIT 1"
-                };
-                cmd.Prepare();
-                cmd.Parameters.AddWithValue("@SkillID", SkillID);
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    resString += reader.GetString(0);
-                }
-            }
-            finally
-            {
-                if (Connection != null) Close();
-            }
-            // Strengen fra SQL kaldet deles op ved , :
-            string[] tempres = resString.Split(',');
-            foreach (string s in tempres)
-            {   // Der burde nu blot være tale om ints, så de tilføjes til resultats listen og returneres:
-                if (int.TryParse(s, out int i))
-                {
-                    resList.Add(i);
-                }
-            }
-            return resList;
-        }
-
+ 
         private List<SkillStudent> MakeStudentSkillList(List<Skill> skills, bool verified)
         {
             List<SkillStudent> res = new List<SkillStudent>();
@@ -490,6 +477,7 @@ namespace P4Project
 
         private string GetEducationName(int eduID)
         {
+            string EducationName = string.Empty;
             try
             {
                 Open();
@@ -501,9 +489,14 @@ namespace P4Project
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@EducationID", eduID);
                 var reader = cmd.ExecuteReader();
-                reader.Read();
-                string EducationName = reader.GetString(0);
+                // This While makes sure that CPU threats are not running the GetSafeString, before .Read() is executed.
+                while(reader.Read())
+                {
+                    EducationName = GetSafeString(reader, 0);
+
+                }
                 return EducationName;
+
             }
             finally
             {
@@ -513,7 +506,7 @@ namespace P4Project
 
         public string LogInRequest(string username, string password, string table)
         {
-            string ID = "";
+            string ID = string.Empty;
             string column;
             try
             {
@@ -531,7 +524,7 @@ namespace P4Project
 
                 var reader = cmd.ExecuteReader();
                 reader.Read();
-                ID = reader.GetString(0);
+                ID = GetSafeString(reader, 0);
             }
             finally
             {

@@ -8,7 +8,13 @@ namespace P4Project.Exceptions
 {
     public class DataErrorInDataBaseException : Exception
     {
+        public string place;
         public DataErrorInDataBaseException() : base()
         { }
+
+        public DataErrorInDataBaseException(string place) : base()
+        {
+            this.place = place;
+        }
     }
 }
