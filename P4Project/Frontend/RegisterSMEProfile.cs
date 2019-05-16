@@ -17,7 +17,13 @@ namespace P4Project
     {
         #region Instance Variables & Properties
         private SQLControl SQL;
+        private FTPControl FTP;
         private UserInputValidation InputValidation;
+
+        //Declearing a string for the local full path of the image.
+        private string LocalImagePath = string.Empty;
+        //Declearing a string for the file extension of the image.
+        private string LocalImageFiletype = string.Empty;
         #endregion
 
         #region Constructor(s)
@@ -25,6 +31,7 @@ namespace P4Project
         {
             InitializeComponent();
             SQL = new SQLControl();
+            FTP = new FTPControl();
             InputValidation = new UserInputValidation();
         }
         #endregion
@@ -44,10 +51,16 @@ namespace P4Project
         #region Button functionality
         private void RegisterSave_Click(object sender, EventArgs e)
         {
-            MemoryStream ms = new MemoryStream();
-            pictureBox1_SME.Image.Save(ms, pictureBox1_SME.Image.RawFormat);
+            var image_Path = LocalImagePath;
+            var image_Type = LocalImageFiletype;
+            var serverImagePathDir = string.Empty;
+            if (image_Path != string.Empty)
+            {
+                serverImagePathDir = FTP.UploadImage(image_Path, image_Type);
+            }
 
-            byte[] img_SME = ms.ToArray();
+
+            string img_SME = serverImagePathDir;
             string companyName = CompanyName.Text;
             string password = Password.Text;
             string confirmPass = ConfirmPass.Text;
@@ -98,11 +111,36 @@ namespace P4Project
 
         private void ChooseLogoBtn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog opf = new OpenFileDialog();
-            opf.Filter = "Choose image(*.jpg; *.png;)|*.jpg; *.png;";
-            if (opf.ShowDialog() == DialogResult.OK)
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                pictureBox1_SME.Image = Image.FromFile(opf.FileName);
+
+                //Sets the FileDialog "Start path" to the C drive
+                openFileDialog.InitialDirectory = "c:\\";
+                //Applies filter for allowed filetypes
+                openFileDialog.Filter = "Choose your image file (*.jpg)|*.jpg|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Stores the name of the chosen file into "fileName"
+                    var fileName = openFileDialog.SafeFileName;
+
+                    //Stores the fileextension into "fileType"
+                    var fileType = Path.GetExtension(openFileDialog.FileName);
+
+                    //Get the path of specified file
+                    var filePath = openFileDialog.FileName;
+
+                    //Displays the choosen image in the PictureBox
+                    pictureBox1_SME.Image = Image.FromFile(openFileDialog.FileName);
+
+                    //Stores the local path into the already decleared "LocalImagePath" string.
+                    LocalImagePath = filePath;
+
+                    //Stores the file extension into the already decleared "LocalImageFiletype" string.
+                    LocalImageFiletype = fileType;
+                }
             }
         }
 

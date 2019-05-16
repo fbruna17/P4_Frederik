@@ -59,7 +59,7 @@ namespace P4Project
         #endregion
 
         #region SME-specific SQL
-        public void RegisterSMEProfile(byte[] img_SME, string companyName, string email, string password, string username)
+        public void RegisterSMEProfile(string img_SME, string companyName, string email, string password, string username)
         {
             // MySQL commandoen udføres:
             try
@@ -70,11 +70,11 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = Connection;
                 // Commandoen defineres og forberedes:
-                cmd.CommandText = "INSERT INTO SME(Name,Email,Password,LogoDIR,Username) VALUES(@Name,@Email,@Password,@LogoDIR,@Username)";
+                cmd.CommandText = "INSERT INTO SME(Name,Email,Password,Image_Dir,Username) VALUES(@Name,@Email,@Password,@Image_Dir,@Username)";
                 cmd.Prepare();
 
                 // Parametrene tilføjes:
-                cmd.Parameters.AddWithValue("@LogoDIR", img_SME);
+                cmd.Parameters.AddWithValue("@Image_Dir", img_SME);
                 cmd.Parameters.AddWithValue("@Name", companyName);
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Password", password);
