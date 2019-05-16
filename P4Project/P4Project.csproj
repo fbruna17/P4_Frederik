@@ -143,6 +143,12 @@
     <Compile Include="Frontend\StudentTaskView.Designer.cs">
       <DependentUpon>StudentTaskView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\TaskView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frontend\TaskView.Designer.cs">
+      <DependentUpon>TaskView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frontend\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\StudentProfileView.resx">
       <DependentUpon>StudentProfileView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frontend\TaskView.resx">
+      <DependentUpon>TaskView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>

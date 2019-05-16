@@ -31,6 +31,11 @@
             this.Create_New_Task = new System.Windows.Forms.Button();
             this.CompanyNameBox = new System.Windows.Forms.TextBox();
             this.TaskOverViewGroup = new System.Windows.Forms.GroupBox();
+            this.TaskView = new System.Windows.Forms.DataGridView();
+            this.TaskTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ApplicationDeadline = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstComplete = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ViewTask = new System.Windows.Forms.Button();
             this.SeeAllTasks = new System.Windows.Forms.Button();
             this.SeeCompletedTasks = new System.Windows.Forms.Button();
@@ -38,11 +43,6 @@
             this.SeePrivateTasks = new System.Windows.Forms.Button();
             this.SeePublicTasks = new System.Windows.Forms.Button();
             this.EditProfile = new System.Windows.Forms.Button();
-            this.TaskView = new System.Windows.Forms.DataGridView();
-            this.TaskTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ApplicationDeadline = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EstComplete = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TaskOverViewGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TaskView)).BeginInit();
             this.SuspendLayout();
@@ -80,6 +80,53 @@
             this.TaskOverViewGroup.TabIndex = 3;
             this.TaskOverViewGroup.TabStop = false;
             this.TaskOverViewGroup.Text = "Task Overview:";
+            // 
+            // TaskView
+            // 
+            this.TaskView.AllowUserToAddRows = false;
+            this.TaskView.AllowUserToDeleteRows = false;
+            this.TaskView.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.TaskView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TaskView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TaskTitle,
+            this.ApplicationDeadline,
+            this.StartDate,
+            this.EstComplete});
+            this.TaskView.Location = new System.Drawing.Point(128, 24);
+            this.TaskView.MultiSelect = false;
+            this.TaskView.Name = "TaskView";
+            this.TaskView.ReadOnly = true;
+            this.TaskView.RowTemplate.Height = 24;
+            this.TaskView.Size = new System.Drawing.Size(443, 203);
+            this.TaskView.TabIndex = 5;
+            // 
+            // TaskTitle
+            // 
+            this.TaskTitle.Frozen = true;
+            this.TaskTitle.HeaderText = "Task Title";
+            this.TaskTitle.Name = "TaskTitle";
+            this.TaskTitle.ReadOnly = true;
+            // 
+            // ApplicationDeadline
+            // 
+            this.ApplicationDeadline.Frozen = true;
+            this.ApplicationDeadline.HeaderText = "Application Deadline";
+            this.ApplicationDeadline.Name = "ApplicationDeadline";
+            this.ApplicationDeadline.ReadOnly = true;
+            // 
+            // StartDate
+            // 
+            this.StartDate.Frozen = true;
+            this.StartDate.HeaderText = "Start Date";
+            this.StartDate.Name = "StartDate";
+            this.StartDate.ReadOnly = true;
+            // 
+            // EstComplete
+            // 
+            this.EstComplete.Frozen = true;
+            this.EstComplete.HeaderText = "Est. Completion";
+            this.EstComplete.Name = "EstComplete";
+            this.EstComplete.ReadOnly = true;
             // 
             // ViewTask
             // 
@@ -149,53 +196,6 @@
             this.EditProfile.TabIndex = 4;
             this.EditProfile.Text = "Edit Profile";
             this.EditProfile.UseVisualStyleBackColor = true;
-            // 
-            // TaskView
-            // 
-            this.TaskView.AllowUserToAddRows = false;
-            this.TaskView.AllowUserToDeleteRows = false;
-            this.TaskView.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.TaskView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TaskView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TaskTitle,
-            this.ApplicationDeadline,
-            this.StartDate,
-            this.EstComplete});
-            this.TaskView.Location = new System.Drawing.Point(128, 24);
-            this.TaskView.MultiSelect = false;
-            this.TaskView.Name = "TaskView";
-            this.TaskView.ReadOnly = true;
-            this.TaskView.RowTemplate.Height = 24;
-            this.TaskView.Size = new System.Drawing.Size(443, 203);
-            this.TaskView.TabIndex = 5;
-            // 
-            // TaskTitle
-            // 
-            this.TaskTitle.Frozen = true;
-            this.TaskTitle.HeaderText = "Task Title";
-            this.TaskTitle.Name = "TaskTitle";
-            this.TaskTitle.ReadOnly = true;
-            // 
-            // ApplicationDeadline
-            // 
-            this.ApplicationDeadline.Frozen = true;
-            this.ApplicationDeadline.HeaderText = "Application Deadline";
-            this.ApplicationDeadline.Name = "ApplicationDeadline";
-            this.ApplicationDeadline.ReadOnly = true;
-            // 
-            // StartDate
-            // 
-            this.StartDate.Frozen = true;
-            this.StartDate.HeaderText = "Start Date";
-            this.StartDate.Name = "StartDate";
-            this.StartDate.ReadOnly = true;
-            // 
-            // EstComplete
-            // 
-            this.EstComplete.Frozen = true;
-            this.EstComplete.HeaderText = "Est. Completion";
-            this.EstComplete.Name = "EstComplete";
-            this.EstComplete.ReadOnly = true;
             // 
             // SMELandingPage
             // 

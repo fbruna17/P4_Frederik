@@ -63,7 +63,7 @@ namespace P4Project.Frontend
             DateTime completion = CompDeadlinePicker.Value;
 
 
-            TaskDetailed newtask = new TaskDetailed(0, SME, title, location, hours, description, startdate, applicationdeadline, completion, stateid, SkillList);
+            TaskDetailed newtask = new TaskDetailed(0, SME, title, location, hours, description, startdate, applicationdeadline, completion, stateid, SkillList, 0);
 
             try
             {

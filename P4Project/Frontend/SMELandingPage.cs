@@ -100,7 +100,14 @@ namespace P4Project.Frontend
 
         private void ViewTask_Click(object sender, EventArgs e)
         {
-            // Display task der er valgt.
+            SQLControl sql = new SQLControl();
+            string taskname = TaskView.SelectedCells[0].Value.ToString();
+            TaskSearched tTask = ThisSME.Tasks.Single(t => t.Title == taskname);
+            TaskDetailed thisTask = sql.FetchTaskDetailed(tTask.ID);
+            Hide();
+            var tView = new TaskView(thisTask, ThisSME);
+            tView.ShowDialog();
+            Show();
         }
     }
 }
