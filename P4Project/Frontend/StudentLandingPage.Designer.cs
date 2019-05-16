@@ -30,25 +30,25 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentLandingPage));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ShowStudentEmailLabel = new System.Windows.Forms.Label();
+            this.ShowStudentNameLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.EmailLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
             this.StudentEmailLabel = new System.Windows.Forms.Label();
             this.StudentNameLabel = new System.Windows.Forms.Label();
             this.StudentPictureBox = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.ShowStudentNameLabel = new System.Windows.Forms.Label();
-            this.ShowStudentEmailLabel = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Application = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ApplicationGroupBox = new System.Windows.Forms.GroupBox();
             this.SeeApplication = new System.Windows.Forms.Button();
             this.RecommendedTasksGroupBox = new System.Windows.Forms.GroupBox();
-            this.ViewRecTask = new System.Windows.Forms.Button();
             this.RecommendedTasks = new System.Windows.Forms.DataGridView();
             this.TaskTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Match = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ViewRecTask = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -67,38 +67,64 @@
             this.groupBox2.Controls.Add(this.StudentEmailLabel);
             this.groupBox2.Controls.Add(this.StudentNameLabel);
             this.groupBox2.Controls.Add(this.StudentPictureBox);
-            this.groupBox2.Location = new System.Drawing.Point(34, 41);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(26, 33);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(299, 112);
+            this.groupBox2.Size = new System.Drawing.Size(224, 91);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
+            // 
+            // ShowStudentEmailLabel
+            // 
+            this.ShowStudentEmailLabel.AutoSize = true;
+            this.ShowStudentEmailLabel.Location = new System.Drawing.Point(101, 55);
+            this.ShowStudentEmailLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ShowStudentEmailLabel.Name = "ShowStudentEmailLabel";
+            this.ShowStudentEmailLabel.Size = new System.Drawing.Size(0, 13);
+            this.ShowStudentEmailLabel.TabIndex = 7;
+            // 
+            // ShowStudentNameLabel
+            // 
+            this.ShowStudentNameLabel.AutoSize = true;
+            this.ShowStudentNameLabel.Location = new System.Drawing.Point(101, 35);
+            this.ShowStudentNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ShowStudentNameLabel.Name = "ShowStudentNameLabel";
+            this.ShowStudentNameLabel.Size = new System.Drawing.Size(0, 13);
+            this.ShowStudentNameLabel.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(99, 35);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.TabIndex = 5;
             // 
             // EmailLabel
             // 
             this.EmailLabel.AutoSize = true;
-            this.EmailLabel.Location = new System.Drawing.Point(254, 100);
+            this.EmailLabel.Location = new System.Drawing.Point(190, 81);
+            this.EmailLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.EmailLabel.Name = "EmailLabel";
-            this.EmailLabel.Size = new System.Drawing.Size(0, 17);
+            this.EmailLabel.Size = new System.Drawing.Size(0, 13);
             this.EmailLabel.TabIndex = 4;
             // 
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(251, 57);
+            this.NameLabel.Location = new System.Drawing.Point(188, 46);
+            this.NameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(0, 17);
+            this.NameLabel.Size = new System.Drawing.Size(0, 13);
             this.NameLabel.TabIndex = 3;
             // 
             // StudentEmailLabel
             // 
             this.StudentEmailLabel.AutoSize = true;
             this.StudentEmailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
-            this.StudentEmailLabel.Location = new System.Drawing.Point(86, 68);
-            this.StudentEmailLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.StudentEmailLabel.Location = new System.Drawing.Point(64, 55);
             this.StudentEmailLabel.Name = "StudentEmailLabel";
-            this.StudentEmailLabel.Size = new System.Drawing.Size(52, 15);
+            this.StudentEmailLabel.Size = new System.Drawing.Size(45, 13);
             this.StudentEmailLabel.TabIndex = 2;
             this.StudentEmailLabel.Text = "Email: ";
             // 
@@ -106,10 +132,9 @@
             // 
             this.StudentNameLabel.AutoSize = true;
             this.StudentNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
-            this.StudentNameLabel.Location = new System.Drawing.Point(86, 43);
-            this.StudentNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.StudentNameLabel.Location = new System.Drawing.Point(64, 35);
             this.StudentNameLabel.Name = "StudentNameLabel";
-            this.StudentNameLabel.Size = new System.Drawing.Size(49, 15);
+            this.StudentNameLabel.Size = new System.Drawing.Size(42, 13);
             this.StudentNameLabel.TabIndex = 1;
             this.StudentNameLabel.Text = "Name:";
             // 
@@ -117,37 +142,13 @@
             // 
             this.StudentPictureBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("StudentPictureBox.BackgroundImage")));
             this.StudentPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.StudentPictureBox.Location = new System.Drawing.Point(8, 23);
-            this.StudentPictureBox.Margin = new System.Windows.Forms.Padding(4);
+            this.StudentPictureBox.Location = new System.Drawing.Point(6, 19);
             this.StudentPictureBox.Name = "StudentPictureBox";
-            this.StudentPictureBox.Size = new System.Drawing.Size(70, 70);
+            this.StudentPictureBox.Size = new System.Drawing.Size(52, 57);
             this.StudentPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.StudentPictureBox.TabIndex = 0;
             this.StudentPictureBox.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(132, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 17);
-            this.label1.TabIndex = 5;
-            // 
-            // ShowStudentNameLabel
-            // 
-            this.ShowStudentNameLabel.AutoSize = true;
-            this.ShowStudentNameLabel.Location = new System.Drawing.Point(135, 43);
-            this.ShowStudentNameLabel.Name = "ShowStudentNameLabel";
-            this.ShowStudentNameLabel.Size = new System.Drawing.Size(0, 17);
-            this.ShowStudentNameLabel.TabIndex = 6;
-            // 
-            // ShowStudentEmailLabel
-            // 
-            this.ShowStudentEmailLabel.AutoSize = true;
-            this.ShowStudentEmailLabel.Location = new System.Drawing.Point(135, 68);
-            this.ShowStudentEmailLabel.Name = "ShowStudentEmailLabel";
-            this.ShowStudentEmailLabel.Size = new System.Drawing.Size(0, 17);
-            this.ShowStudentEmailLabel.TabIndex = 7;
+            this.StudentPictureBox.WaitOnLoad = true;
             // 
             // dataGridView1
             // 
@@ -157,11 +158,12 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Application,
             this.State});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 10);
+            this.dataGridView1.Location = new System.Drawing.Point(4, 8);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(244, 85);
+            this.dataGridView1.Size = new System.Drawing.Size(183, 69);
             this.dataGridView1.TabIndex = 4;
             // 
             // Application
@@ -182,18 +184,21 @@
             // 
             this.ApplicationGroupBox.Controls.Add(this.SeeApplication);
             this.ApplicationGroupBox.Controls.Add(this.dataGridView1);
-            this.ApplicationGroupBox.Location = new System.Drawing.Point(23, 171);
+            this.ApplicationGroupBox.Location = new System.Drawing.Point(17, 139);
+            this.ApplicationGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ApplicationGroupBox.Name = "ApplicationGroupBox";
-            this.ApplicationGroupBox.Size = new System.Drawing.Size(265, 129);
+            this.ApplicationGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ApplicationGroupBox.Size = new System.Drawing.Size(199, 105);
             this.ApplicationGroupBox.TabIndex = 5;
             this.ApplicationGroupBox.TabStop = false;
             // 
             // SeeApplication
             // 
             this.SeeApplication.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.SeeApplication.Location = new System.Drawing.Point(143, 100);
+            this.SeeApplication.Location = new System.Drawing.Point(107, 81);
+            this.SeeApplication.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SeeApplication.Name = "SeeApplication";
-            this.SeeApplication.Size = new System.Drawing.Size(107, 23);
+            this.SeeApplication.Size = new System.Drawing.Size(80, 19);
             this.SeeApplication.TabIndex = 5;
             this.SeeApplication.Text = "View Application";
             this.SeeApplication.UseVisualStyleBackColor = true;
@@ -202,21 +207,13 @@
             // 
             this.RecommendedTasksGroupBox.Controls.Add(this.RecommendedTasks);
             this.RecommendedTasksGroupBox.Controls.Add(this.ViewRecTask);
-            this.RecommendedTasksGroupBox.Location = new System.Drawing.Point(428, 128);
+            this.RecommendedTasksGroupBox.Location = new System.Drawing.Point(321, 104);
+            this.RecommendedTasksGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RecommendedTasksGroupBox.Name = "RecommendedTasksGroupBox";
-            this.RecommendedTasksGroupBox.Size = new System.Drawing.Size(460, 310);
+            this.RecommendedTasksGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RecommendedTasksGroupBox.Size = new System.Drawing.Size(345, 252);
             this.RecommendedTasksGroupBox.TabIndex = 6;
             this.RecommendedTasksGroupBox.TabStop = false;
-            // 
-            // ViewRecTask
-            // 
-            this.ViewRecTask.Location = new System.Drawing.Point(182, 281);
-            this.ViewRecTask.Name = "ViewRecTask";
-            this.ViewRecTask.Size = new System.Drawing.Size(82, 23);
-            this.ViewRecTask.TabIndex = 0;
-            this.ViewRecTask.Text = "ViewTask";
-            this.ViewRecTask.UseVisualStyleBackColor = true;
-            this.ViewRecTask.Click += new System.EventHandler(this.ViewRecTask_Click);
             // 
             // RecommendedTasks
             // 
@@ -227,11 +224,12 @@
             this.TaskTitle,
             this.Match,
             this.SME});
-            this.RecommendedTasks.Location = new System.Drawing.Point(6, 13);
+            this.RecommendedTasks.Location = new System.Drawing.Point(4, 11);
+            this.RecommendedTasks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RecommendedTasks.Name = "RecommendedTasks";
             this.RecommendedTasks.ReadOnly = true;
             this.RecommendedTasks.RowTemplate.Height = 24;
-            this.RecommendedTasks.Size = new System.Drawing.Size(444, 262);
+            this.RecommendedTasks.Size = new System.Drawing.Size(333, 213);
             this.RecommendedTasks.TabIndex = 1;
             // 
             // TaskTitle
@@ -256,14 +254,26 @@
             this.SME.Name = "SME";
             this.SME.ReadOnly = true;
             // 
+            // ViewRecTask
+            // 
+            this.ViewRecTask.Location = new System.Drawing.Point(136, 228);
+            this.ViewRecTask.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ViewRecTask.Name = "ViewRecTask";
+            this.ViewRecTask.Size = new System.Drawing.Size(62, 19);
+            this.ViewRecTask.TabIndex = 0;
+            this.ViewRecTask.Text = "ViewTask";
+            this.ViewRecTask.UseVisualStyleBackColor = true;
+            this.ViewRecTask.Click += new System.EventHandler(this.ViewRecTask_Click);
+            // 
             // StudentLandingPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(974, 450);
+            this.ClientSize = new System.Drawing.Size(730, 366);
             this.Controls.Add(this.RecommendedTasksGroupBox);
             this.Controls.Add(this.ApplicationGroupBox);
             this.Controls.Add(this.groupBox2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "StudentLandingPage";
             this.Text = "StudentLandingPage";
             this.groupBox2.ResumeLayout(false);

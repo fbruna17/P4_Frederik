@@ -23,9 +23,9 @@ namespace P4Project
         //Password to FTP Server!
         private string FTPPassword = "3pdaxzyt";
         //Full Dir path to image folder on server!
-        private string FTPImageDir = "/P4/images/";
+        private string FTPImageDir = "/public_html/p4/images/";
         //Full Dir path to pdf folder on server!
-        private string FTPPDFDir = "/P4/pdf/";
+        private string FTPPDFDir = "/public_html/p4/pdf/";
 
         private SQLControl SQL;
         #endregion
@@ -54,13 +54,14 @@ namespace P4Project
         {
             string randomName = RandomString(10);
             string newImageName = randomName + image_Type;
-            string serverImagePathDir = FTPHost + FTPImageDir + newImageName;
+            string uploadImagePathDir = FTPHost + FTPImageDir + newImageName;
+            string serverImagePathDir = "https://www.blo-store.dk/p4/images/" + newImageName;
 
             using (WebClient client = new WebClient())
             {
                 client.Credentials = new NetworkCredential(FTPUser, FTPPassword);
 
-                client.UploadFile(serverImagePathDir, WebRequestMethods.Ftp.UploadFile, image_Path);
+                client.UploadFile(uploadImagePathDir, WebRequestMethods.Ftp.UploadFile, image_Path);
             }
 
             //Returns the serverpath of the uploaded image.
@@ -71,18 +72,21 @@ namespace P4Project
         {
             string randomName = RandomString(10);
             string newFileName = randomName + file_Type;
-            string serverFilePathDir = FTPHost + FTPPDFDir + newFileName;
+            string uploadFilePathDir = FTPHost + FTPPDFDir + newFileName;
+            string serverFilePathDir = "https://www.blo-store.dk/p4/pdf/" + newFileName;
 
             using (WebClient client = new WebClient())
             {
                 client.Credentials = new NetworkCredential(FTPUser, FTPPassword);
 
-                client.UploadFile(serverFilePathDir, WebRequestMethods.Ftp.UploadFile, file_Path);
+                client.UploadFile(uploadFilePathDir, WebRequestMethods.Ftp.UploadFile, file_Path);
             }
 
             //Returns the serverpath of the uploaded file
             return serverFilePathDir;
         }
         #endregion //End of Upload region
+
+        
     }
 }

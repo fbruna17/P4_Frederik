@@ -184,7 +184,7 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT FirstName,LastName,Email,Description,EducationID,Profile_Picture,Unverified_SkillSet,Verified_SkillSet FROM Student WHERE StudentID = @StudentID"
+                    CommandText = "SELECT FirstName,LastName,Email,Description,EducationID,Image_Dir,Unverified_SkillSet,Verified_SkillSet FROM Student WHERE StudentID = @StudentID"
                 };
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@StudentID", id);
@@ -196,8 +196,7 @@ namespace P4Project
                 string email = GetSafeString(reader, 2);
                 string description = GetSafeString(reader, 3);
                 int eduID = GetSafeInt(reader, 4);
-                //byte[] logo = reader.GetByte(3); // Halp!
-                byte[] profilepicture = new byte[1];
+                string profilepicture = GetSafeString(reader, 5);
                 var suvSkills = GetSafeString(reader, 6).Split(',').ToList();
                 var svSkills = GetSafeString(reader, 7).Split(',').ToList();
                 // Readeren lukkes:
@@ -526,7 +525,7 @@ namespace P4Project
                     List<string> tRecSkill = recSkill[i].Split(',').ToList();
                     foreach(string skillID in tRecSkill)
                     {
-                        if (skillID == "" && skillID == string.Empty) ;
+                        if (skillID == "" && skillID == string.Empty);
                         else if (int.TryParse(skillID, out int ID)) tRecSkillIDs.Add(ID);
                         else throw new DataErrorInDataBaseException("TryParse on skillID: " + skillID + i.ToString());
                     }
@@ -689,6 +688,5 @@ namespace P4Project
             }
             return res;
         }
-
     }
 }

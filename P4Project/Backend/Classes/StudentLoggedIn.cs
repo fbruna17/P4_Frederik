@@ -15,7 +15,7 @@ namespace P4Project.Backend.Classes
         private RecMaker Recommend;
 
         public StudentLoggedIn(string firstName, string lastName, int id, string email, string education, List<SkillStudent> skills, 
-            string description, byte[] profilePicture, string username, string password)
+            string description, string profilePicture, string username, string password)
             : base(firstName, lastName, id, email, education, skills, description, profilePicture)
         {
             Username = username;
