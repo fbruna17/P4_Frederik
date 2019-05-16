@@ -34,10 +34,9 @@ namespace P4Project.Frontend
                 int studID = InputValidation.VerifyLogin(username, password, "Student");
                 StudentDetailed tStudent = SQL.FetchStudentDetailed(studID);
                 StudentLoggedIn student = new StudentLoggedIn(username, password, tStudent);
-                MessageBox.Show("Great succes!");
-              //  var studLandingPage = new StudentProfileView(student);
+                var studLandingPage = new StudentLandingPage(student);
                 Close();
-                //studLandingPage.ShowDialog();
+                studLandingPage.ShowDialog();
             }
             catch (NoUsernameInputException)
             {
@@ -51,9 +50,9 @@ namespace P4Project.Frontend
             {
                 MessageBox.Show("Wrong Username or password!");
             }
-            catch (DataErrorInDataBaseException)
+            catch (DataErrorInDataBaseException ex)
             {
-                MessageBox.Show("There was an error in the data loaded! Please contact system administrators!");
+                MessageBox.Show("There was an error in the data loaded! Please contact system administrators!" + ex.place);
             }
             catch (MySqlException ex) 
             {

@@ -12,6 +12,7 @@ namespace P4Project.Backend.Classes
         public int ID { get; }
         public string Title { get; }
         public int SMEID { get; }
+        public string SMEName { get; private set; }
 
         public TaskBase(int id)
         {
@@ -29,6 +30,21 @@ namespace P4Project.Backend.Classes
             ID = id;
             SMEID = smeID;
             Title = title;
+        }
+        // Og hvis der kommer SMEName med:
+        public TaskBase(int id, int smeID, string title, string smeName)
+        {
+            ID = id;
+            SMEID = smeID;
+            Title = title;
+            SMEName = smeName;
+        }
+
+        public string GetSMEName()
+        {
+            SQLControl sql = new SQLControl();
+            SMEName = sql.FetchSMEName(SMEID);
+            return SMEName;
         }
     }
 }

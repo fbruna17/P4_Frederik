@@ -121,6 +121,34 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
+
+        public string FetchSMEName(int smeID)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT Name FROM SME WHERE SMEID = @SMEID LIMIT 1"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@SMEID", smeID);
+
+                var reader = cmd.ExecuteReader();
+                string name = string.Empty;
+                while (reader.Read())
+                {
+                    name = GetSafeString(reader, 0);
+                }
+                reader.Close();
+                return name;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
         #endregion
 
         #region Student-specific SQL
@@ -342,7 +370,6 @@ namespace P4Project
         public List<TaskSearched> FetchAllTasksForSME(SMEBase owner)
         {
             var taskList = new List<TaskSearched>();
-
             try
             {
                 Open();
@@ -459,6 +486,59 @@ namespace P4Project
             }
 
             return result;
+        }
+
+        // Henter alle public tasks og gør dem klar til recommendation:
+        public List<TaskRecommend> FetchAllTasksForRecommendation()
+        {
+            try
+            {
+                Open();
+                // Kommandoen gøres klar:
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT TaskID,Title,SMEID,Required_Skill FROM Task WHERE StateID = @StateID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@StateID", 2);
+                var reader = cmd.ExecuteReader();
+                // Der initialiseres variabler til håndtering af den midlertidige data:
+                var tempTaskList = new List<TaskBase>();
+                // Denne liste kommer til at indeholde den samlede liste over ALLE recquired skills:
+                List<string> recSkill = new List<string>();
+                while (reader.Read())
+                {
+                    int taskID = GetSafeIntMustNotBeNull(reader, 0);
+                    string title = GetSafeString(reader, 1);
+                    int smeID = GetSafeIntMustNotBeNull(reader, 2);
+                    recSkill.Add(GetSafeString(reader, 3));
+                    tempTaskList.Add(new TaskBase(taskID, smeID, title));
+                }
+                // Denne liste kommer til at indeholde alle de tasks der er hentet:
+                List<TaskRecommend> resultList = new List<TaskRecommend>();
+                // Der er nu lavet en liste af Base tasks, de skal nu parres med de recquired skills: 
+                int i = 0;
+                foreach(TaskBase task in tempTaskList)
+                {
+                    task.GetSMEName();
+                    List<int> tRecSkillIDs = new List<int>();
+                    List<string> tRecSkill = recSkill[i].Split(',').ToList();
+                    foreach(string skillID in tRecSkill)
+                    {
+                        if (skillID == "" && skillID == string.Empty) ;
+                        else if (int.TryParse(skillID, out int ID)) tRecSkillIDs.Add(ID);
+                        else throw new DataErrorInDataBaseException("TryParse on skillID: " + skillID + i.ToString());
+                    }
+                    List<Skill> skills = FetchSkillInfo(tRecSkillIDs);
+                    resultList.Add(new TaskRecommend(task, skills));
+                }
+                return resultList;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
         }
         #endregion
 

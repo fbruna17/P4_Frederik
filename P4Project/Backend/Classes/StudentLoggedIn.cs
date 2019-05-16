@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using P4Project.Backend.Recommendation;
 
 namespace P4Project.Backend.Classes
 {
@@ -10,6 +11,8 @@ namespace P4Project.Backend.Classes
     {
         private string Username { get; }
         private string Password { get; }
+        public List<TaskRecommend> RecTasks { get; }
+        private RecMaker Recommend;
 
         public StudentLoggedIn(string firstName, string lastName, int id, string email, string education, List<SkillStudent> skills, 
             string description, byte[] profilePicture, string username, string password)
@@ -17,6 +20,8 @@ namespace P4Project.Backend.Classes
         {
             Username = username;
             Password = password;
+            Recommend = new RecMaker(this);
+            RecTasks = Recommend.RecommendTasks();
         }
 
         public StudentLoggedIn(string username, string password, StudentDetailed thisStudent) 
@@ -25,9 +30,10 @@ namespace P4Project.Backend.Classes
         {
             Username = username;
             Password = password;
+            Recommend = new RecMaker(this);
+            RecTasks = Recommend.RecommendTasks();
         }
 
-        // Der skal laves funktioner der håndterer edits, eller også skal properties kunne sættes public, og have verifications logik.
-        // public void EditProfile() { }
+        
     }
 }
