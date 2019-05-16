@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using P4Project.Backend.Classes;
 using System.Net;
+using System.IO;
 
 namespace P4Project.Frontend
 {
@@ -22,10 +23,7 @@ namespace P4Project.Frontend
             ThisStudent = thisStudent;
             ShowStudentEmailLabel.Text = ThisStudent.Email;
             ShowStudentNameLabel.Text = ThisStudent.FirstName + " " + ThisStudent.LastName;
-
-
-            var Image_Path = ThisStudent.ProfilePicture;
-            StudentPictureBox.ImageLocation = Image_Path;
+            SetupImage();
 
 
             foreach (TaskRecommend task in ThisStudent.RecTasks)
@@ -33,19 +31,17 @@ namespace P4Project.Frontend
                 RecommendedTasks.Rows.Add(task.MakeDataViewGrid());
             }
         }
+       
 
         private void ViewRecTask_Click(object sender, EventArgs e)
         {
 
         }
 
-        //private void SetupImage()
-        //{
-        //    var Image_Path = ThisStudent.ProfilePicture;
-        //
-        //    FTPControl Ftp = new FTPControl();
-        //    var path = Ftp.FetchImage(Image_Path);
-        //    StudentPictureBox.Image = Image.FromStream(path);
-        //}
+        public void SetupImage()
+        {
+            var ProfilePicture = ThisStudent.ProfilePicture;
+            StudentPictureBox.ImageLocation = ProfilePicture;
+        }
     }
 }

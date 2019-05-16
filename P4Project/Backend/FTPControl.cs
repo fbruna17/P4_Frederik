@@ -17,15 +17,12 @@ namespace P4Project
     {
         #region Instances and properties
         //Hostname to FTP Server!
-        private string FTPHost = "ftp://linux116.unoeuro.com";
-        //Username to FTP Server!
-        private string FTPUser = "blo-store.dk";
-        //Password to FTP Server!
-        private string FTPPassword = "3pdaxzyt";
+        private string FTPHost = "ftp://85.191.201.7";
+
         //Full Dir path to image folder on server!
-        private string FTPImageDir = "/public_html/p4/images/";
+        private string FTPImageDir = "/p4projekt/images/";
         //Full Dir path to pdf folder on server!
-        private string FTPPDFDir = "/public_html/p4/pdf/";
+        private string FTPPDFDir = "/p4projekt/pdf/";
 
         private SQLControl SQL;
         #endregion
@@ -54,14 +51,11 @@ namespace P4Project
         {
             string randomName = RandomString(10);
             string newImageName = randomName + image_Type;
-            string uploadImagePathDir = FTPHost + FTPImageDir + newImageName;
-            string serverImagePathDir = "https://www.blo-store.dk/p4/images/" + newImageName;
+            string serverImagePathDir = FTPHost + FTPImageDir + newImageName;
 
             using (WebClient client = new WebClient())
             {
-                client.Credentials = new NetworkCredential(FTPUser, FTPPassword);
-
-                client.UploadFile(uploadImagePathDir, WebRequestMethods.Ftp.UploadFile, image_Path);
+                client.UploadFile(serverImagePathDir, WebRequestMethods.Ftp.UploadFile, image_Path);
             }
 
             //Returns the serverpath of the uploaded image.
@@ -72,14 +66,11 @@ namespace P4Project
         {
             string randomName = RandomString(10);
             string newFileName = randomName + file_Type;
-            string uploadFilePathDir = FTPHost + FTPPDFDir + newFileName;
-            string serverFilePathDir = "https://www.blo-store.dk/p4/pdf/" + newFileName;
+            string serverFilePathDir = FTPHost + FTPPDFDir + newFileName;
 
             using (WebClient client = new WebClient())
             {
-                client.Credentials = new NetworkCredential(FTPUser, FTPPassword);
-
-                client.UploadFile(uploadFilePathDir, WebRequestMethods.Ftp.UploadFile, file_Path);
+                client.UploadFile(serverFilePathDir, WebRequestMethods.Ftp.UploadFile, file_Path);
             }
 
             //Returns the serverpath of the uploaded file

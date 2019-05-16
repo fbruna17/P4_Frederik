@@ -148,7 +148,6 @@
             this.StudentPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.StudentPictureBox.TabIndex = 0;
             this.StudentPictureBox.TabStop = false;
-            this.StudentPictureBox.WaitOnLoad = true;
             // 
             // dataGridView1
             // 
@@ -159,7 +158,7 @@
             this.Application,
             this.State});
             this.dataGridView1.Location = new System.Drawing.Point(4, 8);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -185,9 +184,9 @@
             this.ApplicationGroupBox.Controls.Add(this.SeeApplication);
             this.ApplicationGroupBox.Controls.Add(this.dataGridView1);
             this.ApplicationGroupBox.Location = new System.Drawing.Point(17, 139);
-            this.ApplicationGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ApplicationGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.ApplicationGroupBox.Name = "ApplicationGroupBox";
-            this.ApplicationGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ApplicationGroupBox.Padding = new System.Windows.Forms.Padding(2);
             this.ApplicationGroupBox.Size = new System.Drawing.Size(199, 105);
             this.ApplicationGroupBox.TabIndex = 5;
             this.ApplicationGroupBox.TabStop = false;
@@ -196,7 +195,7 @@
             // 
             this.SeeApplication.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.SeeApplication.Location = new System.Drawing.Point(107, 81);
-            this.SeeApplication.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SeeApplication.Margin = new System.Windows.Forms.Padding(2);
             this.SeeApplication.Name = "SeeApplication";
             this.SeeApplication.Size = new System.Drawing.Size(80, 19);
             this.SeeApplication.TabIndex = 5;
@@ -208,9 +207,9 @@
             this.RecommendedTasksGroupBox.Controls.Add(this.RecommendedTasks);
             this.RecommendedTasksGroupBox.Controls.Add(this.ViewRecTask);
             this.RecommendedTasksGroupBox.Location = new System.Drawing.Point(321, 104);
-            this.RecommendedTasksGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RecommendedTasksGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.RecommendedTasksGroupBox.Name = "RecommendedTasksGroupBox";
-            this.RecommendedTasksGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RecommendedTasksGroupBox.Padding = new System.Windows.Forms.Padding(2);
             this.RecommendedTasksGroupBox.Size = new System.Drawing.Size(345, 252);
             this.RecommendedTasksGroupBox.TabIndex = 6;
             this.RecommendedTasksGroupBox.TabStop = false;
@@ -225,7 +224,7 @@
             this.Match,
             this.SME});
             this.RecommendedTasks.Location = new System.Drawing.Point(4, 11);
-            this.RecommendedTasks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RecommendedTasks.Margin = new System.Windows.Forms.Padding(2);
             this.RecommendedTasks.Name = "RecommendedTasks";
             this.RecommendedTasks.ReadOnly = true;
             this.RecommendedTasks.RowTemplate.Height = 24;
@@ -257,7 +256,7 @@
             // ViewRecTask
             // 
             this.ViewRecTask.Location = new System.Drawing.Point(136, 228);
-            this.ViewRecTask.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ViewRecTask.Margin = new System.Windows.Forms.Padding(2);
             this.ViewRecTask.Name = "ViewRecTask";
             this.ViewRecTask.Size = new System.Drawing.Size(62, 19);
             this.ViewRecTask.TabIndex = 0;
@@ -273,7 +272,7 @@
             this.Controls.Add(this.RecommendedTasksGroupBox);
             this.Controls.Add(this.ApplicationGroupBox);
             this.Controls.Add(this.groupBox2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "StudentLandingPage";
             this.Text = "StudentLandingPage";
             this.groupBox2.ResumeLayout(false);
