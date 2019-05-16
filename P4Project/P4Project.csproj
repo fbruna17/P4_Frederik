@@ -62,6 +62,7 @@
     <Compile Include="Backend\Classes\TaskSearched.cs" />
     <Compile Include="Backend\FTPControl.cs" />
     <Compile Include="Backend\InputValidation.cs" />
+    <Compile Include="Backend\Recommendation\RecMaker.cs" />
     <Compile Include="Exceptions\DataErrorInDataBaseException.cs" />
     <Compile Include="Exceptions\InvalidTaskDescriptionExeption.cs" />
     <Compile Include="Exceptions\InvalidTaskLocationException.cs" />
@@ -118,6 +119,12 @@
     <Compile Include="Frontend\SMEProfileView.Designer.cs">
       <DependentUpon>SMEProfileView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\StudentLandingPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frontend\StudentLandingPage.Designer.cs">
+      <DependentUpon>StudentLandingPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frontend\StudentLogInPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +178,9 @@
     <EmbeddedResource Include="Frontend\SMEProfileView.resx">
       <DependentUpon>SMEProfileView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frontend\StudentLandingPage.resx">
+      <DependentUpon>StudentLandingPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frontend\StudentLogInPage.resx">
       <DependentUpon>StudentLogInPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -206,7 +216,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Backend\Recommendation\" />
     <Folder Include="Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
