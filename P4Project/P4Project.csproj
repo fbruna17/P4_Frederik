@@ -60,6 +60,7 @@
     <Compile Include="Backend\Classes\TaskDetailed.cs" />
     <Compile Include="Backend\Classes\TaskRecommend.cs" />
     <Compile Include="Backend\Classes\TaskSearched.cs" />
+    <Compile Include="Backend\FTPControl.cs" />
     <Compile Include="Backend\InputValidation.cs" />
     <Compile Include="Exceptions\DataErrorInDataBaseException.cs" />
     <Compile Include="Exceptions\InvalidTaskDescriptionExeption.cs" />

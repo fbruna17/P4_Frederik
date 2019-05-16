@@ -124,19 +124,19 @@ namespace P4Project
         #endregion
 
         #region Student-specific SQL
-        public void RegisterStudentProfile(string username, string password, string firstname, string lastname, string email, byte[] img)
+        public void RegisterStudentProfile(string username, string password, string firstname, string lastname, string email, string img)
         {
             try
             {
                 Open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = Connection;
-                cmd.CommandText = "INSERT INTO Student(Username,Password,Firstname,Lastname,Email,Profile_Picture) VALUES(@Username,@Password,@Firstname,@Lastname,@Email,@Profile_Picture)";
+                cmd.CommandText = "INSERT INTO Student(Username,Password,Firstname,Lastname,Email,Image_Dir) VALUES(@Username,@Password,@Firstname,@Lastname,@Email,@Image_Dir)";
                 cmd.Prepare();
 
                 cmd.Parameters.AddWithValue("@Username", username);
                 cmd.Parameters.AddWithValue("@Password", password);
-                cmd.Parameters.AddWithValue("@Profile_Picture", img);
+                cmd.Parameters.AddWithValue("@Image_Dir", img);
                 cmd.Parameters.AddWithValue("@Firstname", firstname);
                 cmd.Parameters.AddWithValue("@Lastname", lastname);
                 cmd.Parameters.AddWithValue("@Email", email);

@@ -105,3 +105,7 @@ C:\Users\Bruno\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Fronte
 C:\Users\Bruno\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.TaskPreview.resources
 C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.StudentLogInPage.resources
 C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.StudentProfileView.resources
+C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.SMELandingPage.resources
+C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.StudentLogInPage.resources
+C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.StudentProfileView.resources
+C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.TaskPreview.resources

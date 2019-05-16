@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Web;
+using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using System.IO;
+using P4Project.Frontend;
 using P4Project.Exceptions;
+using System.IO;
+using System.Net;
 
 namespace P4Project
 {
@@ -17,7 +21,18 @@ namespace P4Project
     {
         #region Instance Variables & Properties
         private SQLControl SQL;
+        private FTPControl FTP;
         UserInputValidation InputValidation;
+
+        //Declearing a string for the local full path of the image.
+        private string LocalImagePath = string.Empty;
+        //Declearing a string for the file extension of the image.
+        private string LocalImageFiletype = string.Empty;
+
+        //Declearing a string for the local full path of the file.
+        private string LocalPDFPath = string.Empty;
+        //Declearing a string for the file extension of the file.
+        private string LocalPDFFiletype = string.Empty;
         #endregion
 
         #region Constructor(s)
@@ -26,6 +41,7 @@ namespace P4Project
         {
             InitializeComponent();
             SQL = new SQLControl();
+            FTP = new FTPControl();
             InputValidation = new UserInputValidation();
         }
         #endregion
@@ -33,10 +49,17 @@ namespace P4Project
         #region Buttons
         private void basicSaveBut_Click(object sender, EventArgs e)
         {
-            MemoryStream ms = new MemoryStream();
-            pictureBox1.Image.Save(ms, pictureBox1.Image.RawFormat);
+            var image_Path = LocalImagePath;
+            var image_Type = LocalImageFiletype;
+            var serverImagePathDir = string.Empty;
+            if(image_Path != string.Empty)
+            {
 
-            byte[] img = ms.ToArray();
+                serverImagePathDir = FTP.UploadImage(image_Path, image_Type);
+            }
+
+
+            string img = serverImagePathDir;
             string username = UsernameText.Text;
             string password = PasswordText.Text;
             string confirmpassword = ConfirmPasswordText.Text;
@@ -83,11 +106,36 @@ namespace P4Project
 
         private void ImageChooseBtn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog opf = new OpenFileDialog();
-            opf.Filter = "Choose image(*.jpg; *.png;)|*.jpg; *.png;";
-            if (opf.ShowDialog() == DialogResult.OK)
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                pictureBox1.Image = Image.FromFile(opf.FileName);
+
+                //Sets the FileDialog "Start path" to the C drive
+                openFileDialog.InitialDirectory = "c:\\";
+                //Applies filter for allowed filetypes
+                openFileDialog.Filter = "Choose your image file (*.jpg)|*.jpg|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Stores the name of the chosen file into "fileName"
+                    var fileName = openFileDialog.SafeFileName;
+
+                    //Stores the fileextension into "fileType"
+                    var fileType = Path.GetExtension(openFileDialog.FileName);
+
+                    //Get the path of specified file
+                    var filePath = openFileDialog.FileName;
+
+                    //Displays the choosen image in the PictureBox
+                    pictureBox1.Image = Image.FromFile(openFileDialog.FileName);
+
+                    //Stores the local path into the already decleared "LocalImagePath" string.
+                    LocalImagePath = filePath;
+
+                    //Stores the file extension into the already decleared "LocalImageFiletype" string.
+                    LocalImageFiletype = fileType;
+                }
             }
         }
         #endregion
