@@ -20,9 +20,6 @@ namespace P4Project.Frontend
         {
             InitializeComponent();
             ThisTask = task;
-
-            MessageBox.Show(ThisTask.Title);
-            MessageBox.Show(ThisTask.SMEName);
             InitializeDefault();
             if (ThisTask.SMEID == sme.ID)
             {
@@ -47,7 +44,7 @@ namespace P4Project.Frontend
         private void InitializeDefault()
         {
             TaskNameLabel.Text = ThisTask.Title;
-            //CompanyNameLabel.Text = ThisTask.SMEName;
+            CompanyNameLabel.Text = ThisTask.SMEName;
             TaskDescriptionBox.Text = ThisTask.Description;
             foreach(Skill skill in ThisTask.RequiredSkills)
             {

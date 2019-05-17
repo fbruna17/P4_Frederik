@@ -30,15 +30,16 @@
         {
             this.TaskNameLabel = new System.Windows.Forms.Label();
             this.DescriptionBox = new System.Windows.Forms.GroupBox();
-            this.CompanyNameLabel = new System.Windows.Forms.Label();
-            this.TaskDescriptionBox = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.TaskDescriptionBox = new System.Windows.Forms.RichTextBox();
+            this.CompanyNameLabel = new System.Windows.Forms.Label();
             this.PracticalInfoBox = new System.Windows.Forms.GroupBox();
-            this.Label2 = new System.Windows.Forms.Label();
-            this.RecSkills = new System.Windows.Forms.ListBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.DateBox = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.RecSkills = new System.Windows.Forms.ListBox();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.DescriptionBox.SuspendLayout();
             this.PracticalInfoBox.SuspendLayout();
             this.DateBox.SuspendLayout();
@@ -65,14 +66,14 @@
             this.DescriptionBox.TabIndex = 1;
             this.DescriptionBox.TabStop = false;
             // 
-            // CompanyNameLabel
+            // label1
             // 
-            this.CompanyNameLabel.AutoSize = true;
-            this.CompanyNameLabel.Location = new System.Drawing.Point(7, 22);
-            this.CompanyNameLabel.Name = "CompanyNameLabel";
-            this.CompanyNameLabel.Size = new System.Drawing.Size(132, 17);
-            this.CompanyNameLabel.TabIndex = 0;
-            this.CompanyNameLabel.Text = "Companynamelabel";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 69);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(118, 17);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Task Description:";
             // 
             // TaskDescriptionBox
             // 
@@ -83,14 +84,14 @@
             this.TaskDescriptionBox.TabIndex = 1;
             this.TaskDescriptionBox.Text = "";
             // 
-            // label1
+            // CompanyNameLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Task Description:";
+            this.CompanyNameLabel.AutoSize = true;
+            this.CompanyNameLabel.Location = new System.Drawing.Point(7, 22);
+            this.CompanyNameLabel.Name = "CompanyNameLabel";
+            this.CompanyNameLabel.Size = new System.Drawing.Size(132, 17);
+            this.CompanyNameLabel.TabIndex = 0;
+            this.CompanyNameLabel.Text = "Companynamelabel";
             // 
             // PracticalInfoBox
             // 
@@ -104,36 +105,9 @@
             this.PracticalInfoBox.TabIndex = 2;
             this.PracticalInfoBox.TabStop = false;
             // 
-            // Label2
-            // 
-            this.Label2.AutoSize = true;
-            this.Label2.Location = new System.Drawing.Point(108, 18);
-            this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(140, 17);
-            this.Label2.TabIndex = 0;
-            this.Label2.Text = "Practical Information:";
-            // 
-            // RecSkills
-            // 
-            this.RecSkills.FormattingEnabled = true;
-            this.RecSkills.ItemHeight = 16;
-            this.RecSkills.Location = new System.Drawing.Point(7, 92);
-            this.RecSkills.Name = "RecSkills";
-            this.RecSkills.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.RecSkills.Size = new System.Drawing.Size(120, 84);
-            this.RecSkills.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 17);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Required Skills:";
-            // 
             // DateBox
             // 
+            this.DateBox.Controls.Add(this.label5);
             this.DateBox.Controls.Add(this.label4);
             this.DateBox.Location = new System.Drawing.Point(176, 52);
             this.DateBox.Name = "DateBox";
@@ -149,6 +123,43 @@
             this.label4.Size = new System.Drawing.Size(75, 17);
             this.label4.TabIndex = 0;
             this.label4.Text = "Deadlines:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(106, 17);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Required Skills:";
+            // 
+            // RecSkills
+            // 
+            this.RecSkills.FormattingEnabled = true;
+            this.RecSkills.ItemHeight = 16;
+            this.RecSkills.Location = new System.Drawing.Point(7, 92);
+            this.RecSkills.Name = "RecSkills";
+            this.RecSkills.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.RecSkills.Size = new System.Drawing.Size(120, 84);
+            this.RecSkills.TabIndex = 1;
+            // 
+            // Label2
+            // 
+            this.Label2.AutoSize = true;
+            this.Label2.Location = new System.Drawing.Point(108, 18);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(140, 17);
+            this.Label2.TabIndex = 0;
+            this.Label2.Text = "Practical Information:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(34, 64);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 17);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "label5";
             // 
             // TaskView
             // 
@@ -184,5 +195,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox RecSkills;
         private System.Windows.Forms.Label Label2;
+        private System.Windows.Forms.Label label5;
     }
 }
