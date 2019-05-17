@@ -17,15 +17,12 @@ namespace P4Project
     {
         #region Instances and properties
         //Hostname to FTP Server!
-        private string FTPHost = "ftp://linux116.unoeuro.com";
-        //Username to FTP Server!
-        private string FTPUser = "blo-store.dk";
-        //Password to FTP Server!
-        private string FTPPassword = "3pdaxzyt";
+        private string FTPHost = "ftp://85.191.201.7";
+
         //Full Dir path to image folder on server!
-        private string FTPImageDir = "/P4/images/";
+        private string FTPImageDir = "/p4projekt/images/";
         //Full Dir path to pdf folder on server!
-        private string FTPPDFDir = "/P4/pdf/";
+        private string FTPPDFDir = "/p4projekt/pdf/";
 
         private SQLControl SQL;
         #endregion
@@ -58,8 +55,6 @@ namespace P4Project
 
             using (WebClient client = new WebClient())
             {
-                client.Credentials = new NetworkCredential(FTPUser, FTPPassword);
-
                 client.UploadFile(serverImagePathDir, WebRequestMethods.Ftp.UploadFile, image_Path);
             }
 
@@ -75,8 +70,6 @@ namespace P4Project
 
             using (WebClient client = new WebClient())
             {
-                client.Credentials = new NetworkCredential(FTPUser, FTPPassword);
-
                 client.UploadFile(serverFilePathDir, WebRequestMethods.Ftp.UploadFile, file_Path);
             }
 
@@ -84,5 +77,7 @@ namespace P4Project
             return serverFilePathDir;
         }
         #endregion //End of Upload region
+
+        
     }
 }
