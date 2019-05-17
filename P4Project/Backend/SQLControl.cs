@@ -273,8 +273,11 @@ namespace P4Project
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@TaskID", taskID);
                 var reader = cmd.ExecuteReader();
-                reader.Read();
-                resString = GetSafeString(reader, 0);
+                while(reader.Read()) 
+                {
+                    resString = GetSafeString(reader, 0);
+                }
+
             }
             finally
             {
@@ -284,10 +287,8 @@ namespace P4Project
             string[] tempres = resString.Split(',');
             foreach(string s in tempres)
             {   // Der burde nu blot være tale om ints, så de tilføjes til resultats listen og returneres:
-                if (int.TryParse(s, out int i))
-                {
-                    resList.Add(i);
-                }
+                if (s == "" && s == string.Empty) { }
+                else if (int.TryParse(s, out int i)) resList.Add(i);
                 else throw new DataErrorInDataBaseException();
             }
             return resList;
@@ -330,34 +331,51 @@ namespace P4Project
             TaskDetailed result;
             try
             {
+                // Der laves en liste af de required skills:
+                List<int> reqSkillIDs = FetchRequiredSkills(taskID);
+                List<Skill> reqSkills = FetchSkillInfo(reqSkillIDs);
+
+                // Variablerne der skal bruges til opbevaring af dataene initialiseres:
+                int smeID = 0;
+                string title = string.Empty;
+                string location = string.Empty;
+                int hours = 0;
+                DateTime startDate = DateTime.Now;
+                DateTime applicationDeadline = DateTime.Now;
+                DateTime estCompletion = DateTime.Now;
+                int stateID = 0;
+                string description = string.Empty;
+                int assignedStudent = 0;
+
+                // Forbindelsen åbnes:
                 Open();
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion,StateID,Description FROM Task WHERE TaskID = @TaskID"
+                    CommandText = "SELECT SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion,StateID,Description,Assigned_Student FROM Task WHERE TaskID = @TaskID"
                 };
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@TaskID", taskID);
 
                 // Readeren gøres klar:
                 var reader = cmd.ExecuteReader();
-                reader.Read();
-
-                // Der laves en liste af de required skills:
-                List<int> reqSkillIDs = FetchRequiredSkills(taskID);
-                List<Skill> reqSkills = FetchSkillInfo(reqSkillIDs);
-                // Dataen samles:
-                SMEBase owner = FetchSMEBaseInformation(reader.GetInt32(0));
-                string title = reader.GetString(1);
-                string location = reader.GetString(2);
-                int hours = reader.GetInt32(3);
-                DateTime startDate = reader.GetDateTime(4);
-                DateTime applicationDeadline = reader.GetDateTime(5);
-                DateTime estCompletion = reader.GetDateTime(6);
-                int stateID = reader.GetInt32(7);
-                string description = reader.GetString(8);
+                while(reader.Read())
+                {
+                    smeID = GetSafeIntMustNotBeNull(reader, 0);
+                    title = GetSafeString(reader, 1);
+                    location = GetSafeString(reader, 2);
+                    hours = GetSafeInt(reader, 3);
+                    startDate = reader.GetDateTime(4);
+                    applicationDeadline = reader.GetDateTime(5);
+                    estCompletion = reader.GetDateTime(6);
+                    stateID = GetSafeInt(reader, 7);
+                    description = GetSafeString(reader, 8);
+                    assignedStudent = GetSafeInt(reader, 9);
+                }
+                reader.Close();
                 // Resultatet instansieres og returneres:
-                return result = new TaskDetailed(taskID, owner, title, location, hours, description, startDate, applicationDeadline, estCompletion, stateID, reqSkills);
+                SMEBase owner = FetchSMEBaseInformation(smeID);
+                return result = new TaskDetailed(taskID, owner, title, location, hours, description, startDate, applicationDeadline, estCompletion, stateID, reqSkills, assignedStudent);
             }
             finally
             {
@@ -602,8 +620,10 @@ namespace P4Project
                 cmd.Parameters.AddWithValue("@Password", password);
 
                 var reader = cmd.ExecuteReader();
-                reader.Read();
-                ID = GetSafeString(reader, 0);
+                while(reader.Read())
+                {
+                    ID = GetSafeString(reader, 0);
+                }
             }
             finally
             {
