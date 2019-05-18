@@ -88,6 +88,12 @@
     <Compile Include="Frontend\CreateTask.Designer.cs">
       <DependentUpon>CreateTask.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frontend\Header.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frontend\Header.Designer.cs">
+      <DependentUpon>Header.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frontend\LandingPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\CreateTask.resx">
       <DependentUpon>CreateTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frontend\Header.resx">
+      <DependentUpon>Header.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\LandingPage.resx">
       <DependentUpon>LandingPage.cs</DependentUpon>

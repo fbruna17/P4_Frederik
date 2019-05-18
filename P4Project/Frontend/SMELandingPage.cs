@@ -11,15 +11,14 @@ using P4Project.Backend.Classes;
 
 namespace P4Project.Frontend
 {
-    public partial class SMELandingPage : Form
+    public partial class SMELandingPage : Header
     {
         private SMELoggedIn ThisSME { get; }
 
-        public SMELandingPage(SMELoggedIn thisSME)
+        public SMELandingPage(SMELoggedIn thisSME) : base(thisSME)
         {
             ThisSME = thisSME;
             InitializeComponent();
-            CompanyNameBox.Text = "Welcome " + ThisSME.Name;
             InformUserOfTaskDates();
             foreach (TaskSearched task in ThisSME.GetListOfTasks(2))
             {

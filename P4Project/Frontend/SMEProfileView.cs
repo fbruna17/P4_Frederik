@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace P4Project.Frontend
 {
-    public partial class SMEProfileView : Form
+    public partial class SMEProfileView : Header
     {
         private SMEBase SME;
 
-        public SMEProfileView(SMEBase SME)
+        public SMEProfileView(SMEBase SME) : base(SME)
         {
             InitializeComponent();
             this.SME = SME;
