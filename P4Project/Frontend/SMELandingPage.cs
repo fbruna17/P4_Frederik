@@ -11,11 +11,11 @@ using P4Project.Backend.Classes;
 
 namespace P4Project.Frontend
 {
-    public partial class SMELandingPage : Header
+    public partial class SMELandingPage : Form
     {
         private SMELoggedIn ThisSME { get; }
 
-        public SMELandingPage(SMELoggedIn thisSME) : base(thisSME)
+        public SMELandingPage(SMELoggedIn thisSME)
         {
             ThisSME = thisSME;
             InitializeComponent();
