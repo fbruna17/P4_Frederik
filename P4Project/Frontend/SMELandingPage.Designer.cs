@@ -30,17 +30,17 @@
         {
             this.Create_New_Task = new System.Windows.Forms.Button();
             this.TaskOverViewGroup = new System.Windows.Forms.GroupBox();
-            this.SeePublicTasks = new System.Windows.Forms.Button();
-            this.SeePrivateTasks = new System.Windows.Forms.Button();
-            this.SeeOnGoingTasks = new System.Windows.Forms.Button();
-            this.SeeCompletedTasks = new System.Windows.Forms.Button();
-            this.SeeAllTasks = new System.Windows.Forms.Button();
-            this.ViewTask = new System.Windows.Forms.Button();
             this.TaskView = new System.Windows.Forms.DataGridView();
-            this.EstComplete = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ApplicationDeadline = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TaskTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ApplicationDeadline = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstComplete = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ViewTask = new System.Windows.Forms.Button();
+            this.SeeAllTasks = new System.Windows.Forms.Button();
+            this.SeeCompletedTasks = new System.Windows.Forms.Button();
+            this.SeeOnGoingTasks = new System.Windows.Forms.Button();
+            this.SeePrivateTasks = new System.Windows.Forms.Button();
+            this.SeePublicTasks = new System.Windows.Forms.Button();
             this.EditProfile = new System.Windows.Forms.Button();
             this.TaskOverViewGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TaskView)).BeginInit();
@@ -75,72 +75,6 @@
             this.TaskOverViewGroup.TabStop = false;
             this.TaskOverViewGroup.Text = "Task Overview:";
             // 
-            // SeePublicTasks
-            // 
-            this.SeePublicTasks.Location = new System.Drawing.Point(5, 25);
-            this.SeePublicTasks.Margin = new System.Windows.Forms.Padding(2);
-            this.SeePublicTasks.Name = "SeePublicTasks";
-            this.SeePublicTasks.Size = new System.Drawing.Size(70, 23);
-            this.SeePublicTasks.TabIndex = 3;
-            this.SeePublicTasks.Text = "Public";
-            this.SeePublicTasks.UseVisualStyleBackColor = true;
-            this.SeePublicTasks.Click += new System.EventHandler(this.SeePublicTasks_Click);
-            // 
-            // SeePrivateTasks
-            // 
-            this.SeePrivateTasks.Location = new System.Drawing.Point(5, 54);
-            this.SeePrivateTasks.Margin = new System.Windows.Forms.Padding(2);
-            this.SeePrivateTasks.Name = "SeePrivateTasks";
-            this.SeePrivateTasks.Size = new System.Drawing.Size(70, 23);
-            this.SeePrivateTasks.TabIndex = 4;
-            this.SeePrivateTasks.Text = "Private";
-            this.SeePrivateTasks.UseVisualStyleBackColor = true;
-            this.SeePrivateTasks.Click += new System.EventHandler(this.SeePrivateTasks_Click);
-            // 
-            // SeeOnGoingTasks
-            // 
-            this.SeeOnGoingTasks.Location = new System.Drawing.Point(5, 81);
-            this.SeeOnGoingTasks.Margin = new System.Windows.Forms.Padding(2);
-            this.SeeOnGoingTasks.Name = "SeeOnGoingTasks";
-            this.SeeOnGoingTasks.Size = new System.Drawing.Size(70, 23);
-            this.SeeOnGoingTasks.TabIndex = 5;
-            this.SeeOnGoingTasks.Text = "Ongoing";
-            this.SeeOnGoingTasks.UseVisualStyleBackColor = true;
-            this.SeeOnGoingTasks.Click += new System.EventHandler(this.SeeOnGoingTasks_Click);
-            // 
-            // SeeCompletedTasks
-            // 
-            this.SeeCompletedTasks.Location = new System.Drawing.Point(5, 109);
-            this.SeeCompletedTasks.Margin = new System.Windows.Forms.Padding(2);
-            this.SeeCompletedTasks.Name = "SeeCompletedTasks";
-            this.SeeCompletedTasks.Size = new System.Drawing.Size(70, 23);
-            this.SeeCompletedTasks.TabIndex = 6;
-            this.SeeCompletedTasks.Text = "Completed";
-            this.SeeCompletedTasks.UseVisualStyleBackColor = true;
-            this.SeeCompletedTasks.Click += new System.EventHandler(this.SeeCompletedTasks_Click);
-            // 
-            // SeeAllTasks
-            // 
-            this.SeeAllTasks.Location = new System.Drawing.Point(5, 136);
-            this.SeeAllTasks.Margin = new System.Windows.Forms.Padding(2);
-            this.SeeAllTasks.Name = "SeeAllTasks";
-            this.SeeAllTasks.Size = new System.Drawing.Size(70, 23);
-            this.SeeAllTasks.TabIndex = 7;
-            this.SeeAllTasks.Text = "All";
-            this.SeeAllTasks.UseVisualStyleBackColor = true;
-            this.SeeAllTasks.Click += new System.EventHandler(this.SeeAllTasks_Click);
-            // 
-            // ViewTask
-            // 
-            this.ViewTask.Location = new System.Drawing.Point(344, 189);
-            this.ViewTask.Margin = new System.Windows.Forms.Padding(2);
-            this.ViewTask.Name = "ViewTask";
-            this.ViewTask.Size = new System.Drawing.Size(85, 24);
-            this.ViewTask.TabIndex = 8;
-            this.ViewTask.Text = "View Task";
-            this.ViewTask.UseVisualStyleBackColor = true;
-            this.ViewTask.Click += new System.EventHandler(this.ViewTask_Click);
-            // 
             // TaskView
             // 
             this.TaskView.AllowUserToAddRows = false;
@@ -161,19 +95,12 @@
             this.TaskView.Size = new System.Drawing.Size(332, 165);
             this.TaskView.TabIndex = 5;
             // 
-            // EstComplete
+            // TaskTitle
             // 
-            this.EstComplete.Frozen = true;
-            this.EstComplete.HeaderText = "Est. Completion";
-            this.EstComplete.Name = "EstComplete";
-            this.EstComplete.ReadOnly = true;
-            // 
-            // StartDate
-            // 
-            this.StartDate.Frozen = true;
-            this.StartDate.HeaderText = "Start Date";
-            this.StartDate.Name = "StartDate";
-            this.StartDate.ReadOnly = true;
+            this.TaskTitle.Frozen = true;
+            this.TaskTitle.HeaderText = "Task Title";
+            this.TaskTitle.Name = "TaskTitle";
+            this.TaskTitle.ReadOnly = true;
             // 
             // ApplicationDeadline
             // 
@@ -182,16 +109,89 @@
             this.ApplicationDeadline.Name = "ApplicationDeadline";
             this.ApplicationDeadline.ReadOnly = true;
             // 
-            // TaskTitle
+            // StartDate
             // 
-            this.TaskTitle.Frozen = true;
-            this.TaskTitle.HeaderText = "Task Title";
-            this.TaskTitle.Name = "TaskTitle";
-            this.TaskTitle.ReadOnly = true;
+            this.StartDate.Frozen = true;
+            this.StartDate.HeaderText = "Start Date";
+            this.StartDate.Name = "StartDate";
+            this.StartDate.ReadOnly = true;
+            // 
+            // EstComplete
+            // 
+            this.EstComplete.Frozen = true;
+            this.EstComplete.HeaderText = "Est. Completion";
+            this.EstComplete.Name = "EstComplete";
+            this.EstComplete.ReadOnly = true;
+            // 
+            // ViewTask
+            // 
+            this.ViewTask.Location = new System.Drawing.Point(344, 189);
+            this.ViewTask.Margin = new System.Windows.Forms.Padding(2);
+            this.ViewTask.Name = "ViewTask";
+            this.ViewTask.Size = new System.Drawing.Size(85, 24);
+            this.ViewTask.TabIndex = 8;
+            this.ViewTask.Text = "View Task";
+            this.ViewTask.UseVisualStyleBackColor = true;
+            this.ViewTask.Click += new System.EventHandler(this.ViewTask_Click);
+            // 
+            // SeeAllTasks
+            // 
+            this.SeeAllTasks.Location = new System.Drawing.Point(5, 136);
+            this.SeeAllTasks.Margin = new System.Windows.Forms.Padding(2);
+            this.SeeAllTasks.Name = "SeeAllTasks";
+            this.SeeAllTasks.Size = new System.Drawing.Size(70, 23);
+            this.SeeAllTasks.TabIndex = 7;
+            this.SeeAllTasks.Text = "All";
+            this.SeeAllTasks.UseVisualStyleBackColor = true;
+            this.SeeAllTasks.Click += new System.EventHandler(this.SeeAllTasks_Click);
+            // 
+            // SeeCompletedTasks
+            // 
+            this.SeeCompletedTasks.Location = new System.Drawing.Point(5, 109);
+            this.SeeCompletedTasks.Margin = new System.Windows.Forms.Padding(2);
+            this.SeeCompletedTasks.Name = "SeeCompletedTasks";
+            this.SeeCompletedTasks.Size = new System.Drawing.Size(70, 23);
+            this.SeeCompletedTasks.TabIndex = 6;
+            this.SeeCompletedTasks.Text = "Completed";
+            this.SeeCompletedTasks.UseVisualStyleBackColor = true;
+            this.SeeCompletedTasks.Click += new System.EventHandler(this.SeeCompletedTasks_Click);
+            // 
+            // SeeOnGoingTasks
+            // 
+            this.SeeOnGoingTasks.Location = new System.Drawing.Point(5, 81);
+            this.SeeOnGoingTasks.Margin = new System.Windows.Forms.Padding(2);
+            this.SeeOnGoingTasks.Name = "SeeOnGoingTasks";
+            this.SeeOnGoingTasks.Size = new System.Drawing.Size(70, 23);
+            this.SeeOnGoingTasks.TabIndex = 5;
+            this.SeeOnGoingTasks.Text = "Ongoing";
+            this.SeeOnGoingTasks.UseVisualStyleBackColor = true;
+            this.SeeOnGoingTasks.Click += new System.EventHandler(this.SeeOnGoingTasks_Click);
+            // 
+            // SeePrivateTasks
+            // 
+            this.SeePrivateTasks.Location = new System.Drawing.Point(5, 54);
+            this.SeePrivateTasks.Margin = new System.Windows.Forms.Padding(2);
+            this.SeePrivateTasks.Name = "SeePrivateTasks";
+            this.SeePrivateTasks.Size = new System.Drawing.Size(70, 23);
+            this.SeePrivateTasks.TabIndex = 4;
+            this.SeePrivateTasks.Text = "Private";
+            this.SeePrivateTasks.UseVisualStyleBackColor = true;
+            this.SeePrivateTasks.Click += new System.EventHandler(this.SeePrivateTasks_Click);
+            // 
+            // SeePublicTasks
+            // 
+            this.SeePublicTasks.Location = new System.Drawing.Point(5, 25);
+            this.SeePublicTasks.Margin = new System.Windows.Forms.Padding(2);
+            this.SeePublicTasks.Name = "SeePublicTasks";
+            this.SeePublicTasks.Size = new System.Drawing.Size(70, 23);
+            this.SeePublicTasks.TabIndex = 3;
+            this.SeePublicTasks.Text = "Public";
+            this.SeePublicTasks.UseVisualStyleBackColor = true;
+            this.SeePublicTasks.Click += new System.EventHandler(this.SeePublicTasks_Click);
             // 
             // EditProfile
             // 
-            this.EditProfile.Location = new System.Drawing.Point(11, 59);
+            this.EditProfile.Location = new System.Drawing.Point(156, 59);
             this.EditProfile.Margin = new System.Windows.Forms.Padding(2);
             this.EditProfile.Name = "EditProfile";
             this.EditProfile.Size = new System.Drawing.Size(75, 29);
