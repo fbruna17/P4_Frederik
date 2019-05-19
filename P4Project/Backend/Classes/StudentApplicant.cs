@@ -16,13 +16,20 @@ namespace P4Project.Backend.Classes
 
         public string ProfilePicture { get; protected set; }
 
-        // public int RecommendationScore { get; }
+        public int RecommendationScore { get; }
 
         public StudentApplicant(string firstName, string lastName, int id, string email, string education, string profilePicture) : base(firstName, lastName, id)
         {
             Email = email;
             Education = education;
             ProfilePicture = profilePicture;
+        }
+        // Constructer der tager recommendation score med: 
+        public StudentApplicant(string firstName, string lastName, int id, string email, string profilePicture, int recommendationScore) : base(firstName, lastName, id)
+        {
+            Email = email;
+            ProfilePicture = profilePicture;
+            RecommendationScore = recommendationScore;
         }
 
         public StudentApplicant(string firstName, string lastName, int id, string email, string education, string profilePicture, List<SkillStudent> skills) 

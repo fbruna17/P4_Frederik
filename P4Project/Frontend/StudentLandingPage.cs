@@ -16,32 +16,85 @@ namespace P4Project.Frontend
     public partial class StudentLandingPage : Form
     {
 
-        public StudentLoggedIn ThisStudent { get; }
+        public StudentLoggedIn ThisStudent { get; private set; }
         public StudentLandingPage(StudentLoggedIn thisStudent)
         {
             InitializeComponent();
             ThisStudent = thisStudent;
+            SetupForm();
+        }
+        // Denne funktion bruges til at sikre at LandingPage er up to date med det der er i databasen:
+        private void UpdateStudent()
+        {
+            ThisStudent = ThisStudent.UpdateSessionData();
+            RecommendedTasks.Rows.Clear();
+            ApplicationViewGrid.Rows.Clear();
+            SetupForm();
+        }
+
+        private void SetupForm()
+        {
             ShowStudentEmailLabel.Text = ThisStudent.Email;
             ShowStudentNameLabel.Text = ThisStudent.FirstName + " " + ThisStudent.LastName;
             SetupImage();
 
-
+            // De recommended tasks vises:
             foreach (TaskRecommend task in ThisStudent.RecTasks)
             {
                 RecommendedTasks.Rows.Add(task.MakeDataViewGrid());
             }
+            // De eksisterende Applications vises:
+            
+            if (ThisStudent.Applications.Count != 0)
+            {
+                foreach (ApplicationDetailed app in ThisStudent.Applications)
+                {
+                    ApplicationViewGrid.Rows.Add(app.MakeDataViewGridStudent());
+                }
+            }
         }
        
-
         private void ViewRecTask_Click(object sender, EventArgs e)
         {
-
+            // Der skal foretages SQL kald:     !!! Burde måske gøres til Funktion i SQL Control!:
+            SQLControl sql = new SQLControl();
+            // Vi kender Taskname da det står i tabelen:
+            string taskname = RecommendedTasks.SelectedCells[0].Value.ToString();
+            // Ud fra TaskName finder vi en task:
+            TaskRecommend tTask = ThisStudent.RecTasks.Single(t => t.Title == taskname);
+            // Hvor vi bruger ID´et til at finde task detailed:
+            TaskDetailed thisTask = sql.FetchTaskDetailed(tTask.ID);
+            Hide();
+            var tView = new TaskView(thisTask, ThisStudent);
+            tView.ShowDialog();
+            Show();
+            UpdateStudent();
         }
 
         public void SetupImage()
         {
             var ProfilePicture = ThisStudent.ProfilePicture;
             StudentPictureBox.ImageLocation = ProfilePicture;
+        }
+
+        private void ApplicationView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void SeeApplication_Click(object sender, EventArgs e)
+        {
+            // Der skal foretages SQL kald:     !!! Burde måske gøres til Funktion i SQL Control!:
+            SQLControl sql = new SQLControl();
+            string taskTitle = ApplicationViewGrid.SelectedCells[0].Value.ToString();
+            ApplicationDetailed app = ThisStudent.Applications.Single(t => t.TaskTitle == taskTitle);
+            TaskDetailed thisTask = sql.FetchTaskDetailed(app.TaskID);
+
+            Hide();
+            var tView = new TaskView(thisTask, ThisStudent);
+            tView.ShowDialog();
+            Show();
+            UpdateStudent();
         }
     }
 }

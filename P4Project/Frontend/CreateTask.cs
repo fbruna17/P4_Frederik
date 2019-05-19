@@ -20,6 +20,7 @@ namespace P4Project.Frontend
         private UserInputValidation InputValidation;
         SMEBase SME;
         private List<Skill> SkillList;
+        private TaskDetailed ThisTask { get; set; }
         #endregion
 
         #region Constructor(s)
@@ -30,6 +31,13 @@ namespace P4Project.Frontend
             InputValidation = new UserInputValidation();
             SME = sme;
         }
+
+        // Constructer til når der skal edites Task:
+        public CreateTask(TaskDetailed thisTask, SMELoggedIn thisSME)
+        {
+            ThisTask = thisTask;
+            SetUpEditTaskView();
+        }
         #endregion
 
         #region Load
@@ -38,6 +46,14 @@ namespace P4Project.Frontend
 
         }
         #endregion
+
+        private void SetUpEditTaskView()
+        {
+            txtTitle.Text = ThisTask.Title;
+            txtTaskDesc.Text = ThisTask.Description;
+            txtLocation.Text = ThisTask.Location;
+            txtHours.Text = ThisTask.Hours.ToString();
+        }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -55,7 +71,8 @@ namespace P4Project.Frontend
             string title = txtTitle.Text;
             string description = txtTaskDesc.Text;
             string location = txtLocation.Text;
-            int hours = 0;
+            if (int.TryParse(txtHours.Text, out int hours)) { }
+            else MessageBox.Show("Please input a number that estimates the time needed to complete the task in Hours field!");
             int stateid = 1;
             List<Skill> SkillList = new List<Skill>();
             DateTime startdate = StartDeadlinePicker.Value;

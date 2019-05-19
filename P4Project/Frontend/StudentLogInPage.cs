@@ -56,7 +56,7 @@ namespace P4Project.Frontend
             }
             catch (MySqlException ex) 
             {
-                MessageBox.Show("An unexpected SQL error has occures! Error Number: " + ex.Number + " Error message: " + ex.Message);
+                MessageBox.Show("An unexpected SQL error has occures! Error Number: " + ex.Number + " Error message: " + ex.Message + ex.Source);
             }
         }
     }

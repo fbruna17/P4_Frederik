@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Backend\Classes\ApplicationBase.cs" />
+    <Compile Include="Backend\Classes\ApplicationDetailed.cs" />
     <Compile Include="Backend\Classes\Skill.cs" />
     <Compile Include="Backend\Classes\SkillStudent.cs" />
     <Compile Include="Backend\Classes\SMEBase.cs" />
