@@ -12,6 +12,7 @@ namespace P4Project.Backend.Classes
         public List<Skill> RequiredSkills { get; }
         public string Description { get; }
         public int AssignedStudentID { get; }
+        public List<StudentApplicant> Applicants { get; protected set; }
 
         // Denne constructer tager alle de nødvendige informationer for at kunne displaye en Task for en bruger:
         public TaskDetailed(int id, SMEBase owner, string title, string location, int hours, string description, 
@@ -25,6 +26,13 @@ namespace P4Project.Backend.Classes
             AssignedStudentID = assignedStudentID;
             // En funktion fra TaskBase der sætter SMENamet:
             GetSMEName();
+        }
+        // Funktion der henter Applicants for den givne task:
+        public List<StudentApplicant> GetApplicants()
+        {
+            SQLControl sql = new SQLControl();
+            Applicants = sql.FetchApplicantsForTask(ID);
+            return Applicants;
         }
     }
 }

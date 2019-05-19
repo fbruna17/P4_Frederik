@@ -34,12 +34,25 @@
             this.TaskDescriptionBox = new System.Windows.Forms.RichTextBox();
             this.CompanyNameLabel = new System.Windows.Forms.Label();
             this.PracticalInfoBox = new System.Windows.Forms.GroupBox();
+            this.UnApply = new System.Windows.Forms.Button();
+            this.Apply = new System.Windows.Forms.Button();
+            this.EditTask = new System.Windows.Forms.Button();
+            this.ViewApplicants = new System.Windows.Forms.Button();
+            this.EditSkills = new System.Windows.Forms.Button();
             this.DateBox = new System.Windows.Forms.GroupBox();
+            this.EstHours = new System.Windows.Forms.Label();
+            this.CompletionDeadline = new System.Windows.Forms.Label();
+            this.StartDate = new System.Windows.Forms.Label();
+            this.ApplicationDeadline = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.RecSkills = new System.Windows.Forms.ListBox();
             this.Label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.Back = new System.Windows.Forms.Button();
             this.DescriptionBox.SuspendLayout();
             this.PracticalInfoBox.SuspendLayout();
             this.DateBox.SuspendLayout();
@@ -60,7 +73,7 @@
             this.DescriptionBox.Controls.Add(this.label1);
             this.DescriptionBox.Controls.Add(this.TaskDescriptionBox);
             this.DescriptionBox.Controls.Add(this.CompanyNameLabel);
-            this.DescriptionBox.Location = new System.Drawing.Point(92, 91);
+            this.DescriptionBox.Location = new System.Drawing.Point(37, 78);
             this.DescriptionBox.Name = "DescriptionBox";
             this.DescriptionBox.Size = new System.Drawing.Size(282, 347);
             this.DescriptionBox.TabIndex = 1;
@@ -95,41 +108,175 @@
             // 
             // PracticalInfoBox
             // 
+            this.PracticalInfoBox.Controls.Add(this.EditSkills);
             this.PracticalInfoBox.Controls.Add(this.DateBox);
             this.PracticalInfoBox.Controls.Add(this.label3);
             this.PracticalInfoBox.Controls.Add(this.RecSkills);
             this.PracticalInfoBox.Controls.Add(this.Label2);
-            this.PracticalInfoBox.Location = new System.Drawing.Point(409, 91);
+            this.PracticalInfoBox.Location = new System.Drawing.Point(359, 26);
             this.PracticalInfoBox.Name = "PracticalInfoBox";
-            this.PracticalInfoBox.Size = new System.Drawing.Size(353, 347);
+            this.PracticalInfoBox.Size = new System.Drawing.Size(400, 347);
             this.PracticalInfoBox.TabIndex = 2;
             this.PracticalInfoBox.TabStop = false;
             // 
+            // UnApply
+            // 
+            this.UnApply.Location = new System.Drawing.Point(641, 390);
+            this.UnApply.Name = "UnApply";
+            this.UnApply.Size = new System.Drawing.Size(118, 35);
+            this.UnApply.TabIndex = 7;
+            this.UnApply.Text = "Un Apply";
+            this.UnApply.UseVisualStyleBackColor = true;
+            this.UnApply.Visible = false;
+            this.UnApply.Click += new System.EventHandler(this.UnApply_Click);
+            // 
+            // Apply
+            // 
+            this.Apply.Location = new System.Drawing.Point(641, 390);
+            this.Apply.Name = "Apply";
+            this.Apply.Size = new System.Drawing.Size(118, 35);
+            this.Apply.TabIndex = 6;
+            this.Apply.Text = "Apply";
+            this.Apply.UseVisualStyleBackColor = true;
+            this.Apply.Visible = false;
+            this.Apply.Click += new System.EventHandler(this.Apply_Click_1);
+            // 
+            // EditTask
+            // 
+            this.EditTask.Location = new System.Drawing.Point(641, 390);
+            this.EditTask.Name = "EditTask";
+            this.EditTask.Size = new System.Drawing.Size(118, 35);
+            this.EditTask.TabIndex = 3;
+            this.EditTask.Text = "Edit Task";
+            this.EditTask.UseVisualStyleBackColor = true;
+            this.EditTask.Visible = false;
+            this.EditTask.Click += new System.EventHandler(this.EditTask_Click);
+            // 
+            // ViewApplicants
+            // 
+            this.ViewApplicants.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
+            this.ViewApplicants.Location = new System.Drawing.Point(492, 390);
+            this.ViewApplicants.Name = "ViewApplicants";
+            this.ViewApplicants.Size = new System.Drawing.Size(143, 35);
+            this.ViewApplicants.TabIndex = 4;
+            this.ViewApplicants.Text = "View Applicants";
+            this.ViewApplicants.UseVisualStyleBackColor = true;
+            this.ViewApplicants.Visible = false;
+            this.ViewApplicants.Click += new System.EventHandler(this.ViewApplicants_Click);
+            // 
+            // EditSkills
+            // 
+            this.EditSkills.Location = new System.Drawing.Point(73, 198);
+            this.EditSkills.Name = "EditSkills";
+            this.EditSkills.Size = new System.Drawing.Size(82, 23);
+            this.EditSkills.TabIndex = 4;
+            this.EditSkills.Text = "Edit Skills";
+            this.EditSkills.UseVisualStyleBackColor = true;
+            this.EditSkills.Visible = false;
+            // 
             // DateBox
             // 
+            this.DateBox.Controls.Add(this.EstHours);
+            this.DateBox.Controls.Add(this.CompletionDeadline);
+            this.DateBox.Controls.Add(this.StartDate);
+            this.DateBox.Controls.Add(this.ApplicationDeadline);
+            this.DateBox.Controls.Add(this.label8);
+            this.DateBox.Controls.Add(this.label7);
+            this.DateBox.Controls.Add(this.label6);
             this.DateBox.Controls.Add(this.label5);
             this.DateBox.Controls.Add(this.label4);
-            this.DateBox.Location = new System.Drawing.Point(176, 52);
+            this.DateBox.Location = new System.Drawing.Point(161, 52);
             this.DateBox.Name = "DateBox";
-            this.DateBox.Size = new System.Drawing.Size(162, 149);
+            this.DateBox.Size = new System.Drawing.Size(233, 140);
             this.DateBox.TabIndex = 3;
             this.DateBox.TabStop = false;
+            // 
+            // EstHours
+            // 
+            this.EstHours.AutoSize = true;
+            this.EstHours.Location = new System.Drawing.Point(145, 117);
+            this.EstHours.Name = "EstHours";
+            this.EstHours.Size = new System.Drawing.Size(0, 17);
+            this.EstHours.TabIndex = 8;
+            // 
+            // CompletionDeadline
+            // 
+            this.CompletionDeadline.AutoSize = true;
+            this.CompletionDeadline.Location = new System.Drawing.Point(145, 92);
+            this.CompletionDeadline.Name = "CompletionDeadline";
+            this.CompletionDeadline.Size = new System.Drawing.Size(0, 17);
+            this.CompletionDeadline.TabIndex = 7;
+            // 
+            // StartDate
+            // 
+            this.StartDate.AutoSize = true;
+            this.StartDate.Location = new System.Drawing.Point(145, 66);
+            this.StartDate.Name = "StartDate";
+            this.StartDate.Size = new System.Drawing.Size(0, 17);
+            this.StartDate.TabIndex = 6;
+            // 
+            // ApplicationDeadline
+            // 
+            this.ApplicationDeadline.AutoSize = true;
+            this.ApplicationDeadline.Location = new System.Drawing.Point(145, 40);
+            this.ApplicationDeadline.Name = "ApplicationDeadline";
+            this.ApplicationDeadline.Size = new System.Drawing.Size(0, 17);
+            this.ApplicationDeadline.TabIndex = 5;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 117);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(132, 17);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Est. Hours Needed:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 92);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(142, 17);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Completion Deadline:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 66);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 17);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Start Date:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 40);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(141, 17);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Application Deadline:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label4.Location = new System.Drawing.Point(7, 17);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 17);
+            this.label4.Size = new System.Drawing.Size(89, 20);
             this.label4.TabIndex = 0;
             this.label4.Text = "Deadlines:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 69);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label3.Location = new System.Drawing.Point(-4, 69);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 17);
+            this.label3.Size = new System.Drawing.Size(126, 20);
             this.label3.TabIndex = 2;
             this.label3.Text = "Required Skills:";
             // 
@@ -137,10 +284,10 @@
             // 
             this.RecSkills.FormattingEnabled = true;
             this.RecSkills.ItemHeight = 16;
-            this.RecSkills.Location = new System.Drawing.Point(7, 92);
+            this.RecSkills.Location = new System.Drawing.Point(0, 92);
             this.RecSkills.Name = "RecSkills";
             this.RecSkills.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.RecSkills.Size = new System.Drawing.Size(120, 84);
+            this.RecSkills.Size = new System.Drawing.Size(155, 100);
             this.RecSkills.TabIndex = 1;
             // 
             // Label2
@@ -152,21 +299,28 @@
             this.Label2.TabIndex = 0;
             this.Label2.Text = "Practical Information:";
             // 
-            // label5
+            // Back
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(34, 64);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 17);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "label5";
+            this.Back.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            this.Back.Location = new System.Drawing.Point(517, 390);
+            this.Back.Name = "Back";
+            this.Back.Size = new System.Drawing.Size(118, 35);
+            this.Back.TabIndex = 8;
+            this.Back.Text = "Back";
+            this.Back.UseVisualStyleBackColor = true;
+            this.Back.Click += new System.EventHandler(this.Back_Click);
             // 
             // TaskView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Back);
+            this.Controls.Add(this.ViewApplicants);
+            this.Controls.Add(this.EditTask);
+            this.Controls.Add(this.UnApply);
             this.Controls.Add(this.PracticalInfoBox);
+            this.Controls.Add(this.Apply);
             this.Controls.Add(this.DescriptionBox);
             this.Controls.Add(this.TaskNameLabel);
             this.Name = "TaskView";
@@ -196,5 +350,18 @@
         private System.Windows.Forms.ListBox RecSkills;
         private System.Windows.Forms.Label Label2;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button EditTask;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label EstHours;
+        private System.Windows.Forms.Label CompletionDeadline;
+        private System.Windows.Forms.Label StartDate;
+        private System.Windows.Forms.Label ApplicationDeadline;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button ViewApplicants;
+        private System.Windows.Forms.Button EditSkills;
+        private System.Windows.Forms.Button UnApply;
+        private System.Windows.Forms.Button Apply;
+        private System.Windows.Forms.Button Back;
     }
 }

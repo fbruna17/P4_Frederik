@@ -419,7 +419,7 @@ namespace P4Project
             return taskList;
         }
 
-        // Henter alle tasks en given student er Assigned til, ud fra en givent State:
+        // Henter alle tasks en given student er Assigned til, ud fra en givent State:    BLIVER IKKE BRUGT / SKAL IKKE BRUGES / VIRKER IKKE CURRENTLY
         public List<TaskSearched> FetchStudentAssignedTasks(int studentID, int stateID)
         {
             var result = new List<TaskSearched>();
@@ -458,7 +458,7 @@ namespace P4Project
             return result;
         }
 
-        // Henter alle tasks en given student har applied for:
+        // Henter alle tasks en given student har applied for:    BLIVER IKKE BRUGT / SKAL IKKE BRUGES / VIRKER IKKE CURRENTLY
         public List<TaskSearched> FetchStudentAppliedForTasks(int studentID)
         {
             var result = new List<TaskSearched>();
@@ -504,6 +504,172 @@ namespace P4Project
 
             return result;
         }
+        // Funtkion til at hente applications for en given student:
+        public List<ApplicationBase> FetchStudentAppliedBaseInfo(int studentID)
+        {
+            try
+            {
+                // ResList is initialized:
+                List<ApplicationBase> resList = new List<ApplicationBase>();
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT ApplicationID,TaskID,RecScore,AppState FROM Application WHERE StudentID = @StudentID" // Tilføj RecScore!!!!
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    // For hver linje initialiseres der en ny AppBase, der tilføjes til listen:
+                    resList.Add(new ApplicationBase(GetSafeIntMustNotBeNull(reader, 0), studentID, 
+                        GetSafeIntMustNotBeNull(reader, 1), GetSafeInt(reader, 2), GetSafeIntMustNotBeNull(reader, 3)));
+                }
+                return resList;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
+        public string FetchApplicationStateName(int stateID)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT AppStateName FROM ApplicationState WHERE AppStateID = @AppStateID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@AppStateID", stateID);
+
+                string res = string.Empty;
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    res = GetSafeString(reader, 0);
+                }
+                if (res == string.Empty) throw new DataErrorInDataBaseException("STATE");
+                else return res;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
+        public string FetchApplicationTaskTitle(int taskID)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT Title FROM Task WHERE TaskID = @TaskID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+
+                string res = string.Empty;
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    res = GetSafeString(reader, 0);
+                }
+                if (res == string.Empty) throw new DataErrorInDataBaseException("TASKTITLE");
+                else return res;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
+        public string FetchApplicationSMEName(int taskID)
+        {
+            try
+            {
+                Open();
+                // Først hente SMEID: 
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT SMEID FROM Task WHERE TaskID = @TaskID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+
+                int smeID = 0;
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    smeID = GetSafeIntMustNotBeNull(reader, 0);
+                }
+                reader.Close();
+
+                // Nu findes navnet på SMEen:
+                cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT Name FROM SME WHERE SMEID = @SMEID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@SMEID", smeID);
+
+                string res = string.Empty;
+
+                var readerV2 = cmd.ExecuteReader();
+                while (readerV2.Read())
+                {
+                    res = GetSafeString(readerV2, 0);
+                }
+                if (res == string.Empty) throw new DataErrorInDataBaseException("SMENAME");
+                else return res;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
+        public string FetchApplicationStudentName(int studentID)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT FirstName,LastName FROM Student WHERE StudentID = @StudentID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+
+                string res = string.Empty;
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    res = GetSafeString(reader, 0) + " " + GetSafeString(reader, 1);
+                }
+                if (res == " ") throw new DataErrorInDataBaseException("STUDENTNAME");
+                else return res;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
 
         // Henter alle public tasks og gør dem klar til recommendation:
         public List<TaskRecommend> FetchAllTasksForRecommendation()
@@ -557,6 +723,102 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
+
+        // Funktion der henter alle Applied Students til en given task:
+        public List<StudentApplicant> FetchApplicantsForTask(int taskID)
+        {          
+            
+            try
+            {
+                List<StudentApplicant> result = new List<StudentApplicant>();
+                List<int> studentIDs = new List<int>();
+                List<int> recScore = new List<int>();
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT StudentID,RecScore FROM Application WHERE TaskID = @TaskID" // TIlføj RecommendationScore
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    studentIDs.Add(GetSafeIntMustNotBeNull(reader, 0));
+                    recScore.Add(GetSafeIntMustNotBeNull(reader, 1));
+                }
+                reader.Close();
+                int count = 0;
+                foreach (int i in studentIDs)
+                {                    
+                    cmd.CommandText = "SELECT FirstName,LastName,Email,Image_Dir FROM Student WHERE StudentID = @StudentID";
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@StudentID", i);
+                    var readerV2 = cmd.ExecuteReader();
+                    while (readerV2.Read())
+                    {
+                        string firstName = GetSafeString(readerV2, 0);
+                        string lastName = GetSafeString(readerV2, 1);
+                        string email = GetSafeString(readerV2, 2);
+                        string profilePicture = GetSafeString(readerV2, 3);
+                        result.Add(new StudentApplicant(firstName, lastName, i, email, profilePicture, recScore[count]));
+                        count++;
+                    }
+                    readerV2.Close();
+                }
+                return result;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
+        // Funktion der laver en ny entry i application: 
+        public void PostApplication(int studentID, int taskID, int recScore) // Tilføj RecommendationScore!!!!
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = Connection;
+                cmd.CommandText = "INSERT INTO Application(TaskID,StudentID,RecScore,AppState) VALUES(@TaskID,@StudentID,@RecScore,@AppState)";
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+                cmd.Parameters.AddWithValue("@RecScore", recScore);
+                cmd.Parameters.AddWithValue("@AppState", 1);
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
+        // Funktion der fjerner en application:
+        public void RemoveApplication(int applicationID)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = Connection;
+                cmd.CommandText = "DELETE FROM Application WHERE ApplicationID = @ApplicationID";
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@ApplicationID", applicationID);
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
+
         #endregion
 
         #region Skills
