@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using P4Project.Exceptions;
 using P4Project.Backend.Classes;
+using MySql.Data.MySqlClient;
 
 namespace P4Project.Frontend
 {
@@ -34,6 +35,7 @@ namespace P4Project.Frontend
                 SMEDetailed tSME = SQL.FetchSMEDetailedInformation(smeID);
                 SMELoggedIn sme = new SMELoggedIn(username, password, tSME);
                 var smeLandingPage = new SMELandingPage(sme);
+                Hide();
                 Close();
                 smeLandingPage.ShowDialog();
             }
@@ -48,6 +50,10 @@ namespace P4Project.Frontend
             catch(UserDoesNotExistException)
             {
                 MessageBox.Show("Wrong Username or password!");
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An unexpected SQL error has occures! Error Number: " + ex.Number + " Error message: " + ex.Message + ex.Source);
             }
         }
     }
