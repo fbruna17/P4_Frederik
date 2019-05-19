@@ -64,7 +64,7 @@ namespace P4Project
         public void VerifyUsername(string username)
         {
             if (username.Contains("@") || username.Contains(".") || username.Contains(",") || username.Contains("!")) throw new InvalidUsernameException(username);
-            if (username.Length < 5);
+            if (username.Length < 5) { }
         }
         #endregion //End of Universal Input
 
@@ -84,9 +84,9 @@ namespace P4Project
         public void VerifyTask(string title, string description, string location)
         {
             // Tilføj ordentlig validation eks. nummer:
-            if (title == "" || title.Contains("@")) throw new InvalidTaskTitleException(title);
-            if (description == "") throw new InvalidTaskDescriptionExeption(description);
-            if (location == "") throw new InvalidTaskLocationException(location);
+            if (title == "" || title.Contains("@") || title.Length < 3 || title == string.Empty) throw new InvalidTaskTitleException(title);
+            if (description == "" || description.Length < 10 || description == string.Empty) throw new InvalidTaskDescriptionExeption(description);
+            if (location == "" || location.Length < 5 || location == string.Empty) throw new InvalidTaskLocationException(location);
         }
     }
 }

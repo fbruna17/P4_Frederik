@@ -603,7 +603,7 @@ namespace P4Project
                     List<string> tRecSkill = recSkill[i].Split(',').ToList();
                     foreach (string skillID in tRecSkill)
                     {
-                        if (skillID == "" && skillID == string.Empty) ; // Is there is no required skills, nothing should be done :
+                        if (skillID == "" && skillID == string.Empty) { } // Is there is no required skills, nothing should be done :
                         else if (int.TryParse(skillID, out int ID)) tRecSkillIDs.Add(ID);
                         else throw new DataErrorInDataBaseException("TryParse on skillID: " + skillID + i.ToString());
                     }
@@ -1019,6 +1019,42 @@ namespace P4Project
                 cmd.Parameters.AddWithValue("@location", thisTask.Location);
                 cmd.Parameters.AddWithValue("@applicationdeadline", thisTask.ApplicationDeadline);
                 cmd.Parameters.AddWithValue("@completion", thisTask.EstCompletionDate);
+                cmd.Parameters.AddWithValue("@hours", thisTask.Hours);
+                cmd.Parameters.AddWithValue("@stateID", thisTask.StateID);
+                // The call are executed:
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                // Forbindelsen lukkes:
+                if (Connection != null) Close();
+            }
+        }
+
+        // Function that Updates a row in the Task table. Called after Edit Task:
+        public void UpdateTask(TaskDetailed thisTask)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "UPDATE Task SET SMEID=@sme,Title=@title,Description=@description,StartDate=@startdate,Location=@location," +
+                    "Application_Deadline=@applicationdeadline,Completion=@completion,Hours=@hours,StateID=@stateID WHERE TaskID = @TaskID " +
+                    "VALUES (@sme,@title,@description,@startdate,@location,@applicationdeadline,@completion,@hours,@stateID)"
+                };
+                cmd.Prepare();
+
+                // The parameters are added:
+                cmd.Parameters.AddWithValue("@TaskID", thisTask.ID);
+                cmd.Parameters.AddWithValue("@sme", thisTask.Owner.ID);
+                cmd.Parameters.AddWithValue("@title", thisTask.Title);
+                cmd.Parameters.AddWithValue("@description", thisTask.Description);
+                cmd.Parameters.AddWithValue("@startdate", thisTask.Startdate.ToShortDateString());
+                cmd.Parameters.AddWithValue("@location", thisTask.Location);
+                cmd.Parameters.AddWithValue("@applicationdeadline", thisTask.ApplicationDeadline.ToShortDateString());
+                cmd.Parameters.AddWithValue("@completion", thisTask.EstCompletionDate.ToShortDateString());
                 cmd.Parameters.AddWithValue("@hours", thisTask.Hours);
                 cmd.Parameters.AddWithValue("@stateID", thisTask.StateID);
                 // The call are executed:

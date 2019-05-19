@@ -13,13 +13,23 @@ namespace P4Project.Frontend
 {
     public partial class SMELandingPage : Form
     {
-        private SMELoggedIn ThisSME { get; }
+        private SMELoggedIn ThisSME { get; set; }
 
         public SMELandingPage(SMELoggedIn thisSME)
         {
             ThisSME = thisSME;
             InitializeComponent();
             InformUserOfTaskDates();
+            foreach (TaskSearched task in ThisSME.GetListOfTasks(2))
+            {
+                TaskView.Rows.Add(task.MakeDataViewString());
+            }
+        }
+
+        private void UpdateSession()
+        {
+            ThisSME = ThisSME.UpdateSessionData();
+            TaskView.Rows.Clear();
             foreach (TaskSearched task in ThisSME.GetListOfTasks(2))
             {
                 TaskView.Rows.Add(task.MakeDataViewString());
@@ -45,6 +55,7 @@ namespace P4Project.Frontend
             var taskCreate = new CreateTask(ThisSME);
             Hide();
             taskCreate.ShowDialog();
+            UpdateSession();
             Show();
         }
 
@@ -106,6 +117,7 @@ namespace P4Project.Frontend
             Hide();
             var tView = new TaskView(thisTask, ThisSME);
             tView.ShowDialog();
+            UpdateSession();
             Show();
         }
     }

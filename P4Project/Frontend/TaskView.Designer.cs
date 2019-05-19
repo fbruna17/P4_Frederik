@@ -63,6 +63,9 @@
             this.Education = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RecScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StudentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubmitNew = new System.Windows.Forms.Button();
+            this.UpdateTaskSubmit = new System.Windows.Forms.Button();
+            this.EditAgain = new System.Windows.Forms.Button();
             this.DescriptionBox.SuspendLayout();
             this.PracticalInfoBox.SuspendLayout();
             this.DateBox.SuspendLayout();
@@ -420,12 +423,48 @@
             this.StudentID.Name = "StudentID";
             this.StudentID.ReadOnly = true;
             // 
+            // SubmitNew
+            // 
+            this.SubmitNew.Location = new System.Drawing.Point(641, 390);
+            this.SubmitNew.Name = "SubmitNew";
+            this.SubmitNew.Size = new System.Drawing.Size(118, 35);
+            this.SubmitNew.TabIndex = 10;
+            this.SubmitNew.Text = "Submit";
+            this.SubmitNew.UseVisualStyleBackColor = true;
+            this.SubmitNew.Visible = false;
+            this.SubmitNew.Click += new System.EventHandler(this.SubmitNew_Click);
+            // 
+            // UpdateTaskSubmit
+            // 
+            this.UpdateTaskSubmit.Location = new System.Drawing.Point(641, 390);
+            this.UpdateTaskSubmit.Name = "UpdateTaskSubmit";
+            this.UpdateTaskSubmit.Size = new System.Drawing.Size(118, 35);
+            this.UpdateTaskSubmit.TabIndex = 11;
+            this.UpdateTaskSubmit.Text = "Submit";
+            this.UpdateTaskSubmit.UseVisualStyleBackColor = true;
+            this.UpdateTaskSubmit.Visible = false;
+            this.UpdateTaskSubmit.Click += new System.EventHandler(this.UpdateTaskSubmit_Click);
+            // 
+            // EditAgain
+            // 
+            this.EditAgain.Location = new System.Drawing.Point(517, 390);
+            this.EditAgain.Name = "EditAgain";
+            this.EditAgain.Size = new System.Drawing.Size(118, 35);
+            this.EditAgain.TabIndex = 12;
+            this.EditAgain.Text = "Edit";
+            this.EditAgain.UseVisualStyleBackColor = true;
+            this.EditAgain.Visible = false;
+            this.EditAgain.Click += new System.EventHandler(this.EditAgain_Click);
+            // 
             // TaskView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1311, 450);
+            this.Controls.Add(this.EditAgain);
+            this.Controls.Add(this.UpdateTaskSubmit);
             this.Controls.Add(this.ApplicantBox);
+            this.Controls.Add(this.SubmitNew);
             this.Controls.Add(this.Back);
             this.Controls.Add(this.ViewApplicants);
             this.Controls.Add(this.EditTask);
@@ -487,5 +526,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Education;
         private System.Windows.Forms.DataGridViewTextBoxColumn RecScore;
         private System.Windows.Forms.DataGridViewTextBoxColumn StudentID;
+        private System.Windows.Forms.Button SubmitNew;
+        private System.Windows.Forms.Button UpdateTaskSubmit;
+        private System.Windows.Forms.Button EditAgain;
     }
 }

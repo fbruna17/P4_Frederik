@@ -51,9 +51,9 @@ namespace P4Project.Frontend
         {
             if (isSME)
             {
-                var taskCreate = new CreateTask(SME);
+               // var taskCreate = new CreateTask(SME);
                 Hide();
-                taskCreate.ShowDialog();
+             //   taskCreate.ShowDialog();
                 Show();
             }
             else

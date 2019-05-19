@@ -30,5 +30,11 @@ namespace P4Project.Backend.Classes
         {
             return Tasks.FindAll(t => t.StateID == stateID);
         }
+
+        public SMELoggedIn UpdateSessionData()
+        {
+            SQLControl sql = new SQLControl();
+            return new SMELoggedIn(Username, Password, sql.FetchSMEDetailedInformation(ID));
+        }
     }
 }

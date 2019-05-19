@@ -47,8 +47,21 @@ namespace P4Project.Frontend
         }
         // This constructor is used when an SME is creating a new/editting a task. 
         // It is shown when all data has been inputted as a preview of the task:
-        public TaskView(SMELoggedIn sme, string ti)
+        public TaskView(TaskDetailed task, SMELoggedIn sme, bool isUpdate)
         {
+            InitializeComponent();
+            ThisTask = task;
+            ThisSME = sme;
+            InitializeDefault();
+            MessageBox.Show(ThisTask.ApplicationDeadline.ToString());
+            if (isUpdate)
+            {
+                InitializeFormForUpdateTask();
+            }
+            else
+            {
+                InitializeFormForCreateNewTask();
+            }
             // MAAAAAAAAAAANGLER!!!!!!
         }
 
@@ -147,6 +160,19 @@ namespace P4Project.Frontend
             Back.Left = 278;
         }
 
+        private void InitializeFormForCreateNewTask()
+        {
+            Back.Visible = false;
+            EditAgain.Visible = true;
+            SubmitNew.Visible = true;
+        }
+
+        private void InitializeFormForUpdateTask()
+        {
+            Back.Visible = false;
+            EditAgain.Visible = true;
+            UpdateTaskSubmit.Visible = true;
+        }
         // Initializer for Task in progress:        MANGLER!!!!!!!
 
         // Initializer for Edit/Create Task (Displays the data, and gives Confirm/Cancel options:       MANGLER!!!!!!!
@@ -310,6 +336,48 @@ namespace P4Project.Frontend
             // Når Edit Task er færdig, skal denne form kaldes igen med den nye Task, så info er opdateret uden databasekald!
         }
 
+        // When an SME confirms the new task, and submits the task:
+        private void SubmitNew_Click(object sender, EventArgs e)
+        {
+            SQLControl sql = new SQLControl();
+            try
+            {
+                sql.CreateNewTask(ThisTask);
+                MessageBox.Show("The Task has succesfulle been added to the database!");
+                Close();
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show("An Error occures while trying to add this task to the database! Make sure all fields are filled our correctly! " +
+                    "If this error keeps occuring, please contact system administrators!" + ex.Message);
+            }
+        }
+
+        // When an SME confirms the updated task info and submits:    !!!!!!!!!! MANGLER!!!!!!!!!!!!!!
+        private void UpdateTaskSubmit_Click(object sender, EventArgs e)
+        {
+            SQLControl sql = new SQLControl();
+            try
+            {
+                sql.UpdateTask(ThisTask);
+                MessageBox.Show("The Task has succesfulle been added to the database!");
+                Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An Error occures while trying to add this task to the database! Make sure all fields are filled our correctly! " +
+                    "If this error keeps occuring, please contact system administrators!" + ex.Message);
+            }
+        }
+
+
+        private void EditAgain_Click(object sender, EventArgs e)
+        {
+            CreateTask editTask = new CreateTask(ThisTask, ThisSME);
+            Close();
+            editTask.ShowDialog();
+        }
+
         #endregion
 
         #endregion
@@ -346,5 +414,7 @@ namespace P4Project.Frontend
         {
 
         }
+
+
     }
 }
