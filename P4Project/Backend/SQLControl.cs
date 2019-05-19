@@ -681,10 +681,11 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT ApplicationID,StudentID,RecScore,AppState FROM Application WHERE TaskID = @TaskID"
+                    CommandText = "SELECT ApplicationID,StudentID,RecScore,AppState FROM Application WHERE TaskID = @TaskID AND AppState = @AppState"
                 };
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@TaskID", taskID);
+                cmd.Parameters.AddWithValue("@AppState", 1);
 
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -1030,7 +1031,7 @@ namespace P4Project
             }
         }
 
-        // WE NEED EDIT AND DELETE FUNCTIONS!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // WE NEED EDIT AND DELETE/ Change State FUNCTIONS!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         #endregion
 

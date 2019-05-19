@@ -15,14 +15,22 @@ namespace P4Project.Frontend
 {
     public partial class TaskView : Form
     {
+        // This form is used by both SMEs and Students. There are several different constructers, 
+        // - that makes sure the view is made correctly, depending on who logs in, and what relation they have to the task.
+
         private TaskDetailed ThisTask { get; }
+
+        // Used when an SME used this form:
         private SMELoggedIn ThisSME { get; }
 
-        // Dise bruges når en student ser en task:
+        // Used when a student uses this form:
         private StudentLoggedIn ThisStudent { get; }
         private ApplicationBase ThisApplication { get; }
 
-        // Denne construkter bruges til når en SME bruger vil se en af sine egne tasks:
+        //...................................................... CONSTRUCTORS: .........................................................
+
+        #region Constructors:
+        // This Constructor is used when an SME wants to view its own task:
         public TaskView(TaskDetailed task, SMELoggedIn sme)
         {
             InitializeComponent();
@@ -37,7 +45,14 @@ namespace P4Project.Frontend
             }
 
         }
-        // Denne bruges til når en Student ser en task:
+        // This constructor is used when an SME is creating a new/editting a task. 
+        // It is shown when all data has been inputted as a preview of the task:
+        public TaskView(SMELoggedIn sme, string ti)
+        {
+            // MAAAAAAAAAAANGLER!!!!!!
+        }
+
+        // This constructor is used when a student looks up a task:
         public TaskView(TaskDetailed task, StudentLoggedIn student)
         {
             InitializeComponent();
@@ -45,37 +60,44 @@ namespace P4Project.Frontend
             ThisStudent = student;
             InitializeDefault();
             bool alreadyApplied = false;
-            // Først checkes der om den givne Student har applied: 
+            // First we check is the student has already applied for this task: 
             if(ThisStudent.Applications.Count != 0)
             {
                 foreach (ApplicationDetailed a in ThisStudent.Applications)
                 {
                     if (a.TaskID == ThisTask.ID)
-                    {
+                    {   // Now we know that there has already been applied, and we have the relevant application:
                         alreadyApplied = true;
                         ThisApplication = a;
                         break;
                     }
                 }
             }
-
-            // Hvis studenten er assigned:
+            // If the Student is the Assigned Student:
             if (ThisTask.AssignedStudentID == student.ID)
             {
                 InitializeFormForAssignedStudent();
             }
-            // Hvis en student allerede har applied for den givne task:
+            // For when a Student has already applied:
             else if (alreadyApplied)
             {
                 InitializeFormForAppliedStudent();
             }
-            // Hvis ikke studenten er assigned, og tasken er public:
+            // If the student has not already applied, are not assigned, and the task is in Public state:
             else if(ThisTask.StateID == 2)
             {
                 InitializeFormForRegStudent();
             }
         }
 
+        #endregion
+
+        //...................................................... INITIALIZERS: .........................................................
+        // All functions used to set up the form. They are called depending on which constructer is used, 
+        // - and the relation between the user and the task:
+
+        #region Initializers:
+        // This is always called, and simply put in the task data:
         private void InitializeDefault()
         {
             TaskNameLabel.Text = ThisTask.Title;
@@ -91,18 +113,8 @@ namespace P4Project.Frontend
             }
         }
 
-        private void InitializeFormForSMEOwner()
-        {
-            EditTask.Visible = true;
-            ViewApplicants.Text = string.Format("View Applicants ({0})", ThisTask.Applicants.Count);
-            ViewApplicants.Visible = true;
-            Back.Left = 278;
-        }
-
-        private void InitializeFormForAssignedStudent()
-        {
-
-        }
+        // Student specific Initializers:
+        #region Initializers - Student:
 
         private void InitializeFormForRegStudent()
         {
@@ -114,60 +126,62 @@ namespace P4Project.Frontend
             UnApply.Visible = true;
         }
 
-        private void label6_Click(object sender, EventArgs e)
+        // MANGLER !!! Skal måske åbne op for en PDF henter for further instructions?
+        // Eller holde som den er, så der bare ikke er andre muligheder end "Back"...
+        private void InitializeFormForAssignedStudent() 
         {
-
+            
         }
 
-        private void ViewApplicants_Click(object sender, EventArgs e)
+        #endregion
+
+        // SME specific Initializers:
+        #region Initializers - SME:
+
+        // Default initializer for a Task in public or private state:
+        private void InitializeFormForSMEOwner()
         {
-            StudentApplicantsView.Rows.Clear();
-            ThisTask.GetApplicants();
-            ApplicantBox.Visible = true;
-            foreach(StudentApplicant student in ThisTask.Applicants)
-            {   // Dette lambda udtryk går listen af applications igennem, og sikrer at kun applications der er pending vises:
-                if(ThisTask.Applications.First(a => a.StudentID == student.ID).StateID == 1)
-                {
-                    StudentApplicantsView.Rows.Add(student.MakeDataViewString());
-                }
-            }
+            EditTask.Visible = true;
+            ViewApplicants.Text = string.Format("View Applicants ({0})", ThisTask.Applications.Count);
+            ViewApplicants.Visible = true;
+            Back.Left = 278;
         }
 
-        // Function that updates the Applicant data view grid:
-        private void UpdateApplicantView()
+        // Initializer for Task in progress:        MANGLER!!!!!!!
+
+        // Initializer for Edit/Create Task (Displays the data, and gives Confirm/Cancel options:       MANGLER!!!!!!!
+
+        #endregion
+
+        #endregion
+
+        //...................................................... BUTTON CLICKS: .........................................................
+        // All Button clicks, seperate in Student, Universel and SME Specific:
+
+        #region Buttons:
+
+        // Universal Button (Back Button): 
+        private void Back_Click(object sender, EventArgs e)
         {
-            StudentApplicantsView.Rows.Clear();
-            ThisTask.GetApplicants();
-            ThisTask.GetApplications();
-            foreach (StudentApplicant student in ThisTask.Applicants)
-            {   // Dette lambda udtryk går listen af applications igennem, og sikrer at kun applications der er pending vises:
-                if (ThisTask.Applications.First(a => a.StudentID == student.ID).StateID == 1)
-                {
-                    StudentApplicantsView.Rows.Add(student.MakeDataViewString());
-                }
-            }
+            Close();  // Simply closes the form, and returns to whatever form the user was on before
         }
 
-        private void EditTask_Click(object sender, EventArgs e)
-        {
-            CreateTask editTask = new CreateTask(ThisTask, ThisSME);
-            Close();
-            editTask.ShowDialog();
-            // Når Edit Task er færdig, skal denne form kaldes igen med den nye Task, så info er opdateret uden databasekald!
-        }
-
+        // Buttons only visible/usable by students:
+        #region Student Specific Buttons:
+        
+        // When a student clicks apply:
         private void Apply_Click_1(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to apply for this task?", "Confirm Apply", MessageBoxButtons.YesNo);
-            if(result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
             {
                 try
                 {
                     SQLControl sql = new SQLControl();
                     sql.PostApplication(ThisStudent.ID, ThisTask.ID, 5); // Her skal tilføjes REC SCORE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 }
-                catch(MySqlException ex)
-                {                    
+                catch (MySqlException ex)
+                {
                     MessageBox.Show("An error occured while trying to make your application for this task! Please try again later!" + ex.Message, "SQL Error");
                 }
                 MessageBox.Show("Application has been registered!");
@@ -175,6 +189,7 @@ namespace P4Project.Frontend
             }
         }
 
+        // When a student is already applied, they have the option to UnApply:
         private void UnApply_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to unapply for this task?", "Confirm Apply", MessageBoxButtons.YesNo);
@@ -194,16 +209,41 @@ namespace P4Project.Frontend
             }
         }
 
-        private void Back_Click(object sender, EventArgs e)
+        #endregion
+
+        // Buttons only visible/usable by SMEs:
+        #region SME Specific Buttons:
+
+        // When an SME user wants to see the list of applicants:
+        private void ViewApplicants_Click(object sender, EventArgs e)
         {
-            Close();
+            StudentApplicantsView.Rows.Clear();
+            ThisTask.GetApplicants();
+            ThisTask.GetApplications();
+            if(ThisTask.Applications.Count == 0)
+            {
+                MessageBox.Show("No Student has applied for this task yet.");
+            }
+            else
+            {
+                ApplicantBox.Visible = true;
+                if (ThisTask.Applicants.Count != 0)
+                {
+                    foreach (StudentApplicant student in ThisTask.Applicants)
+                    {   // These Lambda Expression goes through the list of applicants, and makes sure only the applications in "Pending" state is shown:
+                        if (ThisTask.Applications.Any(a => a.StudentID == student.ID))
+                        {
+                            if (ThisTask.Applications.First(a => a.StudentID == student.ID).StateID == 1)
+                            {
+                                StudentApplicantsView.Rows.Add(student.MakeDataViewString());
+                            }
+                        }
+                    }
+                }
+            }
         }
 
-        private void CloseApplicantView_Click(object sender, EventArgs e)
-        {
-            ApplicantBox.Visible = false;
-        }
-
+        // When an SME users clicks a student from the Applicant lists, and click "See Profile"     !!!!!!!!!!! MANGLER NOGET!!!!!!!!!!
         private void SeeStudentProfile_Click(object sender, EventArgs e)
         {
             if (StudentApplicantsView.SelectedCells[0].Value == null)
@@ -213,7 +253,7 @@ namespace P4Project.Frontend
             else
             {
                 DataGridViewRow row = StudentApplicantsView.CurrentCell.OwningRow;
-                if(int.TryParse(row.Cells["StudentID"].Value.ToString(), out int studentID))
+                if (int.TryParse(row.Cells["StudentID"].Value.ToString(), out int studentID))
                 {
                     SQLControl sql = new SQLControl();
                     StudentDetailed student = sql.FetchStudentDetailed(studentID);
@@ -223,6 +263,7 @@ namespace P4Project.Frontend
             }
         }
 
+        // When an SME selects a student from the applicants list and wants to reject this student for this task:
         private void RemoveStudentApplicant_Click(object sender, EventArgs e)
         {
             if (StudentApplicantsView.SelectedCells[0].Value == null)
@@ -248,9 +289,61 @@ namespace P4Project.Frontend
                         }
                         MessageBox.Show("Application has been Rejected!");
                         UpdateApplicantView();
+                        ViewApplicants.Text = string.Format("View Applicants ({0})", ThisTask.Applications.Count);
                     }
                 }
             }
+        }
+
+        // Simply closes the GroupBox displaying the list of applicants:
+        private void CloseApplicantView_Click(object sender, EventArgs e)
+        {
+            ApplicantBox.Visible = false;
+        }
+
+        // When an SME wants to Edit the current Task:                     !!!!!!!!!! MANGLER!!!!!!!!!!!!!!!!!
+        private void EditTask_Click(object sender, EventArgs e)
+        {
+            CreateTask editTask = new CreateTask(ThisTask, ThisSME);
+            Close();
+            editTask.ShowDialog();
+            // Når Edit Task er færdig, skal denne form kaldes igen med den nye Task, så info er opdateret uden databasekald!
+        }
+
+        #endregion
+
+        #endregion
+
+        //...................................................... UPDATE FUNCTIONS: .........................................................
+        // Function that updates the Applicant DataViewGrid (Kind of does the same as when the button is clicked):
+        private void UpdateApplicantView()
+        {
+            StudentApplicantsView.Rows.Clear();
+            ThisTask.GetApplicants();
+            ThisTask.GetApplications();
+            if(ThisTask.Applicants.Count != 0)
+            {
+                foreach (StudentApplicant student in ThisTask.Applicants)
+                {   // This "Dobbelchecking" ensures no exception is thrown when a student has already been rejected for a task.
+                    if(ThisTask.Applications.Any(a => a.StudentID == student.ID))
+                    {
+                        if (ThisTask.Applications.First(a => a.StudentID == student.ID).StateID == 1)
+                        {
+                            StudentApplicantsView.Rows.Add(student.MakeDataViewString());
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+
+
+        //...................................................... MISS CLICKS REMOVE LATER .........................................................
+
+        private void label6_Click(object sender, EventArgs e)
+        {
 
         }
     }
