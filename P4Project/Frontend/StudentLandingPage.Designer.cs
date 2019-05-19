@@ -50,12 +50,20 @@
             this.Match = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ViewRecTask = new System.Windows.Forms.Button();
+            this.AssignedTasksBox = new System.Windows.Forms.GroupBox();
+            this.AssignedTaskGridView = new System.Windows.Forms.DataGridView();
+            this.ViewAssignedTask = new System.Windows.Forms.Button();
+            this.TaskAssignedTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SMEAssignedName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CompletionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ApplicationViewGrid)).BeginInit();
             this.ApplicationGroupBox.SuspendLayout();
             this.RecommendedTasksGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RecommendedTasks)).BeginInit();
+            this.AssignedTasksBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AssignedTaskGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -154,18 +162,20 @@
             // 
             this.ApplicationViewGrid.AllowUserToAddRows = false;
             this.ApplicationViewGrid.AllowUserToDeleteRows = false;
+            this.ApplicationViewGrid.BackgroundColor = System.Drawing.SystemColors.Control;
             this.ApplicationViewGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ApplicationViewGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TaskTitleName,
             this.State,
             this.SMEName});
-            this.ApplicationViewGrid.Location = new System.Drawing.Point(5, 10);
+            this.ApplicationViewGrid.Location = new System.Drawing.Point(5, 14);
             this.ApplicationViewGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ApplicationViewGrid.MultiSelect = false;
             this.ApplicationViewGrid.Name = "ApplicationViewGrid";
             this.ApplicationViewGrid.ReadOnly = true;
             this.ApplicationViewGrid.RowTemplate.Height = 24;
             this.ApplicationViewGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ApplicationViewGrid.Size = new System.Drawing.Size(357, 85);
+            this.ApplicationViewGrid.Size = new System.Drawing.Size(357, 107);
             this.ApplicationViewGrid.TabIndex = 4;
             this.ApplicationViewGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ApplicationView_CellContentClick);
             // 
@@ -194,23 +204,23 @@
             // 
             this.ApplicationGroupBox.Controls.Add(this.SeeApplication);
             this.ApplicationGroupBox.Controls.Add(this.ApplicationViewGrid);
-            this.ApplicationGroupBox.Location = new System.Drawing.Point(23, 171);
+            this.ApplicationGroupBox.Location = new System.Drawing.Point(23, 159);
             this.ApplicationGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ApplicationGroupBox.Name = "ApplicationGroupBox";
             this.ApplicationGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ApplicationGroupBox.Size = new System.Drawing.Size(362, 129);
+            this.ApplicationGroupBox.Size = new System.Drawing.Size(362, 158);
             this.ApplicationGroupBox.TabIndex = 5;
             this.ApplicationGroupBox.TabStop = false;
             // 
             // SeeApplication
             // 
-            this.SeeApplication.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.SeeApplication.Location = new System.Drawing.Point(143, 100);
+            this.SeeApplication.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            this.SeeApplication.Location = new System.Drawing.Point(266, 125);
             this.SeeApplication.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SeeApplication.Name = "SeeApplication";
-            this.SeeApplication.Size = new System.Drawing.Size(107, 23);
+            this.SeeApplication.Size = new System.Drawing.Size(88, 23);
             this.SeeApplication.TabIndex = 5;
-            this.SeeApplication.Text = "View Application";
+            this.SeeApplication.Text = "View";
             this.SeeApplication.UseVisualStyleBackColor = true;
             this.SeeApplication.Click += new System.EventHandler(this.SeeApplication_Click);
             // 
@@ -230,6 +240,7 @@
             // 
             this.RecommendedTasks.AllowUserToAddRows = false;
             this.RecommendedTasks.AllowUserToDeleteRows = false;
+            this.RecommendedTasks.BackgroundColor = System.Drawing.SystemColors.Control;
             this.RecommendedTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RecommendedTasks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TaskTitle,
@@ -237,6 +248,7 @@
             this.SME});
             this.RecommendedTasks.Location = new System.Drawing.Point(5, 14);
             this.RecommendedTasks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.RecommendedTasks.MultiSelect = false;
             this.RecommendedTasks.Name = "RecommendedTasks";
             this.RecommendedTasks.ReadOnly = true;
             this.RecommendedTasks.RowTemplate.Height = 24;
@@ -277,11 +289,70 @@
             this.ViewRecTask.UseVisualStyleBackColor = true;
             this.ViewRecTask.Click += new System.EventHandler(this.ViewRecTask_Click);
             // 
+            // AssignedTasksBox
+            // 
+            this.AssignedTasksBox.Controls.Add(this.ViewAssignedTask);
+            this.AssignedTasksBox.Controls.Add(this.AssignedTaskGridView);
+            this.AssignedTasksBox.Location = new System.Drawing.Point(23, 312);
+            this.AssignedTasksBox.Name = "AssignedTasksBox";
+            this.AssignedTasksBox.Size = new System.Drawing.Size(362, 137);
+            this.AssignedTasksBox.TabIndex = 7;
+            this.AssignedTasksBox.TabStop = false;
+            this.AssignedTasksBox.Visible = false;
+            // 
+            // AssignedTaskGridView
+            // 
+            this.AssignedTaskGridView.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.AssignedTaskGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.AssignedTaskGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TaskAssignedTitle,
+            this.SMEAssignedName,
+            this.CompletionDate});
+            this.AssignedTaskGridView.Location = new System.Drawing.Point(6, 10);
+            this.AssignedTaskGridView.MultiSelect = false;
+            this.AssignedTaskGridView.Name = "AssignedTaskGridView";
+            this.AssignedTaskGridView.RowTemplate.Height = 24;
+            this.AssignedTaskGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.AssignedTaskGridView.Size = new System.Drawing.Size(351, 89);
+            this.AssignedTaskGridView.TabIndex = 0;
+            // 
+            // ViewAssignedTask
+            // 
+            this.ViewAssignedTask.Location = new System.Drawing.Point(266, 105);
+            this.ViewAssignedTask.Name = "ViewAssignedTask";
+            this.ViewAssignedTask.Size = new System.Drawing.Size(88, 23);
+            this.ViewAssignedTask.TabIndex = 1;
+            this.ViewAssignedTask.Text = "View";
+            this.ViewAssignedTask.UseVisualStyleBackColor = true;
+            this.ViewAssignedTask.Click += new System.EventHandler(this.ViewAssignedTask_Click);
+            // 
+            // TaskAssignedTitle
+            // 
+            this.TaskAssignedTitle.Frozen = true;
+            this.TaskAssignedTitle.HeaderText = "Task Title";
+            this.TaskAssignedTitle.Name = "TaskAssignedTitle";
+            this.TaskAssignedTitle.ReadOnly = true;
+            // 
+            // SMEAssignedName
+            // 
+            this.SMEAssignedName.Frozen = true;
+            this.SMEAssignedName.HeaderText = "SME Name";
+            this.SMEAssignedName.Name = "SMEAssignedName";
+            this.SMEAssignedName.ReadOnly = true;
+            // 
+            // CompletionDate
+            // 
+            this.CompletionDate.Frozen = true;
+            this.CompletionDate.HeaderText = "Deadline";
+            this.CompletionDate.Name = "CompletionDate";
+            this.CompletionDate.ReadOnly = true;
+            // 
             // StudentLandingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(973, 450);
+            this.Controls.Add(this.AssignedTasksBox);
             this.Controls.Add(this.RecommendedTasksGroupBox);
             this.Controls.Add(this.ApplicationGroupBox);
             this.Controls.Add(this.groupBox2);
@@ -295,6 +366,8 @@
             this.ApplicationGroupBox.ResumeLayout(false);
             this.RecommendedTasksGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.RecommendedTasks)).EndInit();
+            this.AssignedTasksBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.AssignedTaskGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -322,5 +395,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TaskTitleName;
         private System.Windows.Forms.DataGridViewTextBoxColumn State;
         private System.Windows.Forms.DataGridViewTextBoxColumn SMEName;
+        private System.Windows.Forms.GroupBox AssignedTasksBox;
+        private System.Windows.Forms.Button ViewAssignedTask;
+        private System.Windows.Forms.DataGridView AssignedTaskGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TaskAssignedTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SMEAssignedName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CompletionDate;
     }
 }

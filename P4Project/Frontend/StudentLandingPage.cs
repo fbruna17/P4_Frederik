@@ -29,6 +29,7 @@ namespace P4Project.Frontend
             ThisStudent = ThisStudent.UpdateSessionData();
             RecommendedTasks.Rows.Clear();
             ApplicationViewGrid.Rows.Clear();
+            AssignedTaskGridView.Rows.Clear();
             SetupForm();
         }
 
@@ -43,14 +44,27 @@ namespace P4Project.Frontend
             {
                 RecommendedTasks.Rows.Add(task.MakeDataViewGrid());
             }
-            // De eksisterende Applications vises:
-            
+            // De eksisterende Applications vises:         
             if (ThisStudent.Applications.Count != 0)
             {
                 foreach (ApplicationDetailed app in ThisStudent.Applications)
                 {
                     ApplicationViewGrid.Rows.Add(app.MakeDataViewGridStudent());
                 }
+            }
+            // If this student has any assigned tasks in Progress, theese will be shown:
+            if(ThisStudent.AssignedTasks.Count != 0)
+            {
+                bool visible = false;
+                foreach(TaskAssigned task in ThisStudent.AssignedTasks)
+                {
+                    if(task.StateID == 3)
+                    {
+                        AssignedTaskGridView.Rows.Add(task.MakeDataViewString());
+                        visible = true;
+                    }
+                }
+                AssignedTasksBox.Visible = visible;
             }
         }
        
@@ -89,6 +103,20 @@ namespace P4Project.Frontend
             string taskTitle = ApplicationViewGrid.SelectedCells[0].Value.ToString();
             ApplicationDetailed app = ThisStudent.Applications.Single(t => t.TaskTitle == taskTitle);
             TaskDetailed thisTask = sql.FetchTaskDetailed(app.TaskID);
+
+            Hide();
+            var tView = new TaskView(thisTask, ThisStudent);
+            tView.ShowDialog();
+            Show();
+            UpdateStudent();
+        }
+
+        private void ViewAssignedTask_Click(object sender, EventArgs e)
+        {
+            SQLControl sql = new SQLControl();
+            string taskTitle = AssignedTaskGridView.SelectedCells[0].Value.ToString();
+            TaskAssigned task = ThisStudent.AssignedTasks.Single(t => t.Title == taskTitle);
+            TaskDetailed thisTask = sql.FetchTaskDetailed(task.ID);
 
             Hide();
             var tView = new TaskView(thisTask, ThisStudent);

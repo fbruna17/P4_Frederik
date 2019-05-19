@@ -13,6 +13,7 @@ namespace P4Project.Backend.Classes
         private string Password { get; }
         public List<TaskRecommend> RecTasks { get; }
         public List<ApplicationDetailed> Applications { get; set; }
+        public List<TaskAssigned> AssignedTasks { get; private set; }
         private RecMaker Recommend;
 
         public StudentLoggedIn(string firstName, string lastName, int id, string email, string education, List<SkillStudent> skills, 
@@ -24,6 +25,7 @@ namespace P4Project.Backend.Classes
             Recommend = new RecMaker(this);
             RecTasks = Recommend.RecommendTasks();
             GetApplications();
+            GetAssignedTasks();
         }
 
         public StudentLoggedIn(string username, string password, StudentDetailed thisStudent) 
@@ -36,6 +38,7 @@ namespace P4Project.Backend.Classes
             RecTasks = Recommend.RecommendTasks();
             Applications = new List<ApplicationDetailed>();
             GetApplications();
+            GetAssignedTasks();
         }
 
         public List<ApplicationDetailed> GetApplications()
@@ -50,6 +53,12 @@ namespace P4Project.Backend.Classes
                 }
             }
             return Applications;
+        }
+
+        public void GetAssignedTasks()
+        {
+            SQLControl sql = new SQLControl();
+            AssignedTasks = sql.FetchStudentAssignedForTasks(ID);
         }
         
         public StudentLoggedIn UpdateSessionData()

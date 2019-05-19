@@ -379,6 +379,55 @@ namespace P4Project
             }
         }
 
+        // Function that fetch all tasks a given student is applied for:
+        public List<TaskAssigned> FetchStudentAssignedForTasks(int studentID)
+        {
+            try
+            {
+                // The result variable is declared:
+                List<TaskAssigned> result = new List<TaskAssigned>();
+                // Variables are declared:
+                #region Variable Declaration:
+                int taskID = 0;
+                int smeID = 0;
+                string title = string.Empty;
+                DateTime estCompletion = DateTime.Now;
+                int stateID = 0;
+                #endregion
+
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT TaskID,SMEID,Title,Completion,StateID FROM Task WHERE Assigned_Student = @Assigned_Student"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@Assigned_Student", studentID);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    taskID = GetSafeIntMustNotBeNull(reader, 0);
+                    smeID = GetSafeIntMustNotBeNull(reader, 1);
+                    title = GetSafeString(reader, 2);
+                    estCompletion = reader.GetDateTime(3);
+                    stateID = GetSafeInt(reader, 4);
+                    result.Add(new TaskAssigned(new TaskBase(taskID, smeID, title), estCompletion, stateID));
+                }
+                reader.Close();
+                // SMEName is fethced for each task:
+                foreach (TaskAssigned task in result)
+                {  
+                    task.GetSMEName();
+                }
+                return result;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
         // Function used to find out the name of the education a student is attending:
         private string GetEducationName(int eduID)
         {
@@ -419,7 +468,6 @@ namespace P4Project
         {
             try
             {
-
                 // The result variable is declared:
                 TaskDetailed result;
                 // First the list of required skills is fetched:

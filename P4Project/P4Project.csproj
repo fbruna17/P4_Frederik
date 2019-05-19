@@ -58,6 +58,7 @@
     <Compile Include="Backend\Classes\StudentBase.cs" />
     <Compile Include="Backend\Classes\StudentDetailed.cs" />
     <Compile Include="Backend\Classes\StudentLoggedIn.cs" />
+    <Compile Include="Backend\Classes\TaskAssigned.cs" />
     <Compile Include="Backend\Classes\TaskBase.cs" />
     <Compile Include="Backend\Classes\TaskDetailed.cs" />
     <Compile Include="Backend\Classes\TaskRecommend.cs" />
