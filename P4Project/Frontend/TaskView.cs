@@ -28,6 +28,7 @@ namespace P4Project.Frontend
             InitializeComponent();
             ThisTask = task;
             ThisTask.GetApplicants();
+            ThisTask.GetApplications();
             ThisSME = sme;
             InitializeDefault();
             if (ThisTask.SMEID == sme.ID)
@@ -120,8 +121,31 @@ namespace P4Project.Frontend
 
         private void ViewApplicants_Click(object sender, EventArgs e)
         {
+            StudentApplicantsView.Rows.Clear();
             ThisTask.GetApplicants();
-            // Tilføj den form/Popup der skal vise applicants!!!
+            ApplicantBox.Visible = true;
+            foreach(StudentApplicant student in ThisTask.Applicants)
+            {   // Dette lambda udtryk går listen af applications igennem, og sikrer at kun applications der er pending vises:
+                if(ThisTask.Applications.First(a => a.StudentID == student.ID).StateID == 1)
+                {
+                    StudentApplicantsView.Rows.Add(student.MakeDataViewString());
+                }
+            }
+        }
+
+        // Function that updates the Applicant data view grid:
+        private void UpdateApplicantView()
+        {
+            StudentApplicantsView.Rows.Clear();
+            ThisTask.GetApplicants();
+            ThisTask.GetApplications();
+            foreach (StudentApplicant student in ThisTask.Applicants)
+            {   // Dette lambda udtryk går listen af applications igennem, og sikrer at kun applications der er pending vises:
+                if (ThisTask.Applications.First(a => a.StudentID == student.ID).StateID == 1)
+                {
+                    StudentApplicantsView.Rows.Add(student.MakeDataViewString());
+                }
+            }
         }
 
         private void EditTask_Click(object sender, EventArgs e)
@@ -163,7 +187,7 @@ namespace P4Project.Frontend
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("An error occured while trying to remove your application for this task! Please try again later!" + ex.Message, "SQL Error");
+                    MessageBox.Show("An error occured while trying to remove this application! Please try again later!" + ex.Message, "SQL Error");
                 }
                 MessageBox.Show("Application has been removed!");
                 Close();
@@ -173,6 +197,61 @@ namespace P4Project.Frontend
         private void Back_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void CloseApplicantView_Click(object sender, EventArgs e)
+        {
+            ApplicantBox.Visible = false;
+        }
+
+        private void SeeStudentProfile_Click(object sender, EventArgs e)
+        {
+            if (StudentApplicantsView.SelectedCells[0].Value == null)
+            {
+                MessageBox.Show("Please select a student");
+            }
+            else
+            {
+                DataGridViewRow row = StudentApplicantsView.CurrentCell.OwningRow;
+                if(int.TryParse(row.Cells["StudentID"].Value.ToString(), out int studentID))
+                {
+                    SQLControl sql = new SQLControl();
+                    StudentDetailed student = sql.FetchStudentDetailed(studentID);
+                    // Her skal vi have Student Profile View Lavet, som skal tage imod en task og en detailed student. Der skal så tilføjes en knap der hedder assign studen/Reject Student.
+
+                }
+            }
+        }
+
+        private void RemoveStudentApplicant_Click(object sender, EventArgs e)
+        {
+            if (StudentApplicantsView.SelectedCells[0].Value == null)
+            {
+                MessageBox.Show("Please select a student");
+            }
+            else
+            {
+                DataGridViewRow row = StudentApplicantsView.CurrentCell.OwningRow;
+                if (int.TryParse(row.Cells["StudentID"].Value.ToString(), out int studentID))
+                {
+                    DialogResult result = MessageBox.Show("Are you sure you want to reject this application?", "Confirm Apply", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            SQLControl sql = new SQLControl();
+                            sql.RejectApplication(studentID, ThisTask.ID);
+                        }
+                        catch (MySqlException ex)
+                        {
+                            MessageBox.Show("An error occured while trying to reject this application! Please try again later!" + ex.Message, "SQL Error");
+                        }
+                        MessageBox.Show("Application has been Rejected!");
+                        UpdateApplicantView();
+                    }
+                }
+            }
+
         }
     }
 }

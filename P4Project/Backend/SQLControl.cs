@@ -348,56 +348,6 @@ namespace P4Project
             }
         }
 
-        // A function that fetches all student who has applied for a given task, and returns to total list of students:
-        public List<StudentApplicant> FetchApplicantsForTask(int taskID)
-        {
-            try
-            {
-                List<StudentApplicant> result = new List<StudentApplicant>();
-                List<int> studentIDs = new List<int>();
-                List<int> recScore = new List<int>();
-                Open();
-                MySqlCommand cmd = new MySqlCommand
-                {
-                    Connection = Connection,
-                    CommandText = "SELECT StudentID,RecScore FROM Application WHERE TaskID = @TaskID"
-                };
-                cmd.Prepare();
-                cmd.Parameters.AddWithValue("@TaskID", taskID);
-
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    studentIDs.Add(GetSafeIntMustNotBeNull(reader, 0));
-                    recScore.Add(GetSafeIntMustNotBeNull(reader, 1));
-                }
-                reader.Close();
-                int count = 0;
-                foreach (int i in studentIDs)
-                {
-                    cmd.CommandText = "SELECT FirstName,LastName,Email,Image_Dir FROM Student WHERE StudentID = @StudentID";
-                    cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@StudentID", i);
-                    var readerV2 = cmd.ExecuteReader();
-                    while (readerV2.Read())
-                    {
-                        string firstName = GetSafeString(readerV2, 0);
-                        string lastName = GetSafeString(readerV2, 1);
-                        string email = GetSafeString(readerV2, 2);
-                        string profilePicture = GetSafeString(readerV2, 3);
-                        result.Add(new StudentApplicant(firstName, lastName, i, email, profilePicture, recScore[count]));
-                        count++;
-                    }
-                    readerV2.Close();
-                }
-                return result;
-            }
-            finally
-            {
-                if (Connection != null) Close();
-            }
-        }
-
         // Function used to fetch all tasks a student has applied for based on StudentID:
         public List<ApplicationBase> FetchStudentAppliedBaseInfo(int studentID)
         {
@@ -622,6 +572,86 @@ namespace P4Project
             }
         }
 
+        // A function that fetches all student who has applied for a given task, and returns to total list of students:
+        public List<StudentApplicant> FetchApplicantsForTask(int taskID)
+        {
+            try
+            {
+                List<StudentApplicant> result = new List<StudentApplicant>();
+                List<int> studentIDs = new List<int>();
+                List<int> recScore = new List<int>();
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT StudentID,RecScore FROM Application WHERE TaskID = @TaskID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    studentIDs.Add(GetSafeIntMustNotBeNull(reader, 0));
+                    recScore.Add(GetSafeIntMustNotBeNull(reader, 1));
+                }
+                reader.Close();
+                int count = 0;
+                foreach (int i in studentIDs)
+                {
+                    cmd.CommandText = "SELECT FirstName,LastName,Email,Image_Dir FROM Student WHERE StudentID = @StudentID";
+                    cmd.Prepare();
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@StudentID", i);
+                    var readerV2 = cmd.ExecuteReader();
+                    while (readerV2.Read())
+                    {
+                        string firstName = GetSafeString(readerV2, 0);
+                        string lastName = GetSafeString(readerV2, 1);
+                        string email = GetSafeString(readerV2, 2);
+                        string profilePicture = GetSafeString(readerV2, 3);
+                        result.Add(new StudentApplicant(firstName, lastName, i, email, profilePicture, recScore[count]));
+                        count++;
+                    }
+                    readerV2.Close();
+                }
+                return result;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
+        public List<ApplicationBase> FetchAllApplications(int taskID)
+        {
+            try
+            {
+                // ResList is initialized:
+                List<ApplicationBase> resList = new List<ApplicationBase>();
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT ApplicationID,StudentID,RecScore,AppState FROM Application WHERE TaskID = @TaskID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    // Each line read should initialize a new application instance and add it to the result list:
+                    resList.Add(new ApplicationBase(GetSafeIntMustNotBeNull(reader, 0), GetSafeIntMustNotBeNull(reader, 1), 
+                        taskID, GetSafeInt(reader, 2), GetSafeIntMustNotBeNull(reader, 3)));
+                }
+                return resList;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
         #endregion
 
         // .............................................. SKILL SPECIFIC FETCH FUNCTIONS .............................................
@@ -986,7 +1016,7 @@ namespace P4Project
             }
         }
 
-        // Function that removes an application from the database:
+        // Function that removes an application from the database based on Application ID:
         public void RemoveApplication(int applicationID)
         {
             try
@@ -998,6 +1028,54 @@ namespace P4Project
                 cmd.Prepare();
 
                 cmd.Parameters.AddWithValue("@ApplicationID", applicationID);
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+        
+        // A function that changes the state of an application to rejected:
+        public void RejectApplication(int studentID, int taskID)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "UPDATE Application SET AppState = @AppState WHERE StudentID = @StudentID AND TaskID = @TaskID"
+                };
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+                cmd.Parameters.AddWithValue("@AppState", 2);
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
+        // A function that changes the state to Accepted on a given application:
+        public void ConfirmApplication(int studentID, int taskID)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "UPDATE Application SET AppState = @AppState WHERE StudentID = @StudentID AND TaskID = @TaskID"
+                };
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+                cmd.Parameters.AddWithValue("@AppState", 3);
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
                 cmd.ExecuteNonQuery();
             }
             finally

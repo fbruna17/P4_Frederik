@@ -41,7 +41,11 @@ namespace P4Project.Backend.Classes
             ProfilePicture = profilePicture;
         }
 
-        // public void GetRecommendation() { }
+        public string[] MakeDataViewString()
+        {
+            string[] output = { FirstName + " " + LastName, Education, RecommendationScore.ToString(), ID.ToString() };
+            return output;
+        }
 
     }
 }

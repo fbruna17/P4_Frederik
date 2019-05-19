@@ -164,6 +164,7 @@
             this.ApplicationViewGrid.Name = "ApplicationViewGrid";
             this.ApplicationViewGrid.ReadOnly = true;
             this.ApplicationViewGrid.RowTemplate.Height = 24;
+            this.ApplicationViewGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ApplicationViewGrid.Size = new System.Drawing.Size(357, 85);
             this.ApplicationViewGrid.TabIndex = 4;
             this.ApplicationViewGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ApplicationView_CellContentClick);
@@ -239,6 +240,7 @@
             this.RecommendedTasks.Name = "RecommendedTasks";
             this.RecommendedTasks.ReadOnly = true;
             this.RecommendedTasks.RowTemplate.Height = 24;
+            this.RecommendedTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.RecommendedTasks.Size = new System.Drawing.Size(444, 262);
             this.RecommendedTasks.TabIndex = 1;
             // 

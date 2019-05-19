@@ -12,7 +12,8 @@ namespace P4Project.Backend.Classes
         public List<Skill> RequiredSkills { get; }
         public string Description { get; }
         public int AssignedStudentID { get; }
-        public List<StudentApplicant> Applicants { get; protected set; }
+        public List<StudentApplicant> Applicants { get; private set; }
+        public List<ApplicationBase> Applications { get; private set; }
 
         // Denne constructer tager alle de nødvendige informationer for at kunne displaye en Task for en bruger:
         public TaskDetailed(int id, SMEBase owner, string title, string location, int hours, string description, 
@@ -33,6 +34,12 @@ namespace P4Project.Backend.Classes
             SQLControl sql = new SQLControl();
             Applicants = sql.FetchApplicantsForTask(ID);
             return Applicants;
+        }
+
+        public void GetApplications()
+        {
+            SQLControl sql = new SQLControl();
+            Applications = sql.FetchAllApplications(ID);
         }
     }
 }
