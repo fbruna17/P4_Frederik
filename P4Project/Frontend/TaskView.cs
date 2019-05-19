@@ -53,9 +53,10 @@ namespace P4Project.Frontend
             ThisTask = task;
             ThisSME = sme;
             InitializeDefault();
-            MessageBox.Show(ThisTask.ApplicationDeadline.ToString());
+
             if (isUpdate)
             {
+
                 InitializeFormForUpdateTask();
             }
             else
@@ -343,7 +344,7 @@ namespace P4Project.Frontend
             try
             {
                 sql.CreateNewTask(ThisTask);
-                MessageBox.Show("The Task has succesfulle been added to the database!");
+                MessageBox.Show("The Task has succesfully been added to the database!");
                 Close();
             }
             catch(MySqlException ex)
@@ -359,8 +360,9 @@ namespace P4Project.Frontend
             SQLControl sql = new SQLControl();
             try
             {
+                MessageBox.Show(ThisTask.StateID.ToString() + ThisTask.ID.ToString());
                 sql.UpdateTask(ThisTask);
-                MessageBox.Show("The Task has succesfulle been added to the database!");
+                MessageBox.Show("The Task has succesfully been updated!");
                 Close();
             }
             catch (MySqlException ex)

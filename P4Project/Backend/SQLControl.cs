@@ -1040,9 +1040,8 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "UPDATE Task SET SMEID=@sme,Title=@title,Description=@description,StartDate=@startdate,Location=@location," +
-                    "Application_Deadline=@applicationdeadline,Completion=@completion,Hours=@hours,StateID=@stateID WHERE TaskID = @TaskID " +
-                    "VALUES (@sme,@title,@description,@startdate,@location,@applicationdeadline,@completion,@hours,@stateID)"
+                    CommandText = "UPDATE Task SET SMEID = @sme, Title = @title, Description = @description, StartDate = @startdate, Location = @location, " +
+                    "Application_Deadline = @applicationdeadline, Completion = @completion, Hours = @hours, StateID = @stateID WHERE TaskID = @TaskID"
                 };
                 cmd.Prepare();
 
@@ -1051,10 +1050,10 @@ namespace P4Project
                 cmd.Parameters.AddWithValue("@sme", thisTask.Owner.ID);
                 cmd.Parameters.AddWithValue("@title", thisTask.Title);
                 cmd.Parameters.AddWithValue("@description", thisTask.Description);
-                cmd.Parameters.AddWithValue("@startdate", thisTask.Startdate.ToShortDateString());
+                cmd.Parameters.AddWithValue("@startdate", thisTask.Startdate);
                 cmd.Parameters.AddWithValue("@location", thisTask.Location);
-                cmd.Parameters.AddWithValue("@applicationdeadline", thisTask.ApplicationDeadline.ToShortDateString());
-                cmd.Parameters.AddWithValue("@completion", thisTask.EstCompletionDate.ToShortDateString());
+                cmd.Parameters.AddWithValue("@applicationdeadline", thisTask.ApplicationDeadline);
+                cmd.Parameters.AddWithValue("@completion", thisTask.EstCompletionDate);
                 cmd.Parameters.AddWithValue("@hours", thisTask.Hours);
                 cmd.Parameters.AddWithValue("@stateID", thisTask.StateID);
                 // The call are executed:

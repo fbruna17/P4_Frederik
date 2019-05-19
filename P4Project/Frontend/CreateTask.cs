@@ -38,10 +38,12 @@ namespace P4Project.Frontend
         // Constructer for when its Edit a task:
         public CreateTask(TaskDetailed thisTask, SMELoggedIn thisSME)
         {
+
             InitializeComponent();
             SQL = new SQLControl();
             InputValidation = new UserInputValidation();
             ThisTask = thisTask;
+            MessageBox.Show(ThisTask.ID.ToString());
             ThisSME = thisSME;
             SetUpEditTaskView();
         }
@@ -75,7 +77,9 @@ namespace P4Project.Frontend
 
             // This Bool determines if its a submit for Create, or Update:
             bool isUpdate = true;
+            int taskID = 0;
             if (ThisTask == null) isUpdate = false;
+            else taskID = ThisTask.ID;
 
             // All variables are declared, and value from the form are stoed:
             string title = txtTitle.Text;
@@ -95,14 +99,12 @@ namespace P4Project.Frontend
             DateTime startdate = StartDeadlinePicker.Value.Date;
             DateTime applicationdeadline = ApplicationDeadlinePicker.Value.Date;
             DateTime completion = CompDeadlinePicker.Value.Date;
-
-
             
             try
             {
                 // All Data is send through a simple verify check:
                 InputValidation.VerifyTask(title, description, location);
-                TaskDetailed newTask = new TaskDetailed(0, ThisSME, title, location, hours, description, startdate, applicationdeadline, completion, stateid, SkillList, 0);
+                TaskDetailed newTask = new TaskDetailed(taskID, ThisSME, title, location, hours, description, startdate, applicationdeadline, completion, stateid, SkillList, 0);
                 TaskView preview = new TaskView(newTask, ThisSME, isUpdate);
                 preview.ShowDialog();
                 Close();
