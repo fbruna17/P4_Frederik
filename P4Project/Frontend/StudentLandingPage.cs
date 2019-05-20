@@ -22,6 +22,7 @@ namespace P4Project.Frontend
             InitializeComponent();
             ThisStudent = thisStudent;
             SetupForm();
+            CheckProfileInfo();
         }
         // Denne funktion bruges til at sikre at LandingPage er up to date med det der er i databasen:
         private void UpdateStudent()
@@ -66,6 +67,33 @@ namespace P4Project.Frontend
                 }
                 AssignedTasksBox.Visible = visible;
             }
+        }
+
+        // Void function that checks key values on the profile and informs the user:
+        private void CheckProfileInfo()
+        {
+            string item = "";
+            // Checking description:
+            if (ThisStudent.Description == "")
+            {
+                item = item + "Your profile currently lacks a description." + "\n";
+            }
+            // Checking skills:
+            if (ThisStudent.Skills.Count == 0)
+            {
+                item = item + "Your profile currently has no skills connected." + "\n";
+            }
+            // Checking education:
+            if (ThisStudent.Education == "")
+            {
+                item = item + "Your profile currently has no education connected." + "\n";
+            }
+            // Checking assigned tasks:
+            if (ThisStudent.AssignedTasks.Count < 0)
+            {
+                item = item + "You have been assigned for a task!." + "\n";
+            }
+            MessageBox.Show(item);
         }
        
         private void ViewRecTask_Click(object sender, EventArgs e)
