@@ -674,6 +674,8 @@ namespace P4Project
                     Connection = Connection,
                     CommandText = "SELECT TaskID,SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task " +
                     "WHERE StateID = @stateid AND Title LIKE @query"
+                    //Ret til commandtext = query, baseret på radio buttons.
+                    //Task Recommend
                 };
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@stateid", 2);
