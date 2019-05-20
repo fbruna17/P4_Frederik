@@ -130,7 +130,7 @@ namespace P4Project.Frontend
         private void AddSkillButton_Click(object sender, EventArgs e)
         {
             
-            SkillList = SQL.FetchAllSkills();
+            SkillList = SQL.FetchALLSkills();
             foreach (Skill s in SkillList)
             {
                 AddSkillReqList.Items.Add(s.Name);

@@ -88,6 +88,17 @@ namespace P4Project
             }
             return res;
         }
+
+        // Funktion that makes the string of SkillIDs for database Post:
+        private string MakeSkillIDString(List<Skill> skills)
+        {
+            string result = string.Empty;
+            foreach(Skill skill in skills)
+            {
+                result = result + skill.ID + ',';
+            }
+            return result.Remove(result.Length - 1);
+        }
         #endregion
 
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! FETCH FUNCTIONS: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -290,7 +301,7 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT FirstName,LastName,Email,Description,EducationID,Image_Dir,Unverified_SkillSet,Verified_SkillSet FROM Student WHERE StudentID = @StudentID LIMIT 1"
+                    CommandText = "SELECT FirstName,LastName,Email,Description,Education,Image_Dir,Unverified_SkillSet,Verified_SkillSet,Pdf_Dir FROM Student WHERE StudentID = @StudentID LIMIT 1"
                 };
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@StudentID", id);
@@ -301,10 +312,11 @@ namespace P4Project
                 string lastname = string.Empty;
                 string email = string.Empty;
                 string description = string.Empty;
-                int eduID = 0;
+                string education = string.Empty;
                 string profilepicture = string.Empty;
                 List<string> suvSkills = new List<string>();
                 List<string> svSkills = new List<string>();
+                string resume = string.Empty;
                 #endregion
 
                 var reader = cmd.ExecuteReader();
@@ -314,10 +326,11 @@ namespace P4Project
                     lastname = GetSafeString(reader, 1);
                     email = GetSafeString(reader, 2);
                     description = GetSafeString(reader, 3);
-                    eduID = GetSafeInt(reader, 4);
+                    education = GetSafeString(reader, 4);
                     profilepicture = GetSafeString(reader, 5);
                     suvSkills = GetSafeString(reader, 6).Split(',').ToList();
                     svSkills = GetSafeString(reader, 7).Split(',').ToList();
+                    resume = GetSafeString(reader, 8);
                 }
                 // Reader is closed:
                 reader.Close();
@@ -334,12 +347,9 @@ namespace P4Project
                 }
 
                 List<SkillStudent> skills = uvSkills.Concat(vSkills).ToList();
-                // Education name is found:
-                string education = string.Empty;
-                if (eduID != 0) education = GetEducationName(eduID);
 
                 // The new student instance is made and returned:
-                var student = new StudentDetailed(firstname, lastname, id, email, education, skills, description, profilepicture);
+                var student = new StudentDetailed(firstname, lastname, id, email, education, skills, description, profilepicture, resume);
                 return student;
             }
             finally
@@ -456,7 +466,39 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
+
+        //Function that fetches all educations from the database:
+        public List<EducationBase> FetchALLEducations()
+        {
+            try
+            {
+                var result = new List<EducationBase>();
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT * FROM Education"
+                };
+                cmd.Prepare();
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int id = GetSafeIntMustNotBeNull(reader, 0);
+                    string name = GetSafeString(reader, 1);
+                    result.Add(new EducationBase(id, name));
+                }
+                reader.Close();
+                return result;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+        
         #endregion
+
+
 
         // .............................................. TASK SPECIFIC FETCH FUNCTIONS .............................................
         // Functions that are used to fetch Task information:
@@ -709,28 +751,27 @@ namespace P4Project
         #region Skill-specific Fetch:
         // A function that retrieves all current skills defined in the database: 
         // Used when making a new task, or when a student wants to update his or hers skills set:
-        public List<Skill> FetchAllSkills()
+        public List<Skill> FetchALLSkills()
         {
-            var resList = new List<Skill>();
             try
             {
+                var result = new List<Skill>();
                 Open();
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT SkillID,SkillName,Category FROM Skill"
+                    CommandText = "SELECT * FROM Skill"
                 };
                 cmd.Prepare();
-
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    int skillid = reader.GetInt32(0);
-                    string skillname = reader.GetString(1);
-                    string category = reader.GetString(2);
-                    resList.Add(new Skill(skillid, skillname, category));
+                    int id = GetSafeIntMustNotBeNull(reader, 0);
+                    string name = GetSafeString(reader, 1);
+                    result.Add(new Skill(id, name));
                 }
-                return resList;
+                reader.Close();
+                return result;
             }
             finally
             {
@@ -769,6 +810,37 @@ namespace P4Project
             }
         }
 
+        public Skill FetchSkillInforBasedOnName(string skillName)
+        {
+            try
+            {
+                Skill result = new Skill(0, "");
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT * FROM Skill WHERE SkillName = @SkillName LIMIT 1"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@SkillName", skillName);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int id = GetSafeIntMustNotBeNull(reader, 0);
+                    string name = GetSafeString(reader, 1);
+                    string catagory = GetSafeString(reader, 2);
+                    result = new Skill(id, name, catagory);
+                }
+                reader.Close();
+
+                return result;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+
+        }
         #endregion
 
         // .............................................. APPLICATION SPECIFIC FETCH FUNCTIONS .............................................
@@ -988,7 +1060,49 @@ namespace P4Project
             }
         }
 
-        // WE NEED AN EDIT PROFILE FUNCTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // This Function is called when a student submits profile editing:
+        public void UpdateStudentProfile(StudentDetailed thisStudent)
+        {
+            try
+            {
+                List<Skill> verifiedSkillList = new List<Skill>();
+                List<Skill> unverifiedSkillList = new List<Skill>();
+                foreach (SkillStudent skill in thisStudent.Skills)
+                {
+                    if (skill.Verified) verifiedSkillList.Add(new Skill(skill.ID, skill.Name));
+                    else unverifiedSkillList.Add(new Skill(skill.ID, skill.Name));
+                }
+                string verifiedSkills = MakeSkillIDString(verifiedSkillList);
+                string unverifiedSkills = MakeSkillIDString(unverifiedSkillList);
+
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "UPDATE Student SET Description = @Description, Email = @Email, EducationID = @EducationID, " +
+                    "Verified_SkillSet = @Verified_SkillSet, Unverified_SkillSet = @Unverified_SkillSet, Image_Dir = @Image_Dir, Pdf_Dir = @Pdf_Dir " +
+                    "WHERE StudentID = @StudentID"
+                };
+                cmd.Prepare();
+
+                // The parameters are added:
+                cmd.Parameters.AddWithValue("@StudentID", thisStudent.ID);
+                cmd.Parameters.AddWithValue("@Description", thisStudent.Description);
+                cmd.Parameters.AddWithValue("@Email", thisStudent.Email);
+                cmd.Parameters.AddWithValue("@EducationID", thisStudent.Education);
+                cmd.Parameters.AddWithValue("@Verified_SkillSet", verifiedSkills);
+                cmd.Parameters.AddWithValue("@Unverified_SkillSet", unverifiedSkills);
+                cmd.Parameters.AddWithValue("@Image_Dir", thisStudent.ProfilePicture);
+                cmd.Parameters.AddWithValue("@Pdf_Dir", thisStudent.Resume);
+                // The call are executed:
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                // Forbindelsen lukkes:
+                if (Connection != null) Close();
+            }
+        }
 
         #endregion
 
