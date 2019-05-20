@@ -26,10 +26,10 @@ namespace P4Project
         // Functions that are used in must database calls:
 
         #region Universal SQL
-        
+
         // a New Open() Function is made, that ensures that a new connection is opened:
         public void Open()
-        {         
+        {
             if(Connection.State != ConnectionState.Open)
             {
                 Connection.Close();
@@ -97,7 +97,7 @@ namespace P4Project
             {
                 result = result + skill.ID + ',';
             }
-            if (result.Length == 0) return result; 
+            if (result.Length == 0) return result;
             return result.Remove(result.Length - 1);
         }
         #endregion
@@ -112,7 +112,7 @@ namespace P4Project
 
         #region Generel Fetch:
 
-        // A function that retrieves Information based on Username and password. 
+        // A function that retrieves Information based on Username and password.
         // Works for both SMEs and Student, as the table name is a parameter:
         public string LogInRequest(string username, string password, string table)
         {
@@ -151,7 +151,7 @@ namespace P4Project
         // Functions that are used too retrive SME details from the database:
 
         #region SME-specific Fetch:
-        
+
         // A function for fetching all details of a specifik SME based on its ID:
         public SMEDetailed FetchSMEDetailedInformation(int smeID)
         {
@@ -428,7 +428,7 @@ namespace P4Project
                 reader.Close();
                 // SMEName is fethced for each task:
                 foreach (TaskAssigned task in result)
-                {  
+                {
                     task.GetSMEName();
                 }
                 return result;
@@ -496,7 +496,7 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
-        
+
         #endregion
 
 
@@ -635,7 +635,7 @@ namespace P4Project
                 reader.Close();
                 // The result list is initialized:
                 List<TaskRecommend> resultList = new List<TaskRecommend>();
-                // The list of TaskBase will now be paired with the list of required skills: 
+                // The list of TaskBase will now be paired with the list of required skills:
                 int i = 0;
                 foreach (TaskBase task in tempTaskList)
                 {
@@ -734,7 +734,7 @@ namespace P4Project
                 while (reader.Read())
                 {
                     // Each line read should initialize a new application instance and add it to the result list:
-                    resList.Add(new ApplicationBase(GetSafeIntMustNotBeNull(reader, 0), GetSafeIntMustNotBeNull(reader, 1), 
+                    resList.Add(new ApplicationBase(GetSafeIntMustNotBeNull(reader, 0), GetSafeIntMustNotBeNull(reader, 1),
                         taskID, GetSafeInt(reader, 2), GetSafeIntMustNotBeNull(reader, 3)));
                 }
                 return resList;
@@ -750,7 +750,7 @@ namespace P4Project
         // Functions that are used to fetch Skill information:
 
         #region Skill-specific Fetch:
-        // A function that retrieves all current skills defined in the database: 
+        // A function that retrieves all current skills defined in the database:
         // Used when making a new task, or when a student wants to update his or hers skills set:
         public List<Skill> FetchALLSkills()
         {
@@ -780,7 +780,7 @@ namespace P4Project
             }
         }
 
-        // Function that retrieves skill info based on a list of SkillIDs. 
+        // Function that retrieves skill info based on a list of SkillIDs.
         public List<Skill> FetchSkillInfo(List<int> skillIDs)
         {
             var resList = new List<Skill>();
@@ -912,7 +912,7 @@ namespace P4Project
             try
             {
                 Open();
-                // Først hente SMEID: 
+                // Først hente SMEID:
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
@@ -1197,7 +1197,7 @@ namespace P4Project
         // Functions that POSTS/UPDATES or DELETES on the Application table:
         #region Application-specific Post/Update/Delete
 
-        // Function that makes a new entry in the application table 
+        // Function that makes a new entry in the application table
         public void PostApplication(int studentID, int taskID, int recScore)
         {
             try
@@ -1241,7 +1241,7 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
-        
+
         // A function that changes the state of an application to rejected:
         public void RejectApplication(int studentID, int taskID)
         {
