@@ -7,14 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using P4Project.Backend.Classes;
 
 namespace P4Project.Frontend
 {
     public partial class Search : Form
     {
+        private SQLControl SQL;
         public Search()
         {
             InitializeComponent();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
