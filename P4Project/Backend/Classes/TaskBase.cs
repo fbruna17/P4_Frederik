@@ -23,7 +23,7 @@ namespace P4Project.Backend.Classes
         {
             ID = id;
             SMEID = smeID;
-            GetSMEName();
+            //GetSMEName();
         }
         // Og hvis der kommer title med:
         public TaskBase(int id, int smeID, string title)
@@ -31,7 +31,7 @@ namespace P4Project.Backend.Classes
             ID = id;
             SMEID = smeID;
             Title = title;
-            GetSMEName();
+            //GetSMEName();
         }
         // Og hvis der kommer SMEName med:
         public TaskBase(int id, int smeID, string title, string smeName)

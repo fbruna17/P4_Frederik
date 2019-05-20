@@ -45,7 +45,7 @@ namespace P4Project.Backend.Classes
 
         public string[] MakeDataViewString()
         {
-            string[] output = { Title, ApplicationDeadline.ToShortDateString(), Startdate.ToString(), EstCompletionDate.ToString() };
+            string[] output = { Title, SMEName, ApplicationDeadline.ToShortDateString(), Startdate.ToShortDateString(), EstCompletionDate.ToShortDateString() };
             return output;
         }
     }

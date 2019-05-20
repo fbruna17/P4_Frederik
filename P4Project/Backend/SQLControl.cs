@@ -672,7 +672,7 @@ namespace P4Project
                 {
                     Connection = Connection,
                     CommandText = "SELECT TaskID,SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task " +
-                    "WHERE StateID = @stateid AND Title LIKE @query"
+                    "WHERE StateID = @stateid AND Title LIKE '@query'"
                     //Ret til commandtext = query, baseret på radio buttons.
                     //Task Recommend
                 };
@@ -688,14 +688,13 @@ namespace P4Project
                 {
                     int taskID = GetSafeIntMustNotBeNull(reader, 0);
                     int smeID = GetSafeIntMustNotBeNull(reader, 1);
-                    SMEBase owner = FetchSMEBaseInformation(smeID);
                     string title = GetSafeString(reader, 2);
                     string location = GetSafeString(reader, 3);
                     int hours = GetSafeIntMustNotBeNull(reader, 4);
                     DateTime applicationdeadline = reader.GetDateTime(5);
                     DateTime startdate = reader.GetDateTime(6);
                     DateTime completiondate = reader.GetDateTime(7);
-                    TaskList.Add(new TaskSearched(taskID, owner.ID, title, location, hours, applicationdeadline, startdate, completiondate));
+                    TaskList.Add(new TaskSearched(taskID, smeID, title, location, hours, applicationdeadline, startdate, completiondate));
                 }
                 reader.Close();
                 return TaskList;
