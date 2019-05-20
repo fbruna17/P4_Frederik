@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 using P4Project.Backend.Classes;
 
 namespace P4Project.Frontend
@@ -21,6 +22,13 @@ namespace P4Project.Frontend
         private StudentLoggedIn ThisStudent { get; set; }
 
         private SQLControl sql = new SQLControl();
+
+        private FTPControl FTP = new FTPControl();
+
+        //Declearing a string for the local full path of the file.
+        private string LocalPDFPath = string.Empty;
+        //Declearing a string for the file extension of the file.
+        private string LocalPDFFiletype = string.Empty;
 
 
         //...................................................... CONSTRUCTORS: .........................................................
@@ -70,6 +78,7 @@ namespace P4Project.Frontend
             StudentDescBox.Text = student.Description;
             EmailLabel.Text = student.Email;
             EducationLabel.Text = student.Education;
+            StudentPictureBox.ImageLocation = student.ProfilePicture;
 
             // Former tasks is initialized:
             student.GetAssignedTasks();
@@ -97,6 +106,7 @@ namespace P4Project.Frontend
             EditEmail.Text = ThisStudent.Email;
             StudentDescBox.ReadOnly = false;
             SubmitEdit.Visible = true;
+            ChoosePDFBtn.Visible = true;
 
             // Education editing is initialized:
             InitializeEducationEditing();
@@ -178,6 +188,21 @@ namespace P4Project.Frontend
         // A function that submits the new information on the student:
         private void SubmitEdit_Click(object sender, EventArgs e)
         {
+            var File_Path = LocalPDFPath;
+            var File_Type = LocalPDFFiletype;
+            var serverFilePathDir = string.Empty;
+            if (File_Path != string.Empty)
+            {
+
+                serverFilePathDir = FTP.UploadFile(File_Path, File_Type);
+            }
+
+
+            string resume = ThisStudent.Resume;
+            if(serverFilePathDir != string.Empty)
+            {
+                resume = serverFilePathDir;
+            }
             string email = EditEmail.Text;
             string description = StudentDescBox.Text;
             string education = ThisStudent.Education;
@@ -187,7 +212,7 @@ namespace P4Project.Frontend
             }
             // ProfilePicture Hvis ikke det ændres på student objektet.
 
-            StudentDetailed newStudInfo = new StudentDetailed(ThisStudent.FirstName, ThisStudent.LastName, ThisStudent.ID, email, education, ThisStudent.Skills, description, ThisStudent.ProfilePicture, ThisStudent.Resume);
+            StudentDetailed newStudInfo = new StudentDetailed(ThisStudent.FirstName, ThisStudent.LastName, ThisStudent.ID, email, education, ThisStudent.Skills, description, ThisStudent.ProfilePicture, resume);
 
             // Verifies!
             try
@@ -240,6 +265,45 @@ namespace P4Project.Frontend
 
         }
 
+        private void ChoosePDFBtn_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                //Sets the FileDialog "Start path" to the C drive
+                openFileDialog.InitialDirectory = "c:\\";
+                //Applies filter for allowed filetypes
+                openFileDialog.Filter = "Choose your resumé file (*.pdf)|*.pdf|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Stores the name of the chosen file into "fileName"
+                    var fileName = openFileDialog.SafeFileName;
+                    //Stores the fileextension into "fileType"
+                    var fileType = Path.GetExtension(openFileDialog.FileName);
+                    //Get the path of specified file
+                    var filePath = openFileDialog.FileName;
+                    //Displays the filename of the chosen PDF in the label.
+                    ResumeNameLabel.Text = "Your file: " + fileName;
+                    //Stores the local path into the already decleared "LocalPDFPath" string.
+                    LocalPDFPath = filePath;
+                    //Stores the file extension into the already decleared "LocalPDFFiletype" string.
+                    LocalPDFFiletype = fileType;
+                }
+            }
+        }
+
+        private void ResumeLink()
+        {
+            // Change the color of the link text by setting LinkVisited   
+            // to true.  
+            StudentResumeLink.LinkVisited = true;
+            //Call the Process.Start method to open the default browser   
+            //with a URL:  
+            System.Diagnostics.Process.Start(ThisStudent.Resume);
+        }
+
         #endregion
 
         //...................................................... MISS CLICKS REMOVE LATER .........................................................
@@ -254,7 +318,14 @@ namespace P4Project.Frontend
 
         private void StudentResumeLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            if(ThisStudent.Resume != "")
+            {
+                ResumeLink();
+            }
+            else
+            {
+                MessageBox.Show("This student hasn't uploaded a resumé yet.");
+            }
         }
 
         private void NameLabel_Click(object sender, EventArgs e)
@@ -278,6 +349,6 @@ namespace P4Project.Frontend
 
         }
 
-
+        
     }
 }

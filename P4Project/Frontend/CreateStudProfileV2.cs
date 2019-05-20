@@ -29,10 +29,7 @@ namespace P4Project
         //Declearing a string for the file extension of the image.
         private string LocalImageFiletype = string.Empty;
 
-        //Declearing a string for the local full path of the file.
-        private string LocalPDFPath = string.Empty;
-        //Declearing a string for the file extension of the file.
-        private string LocalPDFFiletype = string.Empty;
+
         #endregion
 
         #region Constructor(s)

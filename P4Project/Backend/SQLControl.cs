@@ -97,6 +97,7 @@ namespace P4Project
             {
                 result = result + skill.ID + ',';
             }
+            if (result.Length == 0) return result;
             return result.Remove(result.Length - 1);
         }
         #endregion
@@ -1079,7 +1080,7 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "UPDATE Student SET Description = @Description, Email = @Email, EducationID = @EducationID, " +
+                    CommandText = "UPDATE Student SET Description = @Description, Email = @Email, Education = @Education, " +
                     "Verified_SkillSet = @Verified_SkillSet, Unverified_SkillSet = @Unverified_SkillSet, Image_Dir = @Image_Dir, Pdf_Dir = @Pdf_Dir " +
                     "WHERE StudentID = @StudentID"
                 };
@@ -1089,7 +1090,7 @@ namespace P4Project
                 cmd.Parameters.AddWithValue("@StudentID", thisStudent.ID);
                 cmd.Parameters.AddWithValue("@Description", thisStudent.Description);
                 cmd.Parameters.AddWithValue("@Email", thisStudent.Email);
-                cmd.Parameters.AddWithValue("@EducationID", thisStudent.Education);
+                cmd.Parameters.AddWithValue("@Education", thisStudent.Education);
                 cmd.Parameters.AddWithValue("@Verified_SkillSet", verifiedSkills);
                 cmd.Parameters.AddWithValue("@Unverified_SkillSet", unverifiedSkills);
                 cmd.Parameters.AddWithValue("@Image_Dir", thisStudent.ProfilePicture);
