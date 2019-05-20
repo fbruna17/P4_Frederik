@@ -106,8 +106,9 @@ namespace P4Project.Frontend
                 InputValidation.VerifyTask(title, description, location);
                 TaskDetailed newTask = new TaskDetailed(taskID, ThisSME, title, location, hours, description, startdate, applicationdeadline, completion, stateid, SkillList, 0);
                 TaskView preview = new TaskView(newTask, ThisSME, isUpdate);
-                preview.ShowDialog();
                 Close();
+                preview.ShowDialog();
+
             }
             #region Exception Catching:
             catch (InvalidTaskTitleException ex)
