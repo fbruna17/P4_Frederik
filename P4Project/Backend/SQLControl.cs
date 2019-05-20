@@ -663,7 +663,49 @@ namespace P4Project
             }
         }
 
-        // A function that fetches all student who has applied for a given task, and returns to total list of students:
+        // Function used to search for public tasks:
+        public List<TaskSearched> SearchTasks(string Query)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT TaskID,SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task " +
+                    "WHERE StateID = @stateid AND Title LIKE @query"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@stateid", 2);
+                cmd.Parameters.AddWithValue("@query", Query);
+
+                var reader = cmd.ExecuteReader();
+                // A temp list is initialized to store the temp data:
+                var TaskList = new List<TaskSearched>();
+
+                while (reader.Read())
+                {
+                    int taskID = GetSafeIntMustNotBeNull(reader, 0);
+                    int smeID = GetSafeIntMustNotBeNull(reader, 1);
+                    SMEBase owner = FetchSMEBaseInformation(smeID);
+                    string title = GetSafeString(reader, 2);
+                    string location = GetSafeString(reader, 3);
+                    int hours = GetSafeIntMustNotBeNull(reader, 4);
+                    DateTime applicationdeadline = reader.GetDateTime(5);
+                    DateTime startdate = reader.GetDateTime(6);
+                    DateTime completiondate = reader.GetDateTime(7);
+                    TaskList.Add(new TaskSearched(taskID, owner, title, location, hours, applicationdeadline, startdate, completiondate));
+                }
+                reader.Close();
+                return TaskList;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
+        // A function that fetches all student that have applied for a given task, and returns to total list of students:
         public List<StudentApplicant> FetchApplicantsForTask(int taskID)
         {
             try

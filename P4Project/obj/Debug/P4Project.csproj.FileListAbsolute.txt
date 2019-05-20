@@ -126,4 +126,4 @@ C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Front
 C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.Header.resources
 C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.StudentLandingPage.resources
 C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.TaskView.resources
-C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.Search.resources
+C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.Search.resources
