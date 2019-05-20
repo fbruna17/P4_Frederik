@@ -148,7 +148,7 @@ namespace P4Project.Frontend
             {
                 // All Data is send through a simple verify check:
                 InputValidation.VerifyTask(title, description, applicationdeadline, startdate, completion, hours, isUpdate);
-                TaskDetailed newTask = new TaskDetailed(taskID, ThisSME, title, location, hours, description, startdate, applicationdeadline, completion, stateid, SkillList, 0);
+                TaskDetailed newTask = new TaskDetailed(taskID, ThisSME.ID, title, location, hours, description, startdate, applicationdeadline, completion, stateid, SkillList, 0);
                 TaskView preview = new TaskView(newTask, ThisSME, isUpdate);
                 Close();
                 preview.ShowDialog();
