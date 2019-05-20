@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using P4Project.Exceptions;
 using MySql.Data.MySqlClient;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace P4Project
 {
@@ -66,7 +67,35 @@ namespace P4Project
             if (username.Contains("@") || username.Contains(".") || username.Contains(",") || username.Contains("!")) throw new InvalidUsernameException(username);
             if (username.Length < 5) { }
         }
+
+        public void VerifyTitle(string title)
+        {
+            if (title == "" || title.Contains("@") || title.Length < 3 || title == string.Empty) throw new InvalidTaskTitleException(title);
+        }
+        public void VerifyDescription(string description)
+        {
+            //Husk at ændre .Lenght til noget som er rimeligt!
+            if (description == "" || description.Length < 10 || description == string.Empty) throw new InvalidTaskDescriptionExeption(description);
+        }
+        public void VerifyApplyDate(DateTime applydate, DateTime startdate, DateTime deadlinedate)
+        {
+            if ((applydate < DateTime.Now) ||(applydate > startdate) || (applydate > deadlinedate)) throw new InvalidTaskApplyDateException(applydate);
+        }
+        public void VerifyStartDate(DateTime startdate, DateTime deadlinedate, DateTime applydate)
+        {
+            if ((startdate < DateTime.Now) || (startdate > deadlinedate) || (startdate < applydate)) throw new InvalidTaskStartDateException(startdate);
+        }
+        public void VerifyDeadlineDate(DateTime deadlinedate, DateTime applydate, DateTime startdate)
+        {
+            if ((deadlinedate < DateTime.Now) || (deadlinedate < applydate) || (deadlinedate < startdate)) throw new InvalidTaskDeadlineDateException(deadlinedate);
+        }
+        public void VerifyHours(int hours)
+        {
+            if (hours < 1) throw new InvalidTaskHoursException();
+        }
         #endregion //End of Universal Input
+
+        #region Verification
 
         public int VerifyLogin(string username, string password, string type)
         {
@@ -81,12 +110,15 @@ namespace P4Project
             return iD;
         }
 
-        public void VerifyTask(string title, string description, string location)
+        public void VerifyTask(string title, string description, DateTime applydate, DateTime startdate, DateTime deadlinedate, int hours)
         {
-            // Tilføj ordentlig validation eks. nummer:
-            if (title == "" || title.Contains("@") || title.Length < 3 || title == string.Empty) throw new InvalidTaskTitleException(title);
-            if (description == "" || description.Length < 10 || description == string.Empty) throw new InvalidTaskDescriptionExeption(description);
-            if (location == "" || location.Length < 5 || location == string.Empty) throw new InvalidTaskLocationException(location);
+            VerifyTitle(title);
+            VerifyDescription(description);
+            VerifyApplyDate(applydate, startdate, deadlinedate);
+            VerifyStartDate(startdate, deadlinedate, applydate);
+            VerifyDeadlineDate(deadlinedate, applydate, startdate);
+            VerifyHours(hours);
         }
+        #endregion
     }
 }

@@ -32,8 +32,9 @@ namespace P4Project.Frontend
             SQL = new SQLControl();
             InputValidation = new UserInputValidation();
             ThisSME = thisSME;
-            listLocation.SelectedItem = "Aalborg";
 
+            // Default Location is Aalborg:
+            listLocation.SelectedItem = "Aalborg";
         }
 
         // Constructer for when its Edit a task:
@@ -59,10 +60,9 @@ namespace P4Project.Frontend
         private void SetUpEditTaskView()
         {
             txtTitle.Text = ThisTask.Title;
-            //txtTaskDesc.Text = ThisTask.Description;
             richTaskDesc.Text = ThisTask.Description;
             listLocation.Text = ThisTask.Location;
-            txtHours.Text = ThisTask.Hours.ToString();
+            UpDownHours.Text = ThisTask.Hours.ToString();
             if (ThisTask.StateID == 1) PrivateStateRadio.Checked = true;
             else if (ThisTask.StateID == 2) PublicStateRadio.Checked = true;
             else StateGroupBox.Visible = false;
@@ -83,12 +83,16 @@ namespace P4Project.Frontend
             if (ThisTask == null) isUpdate = false;
             else taskID = ThisTask.ID;
 
+
             // All variables are declared, and value from the form are stoed:
+            // Assisgn the number of hours into the "NumberOfHours"
+            int NumberOfHours = Decimal.ToInt32(UpDownHours.Value);
+
             string title = txtTitle.Text;
             string description = richTaskDesc.Text;
             string location = listLocation.Text;
-            if (int.TryParse(txtHours.Text, out int hours)) { }
-            else MessageBox.Show("Please input a number that estimates the time needed to complete the task in Hours field!");
+            int hours = NumberOfHours;
+            
             // Default state is private:
             int stateid = 0;
             if (PrivateStateRadio.Checked == true) stateid = 1;
@@ -105,7 +109,7 @@ namespace P4Project.Frontend
             try
             {
                 // All Data is send through a simple verify check:
-                InputValidation.VerifyTask(title, description, location);
+                InputValidation.VerifyTask(title, description, applicationdeadline, startdate, completion, hours);
                 TaskDetailed newTask = new TaskDetailed(taskID, ThisSME, title, location, hours, description, startdate, applicationdeadline, completion, stateid, SkillList, 0);
                 TaskView preview = new TaskView(newTask, ThisSME, isUpdate);
                 Close();
@@ -124,6 +128,22 @@ namespace P4Project.Frontend
             catch (InvalidTaskLocationException ex)
             {
                 MessageBox.Show("Please enter a valid location input. Your input was: " + ex.input);
+            }
+            catch (InvalidTaskApplyDateException ex)
+            {
+                MessageBox.Show("Please enter a valid application date. Your input was: " + ex.input.ToShortDateString());
+            }
+            catch (InvalidTaskStartDateException ex)
+            {
+                MessageBox.Show("Please enter a valid start date. Your input was: " + ex.input.ToShortDateString());
+            }
+            catch (InvalidTaskDeadlineDateException ex)
+            {
+                MessageBox.Show("Please enter a valid deadline date. Your input was: " + ex.input.ToShortDateString());
+            }
+            catch (InvalidTaskHoursException ex)
+            {
+                MessageBox.Show("Please select a valid estimation of work hours. Your input was: " + ex.input);
             }
             #endregion
         }

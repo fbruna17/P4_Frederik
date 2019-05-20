@@ -33,7 +33,6 @@
             this.lblHours = new System.Windows.Forms.Label();
             this.lblSkillReq = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.TextBox();
-            this.txtHours = new System.Windows.Forms.TextBox();
             this.lblAppDeadline = new System.Windows.Forms.Label();
             this.ReqSkillList = new System.Windows.Forms.ListView();
             this.AddSkillButton = new System.Windows.Forms.Button();
@@ -52,7 +51,9 @@
             this.PrivateStateRadio = new System.Windows.Forms.RadioButton();
             this.listLocation = new System.Windows.Forms.ComboBox();
             this.richTaskDesc = new System.Windows.Forms.RichTextBox();
+            this.UpDownHours = new System.Windows.Forms.NumericUpDown();
             this.StateGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UpDownHours)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -98,19 +99,11 @@
             // txtTitle
             // 
             this.txtTitle.Location = new System.Drawing.Point(138, 31);
-            this.txtTitle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTitle.Margin = new System.Windows.Forms.Padding(2);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(92, 20);
             this.txtTitle.TabIndex = 4;
             this.txtTitle.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // txtHours
-            // 
-            this.txtHours.Location = new System.Drawing.Point(138, 86);
-            this.txtHours.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtHours.Name = "txtHours";
-            this.txtHours.Size = new System.Drawing.Size(92, 20);
-            this.txtHours.TabIndex = 6;
             // 
             // lblAppDeadline
             // 
@@ -125,7 +118,7 @@
             // ReqSkillList
             // 
             this.ReqSkillList.Location = new System.Drawing.Point(138, 115);
-            this.ReqSkillList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ReqSkillList.Margin = new System.Windows.Forms.Padding(2);
             this.ReqSkillList.Name = "ReqSkillList";
             this.ReqSkillList.Size = new System.Drawing.Size(92, 80);
             this.ReqSkillList.TabIndex = 9;
@@ -134,7 +127,7 @@
             // AddSkillButton
             // 
             this.AddSkillButton.Location = new System.Drawing.Point(233, 115);
-            this.AddSkillButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddSkillButton.Margin = new System.Windows.Forms.Padding(2);
             this.AddSkillButton.Name = "AddSkillButton";
             this.AddSkillButton.Size = new System.Drawing.Size(54, 19);
             this.AddSkillButton.TabIndex = 10;
@@ -155,7 +148,7 @@
             // btnSubmitTask
             // 
             this.btnSubmitTask.Location = new System.Drawing.Point(485, 310);
-            this.btnSubmitTask.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSubmitTask.Margin = new System.Windows.Forms.Padding(2);
             this.btnSubmitTask.Name = "btnSubmitTask";
             this.btnSubmitTask.Size = new System.Drawing.Size(106, 46);
             this.btnSubmitTask.TabIndex = 14;
@@ -167,7 +160,7 @@
             // 
             this.AddSkillReqList.FormattingEnabled = true;
             this.AddSkillReqList.Location = new System.Drawing.Point(292, 115);
-            this.AddSkillReqList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddSkillReqList.Margin = new System.Windows.Forms.Padding(2);
             this.AddSkillReqList.Name = "AddSkillReqList";
             this.AddSkillReqList.Size = new System.Drawing.Size(97, 139);
             this.AddSkillReqList.TabIndex = 15;
@@ -176,7 +169,7 @@
             // btnConfirmSkillAdd
             // 
             this.btnConfirmSkillAdd.Location = new System.Drawing.Point(332, 267);
-            this.btnConfirmSkillAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnConfirmSkillAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfirmSkillAdd.Name = "btnConfirmSkillAdd";
             this.btnConfirmSkillAdd.Size = new System.Drawing.Size(56, 19);
             this.btnConfirmSkillAdd.TabIndex = 16;
@@ -188,7 +181,7 @@
             // ClearSkillsButton
             // 
             this.ClearSkillsButton.Location = new System.Drawing.Point(233, 139);
-            this.ClearSkillsButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ClearSkillsButton.Margin = new System.Windows.Forms.Padding(2);
             this.ClearSkillsButton.Name = "ClearSkillsButton";
             this.ClearSkillsButton.Size = new System.Drawing.Size(54, 19);
             this.ClearSkillsButton.TabIndex = 17;
@@ -219,7 +212,7 @@
             // ApplicationDeadlinePicker
             // 
             this.ApplicationDeadlinePicker.Location = new System.Drawing.Point(436, 50);
-            this.ApplicationDeadlinePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ApplicationDeadlinePicker.Margin = new System.Windows.Forms.Padding(2);
             this.ApplicationDeadlinePicker.Name = "ApplicationDeadlinePicker";
             this.ApplicationDeadlinePicker.Size = new System.Drawing.Size(151, 20);
             this.ApplicationDeadlinePicker.TabIndex = 20;
@@ -227,7 +220,7 @@
             // StartDeadlinePicker
             // 
             this.StartDeadlinePicker.Location = new System.Drawing.Point(436, 107);
-            this.StartDeadlinePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StartDeadlinePicker.Margin = new System.Windows.Forms.Padding(2);
             this.StartDeadlinePicker.Name = "StartDeadlinePicker";
             this.StartDeadlinePicker.Size = new System.Drawing.Size(151, 20);
             this.StartDeadlinePicker.TabIndex = 21;
@@ -235,7 +228,7 @@
             // CompDeadlinePicker
             // 
             this.CompDeadlinePicker.Location = new System.Drawing.Point(436, 161);
-            this.CompDeadlinePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CompDeadlinePicker.Margin = new System.Windows.Forms.Padding(2);
             this.CompDeadlinePicker.Name = "CompDeadlinePicker";
             this.CompDeadlinePicker.Size = new System.Drawing.Size(151, 20);
             this.CompDeadlinePicker.TabIndex = 22;
@@ -245,9 +238,9 @@
             this.StateGroupBox.Controls.Add(this.PublicStateRadio);
             this.StateGroupBox.Controls.Add(this.PrivateStateRadio);
             this.StateGroupBox.Location = new System.Drawing.Point(436, 199);
-            this.StateGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StateGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.StateGroupBox.Name = "StateGroupBox";
-            this.StateGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StateGroupBox.Padding = new System.Windows.Forms.Padding(2);
             this.StateGroupBox.Size = new System.Drawing.Size(74, 71);
             this.StateGroupBox.TabIndex = 23;
             this.StateGroupBox.TabStop = false;
@@ -256,7 +249,7 @@
             // 
             this.PublicStateRadio.AutoSize = true;
             this.PublicStateRadio.Location = new System.Drawing.Point(5, 44);
-            this.PublicStateRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PublicStateRadio.Margin = new System.Windows.Forms.Padding(2);
             this.PublicStateRadio.Name = "PublicStateRadio";
             this.PublicStateRadio.Size = new System.Drawing.Size(54, 17);
             this.PublicStateRadio.TabIndex = 1;
@@ -268,7 +261,7 @@
             this.PrivateStateRadio.AutoSize = true;
             this.PrivateStateRadio.Checked = true;
             this.PrivateStateRadio.Location = new System.Drawing.Point(5, 18);
-            this.PrivateStateRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PrivateStateRadio.Margin = new System.Windows.Forms.Padding(2);
             this.PrivateStateRadio.Name = "PrivateStateRadio";
             this.PrivateStateRadio.Size = new System.Drawing.Size(58, 17);
             this.PrivateStateRadio.TabIndex = 0;
@@ -300,11 +293,19 @@
             this.richTaskDesc.TabIndex = 25;
             this.richTaskDesc.Text = "";
             // 
+            // UpDownHours
+            // 
+            this.UpDownHours.Location = new System.Drawing.Point(138, 90);
+            this.UpDownHours.Name = "UpDownHours";
+            this.UpDownHours.Size = new System.Drawing.Size(92, 20);
+            this.UpDownHours.TabIndex = 26;
+            // 
             // CreateTask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Controls.Add(this.UpDownHours);
             this.Controls.Add(this.richTaskDesc);
             this.Controls.Add(this.listLocation);
             this.Controls.Add(this.StateGroupBox);
@@ -321,18 +322,18 @@
             this.Controls.Add(this.AddSkillButton);
             this.Controls.Add(this.ReqSkillList);
             this.Controls.Add(this.lblAppDeadline);
-            this.Controls.Add(this.txtHours);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.lblSkillReq);
             this.Controls.Add(this.lblHours);
             this.Controls.Add(this.lblLocation);
             this.Controls.Add(this.lblTitle);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreateTask";
             this.Text = "CreateTask";
             this.Load += new System.EventHandler(this.CreateTask_Load);
             this.StateGroupBox.ResumeLayout(false);
             this.StateGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UpDownHours)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,7 +346,6 @@
         private System.Windows.Forms.Label lblHours;
         private System.Windows.Forms.Label lblSkillReq;
         private System.Windows.Forms.TextBox txtTitle;
-        private System.Windows.Forms.TextBox txtHours;
         private System.Windows.Forms.Label lblAppDeadline;
         private System.Windows.Forms.ListView ReqSkillList;
         private System.Windows.Forms.Button AddSkillButton;
@@ -364,5 +364,6 @@
         private System.Windows.Forms.RadioButton PrivateStateRadio;
         private System.Windows.Forms.ComboBox listLocation;
         private System.Windows.Forms.RichTextBox richTaskDesc;
+        private System.Windows.Forms.NumericUpDown UpDownHours;
     }
 }
