@@ -1312,15 +1312,14 @@ namespace P4Project
             }
         }
 
-        // Function That Assigns a given student to a given task:
-        public void AssignStudentToTask(int studentID, int taskID)
+public void AssignStudentToTask(int studentID, int taskID)
+{
+    try
+    {
+        Open();
+        MySqlCommand cmd = new MySqlCommand
         {
-            try
-            {
-                Open();
-                MySqlCommand cmd = new MySqlCommand
-                {
-                    Connection = Connection,
+            Connection = Connection,
                     CommandText = "UPDATE Task SET Assigned_Student = @Assigned_Student, StateID = @StateID WHERE TaskID = @TaskID"
                 };
                 cmd.Prepare();
@@ -1330,12 +1329,36 @@ namespace P4Project
                 cmd.ExecuteNonQuery();
                 // The application is updated:
                 ConfirmApplication(studentID, taskID);
+              }
+              finally
+              {
+                  if (Connection != null) Close();
+              }
             }
-            finally
+
+          public void AutoTaskStateChange(int TaskID, int NewState)
             {
-                if (Connection != null) Close();
+              try
+              {
+              Open();
+              MySqlCommand cmd = new MySqlCommand
+                {
+                  Connection = Connection,
+                  CommandText = "UPDATE Task SET StateID = @StateID WHERE TaskID = @TaskID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@StateID", NewState);
+                cmd.Parameters.AddWithValue("@TaskID", TaskID);
+                cmd.ExecuteNonQuery();
+              }
+              finally
+              {
+                  if (Connection != null) Close();
+              }
             }
-        }
+
+
+        // WE NEED EDIT AND DELETE/ Change State FUNCTIONS!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         // Function that marks a task as completed:
         public void CompleteTask(int taskID)
