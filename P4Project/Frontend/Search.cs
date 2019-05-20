@@ -25,6 +25,7 @@ namespace P4Project.Frontend
             string Query = SearchBox.Text;
 
             List<TaskSearched> TaskResults = SQL.SearchTasks(Query);
+            MessageBox.Show(TaskResults[0].Location);
 
             foreach(TaskSearched t in TaskResults)
             {
