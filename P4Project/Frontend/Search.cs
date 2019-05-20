@@ -23,9 +23,9 @@ namespace P4Project.Frontend
             SQLControl SQL = new SQLControl();
 
             string Query = SearchBox.Text;
-            MessageBox.Show(Query);
 
             List<TaskSearched> TaskResults = SQL.SearchTasks(Query);
+
             foreach(TaskSearched t in TaskResults)
             {
                 SearchResultGrid.Rows.Add(t.MakeDataViewString());
