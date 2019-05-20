@@ -1230,6 +1230,27 @@ namespace P4Project
             }
         }
 
+        public void AutoTaskStateChange(int TaskID, int NewState)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "UPDATE Task SET StateID = @StateID WHERE TaskID = @TaskID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@StateID", NewState);
+                cmd.Parameters.AddWithValue("@TaskID", TaskID);
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
         // WE NEED EDIT AND DELETE/ Change State FUNCTIONS!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         #endregion
