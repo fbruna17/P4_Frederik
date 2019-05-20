@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using P4Project.Backend.Recommendation;
+using MySql.Data.MySqlClient;
 
 namespace P4Project.Backend.Classes
 {
@@ -72,6 +73,33 @@ namespace P4Project.Backend.Classes
         public void AddTooSkillSet(SkillStudent skill)
         {
             Skills.Add(skill);
+        }
+
+        // A function that updates the students Skillset with what is verified and what is not, is called upon LogIn:
+        public void UpdateSkillSet()
+        {
+            // Alle de skill der er verified hentes ned som IDs:
+            SQLControl sql = new SQLControl();
+            List<int> eduVerified = sql.FetchEducationSkills(Education);
+            List<int> taskVerified = sql.FetchAllCompletedTaskSkills(ID);
+            // The Lists are merged:
+            foreach (int i in eduVerified)
+            {
+                if (!taskVerified.Contains(i)) taskVerified.Add(i);
+            }
+            // Skill info is found:
+            List<Skill> vskills = sql.FetchSkillInfo(taskVerified);
+            List<SkillStudent> vSkills = sql.MakeStudentSkillList(vskills, true);
+
+            // All Skills already on the list is removed to avoid duplicates, this also makes sure unverified skills gets verified:
+            foreach (SkillStudent skill in vSkills)
+            {
+                Skills.RemoveAll(s => s.ID == skill.ID);
+                //And The skill is added:
+                Skills.Add(skill);
+            }
+            // The New Skillset is posted: 
+            sql.UpdateStudentSkillSet(Skills, ID);
         }
     }
 }

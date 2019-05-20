@@ -15,16 +15,19 @@ namespace P4Project.Frontend
 {
     public partial class StudentProfileView : Form
     {
+        // Properties for SME View og profile:
         private StudentDetailed Student { get; }
         private SMELoggedIn ThisSME { get; }
         private ApplicationBase ThisApplication { get; }
 
+        // Property for a student:
         private StudentLoggedIn ThisStudent { get; set; }
 
+        // SQL Control:
         private SQLControl sql = new SQLControl();
 
+        #region FTPVariables:
         private FTPControl FTP = new FTPControl();
-
         //Declearing a string for the local full path of the file.
         private string LocalPDFPath = string.Empty;
         //Declearing a string for the file extension of the file.
@@ -33,7 +36,7 @@ namespace P4Project.Frontend
         private string LocalImagePath = string.Empty;
         //Declearing a string for the file extension of the image.
         private string LocalImageFiletype = string.Empty;
-
+        #endregion
 
         //...................................................... CONSTRUCTORS: .........................................................
         #region Constructors:
@@ -65,7 +68,16 @@ namespace P4Project.Frontend
 
             InitializeComponent();
             InitializeDefault(student);
-            InitializeSMEView();
+            InitializeSMEViewApplication();
+        }
+
+        // Constructor for an SME looking up a student profile by a task the student is assigned too/has completed:
+        public StudentProfileView(SMELoggedIn thisSME, StudentDetailed student, TaskDetailed task)
+        {
+            ThisSME = thisSME;
+            Student = student;
+            InitializeComponent();
+            InitializeDefault(student);
         }
 
 
@@ -124,9 +136,9 @@ namespace P4Project.Frontend
         }
 
         // Initializes the buttons for an SME viewing a student profile:
-        private void InitializeSMEView()
+        private void InitializeSMEViewApplication()
         {
-
+            AssignStudent.Visible = true;
         }
 
         // Initialize Educations:
@@ -371,6 +383,27 @@ namespace P4Project.Frontend
 
         #endregion
 
+        #region SME-Specific:
+        // When an SME user assigns this student to a task:
+        private void AssignStudent_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to assign " + Student.FirstName + " for this task?", "Confirm Assign", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    sql.AssignStudentToTask(Student.ID, ThisApplication.TaskID);
+                    MessageBox.Show(Student.FirstName + " has succesfully been assigned for this task!");
+                    Close();
+                }
+                catch(MySqlException ex)
+                {
+                    MessageBox.Show("An error uccored while assigning this student! Please try again later, or contact system administrators! Error message: " + ex.Message);
+                }
+            }
+        }
+        #endregion
+
         //...................................................... MISS CLICKS REMOVE LATER .........................................................
 
         private void StudentProfileView_Load(object sender, EventArgs e)
@@ -401,5 +434,7 @@ namespace P4Project.Frontend
         {
 
         }
+
+
     }
 }

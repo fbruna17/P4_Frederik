@@ -17,7 +17,6 @@ namespace P4Project.Frontend
     {
         // This form is used by both SMEs and Students. There are several different constructers, 
         // - that makes sure the view is made correctly, depending on who logs in, and what relation they have to the task.
-
         private TaskDetailed ThisTask { get; }
 
         // Used when an SME used this form:
@@ -39,7 +38,15 @@ namespace P4Project.Frontend
             ThisTask.GetApplications();
             ThisSME = sme;
             InitializeDefault();
-            if (ThisTask.SMEID == sme.ID)
+            if(ThisTask.StateID == 3)
+            {
+                InitializeFormForTaskInProgress();
+            }
+            else if (ThisTask.StateID == 4)
+            {
+                InitializeFormForTaskCompletedSME();
+            }
+            else
             {
                 InitializeFormForSMEOwner();
             }
@@ -141,7 +148,7 @@ namespace P4Project.Frontend
             UnApply.Visible = true;
         }
 
-        // MANGLER !!! Skal måske åbne op for en PDF henter for further instructions?
+                                                     // MANGLER !!! Skal måske åbne op for en PDF henter for further instructions?
         // Eller holde som den er, så der bare ikke er andre muligheder end "Back"...
         private void InitializeFormForAssignedStudent() 
         {
@@ -162,22 +169,37 @@ namespace P4Project.Frontend
             Back.Left = 278;
         }
 
+        // When an SME is making a new task and getting the preview::
         private void InitializeFormForCreateNewTask()
         {
             Back.Visible = false;
             EditAgain.Visible = true;
             SubmitNew.Visible = true;
         }
-
+        // When an SME is Updating a task:
         private void InitializeFormForUpdateTask()
         {
             Back.Visible = false;
             EditAgain.Visible = true;
             UpdateTaskSubmit.Visible = true;
         }
-        // Initializer for Task in progress:        MANGLER!!!!!!!
 
-        // Initializer for Edit/Create Task (Displays the data, and gives Confirm/Cancel options:       MANGLER!!!!!!!
+        // When an SME is looking up a completed task: 
+        private void InitializeFormForTaskCompletedSME()
+        {
+            ViewAssignedStudent.Left = 435;
+            Back.Left = 320;
+            ViewAssignedStudent.Visible = true;
+        }
+
+        // When an SME is looking up a task in progress:
+        private void InitializeFormForTaskInProgress()
+        {
+            ViewAssignedStudent.Visible = true;
+            CompletBtn.Visible = true;
+            Back.Left = 278;
+        }
+
 
         #endregion
 
@@ -271,7 +293,7 @@ namespace P4Project.Frontend
             }
         }
 
-        // When an SME users clicks a student from the Applicant lists, and click "See Profile"     !!!!!!!!!!! MANGLER NOGET!!!!!!!!!!
+        // When an SME users clicks a student from the Applicant lists, and click "See Profile"
         private void SeeStudentProfile_Click(object sender, EventArgs e)
         {
             if (StudentApplicantsView.SelectedCells[0].Value == null)
@@ -283,10 +305,13 @@ namespace P4Project.Frontend
                 DataGridViewRow row = StudentApplicantsView.CurrentCell.OwningRow;
                 if (int.TryParse(row.Cells["StudentID"].Value.ToString(), out int studentID))
                 {
+                    ApplicationBase thisApplication = ThisTask.Applications.First(a => a.StudentID == studentID);
                     SQLControl sql = new SQLControl();
                     StudentDetailed student = sql.FetchStudentDetailed(studentID);
-                    // Her skal vi have Student Profile View Lavet, som skal tage imod en task og en detailed student. Der skal så tilføjes en knap der hedder assign studen/Reject Student.
-
+                    StudentProfileView studentProfile = new StudentProfileView(ThisSME, student, thisApplication);
+                    Hide();
+                    studentProfile.ShowDialog();
+                    Show();
                 }
             }
         }
@@ -340,7 +365,32 @@ namespace P4Project.Frontend
         // When a task is in Ongoing or Completed State The SME can see the student they have assigned for the task:
         private void ViewAssignedStudent_Click(object sender, EventArgs e)
         {
+            SQLControl sql = new SQLControl();
+            StudentDetailed student = sql.FetchStudentDetailed(ThisTask.AssignedStudentID);
+            StudentProfileView studProfile = new StudentProfileView(ThisSME, student, ThisTask);
+            Hide();
+            studProfile.ShowDialog();
+            Show();
+        }
 
+        // When a Task has an assigned student and the SME marks the Task as Completed:
+        private void CompletBtn_Click(object sender, EventArgs e)
+        {
+            SQLControl sql = new SQLControl();
+            DialogResult result = MessageBox.Show("Are you sure you want to mark this task as completed? This cannot be undone!", "Confirm Assign", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    sql.CompleteTask(ThisTask.ID);
+                    MessageBox.Show("Task has been marked as completed!");
+                    Close();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("An error uccored while marking this task as completed! Please try again later, or contact system administrators! Error message: " + ex.Message);
+                }
+            }
         }
 
         // When an SME confirms the new task, and submits the task:
@@ -360,7 +410,7 @@ namespace P4Project.Frontend
             }
         }
 
-        // When an SME confirms the updated task info and submits:    !!!!!!!!!! MANGLER!!!!!!!!!!!!!!
+        // When an SME confirms the updated task info and submits:
         private void UpdateTaskSubmit_Click(object sender, EventArgs e)
         {
             SQLControl sql = new SQLControl();
@@ -419,7 +469,6 @@ namespace P4Project.Frontend
         {
 
         }
-
 
     }
 }

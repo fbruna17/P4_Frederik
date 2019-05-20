@@ -70,6 +70,7 @@
             this.UpdateTaskSubmit = new System.Windows.Forms.Button();
             this.EditAgain = new System.Windows.Forms.Button();
             this.ViewAssignedStudent = new System.Windows.Forms.Button();
+            this.CompletBtn = new System.Windows.Forms.Button();
             this.DescriptionBox.SuspendLayout();
             this.PracticalInfoBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -150,9 +151,9 @@
             this.groupBox1.Controls.Add(this.label100);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Location = new System.Drawing.Point(159, 55);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(235, 82);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
@@ -518,7 +519,7 @@
             // 
             // ViewAssignedStudent
             // 
-            this.ViewAssignedStudent.Location = new System.Drawing.Point(492, 391);
+            this.ViewAssignedStudent.Location = new System.Drawing.Point(492, 390);
             this.ViewAssignedStudent.Name = "ViewAssignedStudent";
             this.ViewAssignedStudent.Size = new System.Drawing.Size(142, 34);
             this.ViewAssignedStudent.TabIndex = 13;
@@ -527,11 +528,23 @@
             this.ViewAssignedStudent.Visible = false;
             this.ViewAssignedStudent.Click += new System.EventHandler(this.ViewAssignedStudent_Click);
             // 
+            // CompletBtn
+            // 
+            this.CompletBtn.Location = new System.Drawing.Point(642, 390);
+            this.CompletBtn.Name = "CompletBtn";
+            this.CompletBtn.Size = new System.Drawing.Size(117, 34);
+            this.CompletBtn.TabIndex = 14;
+            this.CompletBtn.Text = "Complete";
+            this.CompletBtn.UseVisualStyleBackColor = true;
+            this.CompletBtn.Visible = false;
+            this.CompletBtn.Click += new System.EventHandler(this.CompletBtn_Click);
+            // 
             // TaskView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(768, 450);
+            this.Controls.Add(this.CompletBtn);
             this.Controls.Add(this.ViewAssignedStudent);
             this.Controls.Add(this.EditAgain);
             this.Controls.Add(this.UpdateTaskSubmit);
@@ -608,5 +621,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label LocationLabel;
         private System.Windows.Forms.Button ViewAssignedStudent;
+        private System.Windows.Forms.Button CompletBtn;
     }
 }
