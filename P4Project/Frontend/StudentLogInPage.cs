@@ -34,6 +34,7 @@ namespace P4Project.Frontend
                 int studID = InputValidation.VerifyLogin(username, password, "Student");
                 StudentDetailed tStudent = SQL.FetchStudentDetailed(studID);
                 StudentLoggedIn student = new StudentLoggedIn(username, password, tStudent);
+                student.UpdateSkillSet();
                 var studLandingPage = new StudentLandingPage(student);
                 Close();
                 studLandingPage.ShowDialog();

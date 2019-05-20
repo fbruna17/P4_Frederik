@@ -72,14 +72,15 @@ namespace P4Project
             List<int> res = new List<int>();
             foreach (string s in strings)
             {
-                if (int.TryParse(s, out int i)) res.Add(i);
+                if(s == null || s == string.Empty || s == " " || s == "") { }
+                else if (int.TryParse(s, out int i)) res.Add(i);
                 else throw new DataErrorInDataBaseException();
             }
             return res;
         }
 
         // Function that makes a list of skills into a list of skills for students, and sets if they are verified or not:
-        private List<SkillStudent> MakeStudentSkillList(List<Skill> skills, bool verified)
+        public List<SkillStudent> MakeStudentSkillList(List<Skill> skills, bool verified)
         {
             List<SkillStudent> res = new List<SkillStudent>();
             foreach (Skill skill in skills)
@@ -100,6 +101,7 @@ namespace P4Project
             if (result.Length == 0) return result;
             return result.Remove(result.Length - 1);
         }
+
         #endregion
 
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! FETCH FUNCTIONS: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -439,36 +441,7 @@ namespace P4Project
             }
         }
 
-        // Function used to find out the name of the education a student is attending:
-        private string GetEducationName(int eduID)
-        {
-            string EducationName = string.Empty;
-            try
-            {
-                Open();
-                MySqlCommand cmd = new MySqlCommand
-                {
-                    Connection = Connection,
-                    CommandText = "SELECT EduName FROM Education WHERE EducationID = @EducationID LIMIT 1"
-                };
-                cmd.Prepare();
-                cmd.Parameters.AddWithValue("@EducationID", eduID);
-                var reader = cmd.ExecuteReader();
-                // This While makes sure that CPU threats are not running the GetSafeString, before .Read() is executed.
-                while (reader.Read())
-                {
-                    EducationName = GetSafeString(reader, 0);
-
-                }
-                return EducationName;
-            }
-            finally
-            {
-                if (Connection != null) Close();
-            }
-        }
-
-        //Function that fetches all educations from the database:
+        // Function that fetches all educations from the database (WithoutSkillSet):
         public List<EducationBase> FetchALLEducations()
         {
             try
@@ -497,6 +470,76 @@ namespace P4Project
             }
         }
 
+        // Function that fetches the skill set of an education based on the name:
+        public List<int> FetchEducationSkills(string name)
+        {
+            try
+            {
+                var result = new List<string>();
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT Skill_ID FROM Education WHERE EduName = @EduName"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@EduName", name);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result = GetSafeString(reader, 0).Split(',').ToList(); ;
+                }
+                reader.Close();
+                return StringListToIntList(result);
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
+        // Funktion returning all skills that can be verified on a student by completed tasks:
+        public List<int> FetchAllCompletedTaskSkills(int studentID)
+        {
+            try
+            {
+                List<int> result = new List<int>();
+                List<string> temp = new List<string>();
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT Required_Skill FROM Task WHERE Assigned_Student = @Assigned_Student AND StateID = @StateID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@Assigned_Student", studentID);
+                cmd.Parameters.AddWithValue("@StateID", 4);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    temp.Add(GetSafeString(reader, 0));
+                }
+                reader.Close();
+                // The int list i made:
+                foreach(string skillstring in temp)
+                {
+                    List<int> skillint = StringListToIntList(skillstring.Split(',').ToList());
+                    foreach(int i in skillint)
+                    {
+                        if (!result.Contains(i))
+                        {
+                            result.Add(i);
+                        }
+                    }
+                }
+                return result;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
         #endregion
 
 
@@ -853,6 +896,7 @@ namespace P4Project
             }
         }
 
+        // Retrieves a single skill based on name:
         public Skill FetchSkillInfoBasedOnName(string skillName)
         {
             try
@@ -954,7 +998,7 @@ namespace P4Project
             try
             {
                 Open();
-                // Først hente SMEID:
+                // First SME is fetched:
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
@@ -972,7 +1016,7 @@ namespace P4Project
                 }
                 reader.Close();
 
-                // The Name of The SME is found::
+                // The Name of The SME is found:
                 cmd = new MySqlCommand
                 {
                     Connection = Connection,
@@ -1147,6 +1191,44 @@ namespace P4Project
             }
         }
 
+        // This Function updates a students skill set:
+        public void UpdateStudentSkillSet(List<SkillStudent> skills, int studentID)
+        {
+
+            try
+            {
+                // The list is splitted in verified and unverified:
+                List<Skill> verifiedSkillList = new List<Skill>();
+                List<Skill> unverifiedSkillList = new List<Skill>();
+                foreach (SkillStudent skill in skills)
+                {
+                    if (skill.Verified) verifiedSkillList.Add(new Skill(skill.ID, skill.Name));
+                    else unverifiedSkillList.Add(new Skill(skill.ID, skill.Name));
+                }
+                string verifiedSkills = MakeSkillIDString(verifiedSkillList);
+                string unverifiedSkills = MakeSkillIDString(unverifiedSkillList);
+
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "UPDATE Student SET Verified_SkillSet = @Verified_SkillSet, Unverified_SkillSet = @Unverified_SkillSet WHERE StudentID = @StudentID"
+                };
+                cmd.Prepare();
+
+                // The parameters are added:
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+                cmd.Parameters.AddWithValue("@Verified_SkillSet", verifiedSkills);
+                cmd.Parameters.AddWithValue("@Unverified_SkillSet", unverifiedSkills);
+                // The call are executed:
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                // Forbindelsen lukkes:
+                if (Connection != null) Close();
+            }
+        }
         #endregion
 
         // .............................................. TASK SPECIFIC POST FUNCTIONS .............................................
@@ -1230,8 +1312,54 @@ namespace P4Project
             }
         }
 
-        // WE NEED EDIT AND DELETE/ Change State FUNCTIONS!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // Function That Assigns a given student to a given task:
+        public void AssignStudentToTask(int studentID, int taskID)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "UPDATE Task SET Assigned_Student = @Assigned_Student, StateID = @StateID WHERE TaskID = @TaskID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+                cmd.Parameters.AddWithValue("@Assigned_Student", studentID);
+                cmd.Parameters.AddWithValue("@StateID", 3);
+                cmd.ExecuteNonQuery();
+                // The application is updated:
+                ConfirmApplication(studentID, taskID);
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
 
+        // Function that marks a task as completed:
+        public void CompleteTask(int taskID)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "UPDATE Task SET StateID = @StateID WHERE TaskID = @TaskID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+                cmd.Parameters.AddWithValue("@StateID", 4);
+                cmd.ExecuteNonQuery();
+                // All related applications are deleted from the database:
+                RemoveALLApplications(taskID);
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
         #endregion
 
 
@@ -1276,6 +1404,26 @@ namespace P4Project
                 cmd.Prepare();
 
                 cmd.Parameters.AddWithValue("@ApplicationID", applicationID);
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
+        // Removing ALL applications from a task once it is completed:
+        public void RemoveALLApplications(int taskID)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = Connection;
+                cmd.CommandText = "DELETE FROM Application WHERE TaskID = @TaskID";
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
                 cmd.ExecuteNonQuery();
             }
             finally
@@ -1338,7 +1486,6 @@ namespace P4Project
 
         // End of Post Functions:
         #endregion
-
 
         // .............................................. NOT USED!!! .............................................
         #region NOT USED!!!
