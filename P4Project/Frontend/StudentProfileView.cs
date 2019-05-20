@@ -29,6 +29,10 @@ namespace P4Project.Frontend
         private string LocalPDFPath = string.Empty;
         //Declearing a string for the file extension of the file.
         private string LocalPDFFiletype = string.Empty;
+        //Declearing a string for the local full path of the image.
+        private string LocalImagePath = string.Empty;
+        //Declearing a string for the file extension of the image.
+        private string LocalImageFiletype = string.Empty;
 
 
         //...................................................... CONSTRUCTORS: .........................................................
@@ -110,6 +114,8 @@ namespace P4Project.Frontend
             StudentDescBox.ReadOnly = false;
             SubmitEdit.Visible = true;
             ChoosePDFBtn.Visible = true;
+            ChooseImageBtn.Visible = true;
+            ChoosenImageLabel.Visible = true;
 
             // Education editing is initialized:
             InitializeEducationEditing();
@@ -201,6 +207,20 @@ namespace P4Project.Frontend
                 serverFilePathDir = FTP.UploadFile(File_Path, File_Type);
             }
 
+            var image_Path = LocalImagePath;
+            var image_Type = LocalImageFiletype;
+            var serverImagePathDir = string.Empty;
+            if (image_Path != string.Empty)
+            {
+
+                serverImagePathDir = FTP.UploadImage(image_Path, image_Type);
+            }
+
+            string profilepicture = ThisStudent.ProfilePicture;
+            if (serverImagePathDir != string.Empty)
+            {
+                profilepicture = serverImagePathDir;
+            }
 
             string resume = ThisStudent.Resume;
             if(serverFilePathDir != string.Empty)
@@ -216,7 +236,7 @@ namespace P4Project.Frontend
             }
             // ProfilePicture Hvis ikke det ændres på student objektet.
 
-            StudentDetailed newStudInfo = new StudentDetailed(ThisStudent.FirstName, ThisStudent.LastName, ThisStudent.ID, email, education, ThisStudent.Skills, description, ThisStudent.ProfilePicture, resume);
+            StudentDetailed newStudInfo = new StudentDetailed(ThisStudent.FirstName, ThisStudent.LastName, ThisStudent.ID, email, education, ThisStudent.Skills, description, profilepicture, resume);
 
             // Verifies!
             try
@@ -306,6 +326,48 @@ namespace P4Project.Frontend
             //with a URL:  
             System.Diagnostics.Process.Start(ThisStudent.Resume);
         }
+        private void StudentResumeLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (ThisStudent.Resume != "")
+            {
+                ResumeLink();
+            }
+            else
+            {
+                MessageBox.Show("This student hasn't uploaded a resumé yet.");
+            }
+        }
+        private void ChooseImageBtn_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+
+                //Sets the FileDialog "Start path" to the C drive
+                openFileDialog.InitialDirectory = "c:\\";
+                //Applies filter for allowed filetypes
+                openFileDialog.Filter = "Choose your image file (*.jpg)|*.jpg|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Stores the name of the chosen file into "fileName"
+                    var fileName = openFileDialog.SafeFileName;
+                    //Stores the fileextension into "fileType"
+                    var fileType = Path.GetExtension(openFileDialog.FileName);
+                    //Get the path of specified file
+                    var filePath = openFileDialog.FileName;
+                    //Displays the choosen image in the PictureBox
+                    StudentPictureBox.Image = Image.FromFile(openFileDialog.FileName);
+                    //Display the local filename of the choosen image.
+                    ChoosenImageLabel.Text = "Your choosen image: " + fileName;
+                    //Stores the local path into the already decleared "LocalImagePath" string.
+                    LocalImagePath = filePath;
+                    //Stores the file extension into the already decleared "LocalImageFiletype" string.
+                    LocalImageFiletype = fileType;
+                }
+            }
+        }
 
         #endregion
 
@@ -317,18 +379,6 @@ namespace P4Project.Frontend
 
         private void StudSkillList_SelectedIndexChanged(object sender, EventArgs e)
         {
-        }
-
-        private void StudentResumeLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if(ThisStudent.Resume != "")
-            {
-                ResumeLink();
-            }
-            else
-            {
-                MessageBox.Show("This student hasn't uploaded a resumé yet.");
-            }
         }
 
         private void NameLabel_Click(object sender, EventArgs e)
@@ -351,7 +401,5 @@ namespace P4Project.Frontend
         {
 
         }
-
-        
     }
 }

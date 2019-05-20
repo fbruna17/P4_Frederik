@@ -31,16 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentProfileView));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.EditEmail = new System.Windows.Forms.TextBox();
+            this.SubmitEdit = new System.Windows.Forms.Button();
             this.EmailLabel = new System.Windows.Forms.Label();
+            this.Back = new System.Windows.Forms.Button();
+            this.StudentEditProfileBtn = new System.Windows.Forms.Button();
             this.NameLabel = new System.Windows.Forms.Label();
             this.StudentEmailLabel = new System.Windows.Forms.Label();
             this.StudentNameLabel = new System.Windows.Forms.Label();
             this.StudentPictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.ResumeNameLabel = new System.Windows.Forms.Label();
+            this.ChoosePDFBtn = new System.Windows.Forms.Button();
             this.EducationDropDown = new System.Windows.Forms.ComboBox();
-            this.SubmitEdit = new System.Windows.Forms.Button();
-            this.Back = new System.Windows.Forms.Button();
-            this.StudentEditProfileBtn = new System.Windows.Forms.Button();
             this.EducationLabel = new System.Windows.Forms.Label();
             this.StudentResumeLink = new System.Windows.Forms.LinkLabel();
             this.StudentResumeLabel = new System.Windows.Forms.Label();
@@ -63,8 +65,8 @@
             this.SkillDropDown = new System.Windows.Forms.ComboBox();
             this.RemoveSkill = new System.Windows.Forms.Button();
             this.AddSkill = new System.Windows.Forms.Button();
-            this.ChoosePDFBtn = new System.Windows.Forms.Button();
-            this.ResumeNameLabel = new System.Windows.Forms.Label();
+            this.ChooseImageBtn = new System.Windows.Forms.Button();
+            this.ChoosenImageLabel = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentPictureBox)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -78,13 +80,15 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.ChoosenImageLabel);
+            this.groupBox2.Controls.Add(this.ChooseImageBtn);
             this.groupBox2.Controls.Add(this.EditEmail);
             this.groupBox2.Controls.Add(this.SubmitEdit);
             this.groupBox2.Controls.Add(this.EmailLabel);
-            this.groupBox2.Controls.Add(this.Back);
-            this.groupBox2.Controls.Add(this.StudentEditProfileBtn);
             this.groupBox2.Controls.Add(this.NameLabel);
             this.groupBox2.Controls.Add(this.StudentEmailLabel);
+            this.groupBox2.Controls.Add(this.Back);
+            this.groupBox2.Controls.Add(this.StudentEditProfileBtn);
             this.groupBox2.Controls.Add(this.StudentNameLabel);
             this.groupBox2.Controls.Add(this.StudentPictureBox);
             this.groupBox2.Location = new System.Drawing.Point(72, 107);
@@ -96,11 +100,23 @@
             // EditEmail
             // 
             this.EditEmail.Location = new System.Drawing.Point(182, 81);
-            this.EditEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EditEmail.Margin = new System.Windows.Forms.Padding(2);
             this.EditEmail.Name = "EditEmail";
             this.EditEmail.Size = new System.Drawing.Size(128, 20);
             this.EditEmail.TabIndex = 5;
             this.EditEmail.Visible = false;
+            // 
+            // SubmitEdit
+            // 
+            this.SubmitEdit.Location = new System.Drawing.Point(225, 18);
+            this.SubmitEdit.Margin = new System.Windows.Forms.Padding(2);
+            this.SubmitEdit.Name = "SubmitEdit";
+            this.SubmitEdit.Size = new System.Drawing.Size(82, 23);
+            this.SubmitEdit.TabIndex = 8;
+            this.SubmitEdit.Text = "Submit";
+            this.SubmitEdit.UseVisualStyleBackColor = true;
+            this.SubmitEdit.Visible = false;
+            this.SubmitEdit.Click += new System.EventHandler(this.SubmitEdit_Click);
             // 
             // EmailLabel
             // 
@@ -111,6 +127,28 @@
             this.EmailLabel.Size = new System.Drawing.Size(0, 13);
             this.EmailLabel.TabIndex = 4;
             this.EmailLabel.Click += new System.EventHandler(this.EmailLabel_Click);
+            // 
+            // Back
+            // 
+            this.Back.Location = new System.Drawing.Point(138, 18);
+            this.Back.Margin = new System.Windows.Forms.Padding(2);
+            this.Back.Name = "Back";
+            this.Back.Size = new System.Drawing.Size(82, 23);
+            this.Back.TabIndex = 7;
+            this.Back.Text = "Back";
+            this.Back.UseVisualStyleBackColor = true;
+            this.Back.Click += new System.EventHandler(this.Back_Click);
+            // 
+            // StudentEditProfileBtn
+            // 
+            this.StudentEditProfileBtn.Location = new System.Drawing.Point(225, 18);
+            this.StudentEditProfileBtn.Name = "StudentEditProfileBtn";
+            this.StudentEditProfileBtn.Size = new System.Drawing.Size(82, 23);
+            this.StudentEditProfileBtn.TabIndex = 6;
+            this.StudentEditProfileBtn.Text = "Edit Profile";
+            this.StudentEditProfileBtn.UseVisualStyleBackColor = true;
+            this.StudentEditProfileBtn.Visible = false;
+            this.StudentEditProfileBtn.Click += new System.EventHandler(this.StudentEditProfileBtn_Click);
             // 
             // NameLabel
             // 
@@ -168,49 +206,34 @@
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             // 
+            // ResumeNameLabel
+            // 
+            this.ResumeNameLabel.AutoSize = true;
+            this.ResumeNameLabel.Location = new System.Drawing.Point(127, 142);
+            this.ResumeNameLabel.Name = "ResumeNameLabel";
+            this.ResumeNameLabel.Size = new System.Drawing.Size(0, 13);
+            this.ResumeNameLabel.TabIndex = 11;
+            // 
+            // ChoosePDFBtn
+            // 
+            this.ChoosePDFBtn.Location = new System.Drawing.Point(131, 113);
+            this.ChoosePDFBtn.Name = "ChoosePDFBtn";
+            this.ChoosePDFBtn.Size = new System.Drawing.Size(109, 23);
+            this.ChoosePDFBtn.TabIndex = 10;
+            this.ChoosePDFBtn.Text = "Resumé File";
+            this.ChoosePDFBtn.UseVisualStyleBackColor = true;
+            this.ChoosePDFBtn.Visible = false;
+            this.ChoosePDFBtn.Click += new System.EventHandler(this.ChoosePDFBtn_Click);
+            // 
             // EducationDropDown
             // 
             this.EducationDropDown.FormattingEnabled = true;
             this.EducationDropDown.Location = new System.Drawing.Point(93, 46);
-            this.EducationDropDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EducationDropDown.Margin = new System.Windows.Forms.Padding(2);
             this.EducationDropDown.Name = "EducationDropDown";
             this.EducationDropDown.Size = new System.Drawing.Size(104, 21);
             this.EducationDropDown.TabIndex = 9;
             this.EducationDropDown.Visible = false;
-            // 
-            // SubmitEdit
-            // 
-            this.SubmitEdit.Location = new System.Drawing.Point(225, 132);
-            this.SubmitEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.SubmitEdit.Name = "SubmitEdit";
-            this.SubmitEdit.Size = new System.Drawing.Size(82, 23);
-            this.SubmitEdit.TabIndex = 8;
-            this.SubmitEdit.Text = "Submit";
-            this.SubmitEdit.UseVisualStyleBackColor = true;
-            this.SubmitEdit.Visible = false;
-            this.SubmitEdit.Click += new System.EventHandler(this.SubmitEdit_Click);
-            // 
-            // Back
-            // 
-            this.Back.Location = new System.Drawing.Point(138, 132);
-            this.Back.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Back.Name = "Back";
-            this.Back.Size = new System.Drawing.Size(82, 23);
-            this.Back.TabIndex = 7;
-            this.Back.Text = "Back";
-            this.Back.UseVisualStyleBackColor = true;
-            this.Back.Click += new System.EventHandler(this.Back_Click);
-            // 
-            // StudentEditProfileBtn
-            // 
-            this.StudentEditProfileBtn.Location = new System.Drawing.Point(225, 132);
-            this.StudentEditProfileBtn.Name = "StudentEditProfileBtn";
-            this.StudentEditProfileBtn.Size = new System.Drawing.Size(82, 23);
-            this.StudentEditProfileBtn.TabIndex = 6;
-            this.StudentEditProfileBtn.Text = "Edit Profile";
-            this.StudentEditProfileBtn.UseVisualStyleBackColor = true;
-            this.StudentEditProfileBtn.Visible = false;
-            this.StudentEditProfileBtn.Click += new System.EventHandler(this.StudentEditProfileBtn_Click);
             // 
             // EducationLabel
             // 
@@ -302,7 +325,7 @@
             this.SkillName,
             this.Verified});
             this.SkillSetGrid.Location = new System.Drawing.Point(12, 46);
-            this.SkillSetGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SkillSetGrid.Margin = new System.Windows.Forms.Padding(2);
             this.SkillSetGrid.MultiSelect = false;
             this.SkillSetGrid.Name = "SkillSetGrid";
             this.SkillSetGrid.ReadOnly = true;
@@ -356,7 +379,7 @@
             this.SMEName,
             this.CompletionDate});
             this.FormerTaskGrid.Location = new System.Drawing.Point(6, 41);
-            this.FormerTaskGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FormerTaskGrid.Margin = new System.Windows.Forms.Padding(2);
             this.FormerTaskGrid.MultiSelect = false;
             this.FormerTaskGrid.Name = "FormerTaskGrid";
             this.FormerTaskGrid.ReadOnly = true;
@@ -402,9 +425,9 @@
             this.EditSkillsBox.Controls.Add(this.RemoveSkill);
             this.EditSkillsBox.Controls.Add(this.AddSkill);
             this.EditSkillsBox.Location = new System.Drawing.Point(612, 333);
-            this.EditSkillsBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EditSkillsBox.Margin = new System.Windows.Forms.Padding(2);
             this.EditSkillsBox.Name = "EditSkillsBox";
-            this.EditSkillsBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EditSkillsBox.Padding = new System.Windows.Forms.Padding(2);
             this.EditSkillsBox.Size = new System.Drawing.Size(164, 102);
             this.EditSkillsBox.TabIndex = 9;
             this.EditSkillsBox.TabStop = false;
@@ -414,7 +437,7 @@
             // 
             this.SkillDropDown.FormattingEnabled = true;
             this.SkillDropDown.Location = new System.Drawing.Point(19, 56);
-            this.SkillDropDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SkillDropDown.Margin = new System.Windows.Forms.Padding(2);
             this.SkillDropDown.Name = "SkillDropDown";
             this.SkillDropDown.Size = new System.Drawing.Size(126, 21);
             this.SkillDropDown.TabIndex = 2;
@@ -422,7 +445,7 @@
             // RemoveSkill
             // 
             this.RemoveSkill.Location = new System.Drawing.Point(4, 17);
-            this.RemoveSkill.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RemoveSkill.Margin = new System.Windows.Forms.Padding(2);
             this.RemoveSkill.Name = "RemoveSkill";
             this.RemoveSkill.Size = new System.Drawing.Size(74, 26);
             this.RemoveSkill.TabIndex = 1;
@@ -433,7 +456,7 @@
             // AddSkill
             // 
             this.AddSkill.Location = new System.Drawing.Point(86, 17);
-            this.AddSkill.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddSkill.Margin = new System.Windows.Forms.Padding(2);
             this.AddSkill.Name = "AddSkill";
             this.AddSkill.Size = new System.Drawing.Size(74, 26);
             this.AddSkill.TabIndex = 0;
@@ -441,24 +464,25 @@
             this.AddSkill.UseVisualStyleBackColor = true;
             this.AddSkill.Click += new System.EventHandler(this.AddSkill_Click);
             // 
-            // ChoosePDFBtn
+            // ChooseImageBtn
             // 
-            this.ChoosePDFBtn.Location = new System.Drawing.Point(131, 113);
-            this.ChoosePDFBtn.Name = "ChoosePDFBtn";
-            this.ChoosePDFBtn.Size = new System.Drawing.Size(109, 23);
-            this.ChoosePDFBtn.TabIndex = 10;
-            this.ChoosePDFBtn.Text = "Resumé File";
-            this.ChoosePDFBtn.UseVisualStyleBackColor = true;
-            this.ChoosePDFBtn.Visible = false;
-            this.ChoosePDFBtn.Click += new System.EventHandler(this.ChoosePDFBtn_Click);
+            this.ChooseImageBtn.Location = new System.Drawing.Point(138, 113);
+            this.ChooseImageBtn.Name = "ChooseImageBtn";
+            this.ChooseImageBtn.Size = new System.Drawing.Size(75, 23);
+            this.ChooseImageBtn.TabIndex = 9;
+            this.ChooseImageBtn.Text = "Edit Picture";
+            this.ChooseImageBtn.UseVisualStyleBackColor = true;
+            this.ChooseImageBtn.Visible = false;
+            this.ChooseImageBtn.Click += new System.EventHandler(this.ChooseImageBtn_Click);
             // 
-            // ResumeNameLabel
+            // ChoosenImageLabel
             // 
-            this.ResumeNameLabel.AutoSize = true;
-            this.ResumeNameLabel.Location = new System.Drawing.Point(127, 142);
-            this.ResumeNameLabel.Name = "ResumeNameLabel";
-            this.ResumeNameLabel.Size = new System.Drawing.Size(0, 13);
-            this.ResumeNameLabel.TabIndex = 11;
+            this.ChoosenImageLabel.AutoSize = true;
+            this.ChoosenImageLabel.Location = new System.Drawing.Point(138, 141);
+            this.ChoosenImageLabel.Name = "ChoosenImageLabel";
+            this.ChoosenImageLabel.Size = new System.Drawing.Size(0, 13);
+            this.ChoosenImageLabel.TabIndex = 10;
+            this.ChoosenImageLabel.Visible = false;
             // 
             // StudentProfileView
             // 
@@ -529,5 +553,7 @@
         private System.Windows.Forms.Button AddSkill;
         private System.Windows.Forms.Button ChoosePDFBtn;
         private System.Windows.Forms.Label ResumeNameLabel;
+        private System.Windows.Forms.Label ChoosenImageLabel;
+        private System.Windows.Forms.Button ChooseImageBtn;
     }
 }
