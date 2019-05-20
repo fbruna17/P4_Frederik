@@ -32,6 +32,7 @@ namespace P4Project.Frontend
             SQL = new SQLControl();
             InputValidation = new UserInputValidation();
             ThisSME = thisSME;
+            listLocation.SelectedItem = "Aalborg";
 
         }
 
@@ -58,8 +59,9 @@ namespace P4Project.Frontend
         private void SetUpEditTaskView()
         {
             txtTitle.Text = ThisTask.Title;
-            txtTaskDesc.Text = ThisTask.Description;
-            txtLocation.Text = ThisTask.Location;
+            //txtTaskDesc.Text = ThisTask.Description;
+            richTaskDesc.Text = ThisTask.Description;
+            listLocation.Text = ThisTask.Location;
             txtHours.Text = ThisTask.Hours.ToString();
             if (ThisTask.StateID == 1) PrivateStateRadio.Checked = true;
             else if (ThisTask.StateID == 2) PublicStateRadio.Checked = true;
@@ -83,8 +85,8 @@ namespace P4Project.Frontend
 
             // All variables are declared, and value from the form are stoed:
             string title = txtTitle.Text;
-            string description = txtTaskDesc.Text;
-            string location = txtLocation.Text;
+            string description = richTaskDesc.Text;
+            string location = listLocation.Text;
             if (int.TryParse(txtHours.Text, out int hours)) { }
             else MessageBox.Show("Please input a number that estimates the time needed to complete the task in Hours field!");
             // Default state is private:

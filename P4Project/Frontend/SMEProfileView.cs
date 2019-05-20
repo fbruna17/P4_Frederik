@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using P4Project.Backend.Classes;
 
 namespace P4Project.Frontend
 {
     public partial class SMEProfileView : Header
     {
-        private SMEBase SME;
+        private SMELoggedIn SME;
 
-        public SMEProfileView(SMEBase SME) : base(SME)
+        public SMEProfileView(SMELoggedIn SME) : base(SME)
         {
             InitializeComponent();
             this.SME = SME;
