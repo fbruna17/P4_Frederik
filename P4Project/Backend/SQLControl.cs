@@ -97,6 +97,7 @@ namespace P4Project
             {
                 result = result + skill.ID + ',';
             }
+            if (result.Length == 0) return result; 
             return result.Remove(result.Length - 1);
         }
         #endregion
@@ -810,7 +811,7 @@ namespace P4Project
             }
         }
 
-        public Skill FetchSkillInforBasedOnName(string skillName)
+        public Skill FetchSkillInfoBasedOnName(string skillName)
         {
             try
             {
@@ -1079,7 +1080,7 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "UPDATE Student SET Description = @Description, Email = @Email, EducationID = @EducationID, " +
+                    CommandText = "UPDATE Student SET Description = @Description, Email = @Email, Education = @Education, " +
                     "Verified_SkillSet = @Verified_SkillSet, Unverified_SkillSet = @Unverified_SkillSet, Image_Dir = @Image_Dir, Pdf_Dir = @Pdf_Dir " +
                     "WHERE StudentID = @StudentID"
                 };
@@ -1089,7 +1090,7 @@ namespace P4Project
                 cmd.Parameters.AddWithValue("@StudentID", thisStudent.ID);
                 cmd.Parameters.AddWithValue("@Description", thisStudent.Description);
                 cmd.Parameters.AddWithValue("@Email", thisStudent.Email);
-                cmd.Parameters.AddWithValue("@EducationID", thisStudent.Education);
+                cmd.Parameters.AddWithValue("@Education", thisStudent.Education);
                 cmd.Parameters.AddWithValue("@Verified_SkillSet", verifiedSkills);
                 cmd.Parameters.AddWithValue("@Unverified_SkillSet", unverifiedSkills);
                 cmd.Parameters.AddWithValue("@Image_Dir", thisStudent.ProfilePicture);
@@ -1116,12 +1117,14 @@ namespace P4Project
         {
             try
             {
+                // Skill list is made:
+                string reqSkills = MakeSkillIDString(thisTask.RequiredSkills);
                 Open();
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "INSERT INTO Task(SMEID,Title,Description,StartDate,Location,Application_Deadline,Completion,Hours,StateID) " +
-                    "VALUES (@sme,@title,@description,@startdate,@location,@applicationdeadline,@completion,@hours,@stateID)"
+                    CommandText = "INSERT INTO Task(SMEID,Title,Description,StartDate,Location,Application_Deadline,Completion,Hours,StateID,Required_Skill) " +
+                    "VALUES (@sme,@title,@description,@startdate,@location,@applicationdeadline,@completion,@hours,@stateID,@Required_Skill)"
                 };
                 cmd.Prepare();
 
@@ -1135,6 +1138,7 @@ namespace P4Project
                 cmd.Parameters.AddWithValue("@completion", thisTask.EstCompletionDate);
                 cmd.Parameters.AddWithValue("@hours", thisTask.Hours);
                 cmd.Parameters.AddWithValue("@stateID", thisTask.StateID);
+                cmd.Parameters.AddWithValue("@Required_Skill", reqSkills);
                 // The call are executed:
                 cmd.ExecuteNonQuery();
             }
@@ -1150,12 +1154,15 @@ namespace P4Project
         {
             try
             {
+                // Skill list is made:
+                string reqSkills = MakeSkillIDString(thisTask.RequiredSkills);
                 Open();
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
                     CommandText = "UPDATE Task SET SMEID = @sme, Title = @title, Description = @description, StartDate = @startdate, Location = @location, " +
-                    "Application_Deadline = @applicationdeadline, Completion = @completion, Hours = @hours, StateID = @stateID WHERE TaskID = @TaskID"
+                    "Application_Deadline = @applicationdeadline, Completion = @completion, Hours = @hours, StateID = @stateID, Required_Skill = @Required_Skill" +
+                    " WHERE TaskID = @TaskID"
                 };
                 cmd.Prepare();
 
@@ -1170,6 +1177,7 @@ namespace P4Project
                 cmd.Parameters.AddWithValue("@completion", thisTask.EstCompletionDate);
                 cmd.Parameters.AddWithValue("@hours", thisTask.Hours);
                 cmd.Parameters.AddWithValue("@stateID", thisTask.StateID);
+                cmd.Parameters.AddWithValue("@Required_Skill", reqSkills);
                 // The call are executed:
                 cmd.ExecuteNonQuery();
             }

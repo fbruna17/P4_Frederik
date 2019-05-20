@@ -63,6 +63,7 @@ namespace P4Project.Frontend
         // All functions used to set up the form. They are called depending on which constructer is used, 
         // - and the relation between the user and the profile:
         #region Initializers:
+
         // Default Initializer, always called, fills out default data based on what student profile is seen:
         private void InitializeDefault(StudentDetailed student)
         {
@@ -84,11 +85,13 @@ namespace P4Project.Frontend
             // Skillset is initialized:
             InitializeSkillList(student);
         }
+
         // Initializes the buttons only usable by a logged in student viewing his own profile:
         private void InitializeStudentLoggedin()
         {
             StudentEditProfileBtn.Visible = true;
         }
+
         // Initializes the components needed for a student to edit his or hers profile:
         private void InitializeStudentEdit()
         {
@@ -103,6 +106,7 @@ namespace P4Project.Frontend
             // Skill editing:
             InitializeSkillEditing();            
         }
+
         // Initializes the buttons for an SME viewing a student profile:
         private void InitializeSMEView()
         {
@@ -230,14 +234,13 @@ namespace P4Project.Frontend
             if(SkillDropDown.SelectedItem != null)
             {
                 string skillName = SkillDropDown.SelectedItem.ToString();
-                Skill skill = sql.FetchSkillInforBasedOnName(skillName);
+                Skill skill = sql.FetchSkillInfoBasedOnName(skillName);
                 SkillStudent rSkill = new SkillStudent(skill.ID, skill.Name, skill.Category, false);
                 ThisStudent.AddTooSkillSet(rSkill);
                 InitializeSkillList(ThisStudent);
                 InitializeSkillEditing();
             }
             else MessageBox.Show("Please select a skill from the dropdown to add.");
-
         }
 
         #endregion

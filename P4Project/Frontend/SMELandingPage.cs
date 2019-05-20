@@ -81,6 +81,8 @@ namespace P4Project.Frontend
 
         private void SeeOnGoingTasks_Click(object sender, EventArgs e)
         {
+            TaskView.Rows.Clear();
+            TaskView.Refresh();
             foreach (TaskSearched task in ThisSME.GetListOfTasks(3))
             {
                 TaskView.Rows.Add(task.MakeDataViewString());
@@ -89,6 +91,8 @@ namespace P4Project.Frontend
 
         private void SeeCompletedTasks_Click(object sender, EventArgs e)
         {
+            TaskView.Rows.Clear();
+            TaskView.Refresh();
             foreach (TaskSearched task in ThisSME.GetListOfTasks(4))
             {
                 TaskView.Rows.Add(task.MakeDataViewString());
@@ -97,7 +101,9 @@ namespace P4Project.Frontend
 
         private void SeeAllTasks_Click(object sender, EventArgs e)
         {
-            foreach(TaskSearched task in ThisSME.Tasks)
+            TaskView.Rows.Clear();
+            TaskView.Refresh();
+            foreach (TaskSearched task in ThisSME.Tasks)
             {
                 TaskView.Rows.Add(task.MakeDataViewString());
             }

@@ -329,13 +329,18 @@ namespace P4Project.Frontend
             ApplicantBox.Visible = false;
         }
 
-        // When an SME wants to Edit the current Task:                     !!!!!!!!!! MANGLER!!!!!!!!!!!!!!!!!
+        // When an SME wants to Edit the current Task:       
         private void EditTask_Click(object sender, EventArgs e)
         {
             CreateTask editTask = new CreateTask(ThisTask, ThisSME);
             Close();
             editTask.ShowDialog();
-            // Når Edit Task er færdig, skal denne form kaldes igen med den nye Task, så info er opdateret uden databasekald!
+        }
+
+        // When a task is in Ongoing or Completed State The SME can see the student they have assigned for the task:
+        private void ViewAssignedStudent_Click(object sender, EventArgs e)
+        {
+
         }
 
         // When an SME confirms the new task, and submits the task:

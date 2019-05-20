@@ -19,7 +19,6 @@ namespace P4Project.Frontend
         private SQLControl SQL;
         private UserInputValidation InputValidation;
         SMELoggedIn ThisSME;
-        private List<Skill> SkillList;
         private TaskDetailed ThisTask { get; set; }
         #endregion
         //...................................................... CONSTRUCTORS: .........................................................
@@ -32,9 +31,7 @@ namespace P4Project.Frontend
             SQL = new SQLControl();
             InputValidation = new UserInputValidation();
             ThisSME = thisSME;
-
-            // Default Location is Aalborg:
-            listLocation.SelectedItem = "Aalborg";
+            SetUpNewTaskView();
         }
 
         // Constructer for when its Edit a task:
@@ -45,7 +42,6 @@ namespace P4Project.Frontend
             SQL = new SQLControl();
             InputValidation = new UserInputValidation();
             ThisTask = thisTask;
-            MessageBox.Show(ThisTask.ID.ToString());
             ThisSME = thisSME;
             SetUpEditTaskView();
         }
@@ -61,11 +57,46 @@ namespace P4Project.Frontend
         {
             txtTitle.Text = ThisTask.Title;
             richTaskDesc.Text = ThisTask.Description;
-            listLocation.Text = ThisTask.Location;
+            listLocation.SelectedItem = ThisTask.Location;
             UpDownHours.Text = ThisTask.Hours.ToString();
+            ApplicationDeadlinePicker.Value = ThisTask.ApplicationDeadline;
+            StartDeadlinePicker.Value = ThisTask.Startdate;
+            CompDeadlinePicker.Value = ThisTask.EstCompletionDate;
+            foreach(Skill skill in ThisTask.RequiredSkills)
+            {
+                SkillSetGrid.Rows.Add(skill.Name);
+            }
+            InitializeSkillEditing();
             if (ThisTask.StateID == 1) PrivateStateRadio.Checked = true;
             else if (ThisTask.StateID == 2) PublicStateRadio.Checked = true;
             else StateGroupBox.Visible = false;
+        }
+
+        private void SetUpNewTaskView()
+        {
+            listLocation.SelectedItem = "Aalborg";
+            InitializeSkillEditing();
+        }
+
+        // Initialize SkillEditing:
+        private void InitializeSkillEditing()
+        {
+
+            SkillDropDown.Items.Clear();
+
+            SkillDropDown.Text = "Select a skill...";
+            List<Skill> skills = SQL.FetchALLSkills();
+            if(ThisTask != null)
+            {
+                foreach (Skill skill in ThisTask.RequiredSkills)
+                {
+                    skills.RemoveAll(a => a.ID == skill.ID);
+                }
+            }
+            foreach (Skill skill in skills)
+            {
+                SkillDropDown.Items.Add(skill.Name);
+            }
         }
 
         #endregion
@@ -98,10 +129,17 @@ namespace P4Project.Frontend
             if (PrivateStateRadio.Checked == true) stateid = 1;
             else if (PublicStateRadio.Checked == true) stateid = 2;
             else stateid = ThisTask.StateID;
+        
+            // Skill List is made:
+            List<Skill> SkillList = new List<Skill>();
+            foreach(DataGridViewRow row in SkillSetGrid.Rows)
+            {
+                if(row.Cells[0].Value != null)
+                {
+                    SkillList.Add(SQL.FetchSkillInfoBasedOnName(row.Cells[0].Value.ToString()));
+                }
+            }
 
-
-            List<Skill> SkillList = new List<Skill>();   // SKILL LIST MANGLER!!!!!!!!!!!!!!!!!!!
-            // The Different Dates are saved:         NEEED VERIFICATION POSSIBLE FROM INPUTVALIDATION!!!!!!!!
             DateTime startdate = StartDeadlinePicker.Value.Date;
             DateTime applicationdeadline = ApplicationDeadlinePicker.Value.Date;
             DateTime completion = CompDeadlinePicker.Value.Date;
@@ -109,7 +147,7 @@ namespace P4Project.Frontend
             try
             {
                 // All Data is send through a simple verify check:
-                InputValidation.VerifyTask(title, description, applicationdeadline, startdate, completion, hours);
+                InputValidation.VerifyTask(title, description, applicationdeadline, startdate, completion, hours, isUpdate);
                 TaskDetailed newTask = new TaskDetailed(taskID, ThisSME, title, location, hours, description, startdate, applicationdeadline, completion, stateid, SkillList, 0);
                 TaskView preview = new TaskView(newTask, ThisSME, isUpdate);
                 Close();
@@ -148,38 +186,21 @@ namespace P4Project.Frontend
             #endregion
         }
 
-        // When an SME clicks to add skills to the required list:
-        private void AddSkillButton_Click(object sender, EventArgs e)
+        private void AddSkill_Click(object sender, EventArgs e)
         {
-            
-            SkillList = SQL.FetchALLSkills();
-            foreach (Skill s in SkillList)
+            if (SkillDropDown.SelectedItem != null)
             {
-                AddSkillReqList.Items.Add(s.Name);
+                SkillSetGrid.Rows.Add(SkillDropDown.SelectedItem.ToString());
             }
-            AddSkillReqList.Show();
-            btnConfirmSkillAdd.Show();
+            else MessageBox.Show("Please select a skill from the dropdown to add.");
         }
 
-        // When the required skill set is confirmed by the user:
-        private void btnConfirmSkillAdd_Click(object sender, EventArgs e)
+        private void RemoveSkill_Click(object sender, EventArgs e)
         {
-            foreach (string itemChecked in AddSkillReqList.CheckedItems)
-            {
-                ReqSkillList.Items.Add(itemChecked);
-            }
-            AddSkillReqList.Hide();
-            btnConfirmSkillAdd.Hide();
-        }
-
-        // If the user decides to clear the skill list:
-        private void ClearSkillsButton_Click(object sender, EventArgs e)
-        {
-            ReqSkillList.Items.Clear();
+            SkillSetGrid.Rows.RemoveAt(SkillSetGrid.CurrentCell.RowIndex);
         }
 
         #endregion
-
 
 
         #region Not Used, should be deleted:
@@ -197,6 +218,9 @@ namespace P4Project.Frontend
         {
 
         }
+
         #endregion
+
+
     }
 }

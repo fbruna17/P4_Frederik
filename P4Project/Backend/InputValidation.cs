@@ -110,12 +110,15 @@ namespace P4Project
             return iD;
         }
 
-        public void VerifyTask(string title, string description, DateTime applydate, DateTime startdate, DateTime deadlinedate, int hours)
+        public void VerifyTask(string title, string description, DateTime applydate, DateTime startdate, DateTime deadlinedate, int hours, bool isUpdate)
         {
             VerifyTitle(title);
             VerifyDescription(description);
-            VerifyApplyDate(applydate, startdate, deadlinedate);
-            VerifyStartDate(startdate, deadlinedate, applydate);
+            if(!isUpdate)
+            {
+                VerifyApplyDate(applydate, startdate, deadlinedate);
+                VerifyStartDate(startdate, deadlinedate, applydate);
+            }
             VerifyDeadlineDate(deadlinedate, applydate, startdate);
             VerifyHours(hours);
         }
