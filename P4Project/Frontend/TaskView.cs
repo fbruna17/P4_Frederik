@@ -117,6 +117,7 @@ namespace P4Project.Frontend
             TaskNameLabel.Text = ThisTask.Title;
             CompanyNameLabel.Text = ThisTask.SMEName;
             TaskDescriptionBox.Text = ThisTask.Description;
+            LocationLabel.Text = ThisTask.Location;
             ApplicationDeadline.Text = ThisTask.ApplicationDeadline.ToShortDateString();
             StartDate.Text = ThisTask.Startdate.ToShortDateString();
             CompletionDeadline.Text = ThisTask.EstCompletionDate.ToShortDateString();
