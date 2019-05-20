@@ -24,12 +24,12 @@ namespace P4Project.Frontend
         /// </summary>
 
         //Profile type variables:
-        private SMEBase SME { get; }
+        private SMELoggedIn SME { get; }
         private StudentBase Student { get; }
         //Bool to define Task-button function:
         private bool isSME;
 
-        public Header(SMEBase SME)
+        public Header(SMELoggedIn SME)
         {
             InitializeComponent();
             isSME = true;
