@@ -361,7 +361,6 @@ namespace P4Project.Frontend
             SQLControl sql = new SQLControl();
             try
             {
-                MessageBox.Show(ThisTask.StateID.ToString() + ThisTask.ID.ToString());
                 sql.UpdateTask(ThisTask);
                 MessageBox.Show("The Task has succesfully been updated!");
                 Close();

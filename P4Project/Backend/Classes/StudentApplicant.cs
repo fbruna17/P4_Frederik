@@ -24,6 +24,7 @@ namespace P4Project.Backend.Classes
             Education = education;
             ProfilePicture = profilePicture;
         }
+
         // Constructer der tager recommendation score med: 
         public StudentApplicant(string firstName, string lastName, int id, string email, string profilePicture, int recommendationScore) : base(firstName, lastName, id)
         {

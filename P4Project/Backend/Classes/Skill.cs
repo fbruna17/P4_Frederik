@@ -18,5 +18,10 @@ namespace P4Project.Backend.Classes
             Name = name;
             Category = category;
         }
+        public Skill(int id, string name)
+        {
+            ID = id;
+            Name = name;
+        }
     }
 }

@@ -16,8 +16,8 @@ namespace P4Project.Backend.Classes
         private RecMaker Recommend;
 
         public StudentLoggedIn(string firstName, string lastName, int id, string email, string education, List<SkillStudent> skills, 
-            string description, string profilePicture, string username, string password)
-            : base(firstName, lastName, id, email, education, skills, description, profilePicture)
+            string description, string profilePicture, string resume, string username, string password)
+            : base(firstName, lastName, id, email, education, skills, description, profilePicture, resume)
         {
             Username = username;
             Password = password;
@@ -29,7 +29,7 @@ namespace P4Project.Backend.Classes
 
         public StudentLoggedIn(string username, string password, StudentDetailed thisStudent) 
             : base(thisStudent.FirstName, thisStudent.LastName, thisStudent.ID, thisStudent.Email, thisStudent.Education, thisStudent.Skills,
-                  thisStudent.Description, thisStudent.ProfilePicture)
+                  thisStudent.Description, thisStudent.ProfilePicture, thisStudent.Resume)
         {
             Username = username;
             Password = password;
@@ -60,6 +60,18 @@ namespace P4Project.Backend.Classes
         {
             SQLControl sql = new SQLControl();
             return new StudentLoggedIn(Username, Password, sql.FetchStudentDetailed(ID));
+        }
+
+        // Function that removes an item from the skill list:
+        public void RemoveFromSkillSet(string skillName)
+        {
+            Skills.RemoveAll(a => a.Name == skillName);
+        }
+
+        // Function that adds a skill to the skilllist:
+        public void AddTooSkillSet(SkillStudent skill)
+        {
+            Skills.Add(skill);
         }
     }
 }
