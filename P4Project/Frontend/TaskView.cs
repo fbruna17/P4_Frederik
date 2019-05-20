@@ -408,8 +408,6 @@ namespace P4Project.Frontend
 
 
 
-
-
         //...................................................... MISS CLICKS REMOVE LATER .........................................................
 
         private void label6_Click(object sender, EventArgs e)
