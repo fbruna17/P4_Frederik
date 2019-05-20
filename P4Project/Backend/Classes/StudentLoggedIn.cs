@@ -13,7 +13,6 @@ namespace P4Project.Backend.Classes
         private string Password { get; }
         public List<TaskRecommend> RecTasks { get; }
         public List<ApplicationDetailed> Applications { get; set; }
-        public List<TaskAssigned> AssignedTasks { get; private set; }
         private RecMaker Recommend;
 
         public StudentLoggedIn(string firstName, string lastName, int id, string email, string education, List<SkillStudent> skills, 
@@ -41,6 +40,7 @@ namespace P4Project.Backend.Classes
             GetAssignedTasks();
         }
 
+        // Gets all applications made by this student:
         public List<ApplicationDetailed> GetApplications()
         {
             SQLControl sql = new SQLControl();
@@ -54,13 +54,8 @@ namespace P4Project.Backend.Classes
             }
             return Applications;
         }
-
-        public void GetAssignedTasks()
-        {
-            SQLControl sql = new SQLControl();
-            AssignedTasks = sql.FetchStudentAssignedForTasks(ID);
-        }
         
+        // Updates the session data for a logged in student:
         public StudentLoggedIn UpdateSessionData()
         {
             SQLControl sql = new SQLControl();

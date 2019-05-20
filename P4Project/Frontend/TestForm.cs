@@ -195,8 +195,8 @@ namespace P4Project
         private void button6_Click(object sender, EventArgs e)
         {
             Hide();
-            var Studview = new StudentProfileView();
-            Studview.ShowDialog();
+           // var Studview = new StudentProfileView();
+           // Studview.ShowDialog();
             Show();
         }
     }

@@ -51,11 +51,12 @@
             this.SME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ViewRecTask = new System.Windows.Forms.Button();
             this.AssignedTasksBox = new System.Windows.Forms.GroupBox();
-            this.AssignedTaskGridView = new System.Windows.Forms.DataGridView();
             this.ViewAssignedTask = new System.Windows.Forms.Button();
+            this.AssignedTaskGridView = new System.Windows.Forms.DataGridView();
             this.TaskAssignedTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SMEAssignedName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CompletionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ViewProfile = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ApplicationViewGrid)).BeginInit();
@@ -300,6 +301,16 @@
             this.AssignedTasksBox.TabStop = false;
             this.AssignedTasksBox.Visible = false;
             // 
+            // ViewAssignedTask
+            // 
+            this.ViewAssignedTask.Location = new System.Drawing.Point(266, 105);
+            this.ViewAssignedTask.Name = "ViewAssignedTask";
+            this.ViewAssignedTask.Size = new System.Drawing.Size(88, 23);
+            this.ViewAssignedTask.TabIndex = 1;
+            this.ViewAssignedTask.Text = "View";
+            this.ViewAssignedTask.UseVisualStyleBackColor = true;
+            this.ViewAssignedTask.Click += new System.EventHandler(this.ViewAssignedTask_Click);
+            // 
             // AssignedTaskGridView
             // 
             this.AssignedTaskGridView.BackgroundColor = System.Drawing.SystemColors.Control;
@@ -315,16 +326,6 @@
             this.AssignedTaskGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.AssignedTaskGridView.Size = new System.Drawing.Size(351, 89);
             this.AssignedTaskGridView.TabIndex = 0;
-            // 
-            // ViewAssignedTask
-            // 
-            this.ViewAssignedTask.Location = new System.Drawing.Point(266, 105);
-            this.ViewAssignedTask.Name = "ViewAssignedTask";
-            this.ViewAssignedTask.Size = new System.Drawing.Size(88, 23);
-            this.ViewAssignedTask.TabIndex = 1;
-            this.ViewAssignedTask.Text = "View";
-            this.ViewAssignedTask.UseVisualStyleBackColor = true;
-            this.ViewAssignedTask.Click += new System.EventHandler(this.ViewAssignedTask_Click);
             // 
             // TaskAssignedTitle
             // 
@@ -347,11 +348,22 @@
             this.CompletionDate.Name = "CompletionDate";
             this.CompletionDate.ReadOnly = true;
             // 
+            // ViewProfile
+            // 
+            this.ViewProfile.Location = new System.Drawing.Point(737, 92);
+            this.ViewProfile.Name = "ViewProfile";
+            this.ViewProfile.Size = new System.Drawing.Size(140, 34);
+            this.ViewProfile.TabIndex = 8;
+            this.ViewProfile.Text = "View Profile";
+            this.ViewProfile.UseVisualStyleBackColor = true;
+            this.ViewProfile.Click += new System.EventHandler(this.ViewProfile_Click);
+            // 
             // StudentLandingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(973, 450);
+            this.Controls.Add(this.ViewProfile);
             this.Controls.Add(this.AssignedTasksBox);
             this.Controls.Add(this.RecommendedTasksGroupBox);
             this.Controls.Add(this.ApplicationGroupBox);
@@ -401,5 +413,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TaskAssignedTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn SMEAssignedName;
         private System.Windows.Forms.DataGridViewTextBoxColumn CompletionDate;
+        private System.Windows.Forms.Button ViewProfile;
     }
 }

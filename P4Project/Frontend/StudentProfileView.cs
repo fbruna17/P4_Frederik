@@ -14,25 +14,126 @@ namespace P4Project.Frontend
 {
     public partial class StudentProfileView : Form
     {
-        private StudentDetailed Student;
-        private TaskBase Task;
-        private string myConnectionString = "server=mysql33.unoeuro.com;uid=blo_store_dk;pwd=3pdaxzyt;database=blo_store_dk_db_wd";
-        private MySqlConnection connection = null;
+        private StudentDetailed Student { get; }
+        private SMELoggedIn ThisSME { get; }
+        private ApplicationBase ThisApplication { get; }
 
-        private SQLControl SQL;
+        private StudentLoggedIn ThisStudent { get; set; }
+
+        private SQLControl sql = new SQLControl();
 
 
-        public StudentProfileView()
+        //...................................................... CONSTRUCTORS: .........................................................
+        #region Constructors:
+        // Constructor for a Logged in Student Viewing his or hers own profile:
+        public StudentProfileView(StudentLoggedIn thisStudent)
         {
-            //Student = student;
+            ThisStudent = thisStudent;
 
             InitializeComponent();
-            WelcomeText.Text = "Welcome to your profile "; // + Student.FirstName + Student.LastName
+            InitializeDefault(thisStudent);
+            InitializeStudentLoggedin();
         }
+        // Constructor for when a student wants to edit his profile:
+        public StudentProfileView(StudentLoggedIn thisStudent, bool edit)
+        {
+            ThisStudent = thisStudent;
+
+            InitializeComponent();
+            InitializeDefault(thisStudent);
+            InitializeStudentEdit();
+        }
+
+        // Constructor for an SME looking up a student profile, based on an application to a given task:
+        public StudentProfileView(SMELoggedIn thisSME, StudentDetailed student, ApplicationBase thisApplication)
+        {
+            ThisSME = thisSME;
+            Student = student;
+            ThisApplication = thisApplication;
+
+            InitializeComponent();
+            InitializeDefault(student);
+            InitializeSMEView();
+        }
+
+
+        #endregion
+
+        //...................................................... INITIALIZERS: .........................................................
+        // All functions used to set up the form. They are called depending on which constructer is used, 
+        // - and the relation between the user and the profile:
+        #region Initializers:
+        // Default Initializer, always called, fills out default data based on what student profile is seen:
+        private void InitializeDefault(StudentDetailed student)
+        {
+            NameLabel.Text = student.FirstName + " " + student.LastName;
+            StudentDescBox.Text = student.Description;
+            EmailLabel.Text = student.Email;
+            EducationLabel.Text = student.Education;
+
+            // Former tasks is initialized:
+            student.GetAssignedTasks();
+            foreach(TaskAssigned task in student.AssignedTasks)
+            {
+                if(task.StateID == 4)
+                {
+                    FormerTaskGrid.Rows.Add(task.MakeDataViewString());
+                }
+            }
+            // Skillset is initialized:
+            foreach(SkillStudent skill in student.Skills)
+            {
+                SkillSetGrid.Rows.Add(skill.MakeDataViewGrid());
+            }
+        }
+        // Initializes the buttons only usable by a logged in student viewing his own profile:
+        private void InitializeStudentLoggedin()
+        {
+            StudentEditProfileBtn.Visible = true;
+        }
+        // Initializes the components needed for a student to edit his or hers profile:
+        private void InitializeStudentEdit()
+        {
+            EmailLabel.Visible = false;
+            EditEmail.Visible = true;
+            EditEmail.Text = ThisStudent.Email;
+
+        }
+        // Initializes the buttons for an SME viewing a student profile:
+        private void InitializeSMEView()
+        {
+
+        }
+
+        #endregion
+
+        //...................................................... BUTTON CLICKS: .........................................................
+        // All Button clicks, seperate in Student, Universel and SME Specific:
+
+        #region Student-specific:
+        // Click on EditProfile:
+        private void StudentEditProfileBtn_Click(object sender, EventArgs e)
+        {
+            bool edit = true;
+            StudentProfileView editView = new StudentProfileView(ThisStudent, edit);
+            Hide();
+            editView.ShowDialog();
+            ThisStudent = ThisStudent.UpdateSessionData();
+            InitializeDefault(ThisStudent);
+            InitializeStudentLoggedin();
+            Show();
+        }
+
+        #endregion
+
+        //...................................................... MISS CLICKS REMOVE LATER .........................................................
 
         private void StudentProfileView_Load(object sender, EventArgs e)
         {
+        }
 
+        private void StudSkillList_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
 
         private void StudentResumeLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -42,32 +143,25 @@ namespace P4Project.Frontend
 
         private void NameLabel_Click(object sender, EventArgs e)
         {
-            NameLabel.Text = Student.FirstName;
+
         }
 
         private void StudentDescBox_TextChanged(object sender, EventArgs e)
         {
-            StudentDescBox.Text = Student.Description;
+
         }
 
 
         private void EmailLabel_Click(object sender, EventArgs e)
         {
-            EmailLabel.Text = Student.Email;
+
         }
 
         private void Education_Click(object sender, EventArgs e)
         {
-            EducationLabel.Text = Student.Education;
+
         }
 
 
-        private void FillSKills()
-        {
-            
-        }
-        private void StudSkillList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
     }
 }

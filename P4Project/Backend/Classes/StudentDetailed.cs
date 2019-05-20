@@ -10,6 +10,7 @@ namespace P4Project.Backend.Classes
     {
        // public List<TaskBase> CompletedTasks { get; protected set; }
         public string Description { get; protected set; }
+        public List<TaskAssigned> AssignedTasks { get; protected set; }
         // public *** Resumé { get; protected set; }
 
         public StudentDetailed(string firstName, string lastName, int id, string email, string education,
@@ -19,5 +20,11 @@ namespace P4Project.Backend.Classes
             Description = description;
         }
 
+        // Function that gets all task assigned to this student:
+        public void GetAssignedTasks()
+        {
+            SQLControl sql = new SQLControl();
+            AssignedTasks = sql.FetchStudentAssignedForTasks(ID);
+        }
     }
 }

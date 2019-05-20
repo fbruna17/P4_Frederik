@@ -124,5 +124,14 @@ namespace P4Project.Frontend
             Show();
             UpdateStudent();
         }
+
+        private void ViewProfile_Click(object sender, EventArgs e)
+        {
+            StudentProfileView profileView = new StudentProfileView(ThisStudent);
+            Hide();
+            profileView.ShowDialog();
+            UpdateStudent();
+            Show();
+        }
     }
 }

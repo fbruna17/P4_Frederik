@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentProfileView));
-            this.WelcomeText = new System.Windows.Forms.RichTextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.EmailLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
@@ -48,43 +46,29 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.StudentEditProfileBtn = new System.Windows.Forms.Button();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.StudSkillList = new System.Windows.Forms.ListView();
-            this.groupBox1.SuspendLayout();
+            this.EditEmail = new System.Windows.Forms.TextBox();
+            this.FormerTaskGrid = new System.Windows.Forms.DataGridView();
+            this.TaskTitleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SMEName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CompletionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SkillSetGrid = new System.Windows.Forms.DataGridView();
+            this.SkillName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Verified = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentPictureBox)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FormerTaskGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SkillSetGrid)).BeginInit();
             this.SuspendLayout();
-            // 
-            // WelcomeText
-            // 
-            this.WelcomeText.Location = new System.Drawing.Point(309, 23);
-            this.WelcomeText.Margin = new System.Windows.Forms.Padding(4);
-            this.WelcomeText.Name = "WelcomeText";
-            this.WelcomeText.Size = new System.Drawing.Size(372, 52);
-            this.WelcomeText.TabIndex = 0;
-            this.WelcomeText.Text = "";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.groupBox1.Controls.Add(this.WelcomeText);
-            this.groupBox1.Location = new System.Drawing.Point(1, 1);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(1065, 123);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.EditEmail);
             this.groupBox2.Controls.Add(this.EmailLabel);
             this.groupBox2.Controls.Add(this.NameLabel);
             this.groupBox2.Controls.Add(this.StudentEmailLabel);
@@ -152,6 +136,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.StudentEditProfileBtn);
             this.groupBox3.Controls.Add(this.EducationLabel);
             this.groupBox3.Controls.Add(this.StudentResumeLink);
             this.groupBox3.Controls.Add(this.StudentResumeLabel);
@@ -236,6 +221,7 @@
             this.StudentDescBox.Location = new System.Drawing.Point(8, 58);
             this.StudentDescBox.Margin = new System.Windows.Forms.Padding(4);
             this.StudentDescBox.Name = "StudentDescBox";
+            this.StudentDescBox.ReadOnly = true;
             this.StudentDescBox.Size = new System.Drawing.Size(400, 154);
             this.StudentDescBox.TabIndex = 0;
             this.StudentDescBox.Text = "";
@@ -243,7 +229,7 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.StudSkillList);
+            this.groupBox5.Controls.Add(this.SkillSetGrid);
             this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Location = new System.Drawing.Point(524, 353);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
@@ -266,27 +252,19 @@
             // 
             // StudentEditProfileBtn
             // 
-            this.StudentEditProfileBtn.Location = new System.Drawing.Point(8, 27);
+            this.StudentEditProfileBtn.Location = new System.Drawing.Point(293, 161);
             this.StudentEditProfileBtn.Margin = new System.Windows.Forms.Padding(4);
             this.StudentEditProfileBtn.Name = "StudentEditProfileBtn";
             this.StudentEditProfileBtn.Size = new System.Drawing.Size(109, 28);
             this.StudentEditProfileBtn.TabIndex = 6;
             this.StudentEditProfileBtn.Text = "Edit Profile";
             this.StudentEditProfileBtn.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.StudentEditProfileBtn);
-            this.groupBox6.Location = new System.Drawing.Point(816, 353);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox6.Size = new System.Drawing.Size(125, 438);
-            this.groupBox6.TabIndex = 7;
-            this.groupBox6.TabStop = false;
+            this.StudentEditProfileBtn.Visible = false;
+            this.StudentEditProfileBtn.Click += new System.EventHandler(this.StudentEditProfileBtn_Click);
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.FormerTaskGrid);
             this.groupBox7.Controls.Add(this.label3);
             this.groupBox7.Location = new System.Drawing.Point(96, 581);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
@@ -307,14 +285,83 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Former Tasks";
             // 
-            // StudSkillList
+            // EditEmail
             // 
-            this.StudSkillList.Location = new System.Drawing.Point(8, 74);
-            this.StudSkillList.Name = "StudSkillList";
-            this.StudSkillList.Size = new System.Drawing.Size(269, 357);
-            this.StudSkillList.TabIndex = 1;
-            this.StudSkillList.UseCompatibleStateImageBehavior = false;
-            this.StudSkillList.SelectedIndexChanged += new System.EventHandler(this.StudSkillList_SelectedIndexChanged);
+            this.EditEmail.Location = new System.Drawing.Point(242, 100);
+            this.EditEmail.Name = "EditEmail";
+            this.EditEmail.Size = new System.Drawing.Size(170, 22);
+            this.EditEmail.TabIndex = 5;
+            this.EditEmail.Visible = false;
+            // 
+            // FormerTaskGrid
+            // 
+            this.FormerTaskGrid.AllowUserToAddRows = false;
+            this.FormerTaskGrid.AllowUserToDeleteRows = false;
+            this.FormerTaskGrid.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.FormerTaskGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.FormerTaskGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TaskTitleName,
+            this.SMEName,
+            this.CompletionDate});
+            this.FormerTaskGrid.Location = new System.Drawing.Point(8, 51);
+            this.FormerTaskGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.FormerTaskGrid.MultiSelect = false;
+            this.FormerTaskGrid.Name = "FormerTaskGrid";
+            this.FormerTaskGrid.ReadOnly = true;
+            this.FormerTaskGrid.RowTemplate.Height = 24;
+            this.FormerTaskGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.FormerTaskGrid.Size = new System.Drawing.Size(400, 130);
+            this.FormerTaskGrid.TabIndex = 9;
+            // 
+            // TaskTitleName
+            // 
+            this.TaskTitleName.Frozen = true;
+            this.TaskTitleName.HeaderText = "Task Title";
+            this.TaskTitleName.Name = "TaskTitleName";
+            this.TaskTitleName.ReadOnly = true;
+            // 
+            // SMEName
+            // 
+            this.SMEName.Frozen = true;
+            this.SMEName.HeaderText = "SME Name";
+            this.SMEName.Name = "SMEName";
+            this.SMEName.ReadOnly = true;
+            // 
+            // CompletionDate
+            // 
+            this.CompletionDate.Frozen = true;
+            this.CompletionDate.HeaderText = "Completed At";
+            this.CompletionDate.Name = "CompletionDate";
+            this.CompletionDate.ReadOnly = true;
+            // 
+            // SkillSetGrid
+            // 
+            this.SkillSetGrid.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.SkillSetGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SkillSetGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SkillName,
+            this.Verified});
+            this.SkillSetGrid.Location = new System.Drawing.Point(16, 57);
+            this.SkillSetGrid.MultiSelect = false;
+            this.SkillSetGrid.Name = "SkillSetGrid";
+            this.SkillSetGrid.ReadOnly = true;
+            this.SkillSetGrid.RowTemplate.Height = 24;
+            this.SkillSetGrid.Size = new System.Drawing.Size(249, 352);
+            this.SkillSetGrid.TabIndex = 1;
+            // 
+            // SkillName
+            // 
+            this.SkillName.Frozen = true;
+            this.SkillName.HeaderText = "Skill";
+            this.SkillName.Name = "SkillName";
+            this.SkillName.ReadOnly = true;
+            // 
+            // Verified
+            // 
+            this.Verified.Frozen = true;
+            this.Verified.HeaderText = "Verified";
+            this.Verified.Name = "Verified";
+            this.Verified.ReadOnly = true;
             // 
             // StudentProfileView
             // 
@@ -322,17 +369,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 806);
             this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "StudentProfileView";
             this.Text = "StudentProfileView";
             this.Load += new System.EventHandler(this.StudentProfileView_Load);
-            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentPictureBox)).EndInit();
@@ -342,17 +386,15 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FormerTaskGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SkillSetGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.RichTextBox WelcomeText;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label StudentEmailLabel;
         private System.Windows.Forms.Label StudentNameLabel;
@@ -367,12 +409,18 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button StudentEditProfileBtn;
-        private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label EmailLabel;
         private System.Windows.Forms.Label EducationLabel;
-        private System.Windows.Forms.ListView StudSkillList;
+        private System.Windows.Forms.TextBox EditEmail;
+        private System.Windows.Forms.DataGridView FormerTaskGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TaskTitleName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SMEName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CompletionDate;
+        private System.Windows.Forms.DataGridView SkillSetGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SkillName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Verified;
     }
 }

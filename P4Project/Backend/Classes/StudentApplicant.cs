@@ -38,6 +38,7 @@ namespace P4Project.Backend.Classes
             Email = email;
             Education = education;
             Skills = skills;
+            Skills.OrderByDescending(a => a.Verified == true);
             ProfilePicture = profilePicture;
         }
 
