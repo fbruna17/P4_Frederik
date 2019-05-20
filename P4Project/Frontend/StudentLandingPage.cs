@@ -161,5 +161,11 @@ namespace P4Project.Frontend
             UpdateStudent();
             Show();
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            var search = new Search();
+            search.ShowDialog();
+        }
     }
 }

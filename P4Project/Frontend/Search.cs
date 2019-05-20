@@ -13,7 +13,6 @@ namespace P4Project.Frontend
 {
     public partial class Search : Form
     {
-        private SQLControl SQL;
         public Search()
         {
             InitializeComponent();
@@ -21,7 +20,14 @@ namespace P4Project.Frontend
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            
+            SQLControl SQL = new SQLControl();
+
+            string Query = SearchBox.Text;
+            List<TaskSearched> TaskResults = SQL.SearchTasks(Query);
+            foreach(TaskSearched t in TaskResults)
+            {
+                SearchResultGrid.Rows.Add(t.MakeDataViewString());
+            }
         }
     }
 }

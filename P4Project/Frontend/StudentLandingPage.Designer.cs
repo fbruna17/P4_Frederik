@@ -57,6 +57,7 @@
             this.SMEAssignedName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CompletionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ViewProfile = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ApplicationViewGrid)).BeginInit();
@@ -358,11 +359,22 @@
             this.ViewProfile.UseVisualStyleBackColor = true;
             this.ViewProfile.Click += new System.EventHandler(this.ViewProfile_Click);
             // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(549, 41);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 9;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // StudentLandingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(973, 450);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.ViewProfile);
             this.Controls.Add(this.AssignedTasksBox);
             this.Controls.Add(this.RecommendedTasksGroupBox);
@@ -414,5 +426,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SMEAssignedName;
         private System.Windows.Forms.DataGridViewTextBoxColumn CompletionDate;
         private System.Windows.Forms.Button ViewProfile;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
