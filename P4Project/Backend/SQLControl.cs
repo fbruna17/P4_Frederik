@@ -746,7 +746,7 @@ namespace P4Project
         }
 
         // Function used to search for public tasks:
-        public List<TaskSearched> SearchTasks(string Query)
+        public List<TaskSearched> SearchTasks(string Query, int i)
         {
             try
             {
@@ -754,7 +754,7 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT TaskID,SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task WHERE StateID = @stateid AND Title LIKE @query"
+                    CommandText = SearchType(i)
                     //Ret til commandtext = query, baseret på radio buttons.
                     //Task Recommend
                 };
@@ -785,6 +785,29 @@ namespace P4Project
             {
                 if (Connection != null) Close();
             }
+        }
+
+        private string SearchType(int i)
+        {
+            string Command = "";
+            switch (i)
+            {
+                // Title:
+                case 1:
+                    Command = "SELECT TaskID,SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task WHERE StateID = @stateid AND Title LIKE @query";
+                    break;
+                // SMEName:
+                case 2:
+                    Command = "SELECT Task.TaskID,Task.SMEID,Task.Title,Task.Location,Task.Hours,Task.StartDate,Task.Application_Deadline,Task.Completion,SME.Name FROM Task,SME " +
+                        "WHERE Task.StateID = @stateid AND Task.SMEID = SME.SMEID AND SME.Name LIKE @query";
+                    break;
+                // Name of required skill:
+                case 3:
+                    Command = "SELECT Task.TaskID,Task.SMEID,Task.Title,Task.Location,Task.Hours,Task.StartDate,Task.Application_Deadline,Task.Completion,Skill.SkillName " +
+                        "FROM Task,Skill WHERE Task.StateID = @stateid AND Task.Required_Skill = Skill.SkillID AND Skill.SkillName LIKE @query";
+                    break;
+            }
+            return Command;
         }
 
         // A function that fetches all student that have applied for a given task, and returns to total list of students:

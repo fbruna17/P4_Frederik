@@ -57,8 +57,6 @@ C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Creat
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.CreateTask.resources
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.RegisterSMEProfile.resources
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.SMELogInPage.resources
-C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.SMEProfileView.resources
-C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.TestForm.resources
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Properties.Resources.resources
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csproj.GenerateResource.cache
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csproj.CoreCompileInputs.cache

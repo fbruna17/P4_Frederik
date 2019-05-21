@@ -26,7 +26,7 @@ namespace P4Project.Frontend
             List<TaskSearched> TaskResults = new List<TaskSearched>();
             SearchResultGrid.Rows.Clear();
 
-            TaskResults = SQL.SearchTasks(Query);
+            TaskResults = SQL.SearchTasks(Query, CheckSearchType());
 
             foreach (TaskSearched t in TaskResults)
             {
@@ -34,6 +34,24 @@ namespace P4Project.Frontend
                 SearchResultGrid.Rows.Add(t.MakeDataViewString());
             }
             SearchResultGrid.Visible = true;
+        }
+
+        private int CheckSearchType()
+        {
+            int i;
+            if (rbtnTitle.Checked)
+            {
+                i = 1;
+            }
+            else if (rbtnCompanies.Checked)
+            {
+                i = 2;
+            }
+            else
+            {
+                i = 3;
+            }
+            return i;
         }
     }
 }
