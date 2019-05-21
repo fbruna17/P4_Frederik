@@ -23,7 +23,10 @@ namespace P4Project.Frontend
         {
             SQLControl SQL = new SQLControl();
             Query = SearchBox.Text;
-            List<TaskSearched> TaskResults = SQL.SearchTasks(Query);
+            List<TaskSearched> TaskResults = new List<TaskSearched>();
+            SearchResultGrid.Rows.Clear();
+
+            TaskResults = SQL.SearchTasks(Query);
 
             foreach (TaskSearched t in TaskResults)
             {
