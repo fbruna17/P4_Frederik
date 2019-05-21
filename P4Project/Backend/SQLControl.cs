@@ -778,7 +778,7 @@ namespace P4Project
                 int count = 0;
                 foreach (int i in studentIDs)
                 {
-                    cmd.CommandText = "SELECT FirstName,LastName,Email,Image_Dir FROM Student WHERE StudentID = @StudentID";
+                    cmd.CommandText = "SELECT FirstName,LastName,Education FROM Student WHERE StudentID = @StudentID";
                     cmd.Prepare();
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@StudentID", i);
@@ -787,9 +787,8 @@ namespace P4Project
                     {
                         string firstName = GetSafeString(readerV2, 0);
                         string lastName = GetSafeString(readerV2, 1);
-                        string email = GetSafeString(readerV2, 2);
-                        string profilePicture = GetSafeString(readerV2, 3);
-                        result.Add(new StudentApplicant(firstName, lastName, i, email, profilePicture, recScore[count]));
+                        string education = GetSafeString(readerV2, 2);
+                        result.Add(new StudentApplicant(firstName, lastName, i, education, recScore[count]));
                         count++;
                     }
                     readerV2.Close();

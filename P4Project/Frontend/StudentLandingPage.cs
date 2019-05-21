@@ -106,6 +106,7 @@ namespace P4Project.Frontend
             TaskRecommend tTask = ThisStudent.RecTasks.Single(t => t.Title == taskname);
             // Hvor vi bruger ID´et til at finde task detailed:
             TaskDetailed thisTask = sql.FetchTaskDetailed(tTask.ID);
+            thisTask.RecScore = tTask.RecommendScore;
             Hide();
             var tView = new TaskView(thisTask, ThisStudent);
             tView.ShowDialog();

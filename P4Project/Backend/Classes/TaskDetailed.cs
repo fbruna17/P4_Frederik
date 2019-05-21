@@ -14,6 +14,7 @@ namespace P4Project.Backend.Classes
         public int AssignedStudentID { get; }
         public List<StudentApplicant> Applicants { get; private set; }
         public List<ApplicationBase> Applications { get; private set; }
+        public int RecScore { get; set; }
 
         // Denne constructer tager alle de nødvendige informationer for at kunne displaye en Task for en bruger:
         public TaskDetailed(int id, int smeid, string title, string location, int hours, string description, 
