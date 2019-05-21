@@ -1312,14 +1312,15 @@ namespace P4Project
             }
         }
 
-public void AssignStudentToTask(int studentID, int taskID)
-{
-    try
-    {
-        Open();
-        MySqlCommand cmd = new MySqlCommand
+        // Function that assigns a student to a given task:
+        public void AssignStudentToTask(int studentID, int taskID)
         {
-            Connection = Connection,
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
                     CommandText = "UPDATE Task SET Assigned_Student = @Assigned_Student, StateID = @StateID WHERE TaskID = @TaskID"
                 };
                 cmd.Prepare();
@@ -1329,36 +1330,34 @@ public void AssignStudentToTask(int studentID, int taskID)
                 cmd.ExecuteNonQuery();
                 // The application is updated:
                 ConfirmApplication(studentID, taskID);
-              }
-              finally
-              {
-                  if (Connection != null) Close();
-              }
             }
-
-          public void AutoTaskStateChange(int TaskID, int NewState)
+            finally
             {
-              try
-              {
-              Open();
-              MySqlCommand cmd = new MySqlCommand
+                if (Connection != null) Close();
+            }
+        }
+
+        // A function that changes state of a task. ( Only used to change between Private and Public! ) 
+        public void AutoTaskStateChange(int TaskID, int NewState)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand
                 {
-                  Connection = Connection,
-                  CommandText = "UPDATE Task SET StateID = @StateID WHERE TaskID = @TaskID"
+                    Connection = Connection,
+                    CommandText = "UPDATE Task SET StateID = @StateID WHERE TaskID = @TaskID"
                 };
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@StateID", NewState);
                 cmd.Parameters.AddWithValue("@TaskID", TaskID);
                 cmd.ExecuteNonQuery();
-              }
-              finally
-              {
-                  if (Connection != null) Close();
-              }
             }
-
-
-        // WE NEED EDIT AND DELETE/ Change State FUNCTIONS!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
 
         // Function that marks a task as completed:
         public void CompleteTask(int taskID)
