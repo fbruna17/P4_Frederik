@@ -41,34 +41,37 @@
             // StudentLogIn
             // 
             this.StudentLogIn.AutoSize = true;
-            this.StudentLogIn.Location = new System.Drawing.Point(353, 27);
+            this.StudentLogIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StudentLogIn.Location = new System.Drawing.Point(47, 29);
+            this.StudentLogIn.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.StudentLogIn.Name = "StudentLogIn";
-            this.StudentLogIn.Size = new System.Drawing.Size(100, 17);
+            this.StudentLogIn.Size = new System.Drawing.Size(129, 20);
             this.StudentLogIn.TabIndex = 5;
             this.StudentLogIn.Text = "Student Log In";
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.StudentLogIn);
             this.groupBox1.Controls.Add(this.LogIn);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.StudentUsername);
             this.groupBox1.Controls.Add(this.Password);
             this.groupBox1.Controls.Add(this.Username);
-            this.groupBox1.Location = new System.Drawing.Point(263, 95);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Location = new System.Drawing.Point(11, 11);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(273, 166);
-            this.groupBox1.TabIndex = 4;
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(215, 157);
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // LogIn
             // 
-            this.LogIn.Location = new System.Drawing.Point(93, 121);
-            this.LogIn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.LogIn.Location = new System.Drawing.Point(71, 129);
+            this.LogIn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.LogIn.Name = "LogIn";
-            this.LogIn.Size = new System.Drawing.Size(75, 30);
-            this.LogIn.TabIndex = 4;
+            this.LogIn.Size = new System.Drawing.Size(56, 24);
+            this.LogIn.TabIndex = 3;
             this.LogIn.Text = "Log In";
             this.LogIn.UseVisualStyleBackColor = true;
             this.LogIn.Click += new System.EventHandler(this.LogIn_Click);
@@ -76,51 +79,52 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 82);
+            this.label2.Location = new System.Drawing.Point(17, 98);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 17);
+            this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Password:";
             // 
             // StudentUsername
             // 
             this.StudentUsername.AutoSize = true;
-            this.StudentUsername.Location = new System.Drawing.Point(19, 38);
+            this.StudentUsername.Location = new System.Drawing.Point(15, 62);
+            this.StudentUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.StudentUsername.Name = "StudentUsername";
-            this.StudentUsername.Size = new System.Drawing.Size(77, 17);
+            this.StudentUsername.Size = new System.Drawing.Size(58, 13);
             this.StudentUsername.TabIndex = 0;
             this.StudentUsername.Text = "Username:";
             // 
             // Password
             // 
-            this.Password.Location = new System.Drawing.Point(135, 82);
-            this.Password.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Password.Location = new System.Drawing.Point(77, 98);
+            this.Password.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Password.Name = "Password";
             this.Password.PasswordChar = '*';
-            this.Password.Size = new System.Drawing.Size(132, 22);
-            this.Password.TabIndex = 1;
+            this.Password.Size = new System.Drawing.Size(125, 20);
+            this.Password.TabIndex = 2;
             // 
             // Username
             // 
-            this.Username.Location = new System.Drawing.Point(135, 38);
-            this.Username.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Username.Location = new System.Drawing.Point(77, 62);
+            this.Username.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Username.Name = "Username";
-            this.Username.Size = new System.Drawing.Size(132, 22);
-            this.Username.TabIndex = 2;
+            this.Username.Size = new System.Drawing.Size(125, 20);
+            this.Username.TabIndex = 1;
             // 
             // StudentLogInPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.StudentLogIn);
+            this.ClientSize = new System.Drawing.Size(238, 176);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "StudentLogInPage";
             this.Text = "StudentLogInPage";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

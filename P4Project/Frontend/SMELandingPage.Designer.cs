@@ -35,12 +35,12 @@
             this.ApplicationDeadline = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstComplete = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ViewTask = new System.Windows.Forms.Button();
             this.SeeAllTasks = new System.Windows.Forms.Button();
             this.SeeCompletedTasks = new System.Windows.Forms.Button();
             this.SeeOnGoingTasks = new System.Windows.Forms.Button();
             this.SeePrivateTasks = new System.Windows.Forms.Button();
             this.SeePublicTasks = new System.Windows.Forms.Button();
+            this.ViewTask = new System.Windows.Forms.Button();
             this.SMENotificationBtn = new System.Windows.Forms.Button();
             this.TaskOverViewGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TaskView)).BeginInit();
@@ -53,7 +53,7 @@
             this.Create_New_Task.Margin = new System.Windows.Forms.Padding(2);
             this.Create_New_Task.Name = "Create_New_Task";
             this.Create_New_Task.Size = new System.Drawing.Size(117, 37);
-            this.Create_New_Task.TabIndex = 0;
+            this.Create_New_Task.TabIndex = 8;
             this.Create_New_Task.Text = "Create Task";
             this.Create_New_Task.UseVisualStyleBackColor = true;
             this.Create_New_Task.Click += new System.EventHandler(this.Create_New_Task_Click);
@@ -71,7 +71,7 @@
             this.TaskOverViewGroup.Name = "TaskOverViewGroup";
             this.TaskOverViewGroup.Padding = new System.Windows.Forms.Padding(2);
             this.TaskOverViewGroup.Size = new System.Drawing.Size(578, 269);
-            this.TaskOverViewGroup.TabIndex = 3;
+            this.TaskOverViewGroup.TabIndex = 2;
             this.TaskOverViewGroup.TabStop = false;
             this.TaskOverViewGroup.Text = "Task Overview:";
             // 
@@ -94,7 +94,7 @@
             this.TaskView.RowTemplate.Height = 24;
             this.TaskView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.TaskView.Size = new System.Drawing.Size(444, 232);
-            this.TaskView.TabIndex = 5;
+            this.TaskView.TabIndex = 9;
             // 
             // TaskTitle
             // 
@@ -123,18 +123,6 @@
             this.EstComplete.HeaderText = "Est. Completion";
             this.EstComplete.Name = "EstComplete";
             this.EstComplete.ReadOnly = true;
-            // 
-            // ViewTask
-            // 
-            this.ViewTask.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ViewTask.Location = new System.Drawing.Point(434, 318);
-            this.ViewTask.Margin = new System.Windows.Forms.Padding(2);
-            this.ViewTask.Name = "ViewTask";
-            this.ViewTask.Size = new System.Drawing.Size(117, 37);
-            this.ViewTask.TabIndex = 8;
-            this.ViewTask.Text = "View Task";
-            this.ViewTask.UseVisualStyleBackColor = true;
-            this.ViewTask.Click += new System.EventHandler(this.ViewTask_Click);
             // 
             // SeeAllTasks
             // 
@@ -191,12 +179,24 @@
             this.SeePublicTasks.UseVisualStyleBackColor = true;
             this.SeePublicTasks.Click += new System.EventHandler(this.SeePublicTasks_Click);
             // 
+            // ViewTask
+            // 
+            this.ViewTask.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ViewTask.Location = new System.Drawing.Point(434, 318);
+            this.ViewTask.Margin = new System.Windows.Forms.Padding(2);
+            this.ViewTask.Name = "ViewTask";
+            this.ViewTask.Size = new System.Drawing.Size(117, 37);
+            this.ViewTask.TabIndex = 10;
+            this.ViewTask.Text = "View Task";
+            this.ViewTask.UseVisualStyleBackColor = true;
+            this.ViewTask.Click += new System.EventHandler(this.ViewTask_Click);
+            // 
             // SMENotificationBtn
             // 
             this.SMENotificationBtn.Location = new System.Drawing.Point(460, 11);
             this.SMENotificationBtn.Name = "SMENotificationBtn";
             this.SMENotificationBtn.Size = new System.Drawing.Size(91, 23);
-            this.SMENotificationBtn.TabIndex = 9;
+            this.SMENotificationBtn.TabIndex = 1;
             this.SMENotificationBtn.Text = "Notifications (0)";
             this.SMENotificationBtn.UseVisualStyleBackColor = true;
             this.SMENotificationBtn.Click += new System.EventHandler(this.SMENotificationBtn_Click);
