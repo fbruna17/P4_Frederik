@@ -92,6 +92,7 @@ namespace P4Project.Frontend
                 {
                     skills.RemoveAll(a => a.ID == skill.ID);
                 }
+                if (ThisTask.StateID == 1) Delete.Visible = true;
             }
             foreach (Skill skill in skills)
             {
@@ -127,7 +128,12 @@ namespace P4Project.Frontend
             // Default state is private:
             int stateid = 0;
             if (PrivateStateRadio.Checked == true) stateid = 1;
-            else if (PublicStateRadio.Checked == true) stateid = 2;
+            else if (PublicStateRadio.Checked == true && ApplicationDeadlinePicker.Value.Date > DateTime.Now) stateid = 2;
+            else if (PublicStateRadio.Checked == true && ApplicationDeadlinePicker.Value.Date <= DateTime.Now)
+            {
+                stateid = 1;
+                MessageBox.Show("Application Date was earlier than today, so the task is in private state!");
+            }
             else stateid = ThisTask.StateID;
         
             // Skill List is made:
@@ -200,6 +206,29 @@ namespace P4Project.Frontend
             SkillSetGrid.Rows.RemoveAt(SkillSetGrid.CurrentCell.RowIndex);
         }
 
+        private void Back_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult result = MessageBox.Show("Are you sure you want to delete this task? This action cannot be undone!", "Confirm Delete", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    SQL.DeleteTask(ThisTask.ID);
+                    MessageBox.Show("The Task has been deleted.");
+                    Close();
+                }
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show("An Error occured while trying to delete this task! Please contact system administrators! \n Error Message:" + ex.Message);
+            }
+
+        }
         #endregion
 
 
@@ -219,6 +248,10 @@ namespace P4Project.Frontend
 
         }
 
+
+
         #endregion
+
+
     }
 }

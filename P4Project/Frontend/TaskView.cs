@@ -116,9 +116,33 @@ namespace P4Project.Frontend
             StartDate.Text = ThisTask.Startdate.ToShortDateString();
             CompletionDeadline.Text = ThisTask.EstCompletionDate.ToShortDateString();
             EstHours.Text = ThisTask.Hours.ToString();
-            foreach(Skill skill in ThisTask.RequiredSkills)
+            ShowState();
+            foreach (Skill skill in ThisTask.RequiredSkills)
             {
                 RecSkills.Items.Add(skill.Name);
+            }
+        }
+
+        // A switch that shows the state of the task: 
+        private void ShowState()
+        {
+            switch (ThisTask.StateID)
+            {
+                case 1:
+                    TaskState.Text += " Private";
+                    break;
+                case 2:
+                    TaskState.Text += " Public";
+                    break;
+                case 3:
+                    TaskState.Text += " On Going";
+                    break;
+                case 4:
+                    TaskState.Text += " Completed";
+                    break;
+                default:
+                    TaskState.Text = "";
+                    break;
             }
         }
 

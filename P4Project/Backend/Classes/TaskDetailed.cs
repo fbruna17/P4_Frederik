@@ -33,7 +33,7 @@ namespace P4Project.Backend.Classes
         public List<StudentApplicant> GetApplicants()
         {
             SQLControl sql = new SQLControl();
-            Applicants = sql.FetchApplicantsForTask(ID);
+            Applicants = sql.FetchApplicantsForTask(ID).OrderByDescending(s => s.RecommendationScore).ToList();
             return Applicants;
         }
 

@@ -160,6 +160,9 @@ namespace P4Project.Frontend
                 TaskView.Rows.Add(output);
             }
         }
+        #endregion
+
+        #region DataGridViewCreaters:
 
         // Making of the Privat or Public DataGrid:
         private void MakePrivatPublicDataGrid(int stateID)
@@ -173,7 +176,7 @@ namespace P4Project.Frontend
             foreach (TaskSearched task in tasks)
             {
                 int amount = SQL.FetchAmountOfApplications(task.ID);
-                string[] output = { task.Title, amount.ToString(), task.ApplicationDeadline.ToShortDateString(), "" ,task.Startdate.ToShortDateString() };
+                string[] output = { task.Title, amount.ToString(), task.ApplicationDeadline.ToShortDateString(), "", task.Startdate.ToShortDateString() };
                 TaskView.Rows.Add(output);
             }
         }
@@ -190,7 +193,7 @@ namespace P4Project.Frontend
             foreach (TaskSearched task in tasks)
             {
                 string studName = SQL.FetchAssignedStudentName(task.ID);
-                string[] output = { task.Title, "", "", studName, task.Startdate.ToShortDateString(), task.EstCompletionDate.ToShortDateString()};
+                string[] output = { task.Title, "", "", studName, task.Startdate.ToShortDateString(), task.EstCompletionDate.ToShortDateString() };
                 TaskView.Rows.Add(output);
             }
         }
