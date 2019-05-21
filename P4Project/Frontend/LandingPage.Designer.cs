@@ -37,7 +37,6 @@
             this.SMERegisterBtn = new System.Windows.Forms.Button();
             this.SMELoginBtn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.TilTestFormBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -52,7 +51,7 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 343);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Student Login";
             // 
@@ -62,7 +61,7 @@
             this.StudentRegisterBtn.Location = new System.Drawing.Point(6, 260);
             this.StudentRegisterBtn.Name = "StudentRegisterBtn";
             this.StudentRegisterBtn.Size = new System.Drawing.Size(188, 29);
-            this.StudentRegisterBtn.TabIndex = 2;
+            this.StudentRegisterBtn.TabIndex = 3;
             this.StudentRegisterBtn.Text = "Register";
             this.StudentRegisterBtn.UseVisualStyleBackColor = true;
             this.StudentRegisterBtn.Click += new System.EventHandler(this.StudentRegisterBtn_Click);
@@ -73,7 +72,7 @@
             this.StudentLoginBtn.Location = new System.Drawing.Point(6, 216);
             this.StudentLoginBtn.Name = "StudentLoginBtn";
             this.StudentLoginBtn.Size = new System.Drawing.Size(188, 29);
-            this.StudentLoginBtn.TabIndex = 1;
+            this.StudentLoginBtn.TabIndex = 2;
             this.StudentLoginBtn.Text = "Login";
             this.StudentLoginBtn.UseVisualStyleBackColor = true;
             this.StudentLoginBtn.Click += new System.EventHandler(this.StudentLoginBtn_Click);
@@ -93,10 +92,10 @@
             this.groupBox2.Controls.Add(this.SMERegisterBtn);
             this.groupBox2.Controls.Add(this.SMELoginBtn);
             this.groupBox2.Controls.Add(this.pictureBox1);
-            this.groupBox2.Location = new System.Drawing.Point(340, 12);
+            this.groupBox2.Location = new System.Drawing.Point(253, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 343);
-            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "SME Login";
             // 
@@ -106,7 +105,7 @@
             this.SMERegisterBtn.Location = new System.Drawing.Point(6, 260);
             this.SMERegisterBtn.Name = "SMERegisterBtn";
             this.SMERegisterBtn.Size = new System.Drawing.Size(188, 29);
-            this.SMERegisterBtn.TabIndex = 2;
+            this.SMERegisterBtn.TabIndex = 6;
             this.SMERegisterBtn.Text = "Register ";
             this.SMERegisterBtn.UseVisualStyleBackColor = true;
             this.SMERegisterBtn.Click += new System.EventHandler(this.SMERegisterBtn_Click);
@@ -117,7 +116,7 @@
             this.SMELoginBtn.Location = new System.Drawing.Point(6, 216);
             this.SMELoginBtn.Name = "SMELoginBtn";
             this.SMELoginBtn.Size = new System.Drawing.Size(188, 29);
-            this.SMELoginBtn.TabIndex = 1;
+            this.SMELoginBtn.TabIndex = 5;
             this.SMELoginBtn.Text = "Login";
             this.SMELoginBtn.UseVisualStyleBackColor = true;
             this.SMELoginBtn.Click += new System.EventHandler(this.SMELoginBtn_Click);
@@ -132,22 +131,11 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // TilTestFormBtn
-            // 
-            this.TilTestFormBtn.Location = new System.Drawing.Point(236, 312);
-            this.TilTestFormBtn.Name = "TilTestFormBtn";
-            this.TilTestFormBtn.Size = new System.Drawing.Size(75, 23);
-            this.TilTestFormBtn.TabIndex = 2;
-            this.TilTestFormBtn.Text = "TESTFORM";
-            this.TilTestFormBtn.UseVisualStyleBackColor = true;
-            this.TilTestFormBtn.Click += new System.EventHandler(this.Button1_Click);
-            // 
             // LandingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(551, 366);
-            this.Controls.Add(this.TilTestFormBtn);
+            this.ClientSize = new System.Drawing.Size(467, 366);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "LandingPage";
@@ -170,6 +158,5 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button StudentRegisterBtn;
         private System.Windows.Forms.Button StudentLoginBtn;
-        private System.Windows.Forms.Button TilTestFormBtn;
     }
 }

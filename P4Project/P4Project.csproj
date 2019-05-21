@@ -133,12 +133,6 @@
     <Compile Include="Frontend\SMELogInPage.Designer.cs">
       <DependentUpon>SMELogInPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frontend\SMEProfileView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frontend\SMEProfileView.Designer.cs">
-      <DependentUpon>SMEProfileView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Frontend\StudentLandingPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,12 +162,6 @@
     </Compile>
     <Compile Include="Frontend\TaskView.Designer.cs">
       <DependentUpon>TaskView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Frontend\TestForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frontend\TestForm.Designer.cs">
-      <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Frontend\TaskPreview.cs">
       <SubType>Form</SubType>
@@ -207,9 +195,6 @@
     <EmbeddedResource Include="Frontend\SMELogInPage.resx">
       <DependentUpon>SMELogInPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frontend\SMEProfileView.resx">
-      <DependentUpon>SMEProfileView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Frontend\StudentLandingPage.resx">
       <DependentUpon>StudentLandingPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -221,9 +206,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\TaskView.resx">
       <DependentUpon>TaskView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Frontend\TestForm.resx">
-      <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\TaskPreview.resx">
       <DependentUpon>TaskPreview.cs</DependentUpon>

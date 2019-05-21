@@ -38,16 +38,6 @@ namespace P4Project
         }
         #endregion
 
-    
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            var stud = new TestForm();
-            stud.ShowDialog();
-            this.Show();
-        }
-
         private void StudentLoginBtn_Click(object sender, EventArgs e)
         {
             this.Hide();

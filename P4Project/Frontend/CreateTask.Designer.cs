@@ -53,6 +53,7 @@
             this.AddSkill = new System.Windows.Forms.Button();
             this.SkillSetGrid = new System.Windows.Forms.DataGridView();
             this.SkillName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             this.StateGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpDownHours)).BeginInit();
             this.EditSkillsBox.SuspendLayout();
@@ -62,73 +63,79 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(131, 41);
+            this.lblTitle.Location = new System.Drawing.Point(9, 27);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(35, 17);
+            this.lblTitle.Size = new System.Drawing.Size(27, 13);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Title";
             // 
             // lblLocation
             // 
             this.lblLocation.AutoSize = true;
-            this.lblLocation.Location = new System.Drawing.Point(104, 75);
+            this.lblLocation.Location = new System.Drawing.Point(9, 57);
+            this.lblLocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(62, 17);
+            this.lblLocation.Size = new System.Drawing.Size(48, 13);
             this.lblLocation.TabIndex = 1;
             this.lblLocation.Text = "Location";
             // 
             // lblHours
             // 
             this.lblHours.AutoSize = true;
-            this.lblHours.Location = new System.Drawing.Point(120, 110);
+            this.lblHours.Location = new System.Drawing.Point(9, 86);
+            this.lblHours.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHours.Name = "lblHours";
-            this.lblHours.Size = new System.Drawing.Size(46, 17);
+            this.lblHours.Size = new System.Drawing.Size(35, 13);
             this.lblHours.TabIndex = 2;
             this.lblHours.Text = "Hours";
             // 
             // lblSkillReq
             // 
             this.lblSkillReq.AutoSize = true;
-            this.lblSkillReq.Location = new System.Drawing.Point(64, 142);
+            this.lblSkillReq.Location = new System.Drawing.Point(9, 111);
+            this.lblSkillReq.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSkillReq.Name = "lblSkillReq";
-            this.lblSkillReq.Size = new System.Drawing.Size(102, 17);
+            this.lblSkillReq.Size = new System.Drawing.Size(77, 13);
             this.lblSkillReq.TabIndex = 3;
             this.lblSkillReq.Text = "Required Skills";
             // 
             // txtTitle
             // 
-            this.txtTitle.Location = new System.Drawing.Point(184, 38);
-            this.txtTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtTitle.Location = new System.Drawing.Point(99, 27);
+            this.txtTitle.Margin = new System.Windows.Forms.Padding(2);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(144, 22);
-            this.txtTitle.TabIndex = 4;
+            this.txtTitle.Size = new System.Drawing.Size(131, 20);
+            this.txtTitle.TabIndex = 1;
             this.txtTitle.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // lblAppDeadline
             // 
             this.lblAppDeadline.AutoSize = true;
-            this.lblAppDeadline.Location = new System.Drawing.Point(579, 38);
+            this.lblAppDeadline.Location = new System.Drawing.Point(434, 31);
+            this.lblAppDeadline.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAppDeadline.Name = "lblAppDeadline";
-            this.lblAppDeadline.Size = new System.Drawing.Size(141, 17);
+            this.lblAppDeadline.Size = new System.Drawing.Size(107, 13);
             this.lblAppDeadline.TabIndex = 8;
             this.lblAppDeadline.Text = "Application Deadline:";
             // 
             // lblTaskDesc
             // 
             this.lblTaskDesc.AutoSize = true;
-            this.lblTaskDesc.Location = new System.Drawing.Point(12, 290);
+            this.lblTaskDesc.Location = new System.Drawing.Point(9, 236);
+            this.lblTaskDesc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTaskDesc.Name = "lblTaskDesc";
-            this.lblTaskDesc.Size = new System.Drawing.Size(79, 17);
+            this.lblTaskDesc.Size = new System.Drawing.Size(60, 13);
             this.lblTaskDesc.TabIndex = 11;
             this.lblTaskDesc.Text = "Description";
             // 
             // btnSubmitTask
             // 
-            this.btnSubmitTask.Location = new System.Drawing.Point(647, 382);
-            this.btnSubmitTask.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSubmitTask.Location = new System.Drawing.Point(525, 302);
+            this.btnSubmitTask.Margin = new System.Windows.Forms.Padding(2);
             this.btnSubmitTask.Name = "btnSubmitTask";
-            this.btnSubmitTask.Size = new System.Drawing.Size(141, 57);
-            this.btnSubmitTask.TabIndex = 14;
+            this.btnSubmitTask.Size = new System.Drawing.Size(106, 46);
+            this.btnSubmitTask.TabIndex = 15;
             this.btnSubmitTask.Text = "Continue";
             this.btnSubmitTask.UseVisualStyleBackColor = true;
             this.btnSubmitTask.Click += new System.EventHandler(this.btnSubmitTask_Click);
@@ -136,79 +143,82 @@
             // lblStartDeadline
             // 
             this.lblStartDeadline.AutoSize = true;
-            this.lblStartDeadline.Location = new System.Drawing.Point(579, 111);
+            this.lblStartDeadline.Location = new System.Drawing.Point(434, 90);
+            this.lblStartDeadline.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblStartDeadline.Name = "lblStartDeadline";
-            this.lblStartDeadline.Size = new System.Drawing.Size(102, 17);
+            this.lblStartDeadline.Size = new System.Drawing.Size(77, 13);
             this.lblStartDeadline.TabIndex = 18;
             this.lblStartDeadline.Text = "Start Deadline:";
             // 
             // lblCompletionDate
             // 
             this.lblCompletionDate.AutoSize = true;
-            this.lblCompletionDate.Location = new System.Drawing.Point(579, 177);
+            this.lblCompletionDate.Location = new System.Drawing.Point(434, 144);
+            this.lblCompletionDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCompletionDate.Name = "lblCompletionDate";
-            this.lblCompletionDate.Size = new System.Drawing.Size(182, 17);
+            this.lblCompletionDate.Size = new System.Drawing.Size(137, 13);
             this.lblCompletionDate.TabIndex = 19;
             this.lblCompletionDate.Text = "Estimated Completion Date:";
             // 
             // ApplicationDeadlinePicker
             // 
-            this.ApplicationDeadlinePicker.Location = new System.Drawing.Point(581, 62);
-            this.ApplicationDeadlinePicker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ApplicationDeadlinePicker.Location = new System.Drawing.Point(436, 50);
+            this.ApplicationDeadlinePicker.Margin = new System.Windows.Forms.Padding(2);
             this.ApplicationDeadlinePicker.Name = "ApplicationDeadlinePicker";
-            this.ApplicationDeadlinePicker.Size = new System.Drawing.Size(200, 22);
-            this.ApplicationDeadlinePicker.TabIndex = 20;
+            this.ApplicationDeadlinePicker.Size = new System.Drawing.Size(195, 20);
+            this.ApplicationDeadlinePicker.TabIndex = 9;
             // 
             // StartDeadlinePicker
             // 
-            this.StartDeadlinePicker.Location = new System.Drawing.Point(581, 132);
-            this.StartDeadlinePicker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.StartDeadlinePicker.Location = new System.Drawing.Point(436, 107);
+            this.StartDeadlinePicker.Margin = new System.Windows.Forms.Padding(2);
             this.StartDeadlinePicker.Name = "StartDeadlinePicker";
-            this.StartDeadlinePicker.Size = new System.Drawing.Size(200, 22);
-            this.StartDeadlinePicker.TabIndex = 21;
+            this.StartDeadlinePicker.Size = new System.Drawing.Size(195, 20);
+            this.StartDeadlinePicker.TabIndex = 10;
             // 
             // CompDeadlinePicker
             // 
-            this.CompDeadlinePicker.Location = new System.Drawing.Point(581, 198);
-            this.CompDeadlinePicker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.CompDeadlinePicker.Location = new System.Drawing.Point(436, 161);
+            this.CompDeadlinePicker.Margin = new System.Windows.Forms.Padding(2);
             this.CompDeadlinePicker.Name = "CompDeadlinePicker";
-            this.CompDeadlinePicker.Size = new System.Drawing.Size(200, 22);
-            this.CompDeadlinePicker.TabIndex = 22;
+            this.CompDeadlinePicker.Size = new System.Drawing.Size(195, 20);
+            this.CompDeadlinePicker.TabIndex = 11;
             // 
             // StateGroupBox
             // 
             this.StateGroupBox.Controls.Add(this.PublicStateRadio);
             this.StateGroupBox.Controls.Add(this.PrivateStateRadio);
-            this.StateGroupBox.Location = new System.Drawing.Point(581, 245);
-            this.StateGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.StateGroupBox.Location = new System.Drawing.Point(436, 200);
+            this.StateGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.StateGroupBox.Name = "StateGroupBox";
-            this.StateGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.StateGroupBox.Size = new System.Drawing.Size(99, 87);
-            this.StateGroupBox.TabIndex = 23;
+            this.StateGroupBox.Padding = new System.Windows.Forms.Padding(2);
+            this.StateGroupBox.Size = new System.Drawing.Size(195, 71);
+            this.StateGroupBox.TabIndex = 12;
             this.StateGroupBox.TabStop = false;
             // 
             // PublicStateRadio
             // 
             this.PublicStateRadio.AutoSize = true;
-            this.PublicStateRadio.Location = new System.Drawing.Point(7, 54);
-            this.PublicStateRadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PublicStateRadio.Location = new System.Drawing.Point(5, 44);
+            this.PublicStateRadio.Margin = new System.Windows.Forms.Padding(2);
             this.PublicStateRadio.Name = "PublicStateRadio";
-            this.PublicStateRadio.Size = new System.Drawing.Size(67, 21);
-            this.PublicStateRadio.TabIndex = 1;
-            this.PublicStateRadio.Text = "Public";
+            this.PublicStateRadio.Size = new System.Drawing.Size(154, 17);
+            this.PublicStateRadio.TabIndex = 14;
+            this.PublicStateRadio.TabStop = true;
+            this.PublicStateRadio.Text = "Public (Students can apply)";
             this.PublicStateRadio.UseVisualStyleBackColor = true;
             // 
             // PrivateStateRadio
             // 
             this.PrivateStateRadio.AutoSize = true;
             this.PrivateStateRadio.Checked = true;
-            this.PrivateStateRadio.Location = new System.Drawing.Point(7, 22);
-            this.PrivateStateRadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PrivateStateRadio.Location = new System.Drawing.Point(5, 18);
+            this.PrivateStateRadio.Margin = new System.Windows.Forms.Padding(2);
             this.PrivateStateRadio.Name = "PrivateStateRadio";
-            this.PrivateStateRadio.Size = new System.Drawing.Size(73, 21);
-            this.PrivateStateRadio.TabIndex = 0;
+            this.PrivateStateRadio.Size = new System.Drawing.Size(185, 17);
+            this.PrivateStateRadio.TabIndex = 13;
             this.PrivateStateRadio.TabStop = true;
-            this.PrivateStateRadio.Text = "Private";
+            this.PrivateStateRadio.Text = "Private (Students can\'t see/apply)";
             this.PrivateStateRadio.UseVisualStyleBackColor = true;
             // 
             // listLocation
@@ -222,64 +232,66 @@
             "Odense",
             "Roskilde",
             "Remote Work"});
-            this.listLocation.Location = new System.Drawing.Point(184, 71);
-            this.listLocation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listLocation.Location = new System.Drawing.Point(99, 54);
             this.listLocation.Name = "listLocation";
-            this.listLocation.Size = new System.Drawing.Size(144, 24);
-            this.listLocation.TabIndex = 24;
+            this.listLocation.Size = new System.Drawing.Size(131, 21);
+            this.listLocation.TabIndex = 2;
             // 
             // richTaskDesc
             // 
-            this.richTaskDesc.Location = new System.Drawing.Point(16, 310);
-            this.richTaskDesc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTaskDesc.Location = new System.Drawing.Point(12, 252);
             this.richTaskDesc.Name = "richTaskDesc";
-            this.richTaskDesc.Size = new System.Drawing.Size(289, 117);
-            this.richTaskDesc.TabIndex = 25;
+            this.richTaskDesc.Size = new System.Drawing.Size(218, 96);
+            this.richTaskDesc.TabIndex = 4;
             this.richTaskDesc.Text = "";
             // 
             // UpDownHours
             // 
-            this.UpDownHours.Location = new System.Drawing.Point(184, 111);
-            this.UpDownHours.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UpDownHours.Location = new System.Drawing.Point(99, 86);
             this.UpDownHours.Name = "UpDownHours";
-            this.UpDownHours.Size = new System.Drawing.Size(144, 22);
-            this.UpDownHours.TabIndex = 26;
+            this.UpDownHours.Size = new System.Drawing.Size(130, 20);
+            this.UpDownHours.TabIndex = 3;
             // 
             // EditSkillsBox
             // 
             this.EditSkillsBox.Controls.Add(this.SkillDropDown);
             this.EditSkillsBox.Controls.Add(this.RemoveSkill);
             this.EditSkillsBox.Controls.Add(this.AddSkill);
-            this.EditSkillsBox.Location = new System.Drawing.Point(334, 123);
+            this.EditSkillsBox.Location = new System.Drawing.Point(249, 57);
+            this.EditSkillsBox.Margin = new System.Windows.Forms.Padding(2);
             this.EditSkillsBox.Name = "EditSkillsBox";
-            this.EditSkillsBox.Size = new System.Drawing.Size(219, 125);
-            this.EditSkillsBox.TabIndex = 28;
+            this.EditSkillsBox.Padding = new System.Windows.Forms.Padding(2);
+            this.EditSkillsBox.Size = new System.Drawing.Size(164, 102);
+            this.EditSkillsBox.TabIndex = 5;
             this.EditSkillsBox.TabStop = false;
             // 
             // SkillDropDown
             // 
             this.SkillDropDown.FormattingEnabled = true;
-            this.SkillDropDown.Location = new System.Drawing.Point(25, 69);
+            this.SkillDropDown.Location = new System.Drawing.Point(19, 56);
+            this.SkillDropDown.Margin = new System.Windows.Forms.Padding(2);
             this.SkillDropDown.Name = "SkillDropDown";
-            this.SkillDropDown.Size = new System.Drawing.Size(167, 24);
-            this.SkillDropDown.TabIndex = 2;
+            this.SkillDropDown.Size = new System.Drawing.Size(126, 21);
+            this.SkillDropDown.TabIndex = 6;
             // 
             // RemoveSkill
             // 
-            this.RemoveSkill.Location = new System.Drawing.Point(6, 21);
+            this.RemoveSkill.Location = new System.Drawing.Point(4, 17);
+            this.RemoveSkill.Margin = new System.Windows.Forms.Padding(2);
             this.RemoveSkill.Name = "RemoveSkill";
-            this.RemoveSkill.Size = new System.Drawing.Size(98, 32);
-            this.RemoveSkill.TabIndex = 1;
+            this.RemoveSkill.Size = new System.Drawing.Size(74, 26);
+            this.RemoveSkill.TabIndex = 8;
             this.RemoveSkill.Text = "Remove Skill";
             this.RemoveSkill.UseVisualStyleBackColor = true;
             this.RemoveSkill.Click += new System.EventHandler(this.RemoveSkill_Click);
             // 
             // AddSkill
             // 
-            this.AddSkill.Location = new System.Drawing.Point(115, 21);
+            this.AddSkill.Location = new System.Drawing.Point(86, 17);
+            this.AddSkill.Margin = new System.Windows.Forms.Padding(2);
             this.AddSkill.Name = "AddSkill";
-            this.AddSkill.Size = new System.Drawing.Size(98, 32);
-            this.AddSkill.TabIndex = 0;
+            this.AddSkill.Size = new System.Drawing.Size(74, 26);
+            this.AddSkill.TabIndex = 7;
             this.AddSkill.Text = "Add Skill";
             this.AddSkill.UseVisualStyleBackColor = true;
             this.AddSkill.Click += new System.EventHandler(this.AddSkill_Click);
@@ -290,13 +302,14 @@
             this.SkillSetGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SkillSetGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SkillName});
-            this.SkillSetGrid.Location = new System.Drawing.Point(184, 142);
+            this.SkillSetGrid.Location = new System.Drawing.Point(99, 111);
+            this.SkillSetGrid.Margin = new System.Windows.Forms.Padding(2);
             this.SkillSetGrid.MultiSelect = false;
             this.SkillSetGrid.Name = "SkillSetGrid";
             this.SkillSetGrid.ReadOnly = true;
             this.SkillSetGrid.RowTemplate.Height = 24;
             this.SkillSetGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.SkillSetGrid.Size = new System.Drawing.Size(144, 146);
+            this.SkillSetGrid.Size = new System.Drawing.Size(130, 119);
             this.SkillSetGrid.TabIndex = 1;
             // 
             // SkillName
@@ -306,11 +319,22 @@
             this.SkillName.Name = "SkillName";
             this.SkillName.ReadOnly = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(253, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(145, 13);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Required Skills For This Task";
+            // 
             // CreateTask
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(662, 384);
+            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.SkillSetGrid);
             this.Controls.Add(this.EditSkillsBox);
             this.Controls.Add(this.UpDownHours);
@@ -329,8 +353,7 @@
             this.Controls.Add(this.lblSkillReq);
             this.Controls.Add(this.lblHours);
             this.Controls.Add(this.lblLocation);
-            this.Controls.Add(this.lblTitle);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreateTask";
             this.Text = "CreateTask";
             this.Load += new System.EventHandler(this.CreateTask_Load);
@@ -371,5 +394,6 @@
         private System.Windows.Forms.Button AddSkill;
         private System.Windows.Forms.DataGridView SkillSetGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn SkillName;
+        private System.Windows.Forms.Label label1;
     }
 }

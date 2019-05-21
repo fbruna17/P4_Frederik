@@ -55,7 +55,7 @@
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(268, 58);
+            this.pictureBox1.Location = new System.Drawing.Point(234, 36);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(194, 223);
@@ -76,9 +76,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.imageChooseBtn);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.ConfirmPasswordText);
+            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.PasswordText);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.UsernameText);
@@ -93,7 +95,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(230, 298);
+            this.groupBox1.Size = new System.Drawing.Size(464, 315);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
@@ -120,15 +122,17 @@
             // 
             this.ConfirmPasswordText.Location = new System.Drawing.Point(7, 122);
             this.ConfirmPasswordText.Name = "ConfirmPasswordText";
+            this.ConfirmPasswordText.PasswordChar = '*';
             this.ConfirmPasswordText.Size = new System.Drawing.Size(143, 20);
-            this.ConfirmPasswordText.TabIndex = 10;
+            this.ConfirmPasswordText.TabIndex = 3;
             // 
             // PasswordText
             // 
             this.PasswordText.Location = new System.Drawing.Point(7, 79);
             this.PasswordText.Name = "PasswordText";
+            this.PasswordText.PasswordChar = '*';
             this.PasswordText.Size = new System.Drawing.Size(143, 20);
-            this.PasswordText.TabIndex = 9;
+            this.PasswordText.TabIndex = 2;
             // 
             // label1
             // 
@@ -144,15 +148,16 @@
             this.UsernameText.Location = new System.Drawing.Point(7, 34);
             this.UsernameText.Name = "UsernameText";
             this.UsernameText.Size = new System.Drawing.Size(143, 20);
-            this.UsernameText.TabIndex = 7;
+            this.UsernameText.TabIndex = 1;
             // 
             // basicSaveBut
             // 
-            this.basicSaveBut.Location = new System.Drawing.Point(44, 263);
+            this.basicSaveBut.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.basicSaveBut.Location = new System.Drawing.Point(42, 280);
             this.basicSaveBut.Margin = new System.Windows.Forms.Padding(2);
             this.basicSaveBut.Name = "basicSaveBut";
-            this.basicSaveBut.Size = new System.Drawing.Size(140, 19);
-            this.basicSaveBut.TabIndex = 6;
+            this.basicSaveBut.Size = new System.Drawing.Size(140, 31);
+            this.basicSaveBut.TabIndex = 8;
             this.basicSaveBut.Text = "Save";
             this.basicSaveBut.UseVisualStyleBackColor = true;
             this.basicSaveBut.Click += new System.EventHandler(this.basicSaveBut_Click);
@@ -163,7 +168,7 @@
             this.EmailText.Margin = new System.Windows.Forms.Padding(2);
             this.EmailText.Name = "EmailText";
             this.EmailText.Size = new System.Drawing.Size(143, 20);
-            this.EmailText.TabIndex = 5;
+            this.EmailText.TabIndex = 4;
             // 
             // LastNameText
             // 
@@ -171,7 +176,7 @@
             this.LastNameText.Margin = new System.Windows.Forms.Padding(2);
             this.LastNameText.Name = "LastNameText";
             this.LastNameText.Size = new System.Drawing.Size(143, 20);
-            this.LastNameText.TabIndex = 4;
+            this.LastNameText.TabIndex = 6;
             // 
             // FirstNameText
             // 
@@ -179,7 +184,7 @@
             this.FirstNameText.Margin = new System.Windows.Forms.Padding(2);
             this.FirstNameText.Name = "FirstNameText";
             this.FirstNameText.Size = new System.Drawing.Size(143, 20);
-            this.FirstNameText.TabIndex = 3;
+            this.FirstNameText.TabIndex = 5;
             // 
             // MailLabel
             // 
@@ -213,10 +218,10 @@
             // 
             // imageChooseBtn
             // 
-            this.imageChooseBtn.Location = new System.Drawing.Point(283, 295);
+            this.imageChooseBtn.Location = new System.Drawing.Point(248, 264);
             this.imageChooseBtn.Name = "imageChooseBtn";
             this.imageChooseBtn.Size = new System.Drawing.Size(164, 23);
-            this.imageChooseBtn.TabIndex = 4;
+            this.imageChooseBtn.TabIndex = 7;
             this.imageChooseBtn.Text = "Choose Picture";
             this.imageChooseBtn.UseVisualStyleBackColor = true;
             this.imageChooseBtn.Click += new System.EventHandler(this.ImageChooseBtn_Click);
@@ -226,10 +231,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(489, 366);
-            this.Controls.Add(this.imageChooseBtn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.StudCrTitle);
-            this.Controls.Add(this.pictureBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreateStudProfileV2";
             this.Text = "CreateStudProfile";

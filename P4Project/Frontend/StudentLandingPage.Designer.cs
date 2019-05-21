@@ -58,6 +58,9 @@
             this.CompletionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ViewProfile = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ApplicationViewGrid)).BeginInit();
@@ -78,62 +81,64 @@
             this.groupBox2.Controls.Add(this.StudentEmailLabel);
             this.groupBox2.Controls.Add(this.StudentNameLabel);
             this.groupBox2.Controls.Add(this.StudentPictureBox);
-            this.groupBox2.Location = new System.Drawing.Point(35, 41);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(26, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(299, 112);
-            this.groupBox2.TabIndex = 3;
+            this.groupBox2.Size = new System.Drawing.Size(343, 112);
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             // 
             // ShowStudentEmailLabel
             // 
             this.ShowStudentEmailLabel.AutoSize = true;
-            this.ShowStudentEmailLabel.Location = new System.Drawing.Point(135, 68);
+            this.ShowStudentEmailLabel.Location = new System.Drawing.Point(137, 63);
+            this.ShowStudentEmailLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ShowStudentEmailLabel.Name = "ShowStudentEmailLabel";
-            this.ShowStudentEmailLabel.Size = new System.Drawing.Size(0, 17);
+            this.ShowStudentEmailLabel.Size = new System.Drawing.Size(0, 13);
             this.ShowStudentEmailLabel.TabIndex = 7;
             // 
             // ShowStudentNameLabel
             // 
             this.ShowStudentNameLabel.AutoSize = true;
-            this.ShowStudentNameLabel.Location = new System.Drawing.Point(135, 43);
+            this.ShowStudentNameLabel.Location = new System.Drawing.Point(137, 43);
+            this.ShowStudentNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ShowStudentNameLabel.Name = "ShowStudentNameLabel";
-            this.ShowStudentNameLabel.Size = new System.Drawing.Size(0, 17);
+            this.ShowStudentNameLabel.Size = new System.Drawing.Size(0, 13);
             this.ShowStudentNameLabel.TabIndex = 6;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(132, 43);
+            this.label1.Location = new System.Drawing.Point(99, 35);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 17);
+            this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 5;
             // 
             // EmailLabel
             // 
             this.EmailLabel.AutoSize = true;
-            this.EmailLabel.Location = new System.Drawing.Point(253, 100);
+            this.EmailLabel.Location = new System.Drawing.Point(190, 81);
+            this.EmailLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.EmailLabel.Name = "EmailLabel";
-            this.EmailLabel.Size = new System.Drawing.Size(0, 17);
+            this.EmailLabel.Size = new System.Drawing.Size(0, 13);
             this.EmailLabel.TabIndex = 4;
             // 
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(251, 57);
+            this.NameLabel.Location = new System.Drawing.Point(188, 46);
+            this.NameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(0, 17);
+            this.NameLabel.Size = new System.Drawing.Size(0, 13);
             this.NameLabel.TabIndex = 3;
             // 
             // StudentEmailLabel
             // 
             this.StudentEmailLabel.AutoSize = true;
             this.StudentEmailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
-            this.StudentEmailLabel.Location = new System.Drawing.Point(85, 68);
-            this.StudentEmailLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.StudentEmailLabel.Location = new System.Drawing.Point(99, 62);
             this.StudentEmailLabel.Name = "StudentEmailLabel";
-            this.StudentEmailLabel.Size = new System.Drawing.Size(52, 15);
+            this.StudentEmailLabel.Size = new System.Drawing.Size(45, 13);
             this.StudentEmailLabel.TabIndex = 2;
             this.StudentEmailLabel.Text = "Email: ";
             // 
@@ -141,10 +146,9 @@
             // 
             this.StudentNameLabel.AutoSize = true;
             this.StudentNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold);
-            this.StudentNameLabel.Location = new System.Drawing.Point(85, 43);
-            this.StudentNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.StudentNameLabel.Location = new System.Drawing.Point(99, 42);
             this.StudentNameLabel.Name = "StudentNameLabel";
-            this.StudentNameLabel.Size = new System.Drawing.Size(49, 15);
+            this.StudentNameLabel.Size = new System.Drawing.Size(42, 13);
             this.StudentNameLabel.TabIndex = 1;
             this.StudentNameLabel.Text = "Name:";
             // 
@@ -152,10 +156,9 @@
             // 
             this.StudentPictureBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("StudentPictureBox.BackgroundImage")));
             this.StudentPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.StudentPictureBox.Location = new System.Drawing.Point(8, 23);
-            this.StudentPictureBox.Margin = new System.Windows.Forms.Padding(4);
+            this.StudentPictureBox.Location = new System.Drawing.Point(6, 13);
             this.StudentPictureBox.Name = "StudentPictureBox";
-            this.StudentPictureBox.Size = new System.Drawing.Size(69, 70);
+            this.StudentPictureBox.Size = new System.Drawing.Size(88, 93);
             this.StudentPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.StudentPictureBox.TabIndex = 0;
             this.StudentPictureBox.TabStop = false;
@@ -170,14 +173,14 @@
             this.TaskTitleName,
             this.State,
             this.SMEName});
-            this.ApplicationViewGrid.Location = new System.Drawing.Point(5, 14);
-            this.ApplicationViewGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ApplicationViewGrid.Location = new System.Drawing.Point(4, 31);
+            this.ApplicationViewGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ApplicationViewGrid.MultiSelect = false;
             this.ApplicationViewGrid.Name = "ApplicationViewGrid";
             this.ApplicationViewGrid.ReadOnly = true;
             this.ApplicationViewGrid.RowTemplate.Height = 24;
             this.ApplicationViewGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ApplicationViewGrid.Size = new System.Drawing.Size(357, 107);
+            this.ApplicationViewGrid.Size = new System.Drawing.Size(343, 87);
             this.ApplicationViewGrid.TabIndex = 4;
             this.ApplicationViewGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ApplicationView_CellContentClick);
             // 
@@ -204,23 +207,24 @@
             // 
             // ApplicationGroupBox
             // 
+            this.ApplicationGroupBox.Controls.Add(this.label4);
             this.ApplicationGroupBox.Controls.Add(this.SeeApplication);
             this.ApplicationGroupBox.Controls.Add(this.ApplicationViewGrid);
-            this.ApplicationGroupBox.Location = new System.Drawing.Point(23, 159);
-            this.ApplicationGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ApplicationGroupBox.Location = new System.Drawing.Point(17, 129);
+            this.ApplicationGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ApplicationGroupBox.Name = "ApplicationGroupBox";
-            this.ApplicationGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ApplicationGroupBox.Size = new System.Drawing.Size(362, 158);
-            this.ApplicationGroupBox.TabIndex = 5;
+            this.ApplicationGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ApplicationGroupBox.Size = new System.Drawing.Size(352, 142);
+            this.ApplicationGroupBox.TabIndex = 3;
             this.ApplicationGroupBox.TabStop = false;
             // 
             // SeeApplication
             // 
             this.SeeApplication.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.SeeApplication.Location = new System.Drawing.Point(266, 125);
-            this.SeeApplication.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SeeApplication.Location = new System.Drawing.Point(281, 122);
+            this.SeeApplication.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SeeApplication.Name = "SeeApplication";
-            this.SeeApplication.Size = new System.Drawing.Size(88, 23);
+            this.SeeApplication.Size = new System.Drawing.Size(66, 19);
             this.SeeApplication.TabIndex = 5;
             this.SeeApplication.Text = "View";
             this.SeeApplication.UseVisualStyleBackColor = true;
@@ -228,14 +232,15 @@
             // 
             // RecommendedTasksGroupBox
             // 
+            this.RecommendedTasksGroupBox.Controls.Add(this.label2);
             this.RecommendedTasksGroupBox.Controls.Add(this.RecommendedTasks);
             this.RecommendedTasksGroupBox.Controls.Add(this.ViewRecTask);
-            this.RecommendedTasksGroupBox.Location = new System.Drawing.Point(428, 128);
-            this.RecommendedTasksGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.RecommendedTasksGroupBox.Location = new System.Drawing.Point(382, 129);
+            this.RecommendedTasksGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RecommendedTasksGroupBox.Name = "RecommendedTasksGroupBox";
-            this.RecommendedTasksGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.RecommendedTasksGroupBox.Size = new System.Drawing.Size(460, 310);
-            this.RecommendedTasksGroupBox.TabIndex = 6;
+            this.RecommendedTasksGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RecommendedTasksGroupBox.Size = new System.Drawing.Size(380, 286);
+            this.RecommendedTasksGroupBox.TabIndex = 9;
             this.RecommendedTasksGroupBox.TabStop = false;
             // 
             // RecommendedTasks
@@ -248,15 +253,15 @@
             this.TaskTitle,
             this.Match,
             this.SME});
-            this.RecommendedTasks.Location = new System.Drawing.Point(5, 14);
-            this.RecommendedTasks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.RecommendedTasks.Location = new System.Drawing.Point(6, 31);
+            this.RecommendedTasks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RecommendedTasks.MultiSelect = false;
             this.RecommendedTasks.Name = "RecommendedTasks";
             this.RecommendedTasks.ReadOnly = true;
             this.RecommendedTasks.RowTemplate.Height = 24;
             this.RecommendedTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.RecommendedTasks.Size = new System.Drawing.Size(444, 262);
-            this.RecommendedTasks.TabIndex = 1;
+            this.RecommendedTasks.Size = new System.Drawing.Size(365, 226);
+            this.RecommendedTasks.TabIndex = 10;
             // 
             // TaskTitle
             // 
@@ -282,32 +287,36 @@
             // 
             // ViewRecTask
             // 
-            this.ViewRecTask.Location = new System.Drawing.Point(181, 281);
-            this.ViewRecTask.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ViewRecTask.Location = new System.Drawing.Point(309, 261);
+            this.ViewRecTask.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ViewRecTask.Name = "ViewRecTask";
-            this.ViewRecTask.Size = new System.Drawing.Size(83, 23);
-            this.ViewRecTask.TabIndex = 0;
+            this.ViewRecTask.Size = new System.Drawing.Size(62, 19);
+            this.ViewRecTask.TabIndex = 11;
             this.ViewRecTask.Text = "ViewTask";
             this.ViewRecTask.UseVisualStyleBackColor = true;
             this.ViewRecTask.Click += new System.EventHandler(this.ViewRecTask_Click);
             // 
             // AssignedTasksBox
             // 
+            this.AssignedTasksBox.Controls.Add(this.label3);
             this.AssignedTasksBox.Controls.Add(this.ViewAssignedTask);
             this.AssignedTasksBox.Controls.Add(this.AssignedTaskGridView);
-            this.AssignedTasksBox.Location = new System.Drawing.Point(23, 312);
+            this.AssignedTasksBox.Location = new System.Drawing.Point(17, 275);
+            this.AssignedTasksBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AssignedTasksBox.Name = "AssignedTasksBox";
-            this.AssignedTasksBox.Size = new System.Drawing.Size(362, 137);
-            this.AssignedTasksBox.TabIndex = 7;
+            this.AssignedTasksBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AssignedTasksBox.Size = new System.Drawing.Size(352, 140);
+            this.AssignedTasksBox.TabIndex = 6;
             this.AssignedTasksBox.TabStop = false;
             this.AssignedTasksBox.Visible = false;
             // 
             // ViewAssignedTask
             // 
-            this.ViewAssignedTask.Location = new System.Drawing.Point(266, 105);
+            this.ViewAssignedTask.Location = new System.Drawing.Point(282, 115);
+            this.ViewAssignedTask.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ViewAssignedTask.Name = "ViewAssignedTask";
-            this.ViewAssignedTask.Size = new System.Drawing.Size(88, 23);
-            this.ViewAssignedTask.TabIndex = 1;
+            this.ViewAssignedTask.Size = new System.Drawing.Size(66, 19);
+            this.ViewAssignedTask.TabIndex = 8;
             this.ViewAssignedTask.Text = "View";
             this.ViewAssignedTask.UseVisualStyleBackColor = true;
             this.ViewAssignedTask.Click += new System.EventHandler(this.ViewAssignedTask_Click);
@@ -320,13 +329,14 @@
             this.TaskAssignedTitle,
             this.SMEAssignedName,
             this.CompletionDate});
-            this.AssignedTaskGridView.Location = new System.Drawing.Point(6, 10);
+            this.AssignedTaskGridView.Location = new System.Drawing.Point(4, 33);
+            this.AssignedTaskGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AssignedTaskGridView.MultiSelect = false;
             this.AssignedTaskGridView.Name = "AssignedTaskGridView";
             this.AssignedTaskGridView.RowTemplate.Height = 24;
             this.AssignedTaskGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.AssignedTaskGridView.Size = new System.Drawing.Size(351, 89);
-            this.AssignedTaskGridView.TabIndex = 0;
+            this.AssignedTaskGridView.Size = new System.Drawing.Size(343, 78);
+            this.AssignedTaskGridView.TabIndex = 7;
             // 
             // TaskAssignedTitle
             // 
@@ -351,36 +361,68 @@
             // 
             // ViewProfile
             // 
-            this.ViewProfile.Location = new System.Drawing.Point(737, 92);
+            this.ViewProfile.Location = new System.Drawing.Point(382, 58);
+            this.ViewProfile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ViewProfile.Name = "ViewProfile";
-            this.ViewProfile.Size = new System.Drawing.Size(140, 34);
-            this.ViewProfile.TabIndex = 8;
+            this.ViewProfile.Size = new System.Drawing.Size(105, 28);
+            this.ViewProfile.TabIndex = 1;
             this.ViewProfile.Text = "View Profile";
             this.ViewProfile.UseVisualStyleBackColor = true;
             this.ViewProfile.Click += new System.EventHandler(this.ViewProfile_Click);
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(549, 41);
+            this.btnSearch.Location = new System.Drawing.Point(382, 90);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 9;
-            this.btnSearch.Text = "Search";
+            this.btnSearch.Size = new System.Drawing.Size(105, 28);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.Text = "Search For Task";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(108, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(133, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Available Tasks";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(11, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(153, 20);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Tasks In Progress";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(11, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(153, 20);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Applied For Tasks";
+            // 
             // StudentLandingPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(973, 450);
+            this.ClientSize = new System.Drawing.Size(766, 424);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.ViewProfile);
             this.Controls.Add(this.AssignedTasksBox);
             this.Controls.Add(this.RecommendedTasksGroupBox);
             this.Controls.Add(this.ApplicationGroupBox);
             this.Controls.Add(this.groupBox2);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "StudentLandingPage";
             this.Text = "StudentLandingPage";
             this.groupBox2.ResumeLayout(false);
@@ -388,9 +430,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.StudentPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ApplicationViewGrid)).EndInit();
             this.ApplicationGroupBox.ResumeLayout(false);
+            this.ApplicationGroupBox.PerformLayout();
             this.RecommendedTasksGroupBox.ResumeLayout(false);
+            this.RecommendedTasksGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RecommendedTasks)).EndInit();
             this.AssignedTasksBox.ResumeLayout(false);
+            this.AssignedTasksBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AssignedTaskGridView)).EndInit();
             this.ResumeLayout(false);
 
@@ -427,5 +472,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CompletionDate;
         private System.Windows.Forms.Button ViewProfile;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
