@@ -720,7 +720,7 @@ namespace P4Project
                 };
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@stateid", 2);
-                cmd.Parameters.AddWithValue("@query", Query);
+                cmd.Parameters.AddWithValue("@query", "%" + Query + "%");
 
                 var reader = cmd.ExecuteReader();
 
