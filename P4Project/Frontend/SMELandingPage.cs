@@ -19,9 +19,8 @@ namespace P4Project.Frontend
         {
             ThisSME = thisSME;
             InitializeComponent();
-            //InformUserOfTaskDates();
-            TaskStateAutoStateChangeByDate();
-            //AutoTaskStateChange();
+            // Checks for "dates exceeded" and counts notification.
+            SMENotificationBtn.Text = "Notifications (" + TaskNotificationCounter() + ")"; 
             foreach (TaskSearched task in ThisSME.GetListOfTasks(2))
             {
                 TaskView.Rows.Add(task.MakeDataViewString());
@@ -38,70 +37,61 @@ namespace P4Project.Frontend
             }
         }
 
-        private void InformUserOfTaskDates()
-        {
-            string taskAppNames = "";
-            string taskBeginNames = "";
-
-            foreach (TaskSearched task in ThisSME.Tasks)
-            {
-                if (task.ApplicationDeadline < DateTime.Now && task.StateID == 2) taskAppNames += task.Title + "";
-                if (task.Startdate < DateTime.Now && task.StateID == 1 && task.StateID == 2 ) taskBeginNames += task.Title + "";
-            }
-
-
-            if (taskAppNames != "") MessageBox.Show("Your task(s): " + taskAppNames + " has exceded Application Deadline!");
-            if (taskBeginNames != "") MessageBox.Show("Your task(s): " + taskBeginNames + " Should be in progress but are not.");
-        }
-
-        //Mangler lige den del med "Moved fra PUBLIC til ONGOING. Ellers kører den sgu fint!
         private void TaskStateAutoStateChangeByDate()
         {
             SQLControl SQL = new SQLControl();
-            
+
             //Checking individual if State Change is recommended due to ApplicationDeadline, StartDate and Est. Completion Deadline when an SME logs into the system.
             foreach (TaskSearched task in ThisSME.Tasks)
             {
                 var taskAppIDs = 0;
 
-                //Moving task into PRIVATE STATE from PUBLIC STATE due to Application Date Exceeded and no assigned Student.
-                if (task.ApplicationDeadline < DateTime.Now && task.StateID == 2)
+                if (task.Startdate < DateTime.Now && (task.StateID != 3 && task.StateID != 4 && task.StateID != 1))
                 {
                     taskAppIDs = task.ID;
                     var taskNewState = 1;
+                    var message = "Your task: " + task.Title + " has passed its StartDate and no student is assigned. The task has been moved into Private State.";
 
-                    DialogResult result = MessageBox.Show("Do you want your task: " + task.Title + " moved to private due to Application Date exceeded!", "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
-                    if(result == DialogResult.Yes)
-                    {
-                        SQL.AutoTaskStateChange(taskAppIDs, taskNewState);
-                        MessageBox.Show("State of: " + task.Title + "was changed.");
-                    } else if (result == DialogResult.No || result == DialogResult.Cancel)
-                    {
-                        MessageBox.Show("The state wasn't changed. But it's recommended that you'll look into it.");
-                    } else { }
+                    SQL.AutoTaskStateChange(taskAppIDs, taskNewState);
+                    MessageBox.Show(message);                    
                 }
 
-                //Moving task into COMPLETED STATE from ONGOING STATE duo to Est. Completion Date exceeded.
-                if (task.EstCompletionDate < DateTime.Now && task.StateID == 3)
+                else if (task.EstCompletionDate < DateTime.Now && task.StateID == 3)
                 {
                     taskAppIDs = task.ID;
-                    var taskNewState = 4;
 
-                    DialogResult result = MessageBox.Show("Do you want your task: " + task.Title + " moved to Completed Tasks due to Est. Completion Date exceeded?", "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                    DialogResult result = MessageBox.Show("Your task: " + task.Title + " has exceeded its Completion Deadline. Do you want to move it into Completed State?", "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
-                        SQL.AutoTaskStateChange(taskAppIDs, taskNewState);
-                        MessageBox.Show("State of: " + task.Title + "was changed.");
-                    } else if (result == DialogResult.No || result == DialogResult.Cancel)
+                        SQL.CompleteTask(taskAppIDs);
+                    }
+                    else if (result == DialogResult.No || result == DialogResult.Cancel)
                     {
-                        MessageBox.Show("The state wasn't changed. But it's recommended that you'll look into it.");
-                    } else { }
+                        MessageBox.Show("Task State wasn't changed. Please update your deadline manually");
+                    }
+                    else { }
                 }
-
                 //Updation the session after making potential changes to different Task States.
                 UpdateSession();
+            }        
+        }
+
+        private int TaskNotificationCounter()
+        {
+            int notifications = 0;
+            foreach (TaskSearched task in ThisSME.Tasks)
+            {
+                if (task.Startdate < DateTime.Now && (task.StateID != 3 && task.StateID != 4 && task.StateID != 1))
+                {
+                    notifications++;
+                }
+
+                else if (task.EstCompletionDate < DateTime.Now && task.StateID == 3)
+                {
+                    notifications++;
+                }
             }
-            
+            return notifications;
         }
 
         private void Create_New_Task_Click(object sender, EventArgs e)
@@ -179,6 +169,12 @@ namespace P4Project.Frontend
             tView.ShowDialog();
             UpdateSession();
             Show();
+        }
+
+        private void SMENotificationBtn_Click(object sender, EventArgs e)
+        {
+            TaskStateAutoStateChangeByDate();
+            SMENotificationBtn.Text = "Notifications (" + TaskNotificationCounter() + ")";
         }
     }
 }
