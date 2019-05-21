@@ -12,7 +12,7 @@ namespace P4Project.Backend.Classes
     {
         private string Username { get; }
         private string Password { get; }
-        public List<TaskRecommend> RecTasks { get; }
+        public List<TaskRecommend> RecTasks { get; set; }
         public List<ApplicationDetailed> Applications { get; set; }
         private RecMaker Recommend;
 
@@ -22,10 +22,13 @@ namespace P4Project.Backend.Classes
         {
             Username = username;
             Password = password;
-            Recommend = new RecMaker(this);
-            RecTasks = Recommend.RecommendTasks();
+            Applications = new List<ApplicationDetailed>();
             GetApplications();
             GetAssignedTasks();
+            UpdateSkillSet();
+            Recommend = new RecMaker(this);
+            // We are only looking for top 7 recommendations
+            RecTasks = Recommend.RecommendTasks(false);
         }
 
         public StudentLoggedIn(string username, string password, StudentDetailed thisStudent) 
@@ -34,11 +37,13 @@ namespace P4Project.Backend.Classes
         {
             Username = username;
             Password = password;
-            Recommend = new RecMaker(this);
-            RecTasks = Recommend.RecommendTasks();
             Applications = new List<ApplicationDetailed>();
             GetApplications();
             GetAssignedTasks();
+            UpdateSkillSet();
+            Recommend = new RecMaker(this);
+            // We are only looking for top 7 recommendations
+            RecTasks = Recommend.RecommendTasks(false);
         }
 
         // Gets all applications made by this student:

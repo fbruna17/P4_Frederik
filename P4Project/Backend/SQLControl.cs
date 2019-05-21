@@ -543,7 +543,6 @@ namespace P4Project
         #endregion
 
 
-
         // .............................................. TASK SPECIFIC FETCH FUNCTIONS .............................................
         // Functions that are used to fetch Task information:
 
@@ -655,13 +654,15 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT TaskID,Title,SMEID,Required_Skill FROM Task WHERE StateID = @StateID"
+                    CommandText = "SELECT TaskID,Title,SMEID,Required_Skill,Application_Deadline FROM Task WHERE StateID = @StateID AND Application_Deadline >= @Now"
                 };
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@StateID", 2);
+                cmd.Parameters.AddWithValue("@Now", DateTime.Now.Date);
                 var reader = cmd.ExecuteReader();
                 // A temp list is initialized to store the temp data:
                 var tempTaskList = new List<TaskBase>();
+                var applicationDeadlineList = new List<DateTime>();
                 // This list will contain ALL recquired skills for each task! Each element in the list will be the combined string of skill IDs:
                 List<string> recSkill = new List<string>();
 
@@ -671,6 +672,7 @@ namespace P4Project
                     string title = GetSafeString(reader, 1);
                     int smeID = GetSafeIntMustNotBeNull(reader, 2);
                     recSkill.Add(GetSafeString(reader, 3));
+                    applicationDeadlineList.Add(reader.GetDateTime(4));
                     // The data that has been read, is added too the temp list:
                     tempTaskList.Add(new TaskBase(taskID, smeID, title));
                 }
@@ -688,14 +690,15 @@ namespace P4Project
                     List<string> tRecSkill = recSkill[i].Split(',').ToList();
                     foreach (string skillID in tRecSkill)
                     {
-                        if (skillID == "" && skillID == string.Empty) { } // Is there is no required skills, nothing should be done :
+                        if (skillID == "" && skillID == string.Empty) { } // If there is no required skills, nothing should be done :
                         else if (int.TryParse(skillID, out int ID)) tRecSkillIDs.Add(ID);
                         else throw new DataErrorInDataBaseException("TryParse on skillID: " + skillID + i.ToString());
                     }
                     // A list of skills is made based on the list of Skill IDs:
                     List<Skill> skills = FetchSkillInfo(tRecSkillIDs);
-                    // The task instance is made and added to the resultlist:
-                    resultList.Add(new TaskRecommend(task, skills));
+                    // The task instance is made and added to the resultlist with the Application deadline:
+                    resultList.Add(new TaskRecommend(task, skills, applicationDeadlineList[i]));
+                    i++;
                 }
                 return resultList;
             }
@@ -1070,6 +1073,32 @@ namespace P4Project
             }
         }
 
+        public List<int> FetchAllAppliedForTaskIDs(int studentID)
+        {
+            try
+            {
+                List<int> taskIDs = new List<int>();
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT TaskID FROM Application WHERE StudentID = @StudentID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@StudentID", studentID);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    taskIDs.Add(GetSafeIntMustNotBeNull(reader, 0));
+                }
+                return taskIDs;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
         #endregion
 
         // End of Fetch Functions:

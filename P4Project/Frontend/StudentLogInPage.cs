@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using P4Project.Backend.Classes;
+using P4Project.Backend.Recommendation;
 using P4Project.Exceptions;
 using MySql.Data.MySqlClient;
 
@@ -34,7 +35,6 @@ namespace P4Project.Frontend
                 int studID = InputValidation.VerifyLogin(username, password, "Student");
                 StudentDetailed tStudent = SQL.FetchStudentDetailed(studID);
                 StudentLoggedIn student = new StudentLoggedIn(username, password, tStudent);
-                student.UpdateSkillSet();
                 var studLandingPage = new StudentLandingPage(student);
                 Close();
                 studLandingPage.ShowDialog();

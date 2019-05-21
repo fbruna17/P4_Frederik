@@ -10,23 +10,27 @@ namespace P4Project.Backend.Classes
     public class TaskRecommend : TaskBase
     {
         // Listen over required skills der hentes fra databasen:
-        private List<Skill> RequiredSkills { get; }
+        public List<Skill> RequiredSkills { get; }
 
         // En double til at opbevare scoren fra recommendationen:
-        private double RecommendScore { get; }
+        public int RecommendScore { get; set; }
+
+        public DateTime ApplicationDeadline { get; }
 
         // Hvis RequiredSkills allerede kendes kan man slippe for databasekaldet: Smartere når der skal ittereses gennem- / Laves mange instanser
-        public TaskRecommend(int id, List<Skill> requiredSkills, string title, int smeID, string smeName) : base(id, smeID, title, smeName)
+        public TaskRecommend(int id, List<Skill> requiredSkills, string title, int smeID, string smeName, DateTime applicationDeadline) : base(id, smeID, title, smeName)
         {
             RequiredSkills = requiredSkills;
             RecommendScore = 0;
+            ApplicationDeadline = applicationDeadline;
         }
 
         // Hvis RequiredSkills allerede kendes kan man slippe for databasekaldet: Smartere når der skal ittereses gennem- / Laves mange instanser
-        public TaskRecommend(TaskBase taskBase, List<Skill> requiredSkills) : base(taskBase.ID, taskBase.SMEID, taskBase.Title, taskBase.SMEName)
+        public TaskRecommend(TaskBase taskBase, List<Skill> requiredSkills, DateTime applicationDeadline) : base(taskBase.ID, taskBase.SMEID, taskBase.Title, taskBase.SMEName)
         {
             RequiredSkills = requiredSkills;
             RecommendScore = 0;
+            ApplicationDeadline = applicationDeadline;
         }
 
         public string[] MakeDataViewGrid()
