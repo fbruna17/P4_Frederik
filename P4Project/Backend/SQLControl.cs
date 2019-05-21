@@ -277,7 +277,7 @@ namespace P4Project
                     DateTime applicationDeadline = reader.GetDateTime(5);
                     DateTime estCompletion = reader.GetDateTime(6);
                     int stateID = reader.GetInt32(7);
-                    taskList.Add(new TaskSearched(taskID, owner, title, location, hours, startDate, applicationDeadline, estCompletion, stateID));
+                    taskList.Add(new TaskSearched(taskID, owner.ID, title, location, hours, startDate, applicationDeadline, estCompletion, stateID));
                 }
                 reader.Close();
                 return taskList;
@@ -601,8 +601,7 @@ namespace P4Project
                 }
                 reader.Close();
                 // The Results are initialised and returned:
-                SMEBase owner = FetchSMEBaseInformation(smeID);
-                return result = new TaskDetailed(taskID, owner, title, location, hours, description, startDate, applicationDeadline, estCompletion, stateID, reqSkills, assignedStudent);
+                return result = new TaskDetailed(taskID, smeID, title, location, hours, description, startDate, applicationDeadline, estCompletion, stateID, reqSkills, assignedStudent);
             }
             finally
             {
@@ -716,7 +715,9 @@ namespace P4Project
                 {
                     Connection = Connection,
                     CommandText = "SELECT TaskID,SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task " +
-                    "WHERE StateID = @stateid AND Title LIKE @query"
+                    "WHERE StateID = @stateid AND Title LIKE '@query'"
+                    //Ret til commandtext = query, baseret på radio buttons.
+                    //Task Recommend
                 };
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@stateid", 2);
@@ -730,14 +731,13 @@ namespace P4Project
                 {
                     int taskID = GetSafeIntMustNotBeNull(reader, 0);
                     int smeID = GetSafeIntMustNotBeNull(reader, 1);
-                    SMEBase owner = FetchSMEBaseInformation(smeID);
                     string title = GetSafeString(reader, 2);
                     string location = GetSafeString(reader, 3);
                     int hours = GetSafeIntMustNotBeNull(reader, 4);
                     DateTime applicationdeadline = reader.GetDateTime(5);
                     DateTime startdate = reader.GetDateTime(6);
                     DateTime completiondate = reader.GetDateTime(7);
-                    TaskList.Add(new TaskSearched(taskID, owner, title, location, hours, applicationdeadline, startdate, completiondate));
+                    TaskList.Add(new TaskSearched(taskID, smeID, title, location, hours, applicationdeadline, startdate, completiondate));
                 }
                 reader.Close();
                 return TaskList;
@@ -1253,7 +1253,7 @@ namespace P4Project
                 cmd.Prepare();
 
                 // The parameters are added:
-                cmd.Parameters.AddWithValue("@sme", thisTask.Owner.ID);
+                cmd.Parameters.AddWithValue("@sme", thisTask.SMEID);
                 cmd.Parameters.AddWithValue("@title", thisTask.Title);
                 cmd.Parameters.AddWithValue("@description", thisTask.Description);
                 cmd.Parameters.AddWithValue("@startdate", thisTask.Startdate);
@@ -1292,7 +1292,7 @@ namespace P4Project
 
                 // The parameters are added:
                 cmd.Parameters.AddWithValue("@TaskID", thisTask.ID);
-                cmd.Parameters.AddWithValue("@sme", thisTask.Owner.ID);
+                cmd.Parameters.AddWithValue("@sme", thisTask.SMEID);
                 cmd.Parameters.AddWithValue("@title", thisTask.Title);
                 cmd.Parameters.AddWithValue("@description", thisTask.Description);
                 cmd.Parameters.AddWithValue("@startdate", thisTask.Startdate);
@@ -1532,14 +1532,14 @@ namespace P4Project
                 while (reader.Read())
                 {
                     int taskID = reader.GetInt32(0);
-                    SMEBase owner = FetchSMEBaseInformation(reader.GetInt32(1));
+                    int smeID = reader.GetInt32(1);
                     string title = reader.GetString(2);
                     string location = reader.GetString(3);
                     int hours = reader.GetInt32(4);
                     DateTime startDate = reader.GetDateTime(5);
                     DateTime applicationDeadline = reader.GetDateTime(6);
                     DateTime estCompletion = reader.GetDateTime(7);
-                    result.Add(new TaskSearched(taskID, owner, title, location, hours, startDate, applicationDeadline, estCompletion, stateID));
+                    result.Add(new TaskSearched(taskID, smeID, title, location, hours, startDate, applicationDeadline, estCompletion, stateID));
                 }
             }
             finally
@@ -1578,14 +1578,14 @@ namespace P4Project
                     cmd.Parameters.AddWithValue("@TaskID", i);
                     while (reader.Read())
                     {
-                        SMEBase owner = FetchSMEBaseInformation(reader.GetInt32(0));
+                        int smeID = reader.GetInt32(0);
                         string title = reader.GetString(1);
                         string location = reader.GetString(2);
                         int hours = reader.GetInt32(3);
                         DateTime startDate = reader.GetDateTime(4);
                         DateTime applicationDeadline = reader.GetDateTime(5);
                         DateTime estCompletion = reader.GetDateTime(6);
-                        result.Add(new TaskSearched(i, owner, title, location, hours, startDate, applicationDeadline, estCompletion));
+                        result.Add(new TaskSearched(i, smeID, title, location, hours, startDate, applicationDeadline, estCompletion));
                     }
                 }
             }

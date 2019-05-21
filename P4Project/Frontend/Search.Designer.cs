@@ -31,21 +31,28 @@
             this.SearchBox = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.SearchResultGrid = new System.Windows.Forms.DataGridView();
+            this.TaskTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TaskSMEName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TaskAppDeadline = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TaskStartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TaskEndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.SearchResultGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // SearchBox
             // 
-            this.SearchBox.Location = new System.Drawing.Point(91, 49);
+            this.SearchBox.Location = new System.Drawing.Point(68, 40);
+            this.SearchBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SearchBox.Name = "SearchBox";
-            this.SearchBox.Size = new System.Drawing.Size(235, 22);
+            this.SearchBox.Size = new System.Drawing.Size(177, 20);
             this.SearchBox.TabIndex = 0;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(342, 49);
+            this.btnSearch.Location = new System.Drawing.Point(256, 40);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(56, 19);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -54,20 +61,54 @@
             // SearchResultGrid
             // 
             this.SearchResultGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SearchResultGrid.Location = new System.Drawing.Point(13, 139);
+            this.SearchResultGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TaskTitle,
+            this.TaskSMEName,
+            this.TaskAppDeadline,
+            this.TaskStartDate,
+            this.TaskEndDate});
+            this.SearchResultGrid.Location = new System.Drawing.Point(10, 113);
+            this.SearchResultGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SearchResultGrid.Name = "SearchResultGrid";
             this.SearchResultGrid.RowTemplate.Height = 24;
-            this.SearchResultGrid.Size = new System.Drawing.Size(748, 150);
+            this.SearchResultGrid.Size = new System.Drawing.Size(561, 122);
             this.SearchResultGrid.TabIndex = 2;
+            this.SearchResultGrid.Visible = false;
+            // 
+            // TaskTitle
+            // 
+            this.TaskTitle.HeaderText = "Title";
+            this.TaskTitle.Name = "TaskTitle";
+            // 
+            // TaskSMEName
+            // 
+            this.TaskSMEName.HeaderText = "Owner";
+            this.TaskSMEName.Name = "TaskSMEName";
+            // 
+            // TaskAppDeadline
+            // 
+            this.TaskAppDeadline.HeaderText = "Application Deadline";
+            this.TaskAppDeadline.Name = "TaskAppDeadline";
+            // 
+            // TaskStartDate
+            // 
+            this.TaskStartDate.HeaderText = "Start Date";
+            this.TaskStartDate.Name = "TaskStartDate";
+            // 
+            // TaskEndDate
+            // 
+            this.TaskEndDate.HeaderText = "Est. Completion Date";
+            this.TaskEndDate.Name = "TaskEndDate";
             // 
             // Search
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.SearchResultGrid);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.SearchBox);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Search";
             this.Text = "Search";
             ((System.ComponentModel.ISupportInitialize)(this.SearchResultGrid)).EndInit();
@@ -81,5 +122,10 @@
         private System.Windows.Forms.TextBox SearchBox;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView SearchResultGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TaskTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TaskSMEName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TaskAppDeadline;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TaskStartDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TaskEndDate;
     }
 }

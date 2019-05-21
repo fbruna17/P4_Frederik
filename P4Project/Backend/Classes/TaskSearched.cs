@@ -15,24 +15,24 @@ namespace P4Project.Backend.Classes
         public DateTime ApplicationDeadline { get; }
         public DateTime EstCompletionDate { get; }
         public int StateID { get; }
-        public SMEBase Owner { get; }
+        public int SMEID { get; }
 
         // Den constructer der normalt vil bruges til denne klasse:
-        public TaskSearched(int id, SMEBase owner, string title, string location, int hours, DateTime startdate, 
+        public TaskSearched(int id, int smeid, string title, string location, int hours, DateTime startdate, 
             DateTime applicationDeadline, DateTime estCompletionDate) 
-            : base(id, owner.ID, title)
+            : base(id, smeid, title)
         {
             Location = location;
             Hours = hours;
             Startdate = startdate;
             ApplicationDeadline = applicationDeadline;
             EstCompletionDate = estCompletionDate;
-            Owner = owner;
+            SMEID = smeid;
         }
         // Constructer der bruges når f.eks. SMEs skal have hentet alle deres tasks, eller når man søger en DetailedTask (StateID tilføjes):
-        public TaskSearched(int id, SMEBase owner, string title, string location, int hours, DateTime startdate,
+        public TaskSearched(int id, int smeid, string title, string location, int hours, DateTime startdate,
             DateTime applicationDeadline, DateTime estCompletionDate, int stateID)
-            : base(id, owner.ID, title)
+            : base(id, smeid, title)
         {
             Location = location;
             Hours = hours;
@@ -40,12 +40,12 @@ namespace P4Project.Backend.Classes
             ApplicationDeadline = applicationDeadline;
             EstCompletionDate = estCompletionDate;
             StateID = stateID;
-            Owner = owner;
+            SMEID = smeid;
         }
 
         public string[] MakeDataViewString()
         {
-            string[] output = { Title, ApplicationDeadline.ToString(), Startdate.ToString(), EstCompletionDate.ToString() };
+            string[] output = { Title, SMEName, ApplicationDeadline.ToShortDateString(), Startdate.ToShortDateString(), EstCompletionDate.ToShortDateString() };
             return output;
         }
     }
