@@ -540,6 +540,44 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
+
+        public string FetchAssignedStudentName(int taskID)
+        {
+            try
+            {
+                int studID = 0;
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT Assigned_Student FROM Task WHERE TaskID = @TaskID"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    studID = GetSafeIntMustNotBeNull(reader, 0);
+                }
+                reader.Close();
+                string name = string.Empty;
+
+                cmd.CommandText = "SELECT FirstName FROM Student WHERE StudentID = @StudentID";
+                cmd.Prepare();
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@StudentID", studID);
+                var readerV2 = cmd.ExecuteReader();
+                while (readerV2.Read())
+                {
+                    name = GetSafeString(readerV2, 0);
+                }
+                return name;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
         #endregion
 
 
@@ -824,6 +862,34 @@ namespace P4Project
                         taskID, GetSafeInt(reader, 2), GetSafeIntMustNotBeNull(reader, 3)));
                 }
                 return resList;
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+        // Counts the amount of applications for a given task:
+        public int FetchAmountOfApplications(int taskID)
+        {
+            try
+            {
+                int i = 0;
+                Open();
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "SELECT ApplicationID FROM Application WHERE TaskID = @TaskID AND AppState = @AppState"
+                };
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+                cmd.Parameters.AddWithValue("@AppState", 1);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    i++;
+                }
+                return i;
             }
             finally
             {

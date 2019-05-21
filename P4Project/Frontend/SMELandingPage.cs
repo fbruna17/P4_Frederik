@@ -14,27 +14,22 @@ namespace P4Project.Frontend
     public partial class SMELandingPage : Form
     {
         private SMELoggedIn ThisSME { get; set; }
+        private SQLControl SQL { get; }
 
         public SMELandingPage(SMELoggedIn thisSME)
         {
             ThisSME = thisSME;
             InitializeComponent();
+            SQL = new SQLControl();
             // Checks for "dates exceeded" and counts notification.
-            SMENotificationBtn.Text = "Notifications (" + TaskNotificationCounter() + ")"; 
-            foreach (TaskSearched task in ThisSME.GetListOfTasks(2))
-            {
-                TaskView.Rows.Add(task.MakeDataViewString());
-            }
+            SMENotificationBtn.Text = "Notifications (" + TaskNotificationCounter() + ")";
+            MakePrivatPublicDataGrid(2);
         }
 
         private void UpdateSession()
         {
             ThisSME = ThisSME.UpdateSessionData();
-            TaskView.Rows.Clear();
-            foreach (TaskSearched task in ThisSME.GetListOfTasks(2))
-            {
-                TaskView.Rows.Add(task.MakeDataViewString());
-            }
+            MakePrivatPublicDataGrid(2);
         }
 
         private void TaskStateAutoStateChangeByDate()
@@ -105,57 +100,79 @@ namespace P4Project.Frontend
 
         private void SeePublicTasks_Click(object sender, EventArgs e)
         {
-            TaskView.Rows.Clear();
-            TaskView.Refresh();
-            foreach (TaskSearched task in ThisSME.GetListOfTasks(2))
-            {
-                TaskView.Rows.Add(task.MakeDataViewString());
-            }
+            MakePrivatPublicDataGrid(2);
         }
 
         private void SeePrivateTasks_Click(object sender, EventArgs e)
         {
-            TaskView.Rows.Clear();
-            TaskView.Refresh();
-            foreach (TaskSearched task in ThisSME.GetListOfTasks(1))
-            {
-                TaskView.Rows.Add(task.MakeDataViewString());
-            }
+            MakePrivatPublicDataGrid(1);
         }
 
         private void SeeOnGoingTasks_Click(object sender, EventArgs e)
         {
-            TaskView.Rows.Clear();
-            TaskView.Refresh();
-            foreach (TaskSearched task in ThisSME.GetListOfTasks(3))
-            {
-                TaskView.Rows.Add(task.MakeDataViewString());
-            }
+            MakeOngoingCompletedDataGrid(3);
         }
 
         private void SeeCompletedTasks_Click(object sender, EventArgs e)
         {
-            TaskView.Rows.Clear();
-            TaskView.Refresh();
-            foreach (TaskSearched task in ThisSME.GetListOfTasks(4))
-            {
-                TaskView.Rows.Add(task.MakeDataViewString());
-            }
+            MakeOngoingCompletedDataGrid(4);
         }
 
         private void SeeAllTasks_Click(object sender, EventArgs e)
         {
             TaskView.Rows.Clear();
             TaskView.Refresh();
-            foreach (TaskSearched task in ThisSME.Tasks)
+            RefreshVisibilityOnDataGridView();
+            TaskView.Columns["ApplicationDeadline"].Visible = true;
+            TaskView.Columns["Deadline"].Visible = true;
+            List<TaskSearched> tasks = ThisSME.Tasks;
+            foreach (TaskSearched task in tasks)
             {
-                TaskView.Rows.Add(task.MakeDataViewString());
+                string[] output = { task.Title, "", task.ApplicationDeadline.ToShortDateString(), "", task.Startdate.ToShortDateString(), task.EstCompletionDate.ToShortDateString() };
+                TaskView.Rows.Add(output);
             }
         }
 
-        private void SMETasksDisplay_SelectedIndexChanged(object sender, EventArgs e)
+        // Making of the Privat or Public DataGrid:
+        private void MakePrivatPublicDataGrid(int stateID)
         {
+            TaskView.Rows.Clear();
+            TaskView.Refresh();
+            RefreshVisibilityOnDataGridView();
+            TaskView.Columns["Applications"].Visible = true;
+            TaskView.Columns["ApplicationDeadline"].Visible = true;
+            List<TaskSearched> tasks = ThisSME.GetListOfTasks(stateID);
+            foreach (TaskSearched task in tasks)
+            {
+                int amount = SQL.FetchAmountOfApplications(task.ID);
+                string[] output = { task.Title, amount.ToString(), task.ApplicationDeadline.ToShortDateString(), "" ,task.Startdate.ToShortDateString() };
+                TaskView.Rows.Add(output);
+            }
+        }
 
+        // Making of the Ongoing or Completed DataGrid:
+        private void MakeOngoingCompletedDataGrid(int stateID)
+        {
+            TaskView.Rows.Clear();
+            TaskView.Refresh();
+            RefreshVisibilityOnDataGridView();
+            TaskView.Columns["AssignedStudent"].Visible = true;
+            TaskView.Columns["Deadline"].Visible = true;
+            List<TaskSearched> tasks = ThisSME.GetListOfTasks(stateID);
+            foreach (TaskSearched task in tasks)
+            {
+                string studName = SQL.FetchAssignedStudentName(task.ID);
+                string[] output = { task.Title, "", "", studName, task.Startdate.ToShortDateString(), task.EstCompletionDate.ToShortDateString()};
+                TaskView.Rows.Add(output);
+            }
+        }
+
+        public void RefreshVisibilityOnDataGridView()
+        {
+            TaskView.Columns["AssignedStudent"].Visible = false;
+            TaskView.Columns["Deadline"].Visible = false;
+            TaskView.Columns["Applications"].Visible = false;
+            TaskView.Columns["ApplicationDeadline"].Visible = false;
         }
 
         private void ViewTask_Click(object sender, EventArgs e)
@@ -175,6 +192,12 @@ namespace P4Project.Frontend
         {
             TaskStateAutoStateChangeByDate();
             SMENotificationBtn.Text = "Notifications (" + TaskNotificationCounter() + ")";
+        }
+
+
+        private void SMETasksDisplay_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -45,5 +45,26 @@ namespace P4Project.Backend.Classes
             string[] output = { Title, SMEName, ApplicationDeadline.ToShortDateString(), Startdate.ToShortDateString(), EstCompletionDate.ToShortDateString() };
             return output;
         }
+
+        // DataGridView for Public/Private
+        public string[] MakeDataViewStringPublicPrivate()
+        {
+            string[] output = { Title, SMEName, ApplicationDeadline.ToShortDateString(), Startdate.ToShortDateString(), EstCompletionDate.ToShortDateString() };
+            return output;
+        }
+
+        // DataGridView for Ongoing/Completed
+        public string[] MakeDataViewStringOngoingCompleted()
+        {
+            string[] output = { Title, SMEName, ApplicationDeadline.ToShortDateString(), Startdate.ToShortDateString(), EstCompletionDate.ToShortDateString() };
+            return output;
+        }
+
+        // DataGridView for All Task
+        public string[] MakeDataViewStringAll()
+        {
+            string[] output = { Title, SMEName, ApplicationDeadline.ToShortDateString(), Startdate.ToShortDateString(), EstCompletionDate.ToShortDateString() };
+            return output;
+        }
     }
 }
