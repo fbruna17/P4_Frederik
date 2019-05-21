@@ -202,6 +202,11 @@ namespace P4Project.Frontend
             TaskView.Columns["Applications"].Visible = false;
             TaskView.Columns["ApplicationDeadline"].Visible = false;
         }
+
+        private void SMELogOutBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         #endregion
     }
 }

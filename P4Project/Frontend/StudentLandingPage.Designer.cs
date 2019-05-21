@@ -61,6 +61,7 @@
             this.CompletionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ViewProfile = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ApplicationViewGrid)).BeginInit();
@@ -391,7 +392,7 @@
             // 
             // ViewProfile
             // 
-            this.ViewProfile.Location = new System.Drawing.Point(382, 58);
+            this.ViewProfile.Location = new System.Drawing.Point(382, 25);
             this.ViewProfile.Margin = new System.Windows.Forms.Padding(2);
             this.ViewProfile.Name = "ViewProfile";
             this.ViewProfile.Size = new System.Drawing.Size(105, 28);
@@ -402,7 +403,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(382, 90);
+            this.btnSearch.Location = new System.Drawing.Point(382, 57);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(105, 28);
@@ -411,11 +412,22 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(382, 90);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(105, 28);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Log Out";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // StudentLandingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(766, 424);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.ViewProfile);
             this.Controls.Add(this.AssignedTasksBox);
@@ -475,5 +487,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button1;
     }
 }

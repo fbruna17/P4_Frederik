@@ -65,6 +65,11 @@ namespace P4Project.Frontend
                 MessageBox.Show("An unexpected SQL error has occures! Error Number: " + ex.Number + " Error message: " + ex.Message + ex.Source);
             }
         }
+
+        private void StudentLoginBackBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         #endregion
     }
 }

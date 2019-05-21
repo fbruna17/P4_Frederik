@@ -32,6 +32,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.StudCrTitle = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.imageChooseBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ConfirmPasswordText = new System.Windows.Forms.TextBox();
@@ -45,7 +46,7 @@
             this.MailLabel = new System.Windows.Forms.Label();
             this.lNamelabel = new System.Windows.Forms.Label();
             this.fNameLabel = new System.Windows.Forms.Label();
-            this.imageChooseBtn = new System.Windows.Forms.Button();
+            this.StudentRegBackBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -76,6 +77,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.StudentRegBackBtn);
             this.groupBox1.Controls.Add(this.imageChooseBtn);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -98,6 +100,16 @@
             this.groupBox1.Size = new System.Drawing.Size(464, 315);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
+            // 
+            // imageChooseBtn
+            // 
+            this.imageChooseBtn.Location = new System.Drawing.Point(248, 264);
+            this.imageChooseBtn.Name = "imageChooseBtn";
+            this.imageChooseBtn.Size = new System.Drawing.Size(164, 23);
+            this.imageChooseBtn.TabIndex = 7;
+            this.imageChooseBtn.Text = "Choose Picture";
+            this.imageChooseBtn.UseVisualStyleBackColor = true;
+            this.imageChooseBtn.Click += new System.EventHandler(this.ImageChooseBtn_Click);
             // 
             // label3
             // 
@@ -153,10 +165,10 @@
             // basicSaveBut
             // 
             this.basicSaveBut.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.basicSaveBut.Location = new System.Drawing.Point(42, 280);
+            this.basicSaveBut.Location = new System.Drawing.Point(96, 280);
             this.basicSaveBut.Margin = new System.Windows.Forms.Padding(2);
             this.basicSaveBut.Name = "basicSaveBut";
-            this.basicSaveBut.Size = new System.Drawing.Size(140, 31);
+            this.basicSaveBut.Size = new System.Drawing.Size(86, 31);
             this.basicSaveBut.TabIndex = 8;
             this.basicSaveBut.Text = "Save";
             this.basicSaveBut.UseVisualStyleBackColor = true;
@@ -216,15 +228,16 @@
             this.fNameLabel.TabIndex = 0;
             this.fNameLabel.Text = "First Name:";
             // 
-            // imageChooseBtn
+            // StudentRegBackBtn
             // 
-            this.imageChooseBtn.Location = new System.Drawing.Point(248, 264);
-            this.imageChooseBtn.Name = "imageChooseBtn";
-            this.imageChooseBtn.Size = new System.Drawing.Size(164, 23);
-            this.imageChooseBtn.TabIndex = 7;
-            this.imageChooseBtn.Text = "Choose Picture";
-            this.imageChooseBtn.UseVisualStyleBackColor = true;
-            this.imageChooseBtn.Click += new System.EventHandler(this.ImageChooseBtn_Click);
+            this.StudentRegBackBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StudentRegBackBtn.Location = new System.Drawing.Point(7, 280);
+            this.StudentRegBackBtn.Name = "StudentRegBackBtn";
+            this.StudentRegBackBtn.Size = new System.Drawing.Size(86, 31);
+            this.StudentRegBackBtn.TabIndex = 13;
+            this.StudentRegBackBtn.Text = "Back";
+            this.StudentRegBackBtn.UseVisualStyleBackColor = true;
+            this.StudentRegBackBtn.Click += new System.EventHandler(this.BackBtn_Click);
             // 
             // CreateStudProfileV2
             // 
@@ -264,5 +277,6 @@
         private System.Windows.Forms.TextBox PasswordText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox UsernameText;
+        private System.Windows.Forms.Button StudentRegBackBtn;
     }
 }

@@ -29,17 +29,19 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.LogIn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.SMEUsername = new System.Windows.Forms.Label();
             this.Password = new System.Windows.Forms.TextBox();
             this.Username = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.SMELoginBackBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.SMELoginBackBtn);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.LogIn);
             this.groupBox1.Controls.Add(this.label2);
@@ -54,9 +56,20 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(39, 24);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(131, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Business Login";
+            // 
             // LogIn
             // 
-            this.LogIn.Location = new System.Drawing.Point(66, 128);
+            this.LogIn.Location = new System.Drawing.Point(141, 130);
             this.LogIn.Margin = new System.Windows.Forms.Padding(2);
             this.LogIn.Name = "LogIn";
             this.LogIn.Size = new System.Drawing.Size(56, 24);
@@ -102,16 +115,15 @@
             this.Username.Size = new System.Drawing.Size(115, 20);
             this.Username.TabIndex = 1;
             // 
-            // label1
+            // SMELoginBackBtn
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(39, 24);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Business Login";
+            this.SMELoginBackBtn.Location = new System.Drawing.Point(82, 130);
+            this.SMELoginBackBtn.Name = "SMELoginBackBtn";
+            this.SMELoginBackBtn.Size = new System.Drawing.Size(56, 24);
+            this.SMELoginBackBtn.TabIndex = 4;
+            this.SMELoginBackBtn.Text = "Close";
+            this.SMELoginBackBtn.UseVisualStyleBackColor = true;
+            this.SMELoginBackBtn.Click += new System.EventHandler(this.SMELoginBackBtn_Click);
             // 
             // SMELogInPage
             // 
@@ -137,5 +149,6 @@
         private System.Windows.Forms.TextBox Password;
         private System.Windows.Forms.TextBox Username;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button SMELoginBackBtn;
     }
 }

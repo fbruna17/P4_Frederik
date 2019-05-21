@@ -30,7 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterSMEProfile));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chooseLogoBtn = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox1_SME = new System.Windows.Forms.PictureBox();
             this.SMEUsername = new System.Windows.Forms.TextBox();
             this.ConfirmPass = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -41,14 +43,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.CompanyName = new System.Windows.Forms.TextBox();
-            this.pictureBox1_SME = new System.Windows.Forms.PictureBox();
-            this.chooseLogoBtn = new System.Windows.Forms.Button();
+            this.SMERegBackBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1_SME)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.SMERegBackBtn);
             this.groupBox1.Controls.Add(this.chooseLogoBtn);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.pictureBox1_SME);
@@ -63,14 +65,24 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.CompanyName);
             this.groupBox1.Location = new System.Drawing.Point(11, 11);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(578, 313);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Register";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // chooseLogoBtn
+            // 
+            this.chooseLogoBtn.Location = new System.Drawing.Point(381, 277);
+            this.chooseLogoBtn.Name = "chooseLogoBtn";
+            this.chooseLogoBtn.Size = new System.Drawing.Size(134, 23);
+            this.chooseLogoBtn.TabIndex = 6;
+            this.chooseLogoBtn.Text = "Choose Logo File";
+            this.chooseLogoBtn.UseVisualStyleBackColor = true;
+            this.chooseLogoBtn.Click += new System.EventHandler(this.ChooseLogoBtn_Click);
             // 
             // label5
             // 
@@ -82,10 +94,22 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Username:";
             // 
+            // pictureBox1_SME
+            // 
+            this.pictureBox1_SME.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1_SME.BackgroundImage")));
+            this.pictureBox1_SME.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1_SME.Location = new System.Drawing.Point(340, 26);
+            this.pictureBox1_SME.Name = "pictureBox1_SME";
+            this.pictureBox1_SME.Size = new System.Drawing.Size(205, 235);
+            this.pictureBox1_SME.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1_SME.TabIndex = 1;
+            this.pictureBox1_SME.TabStop = false;
+            this.pictureBox1_SME.Click += new System.EventHandler(this.PictureBox1_SME_Click);
+            // 
             // SMEUsername
             // 
             this.SMEUsername.Location = new System.Drawing.Point(133, 155);
-            this.SMEUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SMEUsername.Margin = new System.Windows.Forms.Padding(2);
             this.SMEUsername.Name = "SMEUsername";
             this.SMEUsername.Size = new System.Drawing.Size(134, 20);
             this.SMEUsername.TabIndex = 2;
@@ -93,7 +117,7 @@
             // ConfirmPass
             // 
             this.ConfirmPass.Location = new System.Drawing.Point(133, 212);
-            this.ConfirmPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ConfirmPass.Margin = new System.Windows.Forms.Padding(2);
             this.ConfirmPass.Name = "ConfirmPass";
             this.ConfirmPass.PasswordChar = '*';
             this.ConfirmPass.Size = new System.Drawing.Size(134, 20);
@@ -112,7 +136,7 @@
             // Password
             // 
             this.Password.Location = new System.Drawing.Point(133, 186);
-            this.Password.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Password.Margin = new System.Windows.Forms.Padding(2);
             this.Password.Name = "Password";
             this.Password.PasswordChar = '*';
             this.Password.Size = new System.Drawing.Size(134, 20);
@@ -131,10 +155,10 @@
             // 
             // RegisterSave
             // 
-            this.RegisterSave.Location = new System.Drawing.Point(133, 276);
-            this.RegisterSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RegisterSave.Location = new System.Drawing.Point(202, 276);
+            this.RegisterSave.Margin = new System.Windows.Forms.Padding(2);
             this.RegisterSave.Name = "RegisterSave";
-            this.RegisterSave.Size = new System.Drawing.Size(134, 24);
+            this.RegisterSave.Size = new System.Drawing.Size(65, 24);
             this.RegisterSave.TabIndex = 7;
             this.RegisterSave.Text = "Register";
             this.RegisterSave.UseVisualStyleBackColor = true;
@@ -143,7 +167,7 @@
             // CompanyEmail
             // 
             this.CompanyEmail.Location = new System.Drawing.Point(133, 241);
-            this.CompanyEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CompanyEmail.Margin = new System.Windows.Forms.Padding(2);
             this.CompanyEmail.Name = "CompanyEmail";
             this.CompanyEmail.Size = new System.Drawing.Size(134, 20);
             this.CompanyEmail.TabIndex = 5;
@@ -171,33 +195,21 @@
             // CompanyName
             // 
             this.CompanyName.Location = new System.Drawing.Point(133, 127);
-            this.CompanyName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CompanyName.Margin = new System.Windows.Forms.Padding(2);
             this.CompanyName.Name = "CompanyName";
             this.CompanyName.Size = new System.Drawing.Size(134, 20);
             this.CompanyName.TabIndex = 1;
             this.CompanyName.TextChanged += new System.EventHandler(this.CompanyName_TextChanged);
             // 
-            // pictureBox1_SME
+            // SMERegBackBtn
             // 
-            this.pictureBox1_SME.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1_SME.BackgroundImage")));
-            this.pictureBox1_SME.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1_SME.Location = new System.Drawing.Point(340, 26);
-            this.pictureBox1_SME.Name = "pictureBox1_SME";
-            this.pictureBox1_SME.Size = new System.Drawing.Size(205, 235);
-            this.pictureBox1_SME.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1_SME.TabIndex = 1;
-            this.pictureBox1_SME.TabStop = false;
-            this.pictureBox1_SME.Click += new System.EventHandler(this.PictureBox1_SME_Click);
-            // 
-            // chooseLogoBtn
-            // 
-            this.chooseLogoBtn.Location = new System.Drawing.Point(381, 277);
-            this.chooseLogoBtn.Name = "chooseLogoBtn";
-            this.chooseLogoBtn.Size = new System.Drawing.Size(134, 23);
-            this.chooseLogoBtn.TabIndex = 6;
-            this.chooseLogoBtn.Text = "Choose Logo File";
-            this.chooseLogoBtn.UseVisualStyleBackColor = true;
-            this.chooseLogoBtn.Click += new System.EventHandler(this.ChooseLogoBtn_Click);
+            this.SMERegBackBtn.Location = new System.Drawing.Point(133, 276);
+            this.SMERegBackBtn.Name = "SMERegBackBtn";
+            this.SMERegBackBtn.Size = new System.Drawing.Size(65, 23);
+            this.SMERegBackBtn.TabIndex = 10;
+            this.SMERegBackBtn.Text = "Back";
+            this.SMERegBackBtn.UseVisualStyleBackColor = true;
+            this.SMERegBackBtn.Click += new System.EventHandler(this.SMERegBackBtn_Click);
             // 
             // RegisterSMEProfile
             // 
@@ -205,7 +217,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "RegisterSMEProfile";
             this.Text = "RegisterSMEProfile";
             this.Load += new System.EventHandler(this.RegisterSMEProfile_Load);
@@ -232,5 +244,6 @@
         private System.Windows.Forms.Button chooseLogoBtn;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox SMEUsername;
+        private System.Windows.Forms.Button SMERegBackBtn;
     }
 }

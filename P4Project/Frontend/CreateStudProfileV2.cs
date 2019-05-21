@@ -134,6 +134,12 @@ namespace P4Project
                 }
             }
         }
+
+        //Student Registration Back Buttom
+        private void BackBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         #endregion
 
         #region Load
@@ -160,5 +166,7 @@ namespace P4Project
 
         }
         #endregion
+
+        
     }
 }

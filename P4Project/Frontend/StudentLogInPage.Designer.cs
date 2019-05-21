@@ -35,6 +35,7 @@
             this.StudentUsername = new System.Windows.Forms.Label();
             this.Password = new System.Windows.Forms.TextBox();
             this.Username = new System.Windows.Forms.TextBox();
+            this.StudentLoginBackBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +52,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.StudentLoginBackBtn);
             this.groupBox1.Controls.Add(this.StudentLogIn);
             this.groupBox1.Controls.Add(this.LogIn);
             this.groupBox1.Controls.Add(this.label2);
@@ -58,17 +60,17 @@
             this.groupBox1.Controls.Add(this.Password);
             this.groupBox1.Controls.Add(this.Username);
             this.groupBox1.Location = new System.Drawing.Point(11, 11);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(215, 157);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // LogIn
             // 
-            this.LogIn.Location = new System.Drawing.Point(71, 129);
-            this.LogIn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LogIn.Location = new System.Drawing.Point(120, 128);
+            this.LogIn.Margin = new System.Windows.Forms.Padding(2);
             this.LogIn.Name = "LogIn";
             this.LogIn.Size = new System.Drawing.Size(56, 24);
             this.LogIn.TabIndex = 3;
@@ -99,7 +101,7 @@
             // Password
             // 
             this.Password.Location = new System.Drawing.Point(77, 98);
-            this.Password.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Password.Margin = new System.Windows.Forms.Padding(2);
             this.Password.Name = "Password";
             this.Password.PasswordChar = '*';
             this.Password.Size = new System.Drawing.Size(125, 20);
@@ -108,10 +110,20 @@
             // Username
             // 
             this.Username.Location = new System.Drawing.Point(77, 62);
-            this.Username.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Username.Margin = new System.Windows.Forms.Padding(2);
             this.Username.Name = "Username";
             this.Username.Size = new System.Drawing.Size(125, 20);
             this.Username.TabIndex = 1;
+            // 
+            // StudentLoginBackBtn
+            // 
+            this.StudentLoginBackBtn.Location = new System.Drawing.Point(51, 128);
+            this.StudentLoginBackBtn.Name = "StudentLoginBackBtn";
+            this.StudentLoginBackBtn.Size = new System.Drawing.Size(56, 24);
+            this.StudentLoginBackBtn.TabIndex = 6;
+            this.StudentLoginBackBtn.Text = "Back";
+            this.StudentLoginBackBtn.UseVisualStyleBackColor = true;
+            this.StudentLoginBackBtn.Click += new System.EventHandler(this.StudentLoginBackBtn_Click);
             // 
             // StudentLogInPage
             // 
@@ -119,7 +131,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(238, 176);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "StudentLogInPage";
             this.Text = "StudentLogInPage";
             this.groupBox1.ResumeLayout(false);
@@ -137,5 +149,6 @@
         private System.Windows.Forms.Label StudentUsername;
         private System.Windows.Forms.TextBox Password;
         private System.Windows.Forms.TextBox Username;
+        private System.Windows.Forms.Button StudentLoginBackBtn;
     }
 }

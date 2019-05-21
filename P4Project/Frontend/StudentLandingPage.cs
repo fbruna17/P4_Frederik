@@ -167,6 +167,11 @@ namespace P4Project.Frontend
             var search = new Search();
             search.ShowDialog();
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         #endregion
 
         #region DELETE THIS SHIT!
