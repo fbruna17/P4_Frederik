@@ -21,15 +21,12 @@ namespace P4Project.Frontend
         private void btnSearch_Click(object sender, EventArgs e)
         {
             SQLControl SQL = new SQLControl();
-            List<TaskSearched> TaskResults;
             string Query = SearchBox.Text;
-            var QueryTasks = SQL.SearchTasks(Query);
+            List<TaskSearched> TaskResults = SQL.SearchTasks(Query);
 
-            TaskResults = QueryTasks;
-
-            foreach (TaskSearched t in QueryTasks)
+            foreach (TaskSearched t in TaskResults)
             {
-                SearchResultGrid.Rows.Add(t.Title, t.SMEName, t.ApplicationDeadline, t.Startdate, t.EstCompletionDate);
+                SearchResultGrid.Rows.Add(t.MakeDataViewString());
                 Visible = true;
             }
 
