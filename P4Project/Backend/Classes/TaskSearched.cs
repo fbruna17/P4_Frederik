@@ -14,6 +14,7 @@ namespace P4Project.Backend.Classes
         public DateTime Startdate { get; }
         public DateTime ApplicationDeadline { get; }
         public DateTime EstCompletionDate { get; }
+        public int RecScore { get; set; }
         public int StateID { get; }
 
         // Den constructer der normalt vil bruges til denne klasse:
@@ -38,33 +39,6 @@ namespace P4Project.Backend.Classes
             ApplicationDeadline = applicationDeadline;
             EstCompletionDate = estCompletionDate;
             StateID = stateID;
-        }
-
-        public string[] MakeDataViewString()
-        {
-            string[] output = { Title, SMEName, ApplicationDeadline.ToShortDateString(), Startdate.ToShortDateString(), EstCompletionDate.ToShortDateString() };
-            return output;
-        }
-
-        // DataGridView for Public/Private
-        public string[] MakeDataViewStringPublicPrivate()
-        {
-            string[] output = { Title, SMEName, ApplicationDeadline.ToShortDateString(), Startdate.ToShortDateString(), EstCompletionDate.ToShortDateString() };
-            return output;
-        }
-
-        // DataGridView for Ongoing/Completed
-        public string[] MakeDataViewStringOngoingCompleted()
-        {
-            string[] output = { Title, SMEName, ApplicationDeadline.ToShortDateString(), Startdate.ToShortDateString(), EstCompletionDate.ToShortDateString() };
-            return output;
-        }
-
-        // DataGridView for All Task
-        public string[] MakeDataViewStringAll()
-        {
-            string[] output = { Title, SMEName, ApplicationDeadline.ToShortDateString(), Startdate.ToShortDateString(), EstCompletionDate.ToShortDateString() };
-            return output;
         }
     }
 }

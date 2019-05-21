@@ -72,7 +72,6 @@ namespace P4Project.Frontend
             ThisTask = task;
             ThisStudent = student;
             InitializeDefault();
-            bool alreadyApplied = false;
             // First we check is the student has already applied for this task: 
             if(ThisStudent.Applications.Count != 0)
             {

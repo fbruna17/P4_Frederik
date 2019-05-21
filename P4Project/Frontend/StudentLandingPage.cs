@@ -108,13 +108,12 @@ namespace P4Project.Frontend
         #region Buttons
         private void ViewRecTask_Click(object sender, EventArgs e)
         {
-            // Der skal foretages SQL kald:     !!! Burde måske gøres til Funktion i SQL Control!:
             SQLControl sql = new SQLControl();
-            // Vi kender Taskname da det står i tabelen:
+            // We know the Task title from the gridview:
             string taskname = RecommendedTasks.SelectedCells[0].Value.ToString();
-            // Ud fra TaskName finder vi en task:
+            // We use that to find the task
             TaskRecommend tTask = ThisStudent.RecTasks.Single(t => t.Title == taskname);
-            // Hvor vi bruger ID´et til at finde task detailed:
+            // and the ID to find a detailed task:
             TaskDetailed thisTask = sql.FetchTaskDetailed(tTask.ID);
             thisTask.RecScore = tTask.RecommendScore;
             Hide();
@@ -164,7 +163,7 @@ namespace P4Project.Frontend
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            var search = new Search();
+            var search = new Search(ThisStudent);
             search.ShowDialog();
         }
 

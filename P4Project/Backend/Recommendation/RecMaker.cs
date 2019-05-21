@@ -23,6 +23,23 @@ namespace P4Project.Backend.Recommendation
             ThisStudent = thisStudent;
         }
 
+        public RecMaker(StudentLoggedIn thisStudent, List<TaskSearched> tasks)
+        {
+            SQL = new SQLControl();
+            List<TaskRecommend> tempTasks = SQL.FetchAllTasksForRecommendation();
+            AllTasks = new List<TaskRecommend>();
+
+            foreach (TaskRecommend task in tempTasks)
+            {
+                foreach(TaskSearched t in tasks)
+                {
+                    if(t.ID == task.ID) AllTasks.Add(task);
+                }
+            }
+
+            ThisStudent = thisStudent;
+        }
+
         public List<TaskRecommend> RecommendTasks(bool getAll)
         {
             List<TaskRecommend> resultList = new List<TaskRecommend>();
