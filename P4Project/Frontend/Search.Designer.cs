@@ -60,8 +60,6 @@
             // 
             // SearchResultGrid
             // 
-            this.SearchResultGrid.AllowUserToAddRows = false;
-            this.SearchResultGrid.AllowUserToDeleteRows = false;
             this.SearchResultGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SearchResultGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TaskTitle,
