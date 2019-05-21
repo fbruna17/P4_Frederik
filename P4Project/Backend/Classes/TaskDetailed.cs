@@ -37,6 +37,7 @@ namespace P4Project.Backend.Classes
             return Applicants;
         }
 
+        // Gets all applications on a task:
         public void GetApplications()
         {
             SQLControl sql = new SQLControl();
