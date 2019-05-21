@@ -51,7 +51,7 @@ namespace P4Project.Frontend
                 {
                     taskAppIDs = task.ID;
                     var taskNewState = 1;
-                    var message = "Your task: " + task.Title + " has passed its StartDate and no student is assigned. The task has been moved into Private State.";
+                    var message = "Your task: " + task.Title + " has passed its StartDate and no student is assigned. The task will be moved into Private State.";
 
                     SQL.AutoTaskStateChange(taskAppIDs, taskNewState);
                     MessageBox.Show(message);
@@ -70,11 +70,11 @@ namespace P4Project.Frontend
                     {
                         MessageBox.Show("Task State wasn't changed. Please update your deadline manually");
                     }
-                    else { }
-                }
-                //Updation the session after making potential changes to different Task States.
-                UpdateSession();
+                    else { }                     
+                }      
             }
+            //Updation the session after making potential changes to different Task States.
+            UpdateSession();
         }
 
         private int TaskNotificationCounter()
