@@ -49,9 +49,13 @@ namespace P4Project
             var image_Path = LocalImagePath;
             var image_Type = LocalImageFiletype;
             var serverImagePathDir = string.Empty;
-            if(image_Path != string.Empty)
+            //Checks if any image file has been selected.
+            if(image_Path == string.Empty)
             {
 
+            }
+            else if (image_Path != string.Empty)
+            {
                 serverImagePathDir = FTP.UploadImage(image_Path, image_Type);
             }
 
