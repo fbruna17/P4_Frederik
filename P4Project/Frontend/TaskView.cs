@@ -61,16 +61,8 @@ namespace P4Project.Frontend
             ThisSME = sme;
             InitializeDefault();
 
-            if (isUpdate)
-            {
-
-                InitializeFormForUpdateTask();
-            }
-            else
-            {
-                InitializeFormForCreateNewTask();
-            }
-            // MAAAAAAAAAAANGLER!!!!!!
+            if (isUpdate) InitializeFormForUpdateTask();
+            else InitializeFormForCreateNewTask();
         }
 
         // This constructor is used when a student looks up a task:
@@ -87,9 +79,9 @@ namespace P4Project.Frontend
                 foreach (ApplicationDetailed a in ThisStudent.Applications)
                 {
                     if (a.TaskID == ThisTask.ID)
-                    {   // Now we know that there has already been applied, and we have the relevant application:
-                        alreadyApplied = true;
+                    {   // Now we know that there has already been applied, and we have the relevant application:                        
                         ThisApplication = a;
+                        InitializeFormForAppliedStudent();
                         break;
                     }
                 }
@@ -98,11 +90,6 @@ namespace P4Project.Frontend
             if (ThisTask.AssignedStudentID == student.ID)
             {
                 InitializeFormForAssignedStudent();
-            }
-            // For when a Student has already applied:
-            else if (alreadyApplied)
-            {
-                InitializeFormForAppliedStudent();
             }
             // If the student has not already applied, are not assigned, and the task is in Public state:
             else if(ThisTask.StateID == 2)
@@ -140,16 +127,16 @@ namespace P4Project.Frontend
 
         private void InitializeFormForRegStudent()
         {
+            RecScoreLabel.Text = "Your Recommendation Score for this task: " + ThisTask.RecScore;
             Apply.Visible = true;
         }
 
         private void InitializeFormForAppliedStudent()
         {
+            RecScoreLabel.Text = "Your Recommendation Score for this task: " + ThisTask.RecScore;
             UnApply.Visible = true;
         }
 
-                                                     // MANGLER !!! Skal måske åbne op for en PDF henter for further instructions?
-        // Eller holde som den er, så der bare ikke er andre muligheder end "Back"...
         private void InitializeFormForAssignedStudent() 
         {
             
@@ -228,7 +215,7 @@ namespace P4Project.Frontend
                 try
                 {
                     SQLControl sql = new SQLControl();
-                    sql.PostApplication(ThisStudent.ID, ThisTask.ID, 5); // Her skal tilføjes REC SCORE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    sql.PostApplication(ThisStudent.ID, ThisTask.ID, ThisTask.RecScore); // Her skal tilføjes REC SCORE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 }
                 catch (MySqlException ex)
                 {

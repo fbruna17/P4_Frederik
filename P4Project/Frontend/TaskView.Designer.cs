@@ -34,6 +34,7 @@
             this.TaskDescriptionBox = new System.Windows.Forms.RichTextBox();
             this.CompanyNameLabel = new System.Windows.Forms.Label();
             this.PracticalInfoBox = new System.Windows.Forms.GroupBox();
+            this.RecScoreLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.LocationLabel = new System.Windows.Forms.Label();
             this.label100 = new System.Windows.Forms.Label();
@@ -62,15 +63,15 @@
             this.RemoveStudentApplicant = new System.Windows.Forms.Button();
             this.SeeStudentProfile = new System.Windows.Forms.Button();
             this.StudentApplicantsView = new System.Windows.Forms.DataGridView();
-            this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Education = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RecScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StudentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubmitNew = new System.Windows.Forms.Button();
             this.UpdateTaskSubmit = new System.Windows.Forms.Button();
             this.EditAgain = new System.Windows.Forms.Button();
             this.ViewAssignedStudent = new System.Windows.Forms.Button();
             this.CompletBtn = new System.Windows.Forms.Button();
+            this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Education = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RecScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StudentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescriptionBox.SuspendLayout();
             this.PracticalInfoBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -132,6 +133,7 @@
             // 
             // PracticalInfoBox
             // 
+            this.PracticalInfoBox.Controls.Add(this.RecScoreLabel);
             this.PracticalInfoBox.Controls.Add(this.groupBox1);
             this.PracticalInfoBox.Controls.Add(this.DateBox);
             this.PracticalInfoBox.Controls.Add(this.label3);
@@ -144,6 +146,14 @@
             this.PracticalInfoBox.Size = new System.Drawing.Size(400, 347);
             this.PracticalInfoBox.TabIndex = 2;
             this.PracticalInfoBox.TabStop = false;
+            // 
+            // RecScoreLabel
+            // 
+            this.RecScoreLabel.AutoSize = true;
+            this.RecScoreLabel.Location = new System.Drawing.Point(21, 306);
+            this.RecScoreLabel.Name = "RecScoreLabel";
+            this.RecScoreLabel.Size = new System.Drawing.Size(0, 17);
+            this.RecScoreLabel.TabIndex = 6;
             // 
             // groupBox1
             // 
@@ -384,11 +394,11 @@
             this.ApplicantBox.Controls.Add(this.RemoveStudentApplicant);
             this.ApplicantBox.Controls.Add(this.SeeStudentProfile);
             this.ApplicantBox.Controls.Add(this.StudentApplicantsView);
-            this.ApplicantBox.Location = new System.Drawing.Point(162, 57);
+            this.ApplicantBox.Location = new System.Drawing.Point(236, 63);
             this.ApplicantBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ApplicantBox.Name = "ApplicantBox";
             this.ApplicantBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ApplicantBox.Size = new System.Drawing.Size(485, 267);
+            this.ApplicantBox.Size = new System.Drawing.Size(495, 267);
             this.ApplicantBox.TabIndex = 9;
             this.ApplicantBox.TabStop = false;
             this.ApplicantBox.Visible = false;
@@ -449,37 +459,8 @@
             this.StudentApplicantsView.Name = "StudentApplicantsView";
             this.StudentApplicantsView.RowTemplate.Height = 24;
             this.StudentApplicantsView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.StudentApplicantsView.Size = new System.Drawing.Size(475, 162);
+            this.StudentApplicantsView.Size = new System.Drawing.Size(483, 162);
             this.StudentApplicantsView.TabIndex = 0;
-            // 
-            // StudentName
-            // 
-            this.StudentName.Frozen = true;
-            this.StudentName.HeaderText = "Name";
-            this.StudentName.Name = "StudentName";
-            this.StudentName.ReadOnly = true;
-            this.StudentName.Width = 150;
-            // 
-            // Education
-            // 
-            this.Education.Frozen = true;
-            this.Education.HeaderText = "Education";
-            this.Education.Name = "Education";
-            this.Education.ReadOnly = true;
-            // 
-            // RecScore
-            // 
-            this.RecScore.Frozen = true;
-            this.RecScore.HeaderText = "Recommend Score";
-            this.RecScore.Name = "RecScore";
-            this.RecScore.ReadOnly = true;
-            // 
-            // StudentID
-            // 
-            this.StudentID.Frozen = true;
-            this.StudentID.HeaderText = "StudentID";
-            this.StudentID.Name = "StudentID";
-            this.StudentID.ReadOnly = true;
             // 
             // SubmitNew
             // 
@@ -539,11 +520,41 @@
             this.CompletBtn.Visible = false;
             this.CompletBtn.Click += new System.EventHandler(this.CompletBtn_Click);
             // 
+            // StudentName
+            // 
+            this.StudentName.Frozen = true;
+            this.StudentName.HeaderText = "Name";
+            this.StudentName.Name = "StudentName";
+            this.StudentName.ReadOnly = true;
+            this.StudentName.Width = 150;
+            // 
+            // Education
+            // 
+            this.Education.Frozen = true;
+            this.Education.HeaderText = "Education";
+            this.Education.Name = "Education";
+            this.Education.ReadOnly = true;
+            // 
+            // RecScore
+            // 
+            this.RecScore.Frozen = true;
+            this.RecScore.HeaderText = "Recommend Score";
+            this.RecScore.Name = "RecScore";
+            this.RecScore.ReadOnly = true;
+            // 
+            // StudentID
+            // 
+            this.StudentID.Frozen = true;
+            this.StudentID.HeaderText = "StudentID";
+            this.StudentID.Name = "StudentID";
+            this.StudentID.ReadOnly = true;
+            this.StudentID.Visible = false;
+            // 
             // TaskView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(768, 450);
+            this.ClientSize = new System.Drawing.Size(771, 450);
             this.Controls.Add(this.CompletBtn);
             this.Controls.Add(this.ViewAssignedStudent);
             this.Controls.Add(this.EditAgain);
@@ -609,10 +620,6 @@
         private System.Windows.Forms.Button SeeStudentProfile;
         private System.Windows.Forms.DataGridView StudentApplicantsView;
         private System.Windows.Forms.Button CloseApplicantView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StudentName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Education;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RecScore;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StudentID;
         private System.Windows.Forms.Button SubmitNew;
         private System.Windows.Forms.Button UpdateTaskSubmit;
         private System.Windows.Forms.Button EditAgain;
@@ -622,5 +629,10 @@
         private System.Windows.Forms.Label LocationLabel;
         private System.Windows.Forms.Button ViewAssignedStudent;
         private System.Windows.Forms.Button CompletBtn;
+        private System.Windows.Forms.Label RecScoreLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StudentName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Education;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RecScore;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StudentID;
     }
 }

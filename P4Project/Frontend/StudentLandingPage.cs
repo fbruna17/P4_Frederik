@@ -93,7 +93,7 @@ namespace P4Project.Frontend
             {
                 item = item + "You have been assigned for a task!." + "\n";
             }
-            MessageBox.Show(item);
+            if(item != "") MessageBox.Show(item);
         }
        
         private void ViewRecTask_Click(object sender, EventArgs e)
@@ -106,6 +106,7 @@ namespace P4Project.Frontend
             TaskRecommend tTask = ThisStudent.RecTasks.Single(t => t.Title == taskname);
             // Hvor vi bruger ID´et til at finde task detailed:
             TaskDetailed thisTask = sql.FetchTaskDetailed(tTask.ID);
+            thisTask.RecScore = tTask.RecommendScore;
             Hide();
             var tView = new TaskView(thisTask, ThisStudent);
             tView.ShowDialog();
@@ -117,11 +118,6 @@ namespace P4Project.Frontend
         {
             var ProfilePicture = ThisStudent.ProfilePicture;
             StudentPictureBox.ImageLocation = ProfilePicture;
-        }
-
-        private void ApplicationView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void SeeApplication_Click(object sender, EventArgs e)
@@ -166,6 +162,12 @@ namespace P4Project.Frontend
         {
             var search = new Search();
             search.ShowDialog();
+        }
+
+        // DELETE
+        private void ApplicationView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
