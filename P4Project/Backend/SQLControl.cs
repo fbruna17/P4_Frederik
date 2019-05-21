@@ -714,7 +714,7 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT TaskID,SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task WHERE StateID = @stateid AND Title LIKE '@query'"
+                    CommandText = "SELECT TaskID,SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task WHERE StateID = @stateid AND Title LIKE @query"
                     //Ret til commandtext = query, baseret på radio buttons.
                     //Task Recommend
                 };
@@ -738,7 +738,6 @@ namespace P4Project
                     DateTime EstCompletionDate = reader.GetDateTime(7);
                     TaskList.Add(new TaskSearched(taskID, smeID, Title, Location, Hours, ApplicationDeadline, StartDate, EstCompletionDate));
                 }
-
                 reader.Close();
                 return TaskList;
             }

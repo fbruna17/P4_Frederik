@@ -12,7 +12,7 @@ namespace P4Project.Backend.Classes
         public int ID { get; }
         public string Title { get; }
         public int SMEID { get; }
-        public string SMEName { get; private set; }
+        public string SMEName { get; protected set; }
 
         public TaskBase(int id)
         {

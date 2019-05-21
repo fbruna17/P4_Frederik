@@ -27,9 +27,9 @@ namespace P4Project.Frontend
 
             foreach (TaskSearched t in TaskResults)
             {
+                t.GetSMEName();
                 SearchResultGrid.Rows.Add(t.MakeDataViewString());
             }
-
             SearchResultGrid.Visible = true;
         }
     }
