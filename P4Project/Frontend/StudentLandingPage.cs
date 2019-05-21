@@ -17,6 +17,9 @@ namespace P4Project.Frontend
     {
 
         public StudentLoggedIn ThisStudent { get; private set; }
+
+
+        #region Constructors
         public StudentLandingPage(StudentLoggedIn thisStudent)
         {
             InitializeComponent();
@@ -24,21 +27,15 @@ namespace P4Project.Frontend
             SetupForm();
             CheckProfileInfo();
         }
-        // Denne funktion bruges til at sikre at LandingPage er up to date med det der er i databasen:
-        private void UpdateStudent()
-        {
-            ThisStudent = ThisStudent.UpdateSessionData();
-            RecommendedTasks.Rows.Clear();
-            ApplicationViewGrid.Rows.Clear();
-            AssignedTaskGridView.Rows.Clear();
-            SetupForm();
-        }
+        #endregion
 
+        #region Setup Profile and check for "Missing" information.
         private void SetupForm()
         {
             ShowStudentEmailLabel.Text = ThisStudent.Email;
             ShowStudentNameLabel.Text = ThisStudent.FirstName + " " + ThisStudent.LastName;
-            SetupImage();
+            var ProfilePicture = ThisStudent.ProfilePicture;
+            StudentPictureBox.ImageLocation = ProfilePicture;
 
             // De recommended tasks vises:
             foreach (TaskRecommend task in ThisStudent.RecTasks)
@@ -54,12 +51,12 @@ namespace P4Project.Frontend
                 }
             }
             // If this student has any assigned tasks in Progress, theese will be shown:
-            if(ThisStudent.AssignedTasks.Count != 0)
+            if (ThisStudent.AssignedTasks.Count != 0)
             {
                 bool visible = false;
-                foreach(TaskAssigned task in ThisStudent.AssignedTasks)
+                foreach (TaskAssigned task in ThisStudent.AssignedTasks)
                 {
-                    if(task.StateID == 3)
+                    if (task.StateID == 3)
                     {
                         AssignedTaskGridView.Rows.Add(task.MakeDataViewString());
                         visible = true;
@@ -93,9 +90,22 @@ namespace P4Project.Frontend
             {
                 item = item + "You have been assigned for a task!." + "\n";
             }
-            if(item != "") MessageBox.Show(item);
+            if (item != "") MessageBox.Show(item);
         }
-       
+        #endregion
+
+        #region Session Related
+        private void UpdateStudent()
+        {
+            ThisStudent = ThisStudent.UpdateSessionData();
+            RecommendedTasks.Rows.Clear();
+            ApplicationViewGrid.Rows.Clear();
+            AssignedTaskGridView.Rows.Clear();
+            SetupForm();
+        }
+        #endregion
+
+        #region Buttons
         private void ViewRecTask_Click(object sender, EventArgs e)
         {
             // Der skal foretages SQL kald:     !!! Burde måske gøres til Funktion i SQL Control!:
@@ -112,12 +122,6 @@ namespace P4Project.Frontend
             tView.ShowDialog();
             Show();
             UpdateStudent();
-        }
-
-        public void SetupImage()
-        {
-            var ProfilePicture = ThisStudent.ProfilePicture;
-            StudentPictureBox.ImageLocation = ProfilePicture;
         }
 
         private void SeeApplication_Click(object sender, EventArgs e)
@@ -163,11 +167,20 @@ namespace P4Project.Frontend
             var search = new Search();
             search.ShowDialog();
         }
+        #endregion
 
+        #region DELETE THIS SHIT!
         // DELETE
         private void ApplicationView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+        //SetupImage er smidt ind i SetupForm! Det vil sige at SetupImage() er useless.
+        public void SetupImage()
+        {
+            var ProfilePicture = ThisStudent.ProfilePicture;
+            StudentPictureBox.ImageLocation = ProfilePicture;
+        }
+        #endregion
     }
 }

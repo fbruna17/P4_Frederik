@@ -94,6 +94,7 @@
             this.TaskView.RowTemplate.Height = 24;
             this.TaskView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.TaskView.Size = new System.Drawing.Size(444, 232);
+            this.TaskView.StandardTab = true;
             this.TaskView.TabIndex = 9;
             // 
             // TaskTitle

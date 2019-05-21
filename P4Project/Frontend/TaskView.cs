@@ -428,16 +428,18 @@ namespace P4Project.Frontend
 
         //...................................................... UPDATE FUNCTIONS: .........................................................
         // Function that updates the Applicant DataViewGrid (Kind of does the same as when the button is clicked):
+
+        #region Update:
         private void UpdateApplicantView()
         {
             StudentApplicantsView.Rows.Clear();
             ThisTask.GetApplicants();
             ThisTask.GetApplications();
-            if(ThisTask.Applicants.Count != 0)
+            if (ThisTask.Applicants.Count != 0)
             {
                 foreach (StudentApplicant student in ThisTask.Applicants)
                 {   // This "Dobbelchecking" ensures no exception is thrown when a student has already been rejected for a task.
-                    if(ThisTask.Applications.Any(a => a.StudentID == student.ID))
+                    if (ThisTask.Applications.Any(a => a.StudentID == student.ID))
                     {
                         if (ThisTask.Applications.First(a => a.StudentID == student.ID).StateID == 1)
                         {
@@ -447,8 +449,7 @@ namespace P4Project.Frontend
                 }
             }
         }
-
-
+        #endregion
 
         //...................................................... MISS CLICKS REMOVE LATER .........................................................
 

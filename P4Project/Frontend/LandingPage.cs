@@ -38,6 +38,7 @@ namespace P4Project
         }
         #endregion
 
+        #region Buttons
         private void StudentLoginBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -69,5 +70,6 @@ namespace P4Project
             stud.ShowDialog();
             this.Show();
         }
+        #endregion
     }
 }

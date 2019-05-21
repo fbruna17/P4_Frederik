@@ -12,7 +12,7 @@ namespace P4Project
 {
     class SQLControl
     {
-        // The Connection, and the connection string i defined in this class, as this class is the only class that makes calls to the Database:
+        // The Connection, and the connection string is defined in this class, as this class is the only class that makes calls to the Database:
         private string MyConnectionString = "server=mysql33.unoeuro.com;uid=blo_store_dk;pwd=3pdaxzyt;database=blo_store_dk_db_wd";
         private MySqlConnection Connection { get; set; }
 
@@ -163,7 +163,7 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT Name,Email,Description,LogoDIR FROM SME WHERE SMEID = @SMEID"
+                    CommandText = "SELECT Name,Email,Description,Image_Dir FROM SME WHERE SMEID = @SMEID"
                 };
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@SMEID", smeID);
@@ -173,8 +173,7 @@ namespace P4Project
                 string name = GetSafeString(reader, 0);
                 string email = GetSafeString(reader, 1);
                 string description = GetSafeString(reader, 2);
-                //byte[] logo = reader.GetByte(3); // Halp!          ..... THIS NEEDS TO BE FIXED @Martin!
-                byte[] logo = new byte[1];
+                string logo = GetSafeString(reader, 3);
                 // Readeren lukkes:
                 reader.Close();
                 var tempSME = new SMEBase(smeID, name, email);
@@ -1535,95 +1534,5 @@ namespace P4Project
 
         // End of Post Functions:
         #endregion
-
-        // .............................................. NOT USED!!! .............................................
-        #region NOT USED!!!
-        // Henter alle tasks en given student er Assigned til, ud fra en givent State:    BLIVER IKKE BRUGT / SKAL IKKE BRUGES / VIRKER IKKE CURRENTLY
-        public List<TaskSearched> FetchStudentAssignedTasks(int studentID, int stateID)
-        {
-            var result = new List<TaskSearched>();
-
-            try
-            {
-                Open();
-                MySqlCommand cmd = new MySqlCommand
-                {
-                    Connection = Connection,
-                    CommandText = "SELECT TaskID,SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task WHERE Assigned_Student = @Assigned_Student AND StateID = @StateID"
-                };
-                cmd.Prepare();
-                cmd.Parameters.AddWithValue("@Assigned_Student", studentID);
-                cmd.Parameters.AddWithValue("@StateID", stateID);
-
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    int taskID = reader.GetInt32(0);
-                    int smeID = reader.GetInt32(1);
-                    string title = reader.GetString(2);
-                    string location = reader.GetString(3);
-                    int hours = reader.GetInt32(4);
-                    DateTime startDate = reader.GetDateTime(5);
-                    DateTime applicationDeadline = reader.GetDateTime(6);
-                    DateTime estCompletion = reader.GetDateTime(7);
-                    result.Add(new TaskSearched(taskID, smeID, title, location, hours, startDate, applicationDeadline, estCompletion, stateID));
-                }
-            }
-            finally
-            {
-                if (Connection != null) Close();
-            }
-
-            return result;
-        }
-
-        // Henter alle tasks en given student har applied for:    BLIVER IKKE BRUGT / SKAL IKKE BRUGES / VIRKER IKKE CURRENTLY
-        public List<TaskSearched> FetchStudentAppliedForTasks(int studentID)
-        {
-            var result = new List<TaskSearched>();
-            var taskIDs = new List<int>();
-            try
-            {
-                Open();
-                MySqlCommand cmd = new MySqlCommand
-                {
-                    Connection = Connection,
-                    CommandText = "SELECT TaskID FROM Application WHERE StudentID = @StudentID"
-                };
-                cmd.Prepare();
-                cmd.Parameters.AddWithValue("@StudentID", studentID);
-
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    taskIDs.Add(reader.GetInt32(0));
-                }
-                foreach (int i in taskIDs)
-                {
-                    cmd.CommandText = "SELECT SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task WHERE TaskID = @TaskID";
-                    cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@TaskID", i);
-                    while (reader.Read())
-                    {
-                        int smeID = reader.GetInt32(0);
-                        string title = reader.GetString(1);
-                        string location = reader.GetString(2);
-                        int hours = reader.GetInt32(3);
-                        DateTime startDate = reader.GetDateTime(4);
-                        DateTime applicationDeadline = reader.GetDateTime(5);
-                        DateTime estCompletion = reader.GetDateTime(6);
-                        result.Add(new TaskSearched(i, smeID, title, location, hours, startDate, applicationDeadline, estCompletion));
-                    }
-                }
-            }
-            finally
-            {
-                if (Connection != null) Close();
-            }
-
-            return result;
-        }
-        #endregion
-
     }
 }

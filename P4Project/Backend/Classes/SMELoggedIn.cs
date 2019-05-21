@@ -11,7 +11,7 @@ namespace P4Project.Backend.Classes
         private string Username { get; }
         private string Password { get; }
 
-        public SMELoggedIn(int id, string name, string email, List<TaskSearched> tasks, byte[] logo, 
+        public SMELoggedIn(int id, string name, string email, List<TaskSearched> tasks, string logo, 
             string description, string username, string password) 
             : base(id, name, email, tasks, logo, description)
         {
