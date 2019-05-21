@@ -116,15 +116,6 @@ namespace P4Project.Frontend
             Show();
         }
 
-        private void SeeAllTasks_Click(object sender, EventArgs e)
-        {
-            TaskView.Rows.Clear();
-            TaskView.Refresh();
-            foreach (TaskSearched task in ThisSME.Tasks)
-            {
-                TaskView.Rows.Add(task.MakeDataViewString());
-            }
-        }
 
         private void Create_New_Task_Click(object sender, EventArgs e)
         {
@@ -210,31 +201,6 @@ namespace P4Project.Frontend
             TaskView.Columns["Deadline"].Visible = false;
             TaskView.Columns["Applications"].Visible = false;
             TaskView.Columns["ApplicationDeadline"].Visible = false;
-        }
-
-        private void ViewTask_Click(object sender, EventArgs e)
-        {
-            SQLControl sql = new SQLControl();
-            string taskname = TaskView.SelectedCells[0].Value.ToString();
-            TaskSearched tTask = ThisSME.Tasks.Single(t => t.Title == taskname);
-            TaskDetailed thisTask = sql.FetchTaskDetailed(tTask.ID);
-            Hide();
-            var tView = new TaskView(thisTask, ThisSME);
-            tView.ShowDialog();
-            UpdateSession();
-            Show();
-        }
-
-        private void SMENotificationBtn_Click(object sender, EventArgs e)
-        {
-            TaskStateAutoStateChangeByDate();
-            SMENotificationBtn.Text = "Notifications (" + TaskNotificationCounter() + ")";
-        }
-
-
-        private void SMETasksDisplay_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
         #endregion
     }
