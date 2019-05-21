@@ -1497,6 +1497,28 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
+
+        // Deletes a task, can only be called when an SME owner is viewing a task in private state:
+        public void DeleteTask(int taskID)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = Connection;
+                cmd.CommandText = "DELETE FROM Task WHERE TaskID = @TaskID";
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+                cmd.ExecuteNonQuery();
+
+             //   RemoveALLApplications(taskID);
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
         #endregion
 
 

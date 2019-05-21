@@ -28,7 +28,12 @@ namespace P4Project.Backend.Classes
 
         public List<TaskSearched> GetListOfTasks(int stateID)
         {
-            return Tasks.FindAll(t => t.StateID == stateID);
+            if(stateID == 1 || stateID == 2)
+            {
+                return Tasks.FindAll(t => t.StateID == stateID).OrderBy(t => t.ApplicationDeadline).ToList();
+            }
+            else return Tasks.FindAll(t => t.StateID == stateID).OrderBy(t => t.EstCompletionDate).ToList();
+
         }
 
         public SMELoggedIn UpdateSessionData()

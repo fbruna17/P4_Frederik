@@ -48,9 +48,9 @@
             this.TaskOverViewGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TaskView)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // Create_New_Task
-            // 
+            //
             this.Create_New_Task.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Create_New_Task.Location = new System.Drawing.Point(313, 318);
             this.Create_New_Task.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -60,9 +60,9 @@
             this.Create_New_Task.Text = "Create Task";
             this.Create_New_Task.UseVisualStyleBackColor = true;
             this.Create_New_Task.Click += new System.EventHandler(this.Create_New_Task_Click);
-            // 
+            //
             // TaskOverViewGroup
-            // 
+            //
             this.TaskOverViewGroup.Controls.Add(this.TaskView);
             this.TaskOverViewGroup.Controls.Add(this.SeeAllTasks);
             this.TaskOverViewGroup.Controls.Add(this.SeeCompletedTasks);
@@ -77,9 +77,9 @@
             this.TaskOverViewGroup.TabIndex = 2;
             this.TaskOverViewGroup.TabStop = false;
             this.TaskOverViewGroup.Text = "Task Overview:";
-            // 
+            //
             // TaskView
-            // 
+            //
             this.TaskView.AllowUserToAddRows = false;
             this.TaskView.AllowUserToDeleteRows = false;
             this.TaskView.BackgroundColor = System.Drawing.SystemColors.Control;
@@ -98,58 +98,58 @@
             this.TaskView.ReadOnly = true;
             this.TaskView.RowTemplate.Height = 24;
             this.TaskView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.TaskView.Size = new System.Drawing.Size(333, 188);
+            this.TaskView.Size = new System.Drawing.Size(592, 232);
             this.TaskView.StandardTab = true;
             this.TaskView.TabIndex = 9;
-            // 
+            //
             // TaskTitle
-            // 
+            //
             this.TaskTitle.Frozen = true;
             this.TaskTitle.HeaderText = "Task Title";
             this.TaskTitle.Name = "TaskTitle";
             this.TaskTitle.ReadOnly = true;
-            // 
+            //
             // Applications
-            // 
+            //
             this.Applications.Frozen = true;
             this.Applications.HeaderText = "Applications";
             this.Applications.Name = "Applications";
             this.Applications.ReadOnly = true;
             this.Applications.Visible = false;
-            // 
+            //
             // ApplicationDeadline
-            // 
+            //
             this.ApplicationDeadline.Frozen = true;
             this.ApplicationDeadline.HeaderText = "Application Deadline";
             this.ApplicationDeadline.Name = "ApplicationDeadline";
             this.ApplicationDeadline.ReadOnly = true;
             this.ApplicationDeadline.Visible = false;
-            // 
+            //
             // AssignedStudent
-            // 
+            //
             this.AssignedStudent.Frozen = true;
             this.AssignedStudent.HeaderText = "Assigned Student";
             this.AssignedStudent.Name = "AssignedStudent";
             this.AssignedStudent.ReadOnly = true;
             this.AssignedStudent.Visible = false;
-            // 
+            //
             // StartDate
-            // 
+            //
             this.StartDate.Frozen = true;
             this.StartDate.HeaderText = "Start Date";
             this.StartDate.Name = "StartDate";
             this.StartDate.ReadOnly = true;
-            // 
+            //
             // Deadline
-            // 
+            //
             this.Deadline.Frozen = true;
             this.Deadline.HeaderText = "Deadline";
             this.Deadline.Name = "Deadline";
             this.Deadline.ReadOnly = true;
             this.Deadline.Visible = false;
-            // 
+            //
             // SeeAllTasks
-            // 
+            //
             this.SeeAllTasks.Location = new System.Drawing.Point(5, 136);
             this.SeeAllTasks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SeeAllTasks.Name = "SeeAllTasks";
@@ -158,9 +158,9 @@
             this.SeeAllTasks.Text = "All";
             this.SeeAllTasks.UseVisualStyleBackColor = true;
             this.SeeAllTasks.Click += new System.EventHandler(this.SeeAllTasks_Click);
-            // 
+            //
             // SeeCompletedTasks
-            // 
+            //
             this.SeeCompletedTasks.Location = new System.Drawing.Point(5, 109);
             this.SeeCompletedTasks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SeeCompletedTasks.Name = "SeeCompletedTasks";
@@ -169,9 +169,9 @@
             this.SeeCompletedTasks.Text = "Completed";
             this.SeeCompletedTasks.UseVisualStyleBackColor = true;
             this.SeeCompletedTasks.Click += new System.EventHandler(this.SeeCompletedTasks_Click);
-            // 
+            //
             // SeeOnGoingTasks
-            // 
+            //
             this.SeeOnGoingTasks.Location = new System.Drawing.Point(5, 81);
             this.SeeOnGoingTasks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SeeOnGoingTasks.Name = "SeeOnGoingTasks";
@@ -180,9 +180,9 @@
             this.SeeOnGoingTasks.Text = "Ongoing";
             this.SeeOnGoingTasks.UseVisualStyleBackColor = true;
             this.SeeOnGoingTasks.Click += new System.EventHandler(this.SeeOnGoingTasks_Click);
-            // 
+            //
             // SeePrivateTasks
-            // 
+            //
             this.SeePrivateTasks.Location = new System.Drawing.Point(5, 54);
             this.SeePrivateTasks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SeePrivateTasks.Name = "SeePrivateTasks";
@@ -191,9 +191,9 @@
             this.SeePrivateTasks.Text = "Private";
             this.SeePrivateTasks.UseVisualStyleBackColor = true;
             this.SeePrivateTasks.Click += new System.EventHandler(this.SeePrivateTasks_Click);
-            // 
+            //
             // SeePublicTasks
-            // 
+            //
             this.SeePublicTasks.Location = new System.Drawing.Point(5, 25);
             this.SeePublicTasks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SeePublicTasks.Name = "SeePublicTasks";
@@ -202,9 +202,9 @@
             this.SeePublicTasks.Text = "Public";
             this.SeePublicTasks.UseVisualStyleBackColor = true;
             this.SeePublicTasks.Click += new System.EventHandler(this.SeePublicTasks_Click);
-            // 
+            //
             // ViewTask
-            // 
+            //
             this.ViewTask.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ViewTask.Location = new System.Drawing.Point(434, 318);
             this.ViewTask.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -214,9 +214,9 @@
             this.ViewTask.Text = "View Task";
             this.ViewTask.UseVisualStyleBackColor = true;
             this.ViewTask.Click += new System.EventHandler(this.ViewTask_Click);
-            // 
+            //
             // SMENotificationBtn
-            // 
+            //
             this.SMENotificationBtn.Location = new System.Drawing.Point(460, 11);
             this.SMENotificationBtn.Name = "SMENotificationBtn";
             this.SMENotificationBtn.Size = new System.Drawing.Size(91, 23);
@@ -224,9 +224,9 @@
             this.SMENotificationBtn.Text = "Notifications (0)";
             this.SMENotificationBtn.UseVisualStyleBackColor = true;
             this.SMENotificationBtn.Click += new System.EventHandler(this.SMENotificationBtn_Click);
-            // 
+            //
             // SMELogOutBtn
-            // 
+            //
             this.SMELogOutBtn.Location = new System.Drawing.Point(16, 331);
             this.SMELogOutBtn.Name = "SMELogOutBtn";
             this.SMELogOutBtn.Size = new System.Drawing.Size(70, 23);
@@ -234,9 +234,9 @@
             this.SMELogOutBtn.Text = "Log Out";
             this.SMELogOutBtn.UseVisualStyleBackColor = true;
             this.SMELogOutBtn.Click += new System.EventHandler(this.SMELogOutBtn_Click);
-            // 
+            //
             // SMELandingPage
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 366);
