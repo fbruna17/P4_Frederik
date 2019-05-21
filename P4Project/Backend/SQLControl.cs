@@ -714,8 +714,7 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT TaskID,SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task " +
-                    "WHERE StateID = @stateid AND Title LIKE '@query'"
+                    CommandText = "SELECT TaskID,SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task WHERE StateID = @stateid AND Title LIKE @query"
                     //Ret til commandtext = query, baseret på radio buttons.
                     //Task Recommend
                 };
@@ -724,20 +723,20 @@ namespace P4Project
                 cmd.Parameters.AddWithValue("@query", Query);
 
                 var reader = cmd.ExecuteReader();
-                // A temp list is initialized to store the temp data:
+
                 var TaskList = new List<TaskSearched>();
 
                 while (reader.Read())
                 {
-                    int taskID = GetSafeIntMustNotBeNull(reader, 0);
-                    int smeID = GetSafeIntMustNotBeNull(reader, 1);
-                    string title = GetSafeString(reader, 2);
-                    string location = GetSafeString(reader, 3);
-                    int hours = GetSafeIntMustNotBeNull(reader, 4);
-                    DateTime applicationdeadline = reader.GetDateTime(5);
-                    DateTime startdate = reader.GetDateTime(6);
-                    DateTime completiondate = reader.GetDateTime(7);
-                    TaskList.Add(new TaskSearched(taskID, smeID, title, location, hours, applicationdeadline, startdate, completiondate));
+                    int taskID = reader.GetInt32(0);
+                    int smeID = reader.GetInt32(1);
+                    string Title = reader.GetString(2);
+                    string Location = reader.GetString(3);
+                    int Hours = reader.GetInt32(4);
+                    DateTime ApplicationDeadline = reader.GetDateTime(5);
+                    DateTime StartDate = reader.GetDateTime(6);
+                    DateTime EstCompletionDate = reader.GetDateTime(7);
+                    TaskList.Add(new TaskSearched(taskID, smeID, Title, Location, Hours, ApplicationDeadline, StartDate, EstCompletionDate));
                 }
                 reader.Close();
                 return TaskList;

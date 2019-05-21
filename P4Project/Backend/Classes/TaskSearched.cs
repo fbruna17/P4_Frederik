@@ -15,7 +15,6 @@ namespace P4Project.Backend.Classes
         public DateTime ApplicationDeadline { get; }
         public DateTime EstCompletionDate { get; }
         public int StateID { get; }
-        public int SMEID { get; }
 
         // Den constructer der normalt vil bruges til denne klasse:
         public TaskSearched(int id, int smeid, string title, string location, int hours, DateTime startdate, 
@@ -27,7 +26,6 @@ namespace P4Project.Backend.Classes
             Startdate = startdate;
             ApplicationDeadline = applicationDeadline;
             EstCompletionDate = estCompletionDate;
-            SMEID = smeid;
         }
         // Constructer der bruges når f.eks. SMEs skal have hentet alle deres tasks, eller når man søger en DetailedTask (StateID tilføjes):
         public TaskSearched(int id, int smeid, string title, string location, int hours, DateTime startdate,
@@ -40,7 +38,6 @@ namespace P4Project.Backend.Classes
             ApplicationDeadline = applicationDeadline;
             EstCompletionDate = estCompletionDate;
             StateID = stateID;
-            SMEID = smeid;
         }
 
         public string[] MakeDataViewString()
