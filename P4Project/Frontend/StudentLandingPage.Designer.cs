@@ -43,14 +43,17 @@
             this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SMEName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ApplicationGroupBox = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SeeApplication = new System.Windows.Forms.Button();
             this.RecommendedTasksGroupBox = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.RecommendedTasks = new System.Windows.Forms.DataGridView();
             this.TaskTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Match = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ViewRecTask = new System.Windows.Forms.Button();
             this.AssignedTasksBox = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.ViewAssignedTask = new System.Windows.Forms.Button();
             this.AssignedTaskGridView = new System.Windows.Forms.DataGridView();
             this.TaskAssignedTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,9 +61,6 @@
             this.CompletionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ViewProfile = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ApplicationViewGrid)).BeginInit();
@@ -174,7 +174,7 @@
             this.State,
             this.SMEName});
             this.ApplicationViewGrid.Location = new System.Drawing.Point(4, 31);
-            this.ApplicationViewGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ApplicationViewGrid.Margin = new System.Windows.Forms.Padding(2);
             this.ApplicationViewGrid.MultiSelect = false;
             this.ApplicationViewGrid.Name = "ApplicationViewGrid";
             this.ApplicationViewGrid.ReadOnly = true;
@@ -211,18 +211,28 @@
             this.ApplicationGroupBox.Controls.Add(this.SeeApplication);
             this.ApplicationGroupBox.Controls.Add(this.ApplicationViewGrid);
             this.ApplicationGroupBox.Location = new System.Drawing.Point(17, 129);
-            this.ApplicationGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ApplicationGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.ApplicationGroupBox.Name = "ApplicationGroupBox";
-            this.ApplicationGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ApplicationGroupBox.Padding = new System.Windows.Forms.Padding(2);
             this.ApplicationGroupBox.Size = new System.Drawing.Size(352, 142);
             this.ApplicationGroupBox.TabIndex = 3;
             this.ApplicationGroupBox.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(11, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(153, 20);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Applied For Tasks";
             // 
             // SeeApplication
             // 
             this.SeeApplication.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.SeeApplication.Location = new System.Drawing.Point(281, 122);
-            this.SeeApplication.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SeeApplication.Margin = new System.Windows.Forms.Padding(2);
             this.SeeApplication.Name = "SeeApplication";
             this.SeeApplication.Size = new System.Drawing.Size(66, 19);
             this.SeeApplication.TabIndex = 5;
@@ -236,12 +246,22 @@
             this.RecommendedTasksGroupBox.Controls.Add(this.RecommendedTasks);
             this.RecommendedTasksGroupBox.Controls.Add(this.ViewRecTask);
             this.RecommendedTasksGroupBox.Location = new System.Drawing.Point(382, 129);
-            this.RecommendedTasksGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RecommendedTasksGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.RecommendedTasksGroupBox.Name = "RecommendedTasksGroupBox";
-            this.RecommendedTasksGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RecommendedTasksGroupBox.Padding = new System.Windows.Forms.Padding(2);
             this.RecommendedTasksGroupBox.Size = new System.Drawing.Size(380, 286);
             this.RecommendedTasksGroupBox.TabIndex = 9;
             this.RecommendedTasksGroupBox.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(105, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(181, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Recommended Tasks";
             // 
             // RecommendedTasks
             // 
@@ -254,7 +274,7 @@
             this.Match,
             this.SME});
             this.RecommendedTasks.Location = new System.Drawing.Point(6, 31);
-            this.RecommendedTasks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RecommendedTasks.Margin = new System.Windows.Forms.Padding(2);
             this.RecommendedTasks.MultiSelect = false;
             this.RecommendedTasks.Name = "RecommendedTasks";
             this.RecommendedTasks.ReadOnly = true;
@@ -288,7 +308,7 @@
             // ViewRecTask
             // 
             this.ViewRecTask.Location = new System.Drawing.Point(309, 261);
-            this.ViewRecTask.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ViewRecTask.Margin = new System.Windows.Forms.Padding(2);
             this.ViewRecTask.Name = "ViewRecTask";
             this.ViewRecTask.Size = new System.Drawing.Size(62, 19);
             this.ViewRecTask.TabIndex = 11;
@@ -302,18 +322,28 @@
             this.AssignedTasksBox.Controls.Add(this.ViewAssignedTask);
             this.AssignedTasksBox.Controls.Add(this.AssignedTaskGridView);
             this.AssignedTasksBox.Location = new System.Drawing.Point(17, 275);
-            this.AssignedTasksBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AssignedTasksBox.Margin = new System.Windows.Forms.Padding(2);
             this.AssignedTasksBox.Name = "AssignedTasksBox";
-            this.AssignedTasksBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AssignedTasksBox.Padding = new System.Windows.Forms.Padding(2);
             this.AssignedTasksBox.Size = new System.Drawing.Size(352, 140);
             this.AssignedTasksBox.TabIndex = 6;
             this.AssignedTasksBox.TabStop = false;
             this.AssignedTasksBox.Visible = false;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(11, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(153, 20);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Tasks In Progress";
+            // 
             // ViewAssignedTask
             // 
             this.ViewAssignedTask.Location = new System.Drawing.Point(282, 115);
-            this.ViewAssignedTask.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ViewAssignedTask.Margin = new System.Windows.Forms.Padding(2);
             this.ViewAssignedTask.Name = "ViewAssignedTask";
             this.ViewAssignedTask.Size = new System.Drawing.Size(66, 19);
             this.ViewAssignedTask.TabIndex = 8;
@@ -330,7 +360,7 @@
             this.SMEAssignedName,
             this.CompletionDate});
             this.AssignedTaskGridView.Location = new System.Drawing.Point(4, 33);
-            this.AssignedTaskGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AssignedTaskGridView.Margin = new System.Windows.Forms.Padding(2);
             this.AssignedTaskGridView.MultiSelect = false;
             this.AssignedTaskGridView.Name = "AssignedTaskGridView";
             this.AssignedTaskGridView.RowTemplate.Height = 24;
@@ -362,7 +392,7 @@
             // ViewProfile
             // 
             this.ViewProfile.Location = new System.Drawing.Point(382, 58);
-            this.ViewProfile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ViewProfile.Margin = new System.Windows.Forms.Padding(2);
             this.ViewProfile.Name = "ViewProfile";
             this.ViewProfile.Size = new System.Drawing.Size(105, 28);
             this.ViewProfile.TabIndex = 1;
@@ -373,43 +403,13 @@
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(382, 90);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(105, 28);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Search For Task";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(108, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Available Tasks";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(11, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(153, 20);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Tasks In Progress";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(11, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(153, 20);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Applied For Tasks";
             // 
             // StudentLandingPage
             // 
@@ -422,7 +422,7 @@
             this.Controls.Add(this.RecommendedTasksGroupBox);
             this.Controls.Add(this.ApplicationGroupBox);
             this.Controls.Add(this.groupBox2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "StudentLandingPage";
             this.Text = "StudentLandingPage";
             this.groupBox2.ResumeLayout(false);

@@ -76,8 +76,6 @@ namespace P4Project
             //Returns the serverpath of the uploaded file
             return serverFilePathDir;
         }
-        #endregion //End of Upload region
-
-        
+        #endregion //End of Upload region        
     }
 }

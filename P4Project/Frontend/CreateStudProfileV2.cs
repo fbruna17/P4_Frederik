@@ -150,7 +150,7 @@ namespace P4Project
         #endregion
 
 
-
+        #region NOT USED AT ALL!
         private void PictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -160,5 +160,6 @@ namespace P4Project
         {
 
         }
+        #endregion
     }
 }

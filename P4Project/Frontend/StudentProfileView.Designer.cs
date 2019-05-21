@@ -93,7 +93,7 @@
             this.groupBox2.Controls.Add(this.StudentEditProfileBtn);
             this.groupBox2.Controls.Add(this.StudentNameLabel);
             this.groupBox2.Controls.Add(this.StudentPictureBox);
-            this.groupBox2.Location = new System.Drawing.Point(72, 107);
+            this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(314, 173);
             this.groupBox2.TabIndex = 2;
@@ -102,7 +102,7 @@
             // AssignStudent
             // 
             this.AssignStudent.Location = new System.Drawing.Point(225, 19);
-            this.AssignStudent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AssignStudent.Margin = new System.Windows.Forms.Padding(2);
             this.AssignStudent.Name = "AssignStudent";
             this.AssignStudent.Size = new System.Drawing.Size(81, 22);
             this.AssignStudent.TabIndex = 11;
@@ -134,7 +134,7 @@
             // EditEmail
             // 
             this.EditEmail.Location = new System.Drawing.Point(182, 81);
-            this.EditEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EditEmail.Margin = new System.Windows.Forms.Padding(2);
             this.EditEmail.Name = "EditEmail";
             this.EditEmail.Size = new System.Drawing.Size(128, 20);
             this.EditEmail.TabIndex = 5;
@@ -143,7 +143,7 @@
             // SubmitEdit
             // 
             this.SubmitEdit.Location = new System.Drawing.Point(225, 18);
-            this.SubmitEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SubmitEdit.Margin = new System.Windows.Forms.Padding(2);
             this.SubmitEdit.Name = "SubmitEdit";
             this.SubmitEdit.Size = new System.Drawing.Size(82, 23);
             this.SubmitEdit.TabIndex = 8;
@@ -185,7 +185,7 @@
             // Back
             // 
             this.Back.Location = new System.Drawing.Point(138, 18);
-            this.Back.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Back.Margin = new System.Windows.Forms.Padding(2);
             this.Back.Name = "Back";
             this.Back.Size = new System.Drawing.Size(82, 23);
             this.Back.TabIndex = 7;
@@ -234,9 +234,9 @@
             this.groupBox3.Controls.Add(this.StudentResumeLink);
             this.groupBox3.Controls.Add(this.StudentResumeLabel);
             this.groupBox3.Controls.Add(this.StudentEducationLabel);
-            this.groupBox3.Location = new System.Drawing.Point(392, 107);
+            this.groupBox3.Location = new System.Drawing.Point(332, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(384, 173);
+            this.groupBox3.Size = new System.Drawing.Size(270, 173);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             // 
@@ -263,7 +263,7 @@
             // 
             this.EducationDropDown.FormattingEnabled = true;
             this.EducationDropDown.Location = new System.Drawing.Point(93, 46);
-            this.EducationDropDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EducationDropDown.Margin = new System.Windows.Forms.Padding(2);
             this.EducationDropDown.Name = "EducationDropDown";
             this.EducationDropDown.Size = new System.Drawing.Size(104, 21);
             this.EducationDropDown.TabIndex = 9;
@@ -315,7 +315,7 @@
             // 
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Controls.Add(this.StudentDescBox);
-            this.groupBox4.Location = new System.Drawing.Point(72, 286);
+            this.groupBox4.Location = new System.Drawing.Point(12, 191);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(314, 179);
             this.groupBox4.TabIndex = 4;
@@ -343,9 +343,10 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.EditSkillsBox);
             this.groupBox5.Controls.Add(this.SkillSetGrid);
             this.groupBox5.Controls.Add(this.label1);
-            this.groupBox5.Location = new System.Drawing.Point(393, 287);
+            this.groupBox5.Location = new System.Drawing.Point(333, 192);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(269, 356);
             this.groupBox5.TabIndex = 5;
@@ -359,13 +360,14 @@
             this.SkillName,
             this.Verified});
             this.SkillSetGrid.Location = new System.Drawing.Point(12, 46);
-            this.SkillSetGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SkillSetGrid.Margin = new System.Windows.Forms.Padding(2);
             this.SkillSetGrid.MultiSelect = false;
             this.SkillSetGrid.Name = "SkillSetGrid";
             this.SkillSetGrid.ReadOnly = true;
             this.SkillSetGrid.RowTemplate.Height = 24;
             this.SkillSetGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.SkillSetGrid.Size = new System.Drawing.Size(245, 286);
+            this.SkillSetGrid.Size = new System.Drawing.Size(245, 180);
+            this.SkillSetGrid.StandardTab = true;
             this.SkillSetGrid.TabIndex = 1;
             // 
             // SkillName
@@ -396,7 +398,7 @@
             // 
             this.groupBox7.Controls.Add(this.FormerTaskGrid);
             this.groupBox7.Controls.Add(this.label3);
-            this.groupBox7.Location = new System.Drawing.Point(72, 472);
+            this.groupBox7.Location = new System.Drawing.Point(12, 377);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(314, 171);
             this.groupBox7.TabIndex = 8;
@@ -413,13 +415,14 @@
             this.SMEName,
             this.CompletionDate});
             this.FormerTaskGrid.Location = new System.Drawing.Point(6, 41);
-            this.FormerTaskGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FormerTaskGrid.Margin = new System.Windows.Forms.Padding(2);
             this.FormerTaskGrid.MultiSelect = false;
             this.FormerTaskGrid.Name = "FormerTaskGrid";
             this.FormerTaskGrid.ReadOnly = true;
             this.FormerTaskGrid.RowTemplate.Height = 24;
             this.FormerTaskGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.FormerTaskGrid.Size = new System.Drawing.Size(300, 106);
+            this.FormerTaskGrid.StandardTab = true;
             this.FormerTaskGrid.TabIndex = 9;
             // 
             // TaskTitleName
@@ -458,11 +461,11 @@
             this.EditSkillsBox.Controls.Add(this.SkillDropDown);
             this.EditSkillsBox.Controls.Add(this.RemoveSkill);
             this.EditSkillsBox.Controls.Add(this.AddSkill);
-            this.EditSkillsBox.Location = new System.Drawing.Point(735, 333);
-            this.EditSkillsBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EditSkillsBox.Location = new System.Drawing.Point(12, 230);
+            this.EditSkillsBox.Margin = new System.Windows.Forms.Padding(2);
             this.EditSkillsBox.Name = "EditSkillsBox";
-            this.EditSkillsBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.EditSkillsBox.Size = new System.Drawing.Size(164, 102);
+            this.EditSkillsBox.Padding = new System.Windows.Forms.Padding(2);
+            this.EditSkillsBox.Size = new System.Drawing.Size(245, 102);
             this.EditSkillsBox.TabIndex = 9;
             this.EditSkillsBox.TabStop = false;
             this.EditSkillsBox.Visible = false;
@@ -470,16 +473,16 @@
             // SkillDropDown
             // 
             this.SkillDropDown.FormattingEnabled = true;
-            this.SkillDropDown.Location = new System.Drawing.Point(19, 56);
-            this.SkillDropDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SkillDropDown.Location = new System.Drawing.Point(60, 59);
+            this.SkillDropDown.Margin = new System.Windows.Forms.Padding(2);
             this.SkillDropDown.Name = "SkillDropDown";
             this.SkillDropDown.Size = new System.Drawing.Size(126, 21);
             this.SkillDropDown.TabIndex = 2;
             // 
             // RemoveSkill
             // 
-            this.RemoveSkill.Location = new System.Drawing.Point(4, 17);
-            this.RemoveSkill.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RemoveSkill.Location = new System.Drawing.Point(45, 20);
+            this.RemoveSkill.Margin = new System.Windows.Forms.Padding(2);
             this.RemoveSkill.Name = "RemoveSkill";
             this.RemoveSkill.Size = new System.Drawing.Size(74, 26);
             this.RemoveSkill.TabIndex = 1;
@@ -489,8 +492,8 @@
             // 
             // AddSkill
             // 
-            this.AddSkill.Location = new System.Drawing.Point(86, 17);
-            this.AddSkill.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddSkill.Location = new System.Drawing.Point(127, 20);
+            this.AddSkill.Margin = new System.Windows.Forms.Padding(2);
             this.AddSkill.Name = "AddSkill";
             this.AddSkill.Size = new System.Drawing.Size(74, 26);
             this.AddSkill.TabIndex = 0;
@@ -502,8 +505,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(953, 655);
-            this.Controls.Add(this.EditSkillsBox);
+            this.ClientSize = new System.Drawing.Size(620, 566);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);

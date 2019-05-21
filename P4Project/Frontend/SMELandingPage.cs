@@ -15,18 +15,22 @@ namespace P4Project.Frontend
     {
         private SMELoggedIn ThisSME { get; set; }
 
+
+        #region Constructors
         public SMELandingPage(SMELoggedIn thisSME)
         {
             ThisSME = thisSME;
             InitializeComponent();
             // Checks for "dates exceeded" and counts notification.
-            SMENotificationBtn.Text = "Notifications (" + TaskNotificationCounter() + ")"; 
+            SMENotificationBtn.Text = "Notifications (" + TaskNotificationCounter() + ")";
             foreach (TaskSearched task in ThisSME.GetListOfTasks(2))
             {
                 TaskView.Rows.Add(task.MakeDataViewString());
             }
         }
+        #endregion
 
+        #region Session Related
         private void UpdateSession()
         {
             ThisSME = ThisSME.UpdateSessionData();
@@ -36,7 +40,9 @@ namespace P4Project.Frontend
                 TaskView.Rows.Add(task.MakeDataViewString());
             }
         }
+        #endregion
 
+        #region TaskState Related
         private void TaskStateAutoStateChangeByDate()
         {
             SQLControl SQL = new SQLControl();
@@ -53,7 +59,7 @@ namespace P4Project.Frontend
                     var message = "Your task: " + task.Title + " has passed its StartDate and no student is assigned. The task has been moved into Private State.";
 
                     SQL.AutoTaskStateChange(taskAppIDs, taskNewState);
-                    MessageBox.Show(message);                    
+                    MessageBox.Show(message);
                 }
 
                 else if (task.EstCompletionDate < DateTime.Now && task.StateID == 3)
@@ -73,7 +79,7 @@ namespace P4Project.Frontend
                 }
                 //Updation the session after making potential changes to different Task States.
                 UpdateSession();
-            }        
+            }
         }
 
         private int TaskNotificationCounter()
@@ -92,6 +98,37 @@ namespace P4Project.Frontend
                 }
             }
             return notifications;
+        }
+        #endregion
+
+        #region Buttons
+        private void SMENotificationBtn_Click(object sender, EventArgs e)
+        {
+            TaskStateAutoStateChangeByDate();
+            SMENotificationBtn.Text = "Notifications (" + TaskNotificationCounter() + ")";
+        }
+
+        private void ViewTask_Click(object sender, EventArgs e)
+        {
+            SQLControl sql = new SQLControl();
+            string taskname = TaskView.SelectedCells[0].Value.ToString();
+            TaskSearched tTask = ThisSME.Tasks.Single(t => t.Title == taskname);
+            TaskDetailed thisTask = sql.FetchTaskDetailed(tTask.ID);
+            Hide();
+            var tView = new TaskView(thisTask, ThisSME);
+            tView.ShowDialog();
+            UpdateSession();
+            Show();
+        }
+
+        private void SeeAllTasks_Click(object sender, EventArgs e)
+        {
+            TaskView.Rows.Clear();
+            TaskView.Refresh();
+            foreach (TaskSearched task in ThisSME.Tasks)
+            {
+                TaskView.Rows.Add(task.MakeDataViewString());
+            }
         }
 
         private void Create_New_Task_Click(object sender, EventArgs e)
@@ -142,39 +179,6 @@ namespace P4Project.Frontend
                 TaskView.Rows.Add(task.MakeDataViewString());
             }
         }
-
-        private void SeeAllTasks_Click(object sender, EventArgs e)
-        {
-            TaskView.Rows.Clear();
-            TaskView.Refresh();
-            foreach (TaskSearched task in ThisSME.Tasks)
-            {
-                TaskView.Rows.Add(task.MakeDataViewString());
-            }
-        }
-
-        private void SMETasksDisplay_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ViewTask_Click(object sender, EventArgs e)
-        {
-            SQLControl sql = new SQLControl();
-            string taskname = TaskView.SelectedCells[0].Value.ToString();
-            TaskSearched tTask = ThisSME.Tasks.Single(t => t.Title == taskname);
-            TaskDetailed thisTask = sql.FetchTaskDetailed(tTask.ID);
-            Hide();
-            var tView = new TaskView(thisTask, ThisSME);
-            tView.ShowDialog();
-            UpdateSession();
-            Show();
-        }
-
-        private void SMENotificationBtn_Click(object sender, EventArgs e)
-        {
-            TaskStateAutoStateChangeByDate();
-            SMENotificationBtn.Text = "Notifications (" + TaskNotificationCounter() + ")";
-        }
+        #endregion
     }
 }

@@ -95,19 +95,6 @@ namespace P4Project
                 MessageBox.Show(ex.Message);
             }
         }
-        #endregion
-
-        #region Load
-        private void RegisterSMEProfile_Load(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
 
         private void ChooseLogoBtn_Click(object sender, EventArgs e)
         {
@@ -143,10 +130,26 @@ namespace P4Project
                 }
             }
         }
+        #endregion
+
+        #region Load
+        private void RegisterSMEProfile_Load(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+        //HUSK AT SLETTE DET HER PIS!
+        #region NOT USED! DELETE THIS SHIT!
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
 
         private void PictureBox1_SME_Click(object sender, EventArgs e)
         {
 
         }
+        #endregion
     }
 }

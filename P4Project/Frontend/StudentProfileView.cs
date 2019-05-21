@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using MySql.Data.MySqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.IO;
+﻿using MySql.Data.MySqlClient;
 using P4Project.Backend.Classes;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 namespace P4Project.Frontend
 {
     public partial class StudentProfileView : Form
     {
+        #region Instance Variables & Properties
         // Properties for SME View og profile:
         private StudentDetailed Student { get; }
         private SMELoggedIn ThisSME { get; }
@@ -25,6 +21,7 @@ namespace P4Project.Frontend
 
         // SQL Control:
         private SQLControl sql = new SQLControl();
+        #endregion
 
         #region FTPVariables:
         private FTPControl FTP = new FTPControl();
@@ -406,6 +403,9 @@ namespace P4Project.Frontend
 
         //...................................................... MISS CLICKS REMOVE LATER .........................................................
 
+
+
+        #region DELETE THIS SHIT!
         private void StudentProfileView_Load(object sender, EventArgs e)
         {
         }
@@ -434,6 +434,7 @@ namespace P4Project.Frontend
         {
 
         }
+        #endregion
 
 
     }

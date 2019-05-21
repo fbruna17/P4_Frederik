@@ -15,16 +15,21 @@ namespace P4Project.Frontend
 {
     public partial class SMELogInPage : Form
     {
+        #region Instance Variables & Properties
         private UserInputValidation InputValidation;
         private SQLControl SQL;
+        #endregion
 
+        #region Constructers
         public SMELogInPage()
         {
             InitializeComponent();
             InputValidation = new UserInputValidation();
             SQL = new SQLControl();
         }
+        #endregion
 
+        #region Buttons
         private void LogIn_Click(object sender, EventArgs e)
         {
             string username = Username.Text;
@@ -39,15 +44,15 @@ namespace P4Project.Frontend
                 Close();
                 smeLandingPage.ShowDialog();
             }
-            catch(NoUsernameInputException)
+            catch (NoUsernameInputException)
             {
                 MessageBox.Show("Please input a username!");
             }
-            catch(NoPasswordInputException)
+            catch (NoPasswordInputException)
             {
                 MessageBox.Show("Please input a password!");
             }
-            catch(UserDoesNotExistException)
+            catch (UserDoesNotExistException)
             {
                 MessageBox.Show("Wrong Username or password!");
             }
@@ -56,5 +61,6 @@ namespace P4Project.Frontend
                 MessageBox.Show("An unexpected SQL error has occures! Error Number: " + ex.Number + " Error message: " + ex.Message + ex.Source);
             }
         }
+        #endregion
     }
 }

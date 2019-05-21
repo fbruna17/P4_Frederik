@@ -15,17 +15,22 @@ using MySql.Data.MySqlClient;
 namespace P4Project.Frontend
 {
     public partial class StudentLogInPage : Form
-    {
+    {     
+        #region Instance Variables & Properties
         private UserInputValidation InputValidation;
         private SQLControl SQL;
+        #endregion
 
+        #region Constructors
         public StudentLogInPage()
         {
             InitializeComponent();
             InputValidation = new UserInputValidation();
             SQL = new SQLControl();
         }
+        #endregion
 
+        #region Buttons
         private void LogIn_Click(object sender, EventArgs e)
         {
             string username = Username.Text;
@@ -55,10 +60,11 @@ namespace P4Project.Frontend
             {
                 MessageBox.Show("There was an error in the data loaded! Please contact system administrators!" + ex.place);
             }
-            catch (MySqlException ex) 
+            catch (MySqlException ex)
             {
                 MessageBox.Show("An unexpected SQL error has occures! Error Number: " + ex.Number + " Error message: " + ex.Message + ex.Source);
             }
         }
+        #endregion
     }
 }
