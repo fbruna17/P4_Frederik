@@ -13,6 +13,7 @@ namespace P4Project.Frontend
 {
     public partial class Search : Form
     {
+        private string Query;
         public Search()
         {
             InitializeComponent();
@@ -21,13 +22,12 @@ namespace P4Project.Frontend
         private void btnSearch_Click(object sender, EventArgs e)
         {
             SQLControl SQL = new SQLControl();
-            string Query = SearchBox.Text;
+            Query = SearchBox.Text;
             List<TaskSearched> TaskResults = SQL.SearchTasks(Query);
 
             foreach (TaskSearched t in TaskResults)
             {
                 SearchResultGrid.Rows.Add(t.MakeDataViewString());
-                Visible = true;
             }
 
             SearchResultGrid.Visible = true;
