@@ -53,7 +53,7 @@
             //
             this.Create_New_Task.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Create_New_Task.Location = new System.Drawing.Point(313, 318);
-            this.Create_New_Task.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Create_New_Task.Margin = new System.Windows.Forms.Padding(2);
             this.Create_New_Task.Name = "Create_New_Task";
             this.Create_New_Task.Size = new System.Drawing.Size(117, 37);
             this.Create_New_Task.TabIndex = 8;
@@ -70,9 +70,9 @@
             this.TaskOverViewGroup.Controls.Add(this.SeePrivateTasks);
             this.TaskOverViewGroup.Controls.Add(this.SeePublicTasks);
             this.TaskOverViewGroup.Location = new System.Drawing.Point(11, 39);
-            this.TaskOverViewGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TaskOverViewGroup.Margin = new System.Windows.Forms.Padding(2);
             this.TaskOverViewGroup.Name = "TaskOverViewGroup";
-            this.TaskOverViewGroup.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TaskOverViewGroup.Padding = new System.Windows.Forms.Padding(2);
             this.TaskOverViewGroup.Size = new System.Drawing.Size(578, 269);
             this.TaskOverViewGroup.TabIndex = 2;
             this.TaskOverViewGroup.TabStop = false;
@@ -92,13 +92,13 @@
             this.StartDate,
             this.Deadline});
             this.TaskView.Location = new System.Drawing.Point(96, 20);
-            this.TaskView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TaskView.Margin = new System.Windows.Forms.Padding(2);
             this.TaskView.MultiSelect = false;
             this.TaskView.Name = "TaskView";
             this.TaskView.ReadOnly = true;
             this.TaskView.RowTemplate.Height = 24;
             this.TaskView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.TaskView.Size = new System.Drawing.Size(592, 232);
+            this.TaskView.Size = new System.Drawing.Size(444, 245);
             this.TaskView.StandardTab = true;
             this.TaskView.TabIndex = 9;
             //
@@ -151,7 +151,7 @@
             // SeeAllTasks
             //
             this.SeeAllTasks.Location = new System.Drawing.Point(5, 136);
-            this.SeeAllTasks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SeeAllTasks.Margin = new System.Windows.Forms.Padding(2);
             this.SeeAllTasks.Name = "SeeAllTasks";
             this.SeeAllTasks.Size = new System.Drawing.Size(70, 23);
             this.SeeAllTasks.TabIndex = 7;
@@ -162,7 +162,7 @@
             // SeeCompletedTasks
             //
             this.SeeCompletedTasks.Location = new System.Drawing.Point(5, 109);
-            this.SeeCompletedTasks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SeeCompletedTasks.Margin = new System.Windows.Forms.Padding(2);
             this.SeeCompletedTasks.Name = "SeeCompletedTasks";
             this.SeeCompletedTasks.Size = new System.Drawing.Size(70, 23);
             this.SeeCompletedTasks.TabIndex = 6;
@@ -173,7 +173,7 @@
             // SeeOnGoingTasks
             //
             this.SeeOnGoingTasks.Location = new System.Drawing.Point(5, 81);
-            this.SeeOnGoingTasks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SeeOnGoingTasks.Margin = new System.Windows.Forms.Padding(2);
             this.SeeOnGoingTasks.Name = "SeeOnGoingTasks";
             this.SeeOnGoingTasks.Size = new System.Drawing.Size(70, 23);
             this.SeeOnGoingTasks.TabIndex = 5;
@@ -184,7 +184,7 @@
             // SeePrivateTasks
             //
             this.SeePrivateTasks.Location = new System.Drawing.Point(5, 54);
-            this.SeePrivateTasks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SeePrivateTasks.Margin = new System.Windows.Forms.Padding(2);
             this.SeePrivateTasks.Name = "SeePrivateTasks";
             this.SeePrivateTasks.Size = new System.Drawing.Size(70, 23);
             this.SeePrivateTasks.TabIndex = 4;
@@ -195,7 +195,7 @@
             // SeePublicTasks
             //
             this.SeePublicTasks.Location = new System.Drawing.Point(5, 25);
-            this.SeePublicTasks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SeePublicTasks.Margin = new System.Windows.Forms.Padding(2);
             this.SeePublicTasks.Name = "SeePublicTasks";
             this.SeePublicTasks.Size = new System.Drawing.Size(70, 23);
             this.SeePublicTasks.TabIndex = 3;
@@ -207,7 +207,7 @@
             //
             this.ViewTask.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ViewTask.Location = new System.Drawing.Point(434, 318);
-            this.ViewTask.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ViewTask.Margin = new System.Windows.Forms.Padding(2);
             this.ViewTask.Name = "ViewTask";
             this.ViewTask.Size = new System.Drawing.Size(117, 37);
             this.ViewTask.TabIndex = 10;
@@ -245,7 +245,7 @@
             this.Controls.Add(this.Create_New_Task);
             this.Controls.Add(this.ViewTask);
             this.Controls.Add(this.TaskOverViewGroup);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SMELandingPage";
             this.Text = "SMELandingPage";
             this.TaskOverViewGroup.ResumeLayout(false);
