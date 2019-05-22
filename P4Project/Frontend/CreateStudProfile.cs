@@ -17,7 +17,7 @@ using System.Net;
 
 namespace P4Project
 {
-    public partial class CreateStudProfileV2 : Form
+    public partial class CreateStudProfile : Form
     {
         #region Instance Variables & Properties
         private SQLControl SQL;
@@ -34,7 +34,7 @@ namespace P4Project
 
         #region Constructor(s)
 
-        public CreateStudProfileV2()
+        public CreateStudProfile()
         {
             InitializeComponent();
             SQL = new SQLControl();

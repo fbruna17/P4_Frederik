@@ -50,7 +50,7 @@ namespace P4Project
         private void StudentRegisterBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var stud = new CreateStudProfileV2();
+            var stud = new CreateStudProfile();
             stud.ShowDialog();
             this.Show();
         }

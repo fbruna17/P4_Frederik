@@ -82,11 +82,11 @@
     <Compile Include="Exceptions\PasswordToShortException.cs" />
     <Compile Include="Exceptions\SMEUserDoesNotExistException.cs" />
     <Compile Include="Exceptions\UsernameAlreadyExistsException.cs" />
-    <Compile Include="Frontend\CreateStudProfileV2.cs">
+    <Compile Include="Frontend\CreateStudProfile.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frontend\CreateStudProfileV2.Designer.cs">
-      <DependentUpon>CreateStudProfileV2.cs</DependentUpon>
+    <Compile Include="Frontend\CreateStudProfile.Designer.cs">
+      <DependentUpon>CreateStudProfile.cs</DependentUpon>
     </Compile>
     <Compile Include="Exceptions\InvalidEmailException.cs" />
     <Compile Include="Exceptions\InvalidNameException.cs" />
@@ -153,8 +153,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Frontend\CreateStudProfileV2.resx">
-      <DependentUpon>CreateStudProfileV2.cs</DependentUpon>
+    <EmbeddedResource Include="Frontend\CreateStudProfile.resx">
+      <DependentUpon>CreateStudProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\CreateTask.resx">
       <DependentUpon>CreateTask.cs</DependentUpon>

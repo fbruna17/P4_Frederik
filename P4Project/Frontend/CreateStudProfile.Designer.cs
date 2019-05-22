@@ -1,6 +1,6 @@
 ﻿namespace P4Project
 {
-    partial class CreateStudProfileV2
+    partial class CreateStudProfile
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateStudProfileV2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateStudProfile));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.StudCrTitle = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
