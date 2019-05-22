@@ -52,7 +52,6 @@ C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\MySql.Data.dll
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\Google.Protobuf.dll
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\MySql.Data.xml
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csprojAssemblyReference.cache
-C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.CreateStudProfileV2.resources
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.CreateTask.resources
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.RegisterSMEProfile.resources
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.SMELogInPage.resources
@@ -85,7 +84,6 @@ C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\Google.Protobuf.
 C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\MySql.Data.xml
 C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.TaskPreview.resources
 C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csproj.CopyComplete
-C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.TaskPreview.resources
 C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.LandingPage.resources
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.SMELandingPage.resources
 C:\Users\Bruno\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.CreateTask.resources
@@ -109,7 +107,6 @@ C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Fronte
 C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.StudentLogInPage.resources
 C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.StudentProfileView.resources
 C:\Users\Lasse\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.TaskView.resources
-C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.Header.resources
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.StudentLandingPage.resources
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.StudentLogInPage.resources
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.StudentProfileView.resources
@@ -121,3 +118,4 @@ C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Front
 C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.Search.resources
 C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Frontend.Search.resources
 C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.CreateStudProfile.resources
+C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.CreateStudProfile.resources

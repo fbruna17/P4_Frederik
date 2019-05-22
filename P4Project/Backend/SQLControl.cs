@@ -774,13 +774,13 @@ namespace P4Project
                     break;
                 // SMEName:
                 case 2:
-                    Command = "SELECT Task.TaskID,Task.SMEID,Task.Title,Task.Location,Task.Hours,Task.StartDate,Task.Application_Deadline,Task.Completion,SME.Name FROM Task,SME " +
+                    Command = "SELECT Task.TaskID,Task.SMEID,Task.Title,Task.Location,Task.Hours,Task.StartDate,Task.Application_Deadline,Task.Completion FROM Task,SME " +
                         "WHERE Task.StateID = @stateid AND Task.SMEID = SME.SMEID AND SME.Name LIKE @query";
                     break;
                 // Name of required skill:
                 case 3:
-                    Command = "SELECT Task.TaskID,Task.SMEID,Task.Title,Task.Location,Task.Hours,Task.StartDate,Task.Application_Deadline,Task.Completion,Skill.SkillName " +
-                        "FROM Task,Skill WHERE Task.StateID = @stateid AND Task.Required_Skill = Skill.SkillID AND Skill.SkillName LIKE @query";
+                    Command = "SELECT Task.TaskID,Task.SMEID,Task.Title,Task.Location,Task.Hours,Task.StartDate,Task.Application_Deadline,Task.Completion " +
+                        "FROM Task,Skill WHERE Task.StateID = @stateid AND find_in_set(Skill.SkillID, Task.Required_Skill)>0 AND Skill.SkillName LIKE @query";
                     break;
             }
             return Command;
