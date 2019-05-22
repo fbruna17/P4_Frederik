@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using P4Project.Backend.Recommendation;
-using MySql.Data.MySqlClient;
 
 namespace P4Project.Backend.Classes
 {
+    // This class is used to initiate a logged in student: 
+    // It is needed to display all student related forms to a user. So It is not possible to see any studentrelated forms, without an
+    // instanse of this class:
     public class StudentLoggedIn : StudentDetailed
     {
         private string Username { get; }
@@ -16,21 +14,7 @@ namespace P4Project.Backend.Classes
         public List<ApplicationDetailed> Applications { get; set; }
         private RecMaker Recommend;
 
-        public StudentLoggedIn(string firstName, string lastName, int id, string email, string education, List<SkillStudent> skills, 
-            string description, string profilePicture, string resume, string username, string password)
-            : base(firstName, lastName, id, email, education, skills, description, profilePicture, resume)
-        {
-            Username = username;
-            Password = password;
-            Applications = new List<ApplicationDetailed>();
-            GetApplications();
-            GetAssignedTasks();
-            UpdateSkillSet();
-            Recommend = new RecMaker(this);
-            // We are only looking for top 7 recommendations
-            RecTasks = Recommend.RecommendTasks(false);
-        }
-
+        // The Constructer is made so an instance of a detailed Student can be used in combination with UserName and Password to make an instance of this:
         public StudentLoggedIn(string username, string password, StudentDetailed thisStudent) 
             : base(thisStudent.FirstName, thisStudent.LastName, thisStudent.ID, thisStudent.Email, thisStudent.Education, thisStudent.Skills,
                   thisStudent.Description, thisStudent.ProfilePicture, thisStudent.Resume)
@@ -38,11 +22,14 @@ namespace P4Project.Backend.Classes
             Username = username;
             Password = password;
             Applications = new List<ApplicationDetailed>();
+            // All applications and all assigned tasks are fetched:
             GetApplications();
             GetAssignedTasks();
+            // The SkillSet is updated upen making a new instance:
             UpdateSkillSet();
+            // Recommendations are made upon login:
             Recommend = new RecMaker(this);
-            // We are only looking for top 7 recommendations
+            // The 7 best recommendations are stored in the list of recommended tasks:
             RecTasks = Recommend.RecommendTasks(false);
         }
 

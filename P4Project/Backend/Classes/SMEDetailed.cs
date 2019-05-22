@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace P4Project.Backend.Classes
 {
+    // The detailed version of an SME instance:
     public class SMEDetailed : SMEBase
     {
+        // This class stores the list of task owned by this SME:
         public List<TaskSearched> Tasks { get; }
         public string Logo { get; protected set; }
-        public string Description { get; protected set; }
 
-        public SMEDetailed(int id, string name, string email, List<TaskSearched> tasks, string logo, string description) : base(id, name, email)
+        // This class is used to display detailed information of an SME on runtime:
+        public SMEDetailed(int id, string name, string email, List<TaskSearched> tasks, string logo) : base(id, name, email)
         {
             Tasks = tasks;
             Logo = logo;
-            Description = description;
         }
     }
 }

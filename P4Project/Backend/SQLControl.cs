@@ -163,7 +163,7 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT Name,Email,Description,Image_Dir FROM SME WHERE SMEID = @SMEID"
+                    CommandText = "SELECT Name,Email,Image_Dir FROM SME WHERE SMEID = @SMEID"
                 };
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@SMEID", smeID);
@@ -172,13 +172,12 @@ namespace P4Project
                 reader.Read();
                 string name = GetSafeString(reader, 0);
                 string email = GetSafeString(reader, 1);
-                string description = GetSafeString(reader, 2);
-                string logo = GetSafeString(reader, 3);
+                string logo = GetSafeString(reader, 2);
                 // Readeren lukkes:
                 reader.Close();
                 var tempSME = new SMEBase(smeID, name, email);
                 List<TaskSearched> tasks = FetchAllTasksForSME(tempSME);
-                var SME = new SMEDetailed(smeID, name, email, tasks, logo, description);
+                var SME = new SMEDetailed(smeID, name, email, tasks, logo);
                 return SME;
             }
             finally

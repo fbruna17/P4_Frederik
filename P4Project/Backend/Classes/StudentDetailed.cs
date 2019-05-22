@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace P4Project.Backend.Classes
 {
+    // This class is used to initialize a detailed student, for displaying a Student Profile, or store data for a logged in student:
     public class StudentDetailed : StudentApplicant
     {
-       // public List<TaskBase> CompletedTasks { get; protected set; }
         public string Description { get; protected set; }
         public List<TaskAssigned> AssignedTasks { get; protected set; }
         public string Resume { get; protected set; }
@@ -21,7 +17,7 @@ namespace P4Project.Backend.Classes
             Resume = resume;
         }
 
-        // Function that gets all task assigned to this student:
+        // Method that gets all tasks assigned to this student:
         public void GetAssignedTasks()
         {
             SQLControl sql = new SQLControl();

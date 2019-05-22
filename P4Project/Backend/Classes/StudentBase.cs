@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace P4Project.Backend.Classes
+﻿namespace P4Project.Backend.Classes
 {
+    // This is a super class for all instances of students fetched/initiated on runtime:
+    // The class is abstract, as an instance from this class is never used:
     public abstract class StudentBase
     {
         public string FirstName { get; }
@@ -16,11 +12,6 @@ namespace P4Project.Backend.Classes
         {
             FirstName = firstName;
             LastName = lastName;
-            ID = id;
-        }
-
-        public StudentBase(int id)
-        {
             ID = id;
         }
     }
