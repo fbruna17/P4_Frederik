@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace P4Project.Backend.Classes
 {
-    // Denne klasse bruges til at opbevare data til en task der blot skal vise få informationer (for eksempel i "SearchViewed")
+    // This Class is used to store information on tasks that are searched, to give the short preview of them.
     public class TaskSearched : TaskBase
     {
         public string Location { get; }
@@ -17,7 +13,7 @@ namespace P4Project.Backend.Classes
         public int RecScore { get; set; }
         public int StateID { get; }
 
-        // Den constructer der normalt vil bruges til denne klasse:
+        // A constructer for when the State is irrelevant:
         public TaskSearched(int id, int smeid, string title, string location, int hours, DateTime startdate, 
             DateTime applicationDeadline, DateTime estCompletionDate) 
             : base(id, smeid, title)
@@ -28,7 +24,8 @@ namespace P4Project.Backend.Classes
             ApplicationDeadline = applicationDeadline;
             EstCompletionDate = estCompletionDate;
         }
-        // Constructer der bruges når f.eks. SMEs skal have hentet alle deres tasks, eller når man søger en DetailedTask (StateID tilføjes):
+
+        // For when stateID is used. Ex. When making a detailed task:
         public TaskSearched(int id, int smeid, string title, string location, int hours, DateTime startdate,
             DateTime applicationDeadline, DateTime estCompletionDate, int stateID)
             : base(id, smeid, title)

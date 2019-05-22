@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace P4Project.Backend.Classes
+﻿namespace P4Project.Backend.Classes
 {
-    // Dette er superklassen for Tasks:
+    // This is the superclass for all tasks, and is used as a struct for base information regarding a task:
     public class TaskBase
     {
         public int ID { get; }
@@ -14,24 +8,14 @@ namespace P4Project.Backend.Classes
         public int SMEID { get; }
         public string SMEName { get; protected set; }
 
-        public TaskBase(int id)
-        {
-            ID = id;
-        }
-        // Base klassen kan også håndterer hvis der kommer et SMEID med:
-        public TaskBase(int id, int smeID)
-        {
-            ID = id;
-            SMEID = smeID;
-        }
-        // Og hvis der kommer title med:
+        // Base Constructer:
         public TaskBase(int id, int smeID, string title)
         {
             ID = id;
             SMEID = smeID;
             Title = title;
         }
-        // Og hvis der kommer SMEName med:
+        // Constructer if the SMEName is already known::
         public TaskBase(int id, int smeID, string title, string smeName)
         {
             ID = id;
@@ -40,6 +24,7 @@ namespace P4Project.Backend.Classes
             SMEName = smeName;
         }
 
+        // Method that sets, and return the Name of the SMEOwner:
         public string GetSMEName()
         {
             SQLControl sql = new SQLControl();

@@ -1003,7 +1003,6 @@ namespace P4Project
                 {
                     int id = GetSafeIntMustNotBeNull(reader, 0);
                     string name = GetSafeString(reader, 1);
-                    string catagory = GetSafeString(reader, 2);
                     result = new Skill(id, name);
                 }
                 reader.Close();

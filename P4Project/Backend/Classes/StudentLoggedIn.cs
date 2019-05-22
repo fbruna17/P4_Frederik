@@ -11,7 +11,7 @@ namespace P4Project.Backend.Classes
         private string Username { get; }
         private string Password { get; }
         public List<TaskRecommend> RecTasks { get; set; }
-        public List<ApplicationDetailed> Applications { get; set; }
+        public List<ApplicationDetailed> Applications { get; private set; }
         private RecMaker Recommend;
 
         // The Constructer is made so an instance of a detailed Student can be used in combination with UserName and Password to make an instance of this:
@@ -34,7 +34,7 @@ namespace P4Project.Backend.Classes
         }
 
         // Gets all applications made by this student:
-        public List<ApplicationDetailed> GetApplications()
+        private List<ApplicationDetailed> GetApplications()
         {
             SQLControl sql = new SQLControl();
             List<ApplicationBase> tempApp = sql.FetchStudentAppliedBaseInfo(ID);
@@ -55,22 +55,22 @@ namespace P4Project.Backend.Classes
             return new StudentLoggedIn(Username, Password, sql.FetchStudentDetailed(ID));
         }
 
-        // Function that removes an item from the skill list:
+        // Method that removes an item from the skill list:
         public void RemoveFromSkillSet(string skillName)
         {
             Skills.RemoveAll(a => a.Name == skillName);
         }
 
-        // Function that adds a skill to the skilllist:
+        // Method that adds a skill to the skill list:
         public void AddTooSkillSet(SkillStudent skill)
         {
             Skills.Add(skill);
         }
 
-        // A function that updates the students Skillset with what is verified and what is not, is called upon LogIn:
-        public void UpdateSkillSet()
+        // A Method that updates the students Skillset with what is verified and what is not, is called upon LogIn:
+        private void UpdateSkillSet()
         {
-            // Alle de skill der er verified hentes ned som IDs:
+            // All skills is fethced from the database as IDs:
             SQLControl sql = new SQLControl();
             List<int> eduVerified = sql.FetchEducationSkills(Education);
             List<int> taskVerified = sql.FetchAllCompletedTaskSkills(ID);

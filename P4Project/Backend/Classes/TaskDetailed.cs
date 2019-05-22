@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace P4Project.Backend.Classes
 {
-    // Denne klasse bruges til at håndterer alle detaljerne der er om en task:
+    // This class is used to store all information on a task for displaing in TaskView:
     public class TaskDetailed : TaskSearched
     {
         public List<Skill> RequiredSkills { get; }
@@ -14,22 +12,21 @@ namespace P4Project.Backend.Classes
         public int AssignedStudentID { get; }
         public List<StudentApplicant> Applicants { get; private set; }
         public List<ApplicationBase> Applications { get; private set; }
-        public int RecScore { get; set; }
 
-        // Denne constructer tager alle de nødvendige informationer for at kunne displaye en Task for en bruger:
+        // All neccesarry information is required to make an instance of this class:
         public TaskDetailed(int id, int smeid, string title, string location, int hours, string description, 
                                DateTime startdate, DateTime applicationDeadline, DateTime estCompletionDate, int stateID, 
                                List<Skill> requiredSkills, int assignedStudentID) 
                                : base(id, smeid, title, location, hours, startdate, applicationDeadline, estCompletionDate, stateID)
         {
-            // Dataene ligges i de korrekte properties:
             RequiredSkills = requiredSkills;
             Description = description;
             AssignedStudentID = assignedStudentID;
-            // En funktion fra TaskBase der sætter SMENamet:
+            // A Method from the superclass to fetch the SME owner Name:
             GetSMEName();
         }
-        // Funktion der henter Applicants for den givne task:
+
+        // A method to get all students who has applied for this task:
         public List<StudentApplicant> GetApplicants()
         {
             SQLControl sql = new SQLControl();
@@ -37,7 +34,7 @@ namespace P4Project.Backend.Classes
             return Applicants;
         }
 
-        // Gets all applications on a task:
+        // Gets all applications related to this task:
         public void GetApplications()
         {
             SQLControl sql = new SQLControl();

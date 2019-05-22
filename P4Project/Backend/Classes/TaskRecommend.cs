@@ -1,31 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace P4Project.Backend.Classes
 {
-    // Denne klasse bruges til recommendation algoritmen, og indeholder blot en liste af SkillIDs:
+    // This class is used in the Recommendation algorithm to return all recommended tasks:
     public class TaskRecommend : TaskBase
     {
-        // Listen over required skills der hentes fra databasen:
         public List<Skill> RequiredSkills { get; }
-
-        // En double til at opbevare scoren fra recommendationen:
         public int RecommendScore { get; set; }
-
         public DateTime ApplicationDeadline { get; }
 
-        // Hvis RequiredSkills allerede kendes kan man slippe for databasekaldet: Smartere når der skal ittereses gennem- / Laves mange instanser
-        public TaskRecommend(int id, List<Skill> requiredSkills, string title, int smeID, string smeName, DateTime applicationDeadline) : base(id, smeID, title, smeName)
-        {
-            RequiredSkills = requiredSkills;
-            RecommendScore = 0;
-            ApplicationDeadline = applicationDeadline;
-        }
-
-        // Hvis RequiredSkills allerede kendes kan man slippe for databasekaldet: Smartere når der skal ittereses gennem- / Laves mange instanser
         public TaskRecommend(TaskBase taskBase, List<Skill> requiredSkills, DateTime applicationDeadline) : base(taskBase.ID, taskBase.SMEID, taskBase.Title, taskBase.SMEName)
         {
             RequiredSkills = requiredSkills;
@@ -33,6 +17,8 @@ namespace P4Project.Backend.Classes
             ApplicationDeadline = applicationDeadline;
         }
 
+        // Method that returns the DataGridView to display information regarding the recommended task:
+        // (Used in student Landing Page)
         public string[] MakeDataViewGrid()
         {
             string[] output = { Title, RecommendScore.ToString(), SMEName };
