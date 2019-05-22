@@ -289,7 +289,7 @@ namespace P4Project.Frontend
             {
                 string skillName = SkillDropDown.SelectedItem.ToString();
                 Skill skill = sql.FetchSkillInfoBasedOnName(skillName);
-                SkillStudent rSkill = new SkillStudent(skill.ID, skill.Name, skill.Category, false);
+                SkillStudent rSkill = new SkillStudent(skill.ID, skill.Name, false);
                 ThisStudent.AddTooSkillSet(rSkill);
                 InitializeSkillList(ThisStudent);
                 InitializeSkillEditing();

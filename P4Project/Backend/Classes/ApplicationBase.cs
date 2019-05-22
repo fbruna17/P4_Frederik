@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace P4Project.Backend.Classes
+﻿namespace P4Project.Backend.Classes
 {
-    // Denne klasse bruges som super klasse til Applications. Den indeholder de informationer i de typer der er i databasen:
+    // This class resembles a Struct containing base information of an application:
     public class ApplicationBase
     {
         public int ApplicationID { get; }

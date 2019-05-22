@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace P4Project.Backend.Classes
+﻿namespace P4Project.Backend.Classes
 {
+    // This class is an expanded version of the base class. It enables detailed information of an application:
     public class ApplicationDetailed : ApplicationBase
     {
         public string TaskTitle { get; private set; }
@@ -13,7 +8,7 @@ namespace P4Project.Backend.Classes
         public string StudentName { get; private set; }
         public string State { get; private set; }
 
-        // Denne klasse bruges til at opbevare detaljerede info om en application:
+        // This class simply stores the expanded information when called with this constructor:
         public ApplicationDetailed(ApplicationBase thisApp, string taskName, string smeName, string studentName, string state)
             : base(thisApp.ApplicationID, thisApp.StudentID, thisApp.TaskID, thisApp.RecScore, thisApp.StateID)
         {
@@ -22,25 +17,26 @@ namespace P4Project.Backend.Classes
             StudentName = studentName;
             State = state;
         }
-        // En Constructer der bruges til at objektet selv finder de resterende oplysninger ud fra AppBase:
+
+        // An instance can be initiated with an instanse of ApplicationBase:
         public ApplicationDetailed(ApplicationBase thisApp)
              : base(thisApp.ApplicationID, thisApp.StudentID, thisApp.TaskID, thisApp.RecScore, thisApp.StateID)
         {
+            // The detailed informations are by the object itself:
             GetDetailedInformation();
         }
 
-        // Funktion der henter detailed information:
+        // The method that call for the detailed information
         private void GetDetailedInformation()
         {
             SQLControl sql = new SQLControl();
-
             TaskTitle = sql.FetchApplicationTaskTitle(TaskID);
             SMEName = sql.FetchApplicationSMEName(TaskID);
             StudentName = sql.FetchApplicationStudentName(StudentID);
             State = sql.FetchApplicationStateName(StateID);            
         }
 
-        // Funktion der returnerer en string der kan bruges i DataViewGrid:
+        // Method that makes the string of arrays for when a detailed application is shown in DataViewGrid:
         public string[] MakeDataViewGridStudent()
         {
             string[] output = { TaskTitle, State, SMEName };

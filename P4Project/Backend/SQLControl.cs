@@ -85,7 +85,7 @@ namespace P4Project
             List<SkillStudent> res = new List<SkillStudent>();
             foreach (Skill skill in skills)
             {
-                res.Add(new SkillStudent(skill.ID, skill.Name, skill.Category, verified));
+                res.Add(new SkillStudent(skill.ID, skill.Name, verified));
             }
             return res;
         }
@@ -966,7 +966,7 @@ namespace P4Project
                     MySqlCommand cmd = new MySqlCommand
                     {
                         Connection = Connection,
-                        CommandText = "SELECT SkillName,Category FROM Skill WHERE SkillID = @SkillID LIMIT 1"
+                        CommandText = "SELECT SkillName FROM Skill WHERE SkillID = @SkillID LIMIT 1"
                     };
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@SkillID", skillID);
@@ -974,7 +974,7 @@ namespace P4Project
                     reader.Read();
                     string skillName = GetSafeString(reader, 0);
                     string category = GetSafeString(reader, 1);
-                    resList.Add(new Skill(skillID, skillName, category));
+                    resList.Add(new Skill(skillID, skillName));
                     reader.Close();
                 }
                 return resList;
@@ -1005,7 +1005,7 @@ namespace P4Project
                     int id = GetSafeIntMustNotBeNull(reader, 0);
                     string name = GetSafeString(reader, 1);
                     string catagory = GetSafeString(reader, 2);
-                    result = new Skill(id, name, catagory);
+                    result = new Skill(id, name);
                 }
                 reader.Close();
 
