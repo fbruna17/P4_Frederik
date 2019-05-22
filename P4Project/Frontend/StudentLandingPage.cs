@@ -125,17 +125,27 @@ namespace P4Project.Frontend
 
         private void SeeApplication_Click(object sender, EventArgs e)
         {
-            // Der skal foretages SQL kald:     !!! Burde måske gøres til Funktion i SQL Control!:
             SQLControl sql = new SQLControl();
             string taskTitle = ApplicationViewGrid.SelectedCells[0].Value.ToString();
             ApplicationDetailed app = ThisStudent.Applications.Single(t => t.TaskTitle == taskTitle);
-            TaskDetailed thisTask = sql.FetchTaskDetailed(app.TaskID);
 
-            Hide();
-            var tView = new TaskView(thisTask, ThisStudent);
-            tView.ShowDialog();
-            Show();
-            UpdateStudent();
+            // If the application has been rejected, the user is informed and the application is deleted:
+            if(app.StateID == 2)
+            {
+                MessageBox.Show("You have not been selected for this task. The application will be deleted.");
+                sql.RemoveApplication(app.ApplicationID);
+
+            }
+            else
+            {
+                TaskDetailed thisTask = sql.FetchTaskDetailed(app.TaskID);
+                Hide();
+                var tView = new TaskView(thisTask, ThisStudent);
+                tView.ShowDialog();
+                Show();
+                UpdateStudent();
+            }
+
         }
 
         private void ViewAssignedTask_Click(object sender, EventArgs e)

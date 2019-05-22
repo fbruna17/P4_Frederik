@@ -21,7 +21,7 @@ namespace P4Project
             Connection = new MySqlConnection(MyConnectionString);
         }
 
-        // .............................................. UNIVERSAL FUNCTIONS .............................................
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! UNIVERSAL FUNCTIONS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // Functions that are used in must database calls:
 
         #region Universal SQL
@@ -1425,8 +1425,8 @@ namespace P4Project
                 cmd.ExecuteNonQuery();
                 // The application is updated:
                 ConfirmApplication(studentID, taskID);
-                // All other students applications are deleted (A better way for this would be to simply reject, however that is for futoure work):
-                RemoveALLApplicationsExceptAssigned(taskID, studentID);
+                // All other students applications are rejected:
+                RejectALLApplicationsExceptAssigned(taskID, studentID);
             }
             finally
             {
@@ -1573,21 +1573,22 @@ namespace P4Project
             }
         }
 
-        // When a student is assigned to a task, all other applicants gets their application deleted:
-        // Futoure work should include only rejecting those applicant, and keeping the application in rejected, untill the student that
-        // has been rejected deleted the application.
-        public void RemoveALLApplicationsExceptAssigned(int taskID, int studID)
+        // When a student is assigned to a task, all other applicants gets their application rejected:
+        public void RejectALLApplicationsExceptAssigned(int taskID, int studID)
         {
             try
             {
                 Open();
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = Connection;
-                cmd.CommandText = "DELETE FROM Application WHERE TaskID = @TaskID AND @StudentID <> @StudentID";
+                MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = Connection,
+                    CommandText = "UPDATE Application SET AppState = @AppState WHERE StudentID <> @StudentID AND TaskID = @TaskID"
+                };
                 cmd.Prepare();
 
-                cmd.Parameters.AddWithValue("@TaskID", taskID);
                 cmd.Parameters.AddWithValue("@StudentID", studID);
+                cmd.Parameters.AddWithValue("@AppState", 2);
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
                 cmd.ExecuteNonQuery();
             }
             finally

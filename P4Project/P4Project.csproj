@@ -96,12 +96,6 @@
     <Compile Include="Frontend\CreateTask.Designer.cs">
       <DependentUpon>CreateTask.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frontend\Header.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frontend\Header.Designer.cs">
-      <DependentUpon>Header.cs</DependentUpon>
-    </Compile>
     <Compile Include="Frontend\LandingPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,23 +145,11 @@
     <Compile Include="Frontend\StudentProfileView.Designer.cs">
       <DependentUpon>StudentProfileView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frontend\StudentTaskView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frontend\StudentTaskView.Designer.cs">
-      <DependentUpon>StudentTaskView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Frontend\TaskView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Frontend\TaskView.Designer.cs">
       <DependentUpon>TaskView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Frontend\TaskPreview.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frontend\TaskPreview.Designer.cs">
-      <DependentUpon>TaskPreview.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -176,9 +158,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\CreateTask.resx">
       <DependentUpon>CreateTask.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Frontend\Header.resx">
-      <DependentUpon>Header.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\LandingPage.resx">
       <DependentUpon>LandingPage.cs</DependentUpon>
@@ -206,9 +185,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frontend\TaskView.resx">
       <DependentUpon>TaskView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Frontend\TaskPreview.resx">
-      <DependentUpon>TaskPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
