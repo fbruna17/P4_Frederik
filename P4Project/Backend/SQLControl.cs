@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using P4Project.Exceptions;
 using P4Project.Backend.Classes;
@@ -10,6 +8,7 @@ using System.Data;
 
 namespace P4Project
 {
+    // This Class handles ALL call to the database:
     class SQLControl
     {
         // The Connection, and the connection string is defined in this class, as this class is the only class that makes calls to the Database:
@@ -114,7 +113,7 @@ namespace P4Project
 
         #region Generel Fetch:
 
-        // A function that retrieves Information based on Username and password.
+        // A function that retrieves Information based on Username and password (Handles login requests):
         // Works for both SMEs and Student, as the table name is a parameter:
         public string LogInRequest(string username, string password, string table)
         {
@@ -168,14 +167,23 @@ namespace P4Project
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@SMEID", smeID);
 
+                string name = string.Empty;
+                string email = string.Empty;
+                string logo = string.Empty;
+
                 var reader = cmd.ExecuteReader();
-                reader.Read();
-                string name = GetSafeString(reader, 0);
-                string email = GetSafeString(reader, 1);
-                string logo = GetSafeString(reader, 2);
-                // Readeren lukkes:
+                while(reader.Read())
+                {
+                    name = GetSafeString(reader, 0);
+                    email = GetSafeString(reader, 1);
+                    logo = GetSafeString(reader, 2);
+                }
+                // Reader is closed:
                 reader.Close();
+                // A temporary storing of the data fetched:
                 var tempSME = new SMEBase(smeID, name, email);
+
+                // All tasks related to the SME is fetched:
                 List<TaskSearched> tasks = FetchAllTasksForSME(tempSME);
                 var SME = new SMEDetailed(smeID, name, email, tasks, logo);
                 return SME;
@@ -208,39 +216,6 @@ namespace P4Project
                 }
                 reader.Close();
                 return name;
-            }
-            finally
-            {
-                if (Connection != null) Close();
-            }
-        }
-
-        // Function that retrieves the Base information of an SME to make an instance of the SMEBase class:
-        // This Class is used in many constructers for the inheritating subclasses, and makes other database calls less complex:
-        public SMEBase FetchSMEBaseInformation(int ID)
-        {
-            try
-            {
-                string name = "";
-                string email = "";
-                Open();
-                MySqlCommand cmd = new MySqlCommand
-                {
-                    Connection = Connection,
-                    CommandText = "SELECT Name,Email FROM SME WHERE SMEID = @SMEID"
-                };
-                cmd.Prepare();
-                cmd.Parameters.AddWithValue("@SMEID", ID);
-
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    name = reader.GetString(0);
-                    email = reader.GetString(1);
-                }
-                reader.Close();
-                var SME = new SMEBase(ID, name, email);
-                return SME;
             }
             finally
             {
@@ -285,7 +260,6 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
-
         #endregion
 
         // .............................................. STUDENT SPECIFIC FETCH FUNCTIONS .............................................
@@ -440,6 +414,7 @@ namespace P4Project
         }
 
         // Function that fetches all educations from the database (WithoutSkillSet):
+        // Used when a student wants to edit their education:
         public List<EducationBase> FetchALLEducations()
         {
             try
@@ -519,7 +494,7 @@ namespace P4Project
                     temp.Add(GetSafeString(reader, 0));
                 }
                 reader.Close();
-                // The int list i made:
+                // The int list is made:
                 foreach(string skillstring in temp)
                 {
                     List<int> skillint = StringListToIntList(skillstring.Split(',').ToList());
@@ -539,6 +514,8 @@ namespace P4Project
             }
         }
 
+        // Function that returns the name of a student assigned to a given task:
+        // Should only be called on a task that is In Progress or Completed state, so we know we dont get a Null Reference exception:
         public string FetchAssignedStudentName(int taskID)
         {
             try
@@ -558,6 +535,7 @@ namespace P4Project
                     studID = GetSafeIntMustNotBeNull(reader, 0);
                 }
                 reader.Close();
+                // The Name of the Student is fetched:
                 string name = string.Empty;
 
                 cmd.CommandText = "SELECT FirstName FROM Student WHERE StudentID = @StudentID";
@@ -577,7 +555,6 @@ namespace P4Project
             }
         }
         #endregion
-
 
         // .............................................. TASK SPECIFIC FETCH FUNCTIONS .............................................
         // Functions that are used to fetch Task information:
@@ -744,7 +721,7 @@ namespace P4Project
             }
         }
 
-        // Function used to search for public tasks:
+        // Function used to search for public tasks (Used when a student uses the Search function to find tasks):
         public List<TaskSearched> SearchTasks(string Query, int i)
         {
             try
@@ -753,9 +730,8 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
+                    // The search type is found, based on which radiobutton is marked when searching:
                     CommandText = SearchType(i)
-                    //Ret til commandtext = query, baseret på radio buttons.
-                    //Task Recommend
                 };
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@stateid", 2);
@@ -786,6 +762,7 @@ namespace P4Project
             }
         }
 
+        // A function that returns the SQL command for the function above:
         private string SearchType(int i)
         {
             string Command = "";
@@ -833,6 +810,8 @@ namespace P4Project
                     recScore.Add(GetSafeIntMustNotBeNull(reader, 1));
                 }
                 reader.Close();
+
+                // Now that all IDs and RecScores have been found, the Student IDs is used to find more detailed information on all the students:
                 int count = 0;
                 foreach (int i in studentIDs)
                 {
@@ -851,6 +830,7 @@ namespace P4Project
                     }
                     readerV2.Close();
                 }
+                // The list of StudentApplicants is returned:
                 return result;
             }
             finally
@@ -859,6 +839,7 @@ namespace P4Project
             }
         }
 
+        // A function that returns all the applications (In pending state) to a given task (Used on TaskDetailed): 
         public List<ApplicationBase> FetchAllApplications(int taskID)
         {
             try
@@ -889,7 +870,8 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
-        // Counts the amount of applications for a given task:
+
+        // Counts the amount of applications for a given task (Used on SME landing to display if there are pending applications on the SMEs Task):
         public int FetchAmountOfApplications(int taskID)
         {
             try
@@ -907,7 +889,7 @@ namespace P4Project
 
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
-                {
+                {  // every line that is read simply increments the result:
                     i++;
                 }
                 return i;
@@ -953,7 +935,7 @@ namespace P4Project
             }
         }
 
-        // Function that retrieves skill info based on a list of SkillIDs.
+        // Function that retrieves skillnames based on a list of SkillIDs.
         public List<Skill> FetchSkillInfo(List<int> skillIDs)
         {
             var resList = new List<Skill>();
@@ -970,10 +952,11 @@ namespace P4Project
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@SkillID", skillID);
                     var reader = cmd.ExecuteReader();
-                    reader.Read();
-                    string skillName = GetSafeString(reader, 0);
-                    string category = GetSafeString(reader, 1);
-                    resList.Add(new Skill(skillID, skillName));
+                    while(reader.Read())
+                    {
+                        string skillName = GetSafeString(reader, 0);
+                        resList.Add(new Skill(skillID, skillName));
+                    }
                     reader.Close();
                 }
                 return resList;
@@ -1002,8 +985,7 @@ namespace P4Project
                 while (reader.Read())
                 {
                     int id = GetSafeIntMustNotBeNull(reader, 0);
-                    string name = GetSafeString(reader, 1);
-                    result = new Skill(id, name);
+                    result = new Skill(id, skillName);
                 }
                 reader.Close();
 
@@ -1021,7 +1003,10 @@ namespace P4Project
         // Functions that are used to fetch Application information:
 
         #region Application-specific Fetch:
-
+        // Fetched the Name of the state a for an application, based on the StateID:
+        // This could simply be done in a switch to spare the Databasecall. However, is made to show that the databasetables
+        //  - can be used as such, in situation where an application might have 20+ different states. 
+        // This however does not seem to be something that would be relevant for a system like this.
         public string FetchApplicationStateName(int stateID)
         {
             try
@@ -1042,7 +1027,7 @@ namespace P4Project
                 {
                     res = GetSafeString(reader, 0);
                 }
-                if (res == string.Empty) throw new DataErrorInDataBaseException("STATE");
+                if (res == string.Empty) throw new DataErrorInDataBaseException("state retrieving.");
                 else return res;
             }
             finally
@@ -1051,6 +1036,7 @@ namespace P4Project
             }
         }
 
+        // Fethces the Title of the relevant task of an pplication:
         public string FetchApplicationTaskTitle(int taskID)
         {
             try
@@ -1071,7 +1057,7 @@ namespace P4Project
                 {
                     res = GetSafeString(reader, 0);
                 }
-                if (res == string.Empty) throw new DataErrorInDataBaseException("TASKTITLE");
+                if (res == string.Empty) throw new DataErrorInDataBaseException("Fetch TaskTitle for Application");
                 else return res;
             }
             finally
@@ -1080,6 +1066,7 @@ namespace P4Project
             }
         }
 
+        // Fetches the name of the SME owner of a task that has been applied for:
         public string FetchApplicationSMEName(int taskID)
         {
             try
@@ -1119,7 +1106,7 @@ namespace P4Project
                 {
                     res = GetSafeString(readerV2, 0);
                 }
-                if (res == string.Empty) throw new DataErrorInDataBaseException("SMENAME");
+                if (res == string.Empty) throw new DataErrorInDataBaseException("Fetching SMEOwner for Application");
                 else return res;
             }
             finally
@@ -1128,6 +1115,7 @@ namespace P4Project
             }
         }
 
+        // Fetches the Name of the student who has applied:
         public string FetchApplicationStudentName(int studentID)
         {
             try
@@ -1148,7 +1136,7 @@ namespace P4Project
                 {
                     res = GetSafeString(reader, 0) + " " + GetSafeString(reader, 1);
                 }
-                if (res == " ") throw new DataErrorInDataBaseException("STUDENTNAME");
+                if (res == " ") throw new DataErrorInDataBaseException("Fetching studentname for Application");
                 else return res;
             }
             finally
@@ -1157,6 +1145,8 @@ namespace P4Project
             }
         }
 
+        // Function that returns the ID list of all tasks a student has applied for:
+        // Usedn when making recommendations to remove all tasks a student has already applied for from the recommendation result:
         public List<int> FetchAllAppliedForTaskIDs(int studentID)
         {
             try
@@ -1223,9 +1213,6 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
-
-        // WE NEED AN EDIT PROFILE FUNCTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
         #endregion
 
         // .............................................. STUDENT SPECIFIC POST FUNCTIONS .............................................
@@ -1294,12 +1281,11 @@ namespace P4Project
                 cmd.Parameters.AddWithValue("@Unverified_SkillSet", unverifiedSkills);
                 cmd.Parameters.AddWithValue("@Image_Dir", thisStudent.ProfilePicture);
                 cmd.Parameters.AddWithValue("@Pdf_Dir", thisStudent.Resume);
-                // The call are executed:
+                // The call is executed:
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                // Forbindelsen lukkes:
                 if (Connection != null) Close();
             }
         }
@@ -1307,7 +1293,6 @@ namespace P4Project
         // This Function updates a students skill set:
         public void UpdateStudentSkillSet(List<SkillStudent> skills, int studentID)
         {
-
             try
             {
                 // The list is splitted in verified and unverified:
@@ -1333,12 +1318,11 @@ namespace P4Project
                 cmd.Parameters.AddWithValue("@StudentID", studentID);
                 cmd.Parameters.AddWithValue("@Verified_SkillSet", verifiedSkills);
                 cmd.Parameters.AddWithValue("@Unverified_SkillSet", unverifiedSkills);
-                // The call are executed:
+                // The call is executed:
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                // Forbindelsen lukkes:
                 if (Connection != null) Close();
             }
         }
@@ -1376,12 +1360,11 @@ namespace P4Project
                 cmd.Parameters.AddWithValue("@hours", thisTask.Hours);
                 cmd.Parameters.AddWithValue("@stateID", thisTask.StateID);
                 cmd.Parameters.AddWithValue("@Required_Skill", reqSkills);
-                // The call are executed:
+                // The call is executed:
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                // Forbindelsen lukkes:
                 if (Connection != null) Close();
             }
         }
@@ -1415,12 +1398,11 @@ namespace P4Project
                 cmd.Parameters.AddWithValue("@hours", thisTask.Hours);
                 cmd.Parameters.AddWithValue("@stateID", thisTask.StateID);
                 cmd.Parameters.AddWithValue("@Required_Skill", reqSkills);
-                // The call are executed:
+                // The call is executed:
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                // Forbindelsen lukkes:
                 if (Connection != null) Close();
             }
         }
@@ -1443,6 +1425,8 @@ namespace P4Project
                 cmd.ExecuteNonQuery();
                 // The application is updated:
                 ConfirmApplication(studentID, taskID);
+                // All other students applications are deleted (A better way for this would be to simply reject, however that is for futoure work):
+                RemoveALLApplicationsExceptAssigned(taskID, studentID);
             }
             finally
             {
@@ -1510,7 +1494,7 @@ namespace P4Project
                 cmd.Parameters.AddWithValue("@TaskID", taskID);
                 cmd.ExecuteNonQuery();
 
-             //   RemoveALLApplications(taskID);
+                RemoveALLApplications(taskID);
             }
             finally
             {
@@ -1524,7 +1508,7 @@ namespace P4Project
         // Functions that POSTS/UPDATES or DELETES on the Application table:
         #region Application-specific Post/Update/Delete
 
-        // Function that makes a new entry in the application table
+        // Function that makes a new entry in the application table:
         public void PostApplication(int studentID, int taskID, int recScore)
         {
             try
@@ -1589,6 +1573,29 @@ namespace P4Project
             }
         }
 
+        // When a student is assigned to a task, all other applicants gets their application deleted:
+        // Futoure work should include only rejecting those applicant, and keeping the application in rejected, untill the student that
+        // has been rejected deleted the application.
+        public void RemoveALLApplicationsExceptAssigned(int taskID, int studID)
+        {
+            try
+            {
+                Open();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = Connection;
+                cmd.CommandText = "DELETE FROM Application WHERE TaskID = @TaskID AND @StudentID <> @StudentID";
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@TaskID", taskID);
+                cmd.Parameters.AddWithValue("@StudentID", studID);
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (Connection != null) Close();
+            }
+        }
+
         // A function that changes the state of an application to rejected:
         public void RejectApplication(int studentID, int taskID)
         {
@@ -1636,9 +1643,6 @@ namespace P4Project
                 if (Connection != null) Close();
             }
         }
-
-        // WE NEED AN UPDATE STATE FUNCTION FOR WHEN SMES CHANGES STATE TO ACCEPTED/REJECTED!!!!!!!!!!!!!!!!!!!!!!!!
-
         #endregion
 
         // End of Post Functions:

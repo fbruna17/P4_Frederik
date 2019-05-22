@@ -15,7 +15,7 @@ namespace P4Project.Frontend
 {
     public partial class Search : Form
     {
-        private List<TaskSearched> TaskResults { get; set; }
+        private List<TaskSearched> taskResults { get; set; }
         private StudentLoggedIn ThisStudent { get; }
 
         private string Query;
@@ -31,18 +31,21 @@ namespace P4Project.Frontend
             Query = SearchBox.Text;
             SearchResultGrid.Rows.Clear();
 
-            TaskResults = SQL.SearchTasks(Query, CheckSearchType());
+            // The results of all tasks are found:
+            taskResults = SQL.SearchTasks(Query, CheckSearchType());
+            // The commendation is initialized with the results and the Student:
+            RecMaker recommender = new RecMaker(ThisStudent, taskResults);
+            List<TaskRecommend> recTasks = recommender.RecommendTasks(true);
 
-            foreach (TaskSearched task in TaskResults)
+            foreach (TaskSearched task in taskResults)
             {
-                List<TaskRecommend> list = ThisStudent.RecTasks.Where(t => t.ID == task.ID).ToList();
-                if (list.Count > 0)
+                List<TaskRecommend> tasks = recTasks.Where(t => t.ID == task.ID).ToList();
+                if (tasks.Count > 0)
                 {
-                    TaskRecommend tTask = list[0];
+                    TaskRecommend tTask = tasks[0];
                     task.GetSMEName();
                     SearchResultGrid.Rows.Add(task.Title, tTask.RecommendScore.ToString(), task.SMEName, task.ApplicationDeadline.ToShortDateString(), task.Startdate.ToShortDateString(), task.EstCompletionDate.ToShortDateString());
                 }
-
             }
             SearchResultGrid.Visible = true;
         }
@@ -95,7 +98,7 @@ namespace P4Project.Frontend
         {
             SQLControl sql = new SQLControl();
             string taskname = SearchResultGrid.SelectedCells[0].Value.ToString();
-            TaskSearched tTask = TaskResults.Single(t => t.Title == taskname);
+            TaskSearched tTask = taskResults.Single(t => t.Title == taskname);
             TaskDetailed thisTask = sql.FetchTaskDetailed(tTask.ID);
             if (int.TryParse(SearchResultGrid.SelectedCells[1].Value.ToString(), out int i))
             {

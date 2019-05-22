@@ -1,18 +1,10 @@
-﻿ using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Net;
-using System.IO;
-using MySql.Data.MySqlClient;
-using P4Project.Exceptions;
-using P4Project.Backend.Classes;
-using System.Windows.Forms;
 
 namespace P4Project
 {
+    // This Class is used for uploading and fetching Pictures and PDF uploads:
     class FTPControl
     {
         #region Instances and properties

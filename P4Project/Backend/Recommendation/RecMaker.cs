@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using P4Project.Backend.Classes;
 
 namespace P4Project.Backend.Recommendation
 {
+    // This Class is used as the class that calculates the recommendation of tasks to a student:
+    // (The Score calculated is also shown to the SME when a student applied, so the SME can use the -
+    // Reccommendation score to decide who to assign for a given task):
     public class RecMaker
     {
-        // SQL instans:
         private SQLControl SQL;
-        // Liste over alle tasks der kan recommendes:
         private List<TaskRecommend> AllTasks;
-        // Denne studerende:
         private StudentLoggedIn ThisStudent;
 
+        // The constructor for when a student logs in and its recommendations are made:
         public RecMaker(StudentLoggedIn thisStudent)
         {
             SQL = new SQLControl();
@@ -23,12 +21,15 @@ namespace P4Project.Backend.Recommendation
             ThisStudent = thisStudent;
         }
 
+        // The constructor for when recommendations are being made on search results:
         public RecMaker(StudentLoggedIn thisStudent, List<TaskSearched> tasks)
         {
             SQL = new SQLControl();
             List<TaskRecommend> tempTasks = SQL.FetchAllTasksForRecommendation();
             AllTasks = new List<TaskRecommend>();
 
+            // All public tasks are itterated through, and added too the list of tasks to recommend
+            // if the tasks are in the search result:
             foreach (TaskRecommend task in tempTasks)
             {
                 foreach(TaskSearched t in tasks)
@@ -36,10 +37,11 @@ namespace P4Project.Backend.Recommendation
                     if(t.ID == task.ID) AllTasks.Add(task);
                 }
             }
-
             ThisStudent = thisStudent;
         }
 
+        // The Method that returns all the tasks with a recommendation score:
+        // The boolean "getAll" is used to declare if all tasks should be returned, or only tasks with atlease some match up to 7:
         public List<TaskRecommend> RecommendTasks(bool getAll)
         {
             List<TaskRecommend> resultList = new List<TaskRecommend>();
@@ -74,6 +76,7 @@ namespace P4Project.Backend.Recommendation
 
                     }
                 }
+                // If the student has already been assigned to some tasks:
                 if (checkAssignedTasks)
                 {
                     // After we check if the student has completed a task or has one ongoing for the SME owner before:
@@ -97,6 +100,8 @@ namespace P4Project.Backend.Recommendation
 
             // If we are looking for specific good matches, and have found more than 7:
             if(!getAll && resultList.Count > 7) return resultList.Take(7).ToList();
+
+            // Else all tasks are returned:
             return resultList;
         }
     }

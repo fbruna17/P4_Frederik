@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using P4Project.Exceptions;
-using MySql.Data.MySqlClient;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
 
 namespace P4Project
 {
+    // This Class is used to validate user input before actually posting to the database with SQL:
     class UserInputValidation
     {
-        #region Instance Variables & Properties
         private SQLControl SQL;
-        #endregion
 
         #region Constructor(s)
         public UserInputValidation()
@@ -74,7 +66,6 @@ namespace P4Project
         }
         public void VerifyDescription(string description)
         {
-            //Husk at ændre .Lenght til noget som er rimeligt!
             if (description == "" || description.Length < 10 || description == string.Empty) throw new InvalidTaskDescriptionExeption(description);
         }
         public void VerifyApplyDate(DateTime applydate, DateTime startdate, DateTime deadlinedate)
@@ -100,12 +91,12 @@ namespace P4Project
         public int VerifyLogin(string username, string password, string type)
         {
             string ID;
-            // Sikrer der er et input:
+            // Makes sure there is an input::
             if (username == "") throw new NoUsernameInputException();
             if (password == "") throw new NoPasswordInputException();
-            // Der forespørges i Databasen efter en bruger:
+            // Checks if the user exists in the database::
             if ((ID = SQL.LogInRequest(username, password, type)) == string.Empty) throw new UserDoesNotExistException();
-            // ID laves til int og returneres:
+            // The ID is parsed to an int:
             int.TryParse(ID, out int iD);
             return iD;
         }
