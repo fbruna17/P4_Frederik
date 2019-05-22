@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Web;
 using MySql.Data.MySqlClient;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using P4Project.Frontend;
 using P4Project.Exceptions;
 using System.IO;
-using System.Net;
 
 namespace P4Project
 {
@@ -46,30 +36,32 @@ namespace P4Project
         #region Buttons
         private void basicSaveBut_Click(object sender, EventArgs e)
         {
-            var image_Path = LocalImagePath;
-            var image_Type = LocalImageFiletype;
-            var serverImagePathDir = string.Empty;
-            //Checks if any image file has been selected.
-            if(image_Path != string.Empty)
-            {
-                serverImagePathDir = FTP.UploadImage(image_Path, image_Type);
-            }
-
-            string img = serverImagePathDir;
-            string username = UsernameText.Text;
-            string password = PasswordText.Text;
-            string confirmpassword = ConfirmPasswordText.Text;
-            string firstname = FirstNameText.Text;
-            string lastname = LastNameText.Text;
-            string email = EmailText.Text;
-
             try
             {
+                var image_Path = LocalImagePath;
+                var image_Type = LocalImageFiletype;
+                var serverImagePathDir = string.Empty;
+                //Checks if any image file has been selected.
+                if (image_Path != string.Empty)
+                {
+                    serverImagePathDir = FTP.UploadImage(image_Path, image_Type);
+                }
+
+                string img = serverImagePathDir;
+                string username = UsernameText.Text;
+                string password = PasswordText.Text;
+                string confirmpassword = ConfirmPasswordText.Text;
+                string firstname = FirstNameText.Text;
+                string lastname = LastNameText.Text;
+                string email = EmailText.Text;
+
+                // The post request to the database is made:
                 InputValidation.VerifyStudentRegistration(username, password, confirmpassword, email);
                 SQL.RegisterStudentProfile(username, password, firstname, lastname, email, img);
                 MessageBox.Show("Student has been added to the database!");
-                this.Hide();
+                Close();
             }
+            #region Exception Catching:
             catch (InvalidEmailException ex)
             {
                 MessageBox.Show("Invalid Email Address! " + ex.i);
@@ -93,64 +85,68 @@ namespace P4Project
 
                 if ((errorcode == 1062))
                 {
-                    ErrorOutput = "This username is already in use!";
+                    MessageBox.Show("This username is already in use!");
                 }
-
-                MessageBox.Show(ErrorOutput);
+                else
+                {
+                    MessageBox.Show("An onexpected error has occured while registrering! Please try again or contact system administrators! \n Error message:" + ErrorOutput);
+                }
+               
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show("An unknown error has occured while registrering! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         private void ImageChooseBtn_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            try
             {
-
-                //Sets the FileDialog "Start path" to the C drive
-                openFileDialog.InitialDirectory = "c:\\";
-                //Applies filter for allowed filetypes
-                openFileDialog.Filter = "Choose your image file (*.jpg)|*.jpg|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
-                    //Stores the name of the chosen file into "fileName"
-                    var fileName = openFileDialog.SafeFileName;
+                    //Sets the FileDialog "Start path" to the C drive
+                    openFileDialog.InitialDirectory = "c:\\";
+                    //Applies filter for allowed filetypes
+                    openFileDialog.Filter = "Choose your image file (*.jpg)|*.jpg|All files (*.*)|*.*";
+                    openFileDialog.FilterIndex = 2;
+                    openFileDialog.RestoreDirectory = true;
 
-                    //Stores the fileextension into "fileType"
-                    var fileType = Path.GetExtension(openFileDialog.FileName);
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        //Stores the name of the chosen file into "fileName"
+                        var fileName = openFileDialog.SafeFileName;
 
-                    //Get the path of specified file
-                    var filePath = openFileDialog.FileName;
+                        //Stores the fileextension into "fileType"
+                        var fileType = Path.GetExtension(openFileDialog.FileName);
 
-                    //Displays the choosen image in the PictureBox
-                    pictureBox1.Image = Image.FromFile(openFileDialog.FileName);
+                        //Get the path of specified file
+                        var filePath = openFileDialog.FileName;
 
-                    //Stores the local path into the already decleared "LocalImagePath" string.
-                    LocalImagePath = filePath;
+                        //Displays the choosen image in the PictureBox
+                        pictureBox1.Image = Image.FromFile(openFileDialog.FileName);
 
-                    //Stores the file extension into the already decleared "LocalImageFiletype" string.
-                    LocalImageFiletype = fileType;
+                        //Stores the local path into the already decleared "LocalImagePath" string.
+                        LocalImagePath = filePath;
+
+                        //Stores the file extension into the already decleared "LocalImageFiletype" string.
+                        LocalImageFiletype = fileType;
+                    }
                 }
             }
+            #region Exception Catching:
+            catch(Exception ex)
+            {
+                MessageBox.Show("An Unknown error uccored while trying to upload the Picture! Please make sure you use a picture, and that its not too big." + ex.Message);
+            }
+            #endregion
         }
 
         //Student Registration Back Buttom
         private void BackBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-        #endregion
-
-        #region Load
-        private void CreateStudProfileV2_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CreateStudProfileV2_Load_1(object sender, EventArgs e)
-        {
-
+            Close();
         }
         #endregion
     }

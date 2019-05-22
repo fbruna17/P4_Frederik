@@ -139,7 +139,6 @@
             this.Password.PasswordChar = '*';
             this.Password.Size = new System.Drawing.Size(134, 20);
             this.Password.TabIndex = 3;
-            this.Password.TextChanged += new System.EventHandler(this.Password_TextChanged);
             // 
             // label3
             // 
@@ -197,7 +196,6 @@
             this.CompanyName.Name = "CompanyName";
             this.CompanyName.Size = new System.Drawing.Size(134, 20);
             this.CompanyName.TabIndex = 1;
-            this.CompanyName.TextChanged += new System.EventHandler(this.CompanyName_TextChanged);
             // 
             // SMERegBackBtn
             // 
@@ -218,7 +216,6 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "RegisterSMEProfile";
             this.Text = "RegisterSMEProfile";
-            this.Load += new System.EventHandler(this.RegisterSMEProfile_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1_SME)).EndInit();

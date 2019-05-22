@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Web;
-using MySql.Data.MySqlClient;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using P4Project.Frontend;
-using System.IO;
 
 namespace P4Project
 {
@@ -31,44 +20,37 @@ namespace P4Project
         }
         #endregion
 
-        #region Load
-        private void LandingPage_Load(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
-
         #region Buttons
         private void StudentLoginBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
             var stud = new StudentLogInPage();
             stud.ShowDialog();
-            this.Show();
+            Show();
         }
 
         private void StudentRegisterBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
             var stud = new CreateStudProfile();
             stud.ShowDialog();
-            this.Show();
+            Show();
         }
 
         private void SMELoginBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
             var stud = new SMELogInPage();
             stud.ShowDialog();
-            this.Show();
+            Show();
         }
 
         private void SMERegisterBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
             var stud = new RegisterSMEProfile();
             stud.ShowDialog();
-            this.Show();
+            Show();
         }
         #endregion
     }

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using P4Project.Exceptions;
 using P4Project.Backend.Classes;
@@ -44,6 +37,7 @@ namespace P4Project.Frontend
                 Close();
                 smeLandingPage.ShowDialog();
             }
+            #region Exception Cathcing:
             catch (NoUsernameInputException)
             {
                 MessageBox.Show("Please input a username!");
@@ -60,11 +54,16 @@ namespace P4Project.Frontend
             {
                 MessageBox.Show("An unexpected SQL error has occures! Error Number: " + ex.Number + " Error message: " + ex.Message + ex.Source);
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show("An unknown error has occured while trying to log in! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         private void SMELoginBackBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
         #endregion
     }

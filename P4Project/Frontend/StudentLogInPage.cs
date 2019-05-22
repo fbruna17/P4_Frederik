@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using P4Project.Backend.Classes;
-using P4Project.Backend.Recommendation;
 using P4Project.Exceptions;
 using MySql.Data.MySqlClient;
 
@@ -44,6 +36,7 @@ namespace P4Project.Frontend
                 Close();
                 studLandingPage.ShowDialog();
             }
+            #region Exception Cathcing:
             catch (NoUsernameInputException)
             {
                 MessageBox.Show("Please input a username!");
@@ -56,19 +49,20 @@ namespace P4Project.Frontend
             {
                 MessageBox.Show("Wrong Username or password!");
             }
-            catch (DataErrorInDataBaseException ex)
-            {
-                MessageBox.Show("There was an error in the data loaded! Please contact system administrators!" + ex.place);
-            }
             catch (MySqlException ex)
             {
                 MessageBox.Show("An unexpected SQL error has occures! Error Number: " + ex.Number + " Error message: " + ex.Message + ex.Source);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error has occured while trying to log in! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         private void StudentLoginBackBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
         #endregion
     }

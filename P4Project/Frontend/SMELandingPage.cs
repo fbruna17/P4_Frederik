@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using P4Project.Backend.Classes;
+using MySql.Data.MySqlClient;
+using P4Project.Exceptions;
 
 namespace P4Project.Frontend
 {
@@ -16,7 +13,6 @@ namespace P4Project.Frontend
         private SMELoggedIn ThisSME { get; set; }
         private SQLControl SQL { get; }
 
-
         #region Constructors
         public SMELandingPage(SMELoggedIn thisSME)
         {
@@ -24,8 +20,21 @@ namespace P4Project.Frontend
             InitializeComponent();
             SQL = new SQLControl();
             // Checks for "dates exceeded" and counts notification.
-            SMENotificationBtn.Text = "Notifications (" + TaskNotificationCounter() + ")";
-            MakePrivatPublicDataGrid(2);
+            try
+            {
+                SMENotificationBtn.Text = "Notifications (" + TaskNotificationCounter() + ")";
+                MakePrivatPublicDataGrid(2);
+            }
+            #region Exception Catching:
+            catch(MySqlException ex)
+            {
+                MessageBox.Show("An SQL exception has occured while loading this page! Please contact system administrators! \n" + ex.Message);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("An Unknow error has occured while loading this page! Please contact system administrators! \n" + ex.Message);
+            }
+            #endregion
         }
         #endregion
 
@@ -99,21 +108,52 @@ namespace P4Project.Frontend
         #region Buttons
         private void SMENotificationBtn_Click(object sender, EventArgs e)
         {
-            TaskStateAutoStateChangeByDate();
-            SMENotificationBtn.Text = "Notifications (" + TaskNotificationCounter() + ")";
+            try
+            {
+                TaskStateAutoStateChangeByDate();
+                SMENotificationBtn.Text = "Notifications (" + TaskNotificationCounter() + ")";
+            }
+            #region Exception Catching:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An SQL exception has occured whil loading this page! Please contact system administrators! \n" + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Unknow error has occured while loading this page! Please contact system administrators! \n" + ex.Message);
+            }
+            #endregion
+
         }
 
         private void ViewTask_Click(object sender, EventArgs e)
         {
-            SQLControl sql = new SQLControl();
-            string taskname = TaskView.SelectedCells[0].Value.ToString();
-            TaskSearched tTask = ThisSME.Tasks.Single(t => t.Title == taskname);
-            TaskDetailed thisTask = sql.FetchTaskDetailed(tTask.ID);
-            Hide();
-            var tView = new TaskView(thisTask, ThisSME);
-            tView.ShowDialog();
-            UpdateSession();
-            Show();
+            try
+            {
+                string taskname = TaskView.SelectedCells[0].Value.ToString();
+                TaskSearched tTask = ThisSME.Tasks.Single(t => t.Title == taskname);
+                TaskDetailed thisTask = SQL.FetchTaskDetailed(tTask.ID);
+                Hide();
+                var tView = new TaskView(thisTask, ThisSME);
+                tView.ShowDialog();
+                UpdateSession();
+                Show();
+            }
+            #region Exception Catching:
+            catch (DataErrorInDataBaseException)
+            {
+                MessageBox.Show("There was an error with the data trying to be loaded for this task! Please try again later or contact system administrators!");
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An SQL exception has occured while loading this page! Please contact system administrators! \n" + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Unknow error has occured while loading this page! Please contact system administrators! \n" + ex.Message);
+            }
+            #endregion
+
         }
 
 
@@ -122,42 +162,95 @@ namespace P4Project.Frontend
             var taskCreate = new CreateTask(ThisSME);
             Hide();
             taskCreate.ShowDialog();
-            UpdateSession();
-            Show();
+            try
+            {
+                UpdateSession();
+                Show();
+            }
+            #region Exception Catching:
+            catch (DataErrorInDataBaseException)
+            {
+                MessageBox.Show("There was an error with the data trying to be loaded for this task! Please try again later or contact system administrators!");
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An SQL exception has occured while loading this page! Please contact system administrators! \n" + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Unknow error has occured while loading this page! Please contact system administrators! \n" + ex.Message);
+            }
+            #endregion
+
         }
 
         private void SeePublicTasks_Click(object sender, EventArgs e)
         {
-            MakePrivatPublicDataGrid(2);
+            try
+            {
+                MakePrivatPublicDataGrid(2);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Unknow error has occured while loading this page! Please contact system administrators! \n" + ex.Message);
+            }
         }
 
         private void SeePrivateTasks_Click(object sender, EventArgs e)
         {
-            MakePrivatPublicDataGrid(1);
+            try
+            {
+                MakePrivatPublicDataGrid(1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Unknow error has occured while loading this page! Please contact system administrators! \n" + ex.Message);
+            }
         }
 
         private void SeeOnGoingTasks_Click(object sender, EventArgs e)
         {
-            MakeOngoingCompletedDataGrid(3);
+            try
+            {
+                MakeOngoingCompletedDataGrid(3);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Unknow error has occured while loading this page! Please contact system administrators! \n" + ex.Message);
+            }
         }
 
         private void SeeCompletedTasks_Click(object sender, EventArgs e)
         {
-            MakeOngoingCompletedDataGrid(4);
+            try
+            {
+                MakeOngoingCompletedDataGrid(4);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Unknow error has occured while loading this page! Please contact system administrators! \n" + ex.Message);
+            }
         }
 
         private void SeeAllTasks_Click(object sender, EventArgs e)
         {
-            TaskView.Rows.Clear();
-            TaskView.Refresh();
-            RefreshVisibilityOnDataGridView();
-            TaskView.Columns["ApplicationDeadline"].Visible = true;
-            TaskView.Columns["Deadline"].Visible = true;
-            List<TaskSearched> tasks = ThisSME.Tasks;
-            foreach (TaskSearched task in tasks)
+            try
             {
-                string[] output = { task.Title, "", task.ApplicationDeadline.ToShortDateString(), "", task.Startdate.ToShortDateString(), task.EstCompletionDate.ToShortDateString() };
-                TaskView.Rows.Add(output);
+                TaskView.Rows.Clear();
+                TaskView.Refresh();
+                RefreshVisibilityOnDataGridView();
+                TaskView.Columns["ApplicationDeadline"].Visible = true;
+                TaskView.Columns["Deadline"].Visible = true;
+                List<TaskSearched> tasks = ThisSME.Tasks;
+                foreach (TaskSearched task in tasks)
+                {
+                    string[] output = { task.Title, "", task.ApplicationDeadline.ToShortDateString(), "", task.Startdate.ToShortDateString(), task.EstCompletionDate.ToShortDateString() };
+                    TaskView.Rows.Add(output);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Unknow error has occured while loading this page! Please contact system administrators! \n" + ex.Message);
             }
         }
         #endregion
@@ -208,7 +301,7 @@ namespace P4Project.Frontend
 
         private void SMELogOutBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
         #endregion
     }

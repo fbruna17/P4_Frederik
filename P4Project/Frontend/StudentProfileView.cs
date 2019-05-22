@@ -41,19 +41,46 @@ namespace P4Project.Frontend
         public StudentProfileView(StudentLoggedIn thisStudent)
         {
             ThisStudent = thisStudent;
+            try
+            {
+                InitializeComponent();
+                InitializeDefault(thisStudent);
+                InitializeStudentLoggedin();
+            }
+            #region Exception Catching:
+            catch(MySqlException ex)
+            {
+                MessageBox.Show("An Exception occured while initializing this page! Please contact system administrators!" + ex.Message);
+               
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while initializing this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
 
-            InitializeComponent();
-            InitializeDefault(thisStudent);
-            InitializeStudentLoggedin();
         }
         // Constructor for when a student wants to edit his profile:
         public StudentProfileView(StudentLoggedIn thisStudent, bool edit)
         {
             ThisStudent = thisStudent;
+            try
+            {
+                InitializeComponent();
+                InitializeDefault(thisStudent);
+                InitializeStudentEdit();
+            }
+            #region Exception Catching:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An Exception occured while initializing this page! Please contact system administrators!" + ex.Message);
 
-            InitializeComponent();
-            InitializeDefault(thisStudent);
-            InitializeStudentEdit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while initializing this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         // Constructor for an SME looking up a student profile, based on an application to a given task:
@@ -62,10 +89,23 @@ namespace P4Project.Frontend
             ThisSME = thisSME;
             Student = student;
             ThisApplication = thisApplication;
+            try
+            {
+                InitializeComponent();
+                InitializeDefault(student);
+                InitializeSMEViewApplication();
+            }
+            #region Exception Catching:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An Exception occured while initializing this page! Please contact system administrators!" + ex.Message);
 
-            InitializeComponent();
-            InitializeDefault(student);
-            InitializeSMEViewApplication();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while initializing this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         // Constructor for an SME looking up a student profile by a task the student is assigned too/has completed:
@@ -74,7 +114,21 @@ namespace P4Project.Frontend
             ThisSME = thisSME;
             Student = student;
             InitializeComponent();
-            InitializeDefault(student);
+            try
+            {
+                InitializeDefault(student);
+            }
+            #region Exception Catching:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An Exception occured while initializing this page! Please contact system administrators!" + ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while initializing this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
 
@@ -190,13 +244,27 @@ namespace P4Project.Frontend
         private void StudentEditProfileBtn_Click(object sender, EventArgs e)
         {
             bool edit = true;
-            StudentProfileView editView = new StudentProfileView(ThisStudent, edit);
-            Hide();
-            editView.ShowDialog();
-            ThisStudent = ThisStudent.UpdateSessionData();
-            InitializeDefault(ThisStudent);
-            InitializeStudentLoggedin();
-            Show();
+            try
+            {
+                StudentProfileView editView = new StudentProfileView(ThisStudent, edit);
+                Hide();
+                editView.ShowDialog();
+                ThisStudent = ThisStudent.UpdateSessionData();
+                InitializeDefault(ThisStudent);
+                InitializeStudentLoggedin();
+                Show();
+            }
+            #region Exception Catching:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An Exception occured while initializing this page! Please contact system administrators!" + ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while initializing this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         private void Back_Click(object sender, EventArgs e)
@@ -207,58 +275,62 @@ namespace P4Project.Frontend
         // A function that submits the new information on the student:
         private void SubmitEdit_Click(object sender, EventArgs e)
         {
-            var File_Path = LocalPDFPath;
-            var File_Type = LocalPDFFiletype;
-            var serverFilePathDir = string.Empty;
-            if (File_Path != string.Empty)
-            {
-
-                serverFilePathDir = FTP.UploadFile(File_Path, File_Type);
-            }
-
-            var image_Path = LocalImagePath;
-            var image_Type = LocalImageFiletype;
-            var serverImagePathDir = string.Empty;
-            if (image_Path != string.Empty)
-            {
-
-                serverImagePathDir = FTP.UploadImage(image_Path, image_Type);
-            }
-
-            string profilepicture = ThisStudent.ProfilePicture;
-            if (serverImagePathDir != string.Empty)
-            {
-                profilepicture = serverImagePathDir;
-            }
-
-            string resume = ThisStudent.Resume;
-            if(serverFilePathDir != string.Empty)
-            {
-                resume = serverFilePathDir;
-            }
-            string email = EditEmail.Text;
-            string description = StudentDescBox.Text;
-            string education = ThisStudent.Education;
-            if(EducationDropDown.SelectedItem != null)
-            {
-                education = EducationDropDown.SelectedItem.ToString();
-            }
-            // ProfilePicture Hvis ikke det ændres på student objektet.
-
-            StudentDetailed newStudInfo = new StudentDetailed(ThisStudent.FirstName, ThisStudent.LastName, ThisStudent.ID, email, education, ThisStudent.Skills, description, profilepicture, resume);
-
-            // Verifies!
             try
             {
+                var File_Path = LocalPDFPath;
+                var File_Type = LocalPDFFiletype;
+                var serverFilePathDir = string.Empty;
+                if (File_Path != string.Empty)
+                {
+                    serverFilePathDir = FTP.UploadFile(File_Path, File_Type);
+                }
+
+                var image_Path = LocalImagePath;
+                var image_Type = LocalImageFiletype;
+                var serverImagePathDir = string.Empty;
+                if (image_Path != string.Empty)
+                {
+                    serverImagePathDir = FTP.UploadImage(image_Path, image_Type);
+                }
+
+                string profilepicture = ThisStudent.ProfilePicture;
+                if (serverImagePathDir != string.Empty)
+                {
+                    profilepicture = serverImagePathDir;
+                }
+
+                string resume = ThisStudent.Resume;
+                if (serverFilePathDir != string.Empty)
+                {
+                    resume = serverFilePathDir;
+                }
+                string email = EditEmail.Text;
+                string description = StudentDescBox.Text;
+                string education = ThisStudent.Education;
+                if (EducationDropDown.SelectedItem != null)
+                {
+                    education = EducationDropDown.SelectedItem.ToString();
+                }
+
+                StudentDetailed newStudInfo = new StudentDetailed(ThisStudent.FirstName, ThisStudent.LastName, ThisStudent.ID, email, education, ThisStudent.Skills, description, profilepicture, resume);
+
+                // Verifies!
+
                 sql.UpdateStudentProfile(newStudInfo);
                 MessageBox.Show("Your profile has been updated!");
                 Close();
             }
-            catch(MySqlException ex)
+            #region Exception Catching:
+            catch (MySqlException ex)
             {
-                MessageBox.Show("There where an error while updating you edits! Please try again, or contact system administrators! " + ex.Message);
-            }
+                MessageBox.Show("An SQL Exception occured while submitting your changes! Please try again or contact system administrators!" + ex.Message);
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while submitting this page! Please try again or contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         // When a student is editing his or hers profile, and wants to remove a skill from his or hers skill set:
@@ -275,9 +347,23 @@ namespace P4Project.Frontend
                 DialogResult result = MessageBox.Show("Are you sure you want to remove the skill " + skillName + "?", "Confirm Remove", MessageBoxButtons.YesNo);
                 if(result == DialogResult.Yes)
                 {
-                    ThisStudent.RemoveFromSkillSet(skillName);
-                    InitializeSkillList(ThisStudent);
-                    InitializeSkillEditing();
+                    try
+                    {
+                        ThisStudent.RemoveFromSkillSet(skillName);
+                        InitializeSkillList(ThisStudent);
+                        InitializeSkillEditing();
+                    }
+                    #region Exception Catching:
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("An Exception occured while initializing this page! Please contact system administrators!" + ex.Message);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An unknown error uccored while initializing this page! Please contact system administrators!" + ex.Message);
+                    }
+                    #endregion
                 }
             }
         }
@@ -285,45 +371,73 @@ namespace P4Project.Frontend
         // When a student is editing his or hers profile, and wants to add a skill to their skill set: 
         private void AddSkill_Click(object sender, EventArgs e)
         {
-            if(SkillDropDown.SelectedItem != null)
+            try
             {
-                string skillName = SkillDropDown.SelectedItem.ToString();
-                Skill skill = sql.FetchSkillInfoBasedOnName(skillName);
-                SkillStudent rSkill = new SkillStudent(skill.ID, skill.Name, false);
-                ThisStudent.AddTooSkillSet(rSkill);
-                InitializeSkillList(ThisStudent);
-                InitializeSkillEditing();
+                if (SkillDropDown.SelectedItem != null)
+                {
+                    string skillName = SkillDropDown.SelectedItem.ToString();
+                    Skill skill = sql.FetchSkillInfoBasedOnName(skillName);
+                    SkillStudent rSkill = new SkillStudent(skill.ID, skill.Name, false);
+                    ThisStudent.AddTooSkillSet(rSkill);
+                    InitializeSkillList(ThisStudent);
+                    InitializeSkillEditing();
+                }
+                else MessageBox.Show("Please select a skill from the dropdown to add.");
             }
-            else MessageBox.Show("Please select a skill from the dropdown to add.");
+            #region Exception Catching:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An Exception occured while initializing this page! Please contact system administrators!" + ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while initializing this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         private void ChoosePDFBtn_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            try
             {
-                //Sets the FileDialog "Start path" to the C drive
-                openFileDialog.InitialDirectory = "c:\\";
-                //Applies filter for allowed filetypes
-                openFileDialog.Filter = "Choose your resumé file (*.pdf)|*.pdf|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
-                    //Stores the name of the chosen file into "fileName"
-                    var fileName = openFileDialog.SafeFileName;
-                    //Stores the fileextension into "fileType"
-                    var fileType = Path.GetExtension(openFileDialog.FileName);
-                    //Get the path of specified file
-                    var filePath = openFileDialog.FileName;
-                    //Displays the filename of the chosen PDF in the label.
-                    ResumeNameLabel.Text = "Your file: " + fileName;
-                    //Stores the local path into the already decleared "LocalPDFPath" string.
-                    LocalPDFPath = filePath;
-                    //Stores the file extension into the already decleared "LocalPDFFiletype" string.
-                    LocalPDFFiletype = fileType;
+                    //Sets the FileDialog "Start path" to the C drive
+                    openFileDialog.InitialDirectory = "c:\\";
+                    //Applies filter for allowed filetypes
+                    openFileDialog.Filter = "Choose your resumé file (*.pdf)|*.pdf|All files (*.*)|*.*";
+                    openFileDialog.FilterIndex = 2;
+                    openFileDialog.RestoreDirectory = true;
+
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        //Stores the name of the chosen file into "fileName"
+                        var fileName = openFileDialog.SafeFileName;
+                        //Stores the fileextension into "fileType"
+                        var fileType = Path.GetExtension(openFileDialog.FileName);
+                        //Get the path of specified file
+                        var filePath = openFileDialog.FileName;
+                        //Displays the filename of the chosen PDF in the label.
+                        ResumeNameLabel.Text = "Your file: " + fileName;
+                        //Stores the local path into the already decleared "LocalPDFPath" string.
+                        LocalPDFPath = filePath;
+                        //Stores the file extension into the already decleared "LocalPDFFiletype" string.
+                        LocalPDFFiletype = fileType;
+                    }
                 }
             }
+            #region Exception Catching:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An Exception occured while uploading this picture please make sure you are using a fair sized picture! Or contact system administrators!" + ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while uploading this picture please make sure you are using a fair sized picture! Or contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         private void ResumeLink()
@@ -335,47 +449,77 @@ namespace P4Project.Frontend
             //with a URL:  
             System.Diagnostics.Process.Start(ThisStudent.Resume);
         }
+
         private void StudentResumeLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (ThisStudent.Resume != "")
+            try
             {
-                ResumeLink();
-            }
-            else
-            {
-                MessageBox.Show("This student hasn't uploaded a resumé yet.");
-            }
-        }
-        private void ChooseImageBtn_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-
-                //Sets the FileDialog "Start path" to the C drive
-                openFileDialog.InitialDirectory = "c:\\";
-                //Applies filter for allowed filetypes
-                openFileDialog.Filter = "Choose your image file (*.jpg)|*.jpg|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                if (ThisStudent.Resume != "")
                 {
-                    //Stores the name of the chosen file into "fileName"
-                    var fileName = openFileDialog.SafeFileName;
-                    //Stores the fileextension into "fileType"
-                    var fileType = Path.GetExtension(openFileDialog.FileName);
-                    //Get the path of specified file
-                    var filePath = openFileDialog.FileName;
-                    //Displays the choosen image in the PictureBox
-                    StudentPictureBox.Image = Image.FromFile(openFileDialog.FileName);
-                    //Display the local filename of the choosen image.
-                    ChoosenImageLabel.Text = "Your choosen image: " + fileName;
-                    //Stores the local path into the already decleared "LocalImagePath" string.
-                    LocalImagePath = filePath;
-                    //Stores the file extension into the already decleared "LocalImageFiletype" string.
-                    LocalImageFiletype = fileType;
+                    ResumeLink();
+                }
+                else
+                {
+                    MessageBox.Show("This student hasn't uploaded a resumé yet.");
                 }
             }
+            #region Exception Catching:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An SQL Exception occures while fethcing this PDF! Please contact system administrators!" + ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while Fetching this PDF! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
+        }
+
+        private void ChooseImageBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+
+                    //Sets the FileDialog "Start path" to the C drive
+                    openFileDialog.InitialDirectory = "c:\\";
+                    //Applies filter for allowed filetypes
+                    openFileDialog.Filter = "Choose your image file (*.jpg)|*.jpg|All files (*.*)|*.*";
+                    openFileDialog.FilterIndex = 2;
+                    openFileDialog.RestoreDirectory = true;
+
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        //Stores the name of the chosen file into "fileName"
+                        var fileName = openFileDialog.SafeFileName;
+                        //Stores the fileextension into "fileType"
+                        var fileType = Path.GetExtension(openFileDialog.FileName);
+                        //Get the path of specified file
+                        var filePath = openFileDialog.FileName;
+                        //Displays the choosen image in the PictureBox
+                        StudentPictureBox.Image = Image.FromFile(openFileDialog.FileName);
+                        //Display the local filename of the choosen image.
+                        ChoosenImageLabel.Text = "Your choosen image: " + fileName;
+                        //Stores the local path into the already decleared "LocalImagePath" string.
+                        LocalImagePath = filePath;
+                        //Stores the file extension into the already decleared "LocalImageFiletype" string.
+                        LocalImageFiletype = fileType;
+                    }
+                }
+            }
+            #region Exception Catching:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An Exception occured while uploading this picture please make sure you are using a fair sized picture! Or contact system administrators!" + ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while uploading this picture please make sure you are using a fair sized picture! Or contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         #endregion
@@ -393,10 +537,16 @@ namespace P4Project.Frontend
                     MessageBox.Show(Student.FirstName + " has succesfully been assigned for this task!");
                     Close();
                 }
+                #region Exception Cathcing:
                 catch(MySqlException ex)
                 {
-                    MessageBox.Show("An error uccored while assigning this student! Please try again later, or contact system administrators! Error message: " + ex.Message);
+                    MessageBox.Show("An SQL error uccored while assigning this student! Please try again later, or contact system administrators! Error message: " + ex.Message);
                 }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("An unknow exception occured while assigning this student! Please try again later, or contact system administrators! Error message: " + ex.Message);
+                }
+                #endregion
             }
         }
         #endregion

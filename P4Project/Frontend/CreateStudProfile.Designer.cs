@@ -247,7 +247,6 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreateStudProfileV2";
             this.Text = "CreateStudProfile";
-            this.Load += new System.EventHandler(this.CreateStudProfileV2_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

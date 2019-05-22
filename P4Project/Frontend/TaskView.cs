@@ -32,25 +32,38 @@ namespace P4Project.Frontend
         // This Constructor is used when an SME wants to view its own task:
         public TaskView(TaskDetailed task, SMELoggedIn sme)
         {
-            InitializeComponent();
-            ThisTask = task;
-            ThisTask.GetApplicants();
-            ThisTask.GetApplications();
-            ThisSME = sme;
-            InitializeDefault();
-            if(ThisTask.StateID == 3)
+            try
             {
-                InitializeFormForTaskInProgress();
+                InitializeComponent();
+                ThisTask = task;
+                ThisTask.GetApplicants();
+                ThisTask.GetApplications();
+                ThisSME = sme;
+                InitializeDefault();
+                if (ThisTask.StateID == 3)
+                {
+                    InitializeFormForTaskInProgress();
+                }
+                else if (ThisTask.StateID == 4)
+                {
+                    InitializeFormForTaskCompletedSME();
+                }
+                else
+                {
+                    InitializeFormForSMEOwner();
+                }
             }
-            else if (ThisTask.StateID == 4)
+            #region Exception Catching:
+            catch (MySqlException ex)
             {
-                InitializeFormForTaskCompletedSME();
-            }
-            else
-            {
-                InitializeFormForSMEOwner();
-            }
+                MessageBox.Show("An Exception occured while initializing this page! Please contact system administrators!" + ex.Message);
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while initializing this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
         // This constructor is used when an SME is creating a new/editting a task. 
         // It is shown when all data has been inputted as a preview of the task:
@@ -61,40 +74,69 @@ namespace P4Project.Frontend
             ThisSME = sme;
             InitializeDefault();
 
-            if (isUpdate) InitializeFormForUpdateTask();
-            else InitializeFormForCreateNewTask();
+            try
+            {
+                if (isUpdate) InitializeFormForUpdateTask();
+                else InitializeFormForCreateNewTask();
+            }
+            #region Exception Catching:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An Exception occured while initializing this page! Please contact system administrators!" + ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while initializing this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         // This constructor is used when a student looks up a task:
         public TaskView(TaskDetailed task, StudentLoggedIn student)
         {
-            InitializeComponent();
+
             ThisTask = task;
             ThisStudent = student;
-            InitializeDefault();
-            // First we check is the student has already applied for this task: 
-            if(ThisStudent.Applications.Count != 0)
+            try
             {
-                foreach (ApplicationDetailed a in ThisStudent.Applications)
+                InitializeComponent();
+                InitializeDefault();
+                // First we check is the student has already applied for this task: 
+                if (ThisStudent.Applications.Count != 0)
                 {
-                    if (a.TaskID == ThisTask.ID)
-                    {   // Now we know that there has already been applied, and we have the relevant application:                        
-                        ThisApplication = a;
-                        InitializeFormForAppliedStudent();
-                        break;
+                    foreach (ApplicationDetailed a in ThisStudent.Applications)
+                    {
+                        if (a.TaskID == ThisTask.ID)
+                        {   // Now we know that there has already been applied, and we have the relevant application:                        
+                            ThisApplication = a;
+                            InitializeFormForAppliedStudent();
+                            break;
+                        }
                     }
                 }
+                // If the Student is the Assigned Student:
+                if (ThisTask.AssignedStudentID == student.ID)
+                {
+                    InitializeFormForAssignedStudent();
+                }
+                // If the student has not already applied, are not assigned, and the task is in Public state:
+                else if (ThisTask.StateID == 2)
+                {
+                    InitializeFormForRegStudent();
+                }
             }
-            // If the Student is the Assigned Student:
-            if (ThisTask.AssignedStudentID == student.ID)
+            #region Exception Catching:
+            catch (MySqlException ex)
             {
-                InitializeFormForAssignedStudent();
+                MessageBox.Show("An Exception occured while initializing this page! Please contact system administrators!" + ex.Message);
+
             }
-            // If the student has not already applied, are not assigned, and the task is in Public state:
-            else if(ThisTask.StateID == 2)
+            catch (Exception ex)
             {
-                InitializeFormForRegStudent();
+                MessageBox.Show("An unknown error uccored while initializing this page! Please contact system administrators!" + ex.Message);
             }
+            #endregion
         }
 
         #endregion
@@ -238,17 +280,22 @@ namespace P4Project.Frontend
                 try
                 {
                     SQLControl sql = new SQLControl();
-                    sql.PostApplication(ThisStudent.ID, ThisTask.ID, ThisTask.RecScore); // Her skal tilføjes REC SCORE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    sql.PostApplication(ThisStudent.ID, ThisTask.ID, ThisTask.RecScore);
+                    Close();
+                    MessageBox.Show("Application has been registered!");
                 }
+                #region Exception Cathcing:
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("An error occured while trying to make your application for this task! Please try again later!" + ex.Message, "SQL Error");
+                    MessageBox.Show("An SQL error occured while trying to make your application for this task! Please try again later!" + ex.Message, "SQL Error");
                 }
-                MessageBox.Show("Application has been registered!");
-                Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An unknown error occured while trying to make your application for this task! Please try again later!" + ex.Message, "SQL Error");
+                }
+                #endregion
             }
         }
-
         // When a student is already applied, they have the option to UnApply:
         private void UnApply_Click(object sender, EventArgs e)
         {
@@ -259,16 +306,21 @@ namespace P4Project.Frontend
                 {
                     SQLControl sql = new SQLControl();
                     sql.RemoveApplication(ThisApplication.ApplicationID);
+                    MessageBox.Show("Application has been deleted!");
                 }
+                #region Exception Cathcing:
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("An error occured while trying to remove this application! Please try again later!" + ex.Message, "SQL Error");
+                    MessageBox.Show("An SQL error occured while trying to delete your application for this task! Please try again later!" + ex.Message, "SQL Error");
                 }
-                MessageBox.Show("Application has been removed!");
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An unknown error occured while trying to delete your application for this task! Please try again later!" + ex.Message, "SQL Error");
+                }
+                #endregion
                 Close();
             }
         }
-
         #endregion
 
         // Buttons only visible/usable by SMEs:
@@ -277,30 +329,44 @@ namespace P4Project.Frontend
         // When an SME user wants to see the list of applicants:
         private void ViewApplicants_Click(object sender, EventArgs e)
         {
-            StudentApplicantsView.Rows.Clear();
-            ThisTask.GetApplicants();
-            ThisTask.GetApplications();
-            if(ThisTask.Applications.Count == 0)
+            try
             {
-                MessageBox.Show("No Student has applied for this task yet.");
-            }
-            else
-            {
-                ApplicantBox.Visible = true;
-                if (ThisTask.Applicants.Count != 0)
+                StudentApplicantsView.Rows.Clear();
+                ThisTask.GetApplicants();
+                ThisTask.GetApplications();
+                if (ThisTask.Applications.Count == 0)
                 {
-                    foreach (StudentApplicant student in ThisTask.Applicants)
-                    {   // These Lambda Expression goes through the list of applicants, and makes sure only the applications in "Pending" state is shown:
-                        if (ThisTask.Applications.Any(a => a.StudentID == student.ID))
-                        {
-                            if (ThisTask.Applications.First(a => a.StudentID == student.ID).StateID == 1)
+                    MessageBox.Show("No Student has applied for this task yet.");
+                }
+                else
+                {
+                    ApplicantBox.Visible = true;
+                    if (ThisTask.Applicants.Count != 0)
+                    {
+                        foreach (StudentApplicant student in ThisTask.Applicants)
+                        {   // These Lambda Expression goes through the list of applicants, and makes sure only the applications in "Pending" state is shown:
+                            if (ThisTask.Applications.Any(a => a.StudentID == student.ID))
                             {
-                                StudentApplicantsView.Rows.Add(student.MakeDataViewString());
+                                if (ThisTask.Applications.First(a => a.StudentID == student.ID).StateID == 1)
+                                {
+                                    StudentApplicantsView.Rows.Add(student.MakeDataViewString());
+                                }
                             }
                         }
                     }
                 }
             }
+            #region Exception Catching:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An Exception occured while initializing this page! Please contact system administrators!" + ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while initializing this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         // When an SME users clicks a student from the Applicant lists, and click "See Profile"
@@ -312,17 +378,31 @@ namespace P4Project.Frontend
             }
             else
             {
-                DataGridViewRow row = StudentApplicantsView.CurrentCell.OwningRow;
-                if (int.TryParse(row.Cells["StudentID"].Value.ToString(), out int studentID))
+                try
                 {
-                    ApplicationBase thisApplication = ThisTask.Applications.First(a => a.StudentID == studentID);
-                    SQLControl sql = new SQLControl();
-                    StudentDetailed student = sql.FetchStudentDetailed(studentID);
-                    StudentProfileView studentProfile = new StudentProfileView(ThisSME, student, thisApplication);
-                    Hide();
-                    studentProfile.ShowDialog();
-                    Show();
+                    DataGridViewRow row = StudentApplicantsView.CurrentCell.OwningRow;
+                    if (int.TryParse(row.Cells["StudentID"].Value.ToString(), out int studentID))
+                    {
+                        ApplicationBase thisApplication = ThisTask.Applications.First(a => a.StudentID == studentID);
+                        SQLControl sql = new SQLControl();
+                        StudentDetailed student = sql.FetchStudentDetailed(studentID);
+                        StudentProfileView studentProfile = new StudentProfileView(ThisSME, student, thisApplication);
+                        Hide();
+                        studentProfile.ShowDialog();
+                        Show();
+                    }
                 }
+                #region Exception Catching:
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("An Exception occured while initializing this page! Please contact system administrators!" + ex.Message);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An unknown error uccored while initializing this page! Please contact system administrators!" + ex.Message);
+                }
+                #endregion
             }
         }
 
@@ -345,14 +425,21 @@ namespace P4Project.Frontend
                         {
                             SQLControl sql = new SQLControl();
                             sql.RejectApplication(studentID, ThisTask.ID);
+                            MessageBox.Show("Application has been Rejected!");
+                            UpdateApplicantView();
+                            ViewApplicants.Text = string.Format("View Applicants ({0})", ThisTask.Applications.Count);
                         }
+                        #region Exception Catching:
                         catch (MySqlException ex)
                         {
-                            MessageBox.Show("An error occured while trying to reject this application! Please try again later!" + ex.Message, "SQL Error");
+                            MessageBox.Show("An SQL Exception occured while rejecting this application! Please contact system administrators!" + ex.Message);
+
                         }
-                        MessageBox.Show("Application has been Rejected!");
-                        UpdateApplicantView();
-                        ViewApplicants.Text = string.Format("View Applicants ({0})", ThisTask.Applications.Count);
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("An unknown error uccored while rejecting this application! Please contact system administrators!" + ex.Message);
+                        }
+                        #endregion
                     }
                 }
             }
@@ -367,20 +454,48 @@ namespace P4Project.Frontend
         // When an SME wants to Edit the current Task:       
         private void EditTask_Click(object sender, EventArgs e)
         {
-            CreateTask editTask = new CreateTask(ThisTask, ThisSME);
-            Close();
-            editTask.ShowDialog();
+            try
+            {
+                CreateTask editTask = new CreateTask(ThisTask, ThisSME);
+                Close();
+                editTask.ShowDialog();
+            }
+            #region Exception Catching:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An Exception occured while initializing this page! Please contact system administrators!" + ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while initializing this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         // When a task is in Ongoing or Completed State The SME can see the student they have assigned for the task:
         private void ViewAssignedStudent_Click(object sender, EventArgs e)
         {
-            SQLControl sql = new SQLControl();
-            StudentDetailed student = sql.FetchStudentDetailed(ThisTask.AssignedStudentID);
-            StudentProfileView studProfile = new StudentProfileView(ThisSME, student, ThisTask);
-            Hide();
-            studProfile.ShowDialog();
-            Show();
+            try
+            {
+                SQLControl sql = new SQLControl();
+                StudentDetailed student = sql.FetchStudentDetailed(ThisTask.AssignedStudentID);
+                StudentProfileView studProfile = new StudentProfileView(ThisSME, student, ThisTask);
+                Hide();
+                studProfile.ShowDialog();
+                Show();
+            }
+            #region Exception Catching:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An Exception occured while initializing this page! Please contact system administrators!" + ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while initializing this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         // When a Task has an assigned student and the SME marks the Task as Completed:
@@ -396,10 +511,16 @@ namespace P4Project.Frontend
                     MessageBox.Show("Task has been marked as completed!");
                     Close();
                 }
+                #region Exception Catching:
                 catch (MySqlException ex)
+                {
+                    MessageBox.Show("An SQL error uccored while marking this task as completed! Please try again later, or contact system administrators! Error message: " + ex.Message);
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show("An error uccored while marking this task as completed! Please try again later, or contact system administrators! Error message: " + ex.Message);
                 }
+                #endregion
             }
         }
 
@@ -413,11 +534,18 @@ namespace P4Project.Frontend
                 MessageBox.Show("The Task has succesfully been added to the database!");
                 Close();
             }
-            catch(MySqlException ex)
+            #region Exception Catching:
+            catch (MySqlException ex)
             {
-                MessageBox.Show("An Error occures while trying to add this task to the database! Make sure all fields are filled our correctly! " +
+                MessageBox.Show("An SQL Error occures while trying to add this task to the database! Make sure all fields are filled our correctly! " +
                     "If this error keeps occuring, please contact system administrators!" + ex.Message);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Unknown Error occures while trying to add this task to the database! Make sure all fields are filled our correctly! " +
+                    "If this error keeps occuring, please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         // When an SME confirms the updated task info and submits:
@@ -430,19 +558,40 @@ namespace P4Project.Frontend
                 MessageBox.Show("The Task has succesfully been updated!");
                 Close();
             }
+            #region Exception Catching:
             catch (MySqlException ex)
             {
-                MessageBox.Show("An Error occures while trying to add this task to the database! Make sure all fields are filled our correctly! " +
+                MessageBox.Show("An SQL Error occures while trying to add this task to the database! Make sure all fields are filled our correctly! " +
                     "If this error keeps occuring, please contact system administrators!" + ex.Message);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Unknown Error occures while trying to add this task to the database! Make sure all fields are filled our correctly! " +
+                    "If this error keeps occuring, please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
 
         private void EditAgain_Click(object sender, EventArgs e)
         {
-            CreateTask editTask = new CreateTask(ThisTask, ThisSME);
-            Close();
-            editTask.ShowDialog();
+            try
+            {
+                CreateTask editTask = new CreateTask(ThisTask, ThisSME);
+                Close();
+                editTask.ShowDialog();
+            }
+            #region Exception Catching:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An Exception occured while initializing this page! Please contact system administrators!" + ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unknown error uccored while initializing this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         #endregion

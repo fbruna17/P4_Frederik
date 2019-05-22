@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using P4Project.Backend.Classes;
-using System.Net;
-using System.IO;
+using MySql.Data.MySqlClient;
 
 namespace P4Project.Frontend
 {
@@ -18,14 +11,23 @@ namespace P4Project.Frontend
 
         public StudentLoggedIn ThisStudent { get; private set; }
 
-
         #region Constructors
         public StudentLandingPage(StudentLoggedIn thisStudent)
         {
             InitializeComponent();
             ThisStudent = thisStudent;
-            SetupForm();
-            CheckProfileInfo();
+            try
+            {
+                SetupForm();
+                CheckProfileInfo();
+            }
+            #region Exception Catching:
+            catch(Exception ex)
+            {
+                MessageBox.Show("An unknown error occured while loading this page! Please try again later, or contact system administrators!" + ex.Message);
+            }
+            #endregion
+
         }
         #endregion
 
@@ -108,78 +110,146 @@ namespace P4Project.Frontend
         #region Buttons
         private void ViewRecTask_Click(object sender, EventArgs e)
         {
-            SQLControl sql = new SQLControl();
-            // We know the Task title from the gridview:
-            string taskname = RecommendedTasks.SelectedCells[0].Value.ToString();
-            // We use that to find the task
-            TaskRecommend tTask = ThisStudent.RecTasks.Single(t => t.Title == taskname);
-            // and the ID to find a detailed task:
-            TaskDetailed thisTask = sql.FetchTaskDetailed(tTask.ID);
-            thisTask.RecScore = tTask.RecommendScore;
-            Hide();
-            var tView = new TaskView(thisTask, ThisStudent);
-            tView.ShowDialog();
-            Show();
-            UpdateStudent();
+            try
+            {
+                SQLControl sql = new SQLControl();
+                // We know the Task title from the gridview:
+                string taskname = RecommendedTasks.SelectedCells[0].Value.ToString();
+                // We use that to find the task
+                TaskRecommend tTask = ThisStudent.RecTasks.Single(t => t.Title == taskname);
+                // and the ID to find a detailed task:
+                TaskDetailed thisTask = sql.FetchTaskDetailed(tTask.ID);
+                thisTask.RecScore = tTask.RecommendScore;
+                Hide();
+                var tView = new TaskView(thisTask, ThisStudent);
+                tView.ShowDialog();
+                UpdateStudent();
+                Show();
+            }
+            #region Exception Cathcing:
+            catch(MySqlException ex)
+            {
+                MessageBox.Show("An SQL exception uccored while loading this task! Please try again later or contact system administrators!" + ex.Message);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("An Exception occures while loading this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         private void SeeApplication_Click(object sender, EventArgs e)
         {
-            SQLControl sql = new SQLControl();
-            string taskTitle = ApplicationViewGrid.SelectedCells[0].Value.ToString();
-            ApplicationDetailed app = ThisStudent.Applications.Single(t => t.TaskTitle == taskTitle);
-
-            // If the application has been rejected, the user is informed and the application is deleted:
-            if(app.StateID == 2)
+            try
             {
-                MessageBox.Show("You have not been selected for this task. The application will be deleted.");
-                sql.RemoveApplication(app.ApplicationID);
+                SQLControl sql = new SQLControl();
+                string taskTitle = ApplicationViewGrid.SelectedCells[0].Value.ToString();
+                ApplicationDetailed app = ThisStudent.Applications.Single(t => t.TaskTitle == taskTitle);
 
+                // If the application has been rejected, the user is informed and the application is deleted:
+                if (app.StateID == 2)
+                {
+                    MessageBox.Show("You have not been selected for this task. The application will be deleted.");
+                    sql.RemoveApplication(app.ApplicationID);
+                    UpdateStudent();
+                }
+                else
+                {
+                    TaskDetailed thisTask = sql.FetchTaskDetailed(app.TaskID);
+                    Hide();
+                    var tView = new TaskView(thisTask, ThisStudent);
+                    tView.ShowDialog();
+                    UpdateStudent();
+                    Show();
+                }
             }
-            else
+            #region Exception Cathcing:
+            catch (MySqlException ex)
             {
-                TaskDetailed thisTask = sql.FetchTaskDetailed(app.TaskID);
-                Hide();
-                var tView = new TaskView(thisTask, ThisStudent);
-                tView.ShowDialog();
-                Show();
-                UpdateStudent();
+                MessageBox.Show("An SQL exception uccored while loading this task! Please try again later or contact system administrators!" + ex.Message);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Exception occures while loading this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
 
         }
 
         private void ViewAssignedTask_Click(object sender, EventArgs e)
         {
-            SQLControl sql = new SQLControl();
-            string taskTitle = AssignedTaskGridView.SelectedCells[0].Value.ToString();
-            TaskAssigned task = ThisStudent.AssignedTasks.Single(t => t.Title == taskTitle);
-            TaskDetailed thisTask = sql.FetchTaskDetailed(task.ID);
+            try
+            {
+                SQLControl sql = new SQLControl();
+                string taskTitle = AssignedTaskGridView.SelectedCells[0].Value.ToString();
+                TaskAssigned task = ThisStudent.AssignedTasks.Single(t => t.Title == taskTitle);
+                TaskDetailed thisTask = sql.FetchTaskDetailed(task.ID);
 
-            Hide();
-            var tView = new TaskView(thisTask, ThisStudent);
-            tView.ShowDialog();
-            Show();
-            UpdateStudent();
+                Hide();
+                var tView = new TaskView(thisTask, ThisStudent);
+                tView.ShowDialog();
+                UpdateStudent();
+                Show();
+            }
+            #region Exception Cathcing:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An SQL exception uccored while loading this task! Please try again later or contact system administrators!" + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Exception occures while loading this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         private void ViewProfile_Click(object sender, EventArgs e)
         {
-            StudentProfileView profileView = new StudentProfileView(ThisStudent);
-            Hide();
-            profileView.ShowDialog();
-            UpdateStudent();
-            Show();
+            try
+            {
+                StudentProfileView profileView = new StudentProfileView(ThisStudent);
+                Hide();
+                profileView.ShowDialog();
+                UpdateStudent();
+                Show();
+            }
+            #region Exception Cathcing:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An SQL exception uccored while loading this task! Please try again later or contact system administrators!" + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Exception occures while loading this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            var search = new Search(ThisStudent);
-            search.ShowDialog();
+            try
+            {
+                var search = new Search(ThisStudent);
+                Hide();
+                search.ShowDialog();
+                UpdateStudent();
+                Show();
+            }
+            #region Exception Cathcing:
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("An SQL exception uccored while loading this task! Please try again later or contact system administrators!" + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Exception occures while loading this page! Please contact system administrators!" + ex.Message);
+            }
+            #endregion
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
         #endregion
     }
