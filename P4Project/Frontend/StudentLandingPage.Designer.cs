@@ -183,7 +183,6 @@
             this.ApplicationViewGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ApplicationViewGrid.Size = new System.Drawing.Size(343, 87);
             this.ApplicationViewGrid.TabIndex = 4;
-            this.ApplicationViewGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ApplicationView_CellContentClick);
             // 
             // TaskTitleName
             // 

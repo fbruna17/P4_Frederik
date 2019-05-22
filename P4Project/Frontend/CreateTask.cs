@@ -230,28 +230,5 @@ namespace P4Project.Frontend
 
         }
         #endregion
-
-
-        #region Not Used, should be deleted:
-        private void CreateTask_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        #endregion
-
-
     }
 }

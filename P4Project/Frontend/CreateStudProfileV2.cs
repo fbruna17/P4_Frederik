@@ -153,20 +153,5 @@ namespace P4Project
 
         }
         #endregion
-
-
-        #region NOT USED AT ALL!
-        private void PictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label2_Click(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
-
-        
     }
 }

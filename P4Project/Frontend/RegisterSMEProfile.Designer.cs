@@ -72,7 +72,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Register";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // chooseLogoBtn
             // 
@@ -104,7 +103,6 @@
             this.pictureBox1_SME.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1_SME.TabIndex = 1;
             this.pictureBox1_SME.TabStop = false;
-            this.pictureBox1_SME.Click += new System.EventHandler(this.PictureBox1_SME_Click);
             // 
             // SMEUsername
             // 

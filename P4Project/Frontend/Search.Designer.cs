@@ -31,36 +31,36 @@
             this.SearchBox = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.SearchResultGrid = new System.Windows.Forms.DataGridView();
-            this.rbtnSkills = new System.Windows.Forms.RadioButton();
-            this.rbtnCompanies = new System.Windows.Forms.RadioButton();
-            this.rbtnTitle = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Back = new System.Windows.Forms.Button();
-            this.ViewTask = new System.Windows.Forms.Button();
             this.TaskTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Match = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TaskSMEName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TaskAppDeadline = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TaskStartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TaskEndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rbtnSkills = new System.Windows.Forms.RadioButton();
+            this.rbtnCompanies = new System.Windows.Forms.RadioButton();
+            this.rbtnTitle = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Back = new System.Windows.Forms.Button();
+            this.ViewTask = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SearchResultGrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // SearchBox
             // 
-            this.SearchBox.Location = new System.Drawing.Point(163, 60);
-            this.SearchBox.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.SearchBox.Location = new System.Drawing.Point(122, 49);
+            this.SearchBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SearchBox.Name = "SearchBox";
-            this.SearchBox.Size = new System.Drawing.Size(235, 22);
+            this.SearchBox.Size = new System.Drawing.Size(244, 20);
             this.SearchBox.TabIndex = 1;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(496, 60);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnSearch.Location = new System.Drawing.Point(372, 49);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(75, 20);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -81,89 +81,16 @@
             this.TaskAppDeadline,
             this.TaskStartDate,
             this.TaskEndDate});
-            this.SearchResultGrid.Location = new System.Drawing.Point(59, 319);
-            this.SearchResultGrid.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.SearchResultGrid.Location = new System.Drawing.Point(44, 259);
+            this.SearchResultGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SearchResultGrid.MultiSelect = false;
             this.SearchResultGrid.Name = "SearchResultGrid";
             this.SearchResultGrid.ReadOnly = true;
             this.SearchResultGrid.RowTemplate.Height = 24;
             this.SearchResultGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.SearchResultGrid.Size = new System.Drawing.Size(959, 185);
+            this.SearchResultGrid.Size = new System.Drawing.Size(719, 150);
             this.SearchResultGrid.TabIndex = 2;
             this.SearchResultGrid.Visible = false;
-            // 
-            // rbtnSkills
-            // 
-            this.rbtnSkills.AutoSize = true;
-            this.rbtnSkills.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnSkills.Location = new System.Drawing.Point(265, 46);
-            this.rbtnSkills.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.rbtnSkills.Name = "rbtnSkills";
-            this.rbtnSkills.Size = new System.Drawing.Size(123, 21);
-            this.rbtnSkills.TabIndex = 3;
-            this.rbtnSkills.Text = "Required Skills";
-            this.rbtnSkills.UseVisualStyleBackColor = true;
-            // 
-            // rbtnCompanies
-            // 
-            this.rbtnCompanies.AutoSize = true;
-            this.rbtnCompanies.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnCompanies.Location = new System.Drawing.Point(96, 46);
-            this.rbtnCompanies.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.rbtnCompanies.Name = "rbtnCompanies";
-            this.rbtnCompanies.Size = new System.Drawing.Size(129, 21);
-            this.rbtnCompanies.TabIndex = 2;
-            this.rbtnCompanies.Text = "Company Name";
-            this.rbtnCompanies.UseVisualStyleBackColor = true;
-            // 
-            // rbtnTitle
-            // 
-            this.rbtnTitle.AutoSize = true;
-            this.rbtnTitle.Checked = true;
-            this.rbtnTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnTitle.Location = new System.Drawing.Point(8, 46);
-            this.rbtnTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.rbtnTitle.Name = "rbtnTitle";
-            this.rbtnTitle.Size = new System.Drawing.Size(56, 21);
-            this.rbtnTitle.TabIndex = 1;
-            this.rbtnTitle.TabStop = true;
-            this.rbtnTitle.Text = "Title";
-            this.rbtnTitle.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.rbtnSkills);
-            this.groupBox1.Controls.Add(this.rbtnTitle);
-            this.groupBox1.Controls.Add(this.rbtnCompanies);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(163, 117);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(433, 103);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Search tasks based on:";
-            // 
-            // Back
-            // 
-            this.Back.Location = new System.Drawing.Point(898, 196);
-            this.Back.Name = "Back";
-            this.Back.Size = new System.Drawing.Size(75, 23);
-            this.Back.TabIndex = 5;
-            this.Back.Text = "Back";
-            this.Back.UseVisualStyleBackColor = true;
-            this.Back.Click += new System.EventHandler(this.Back_Click);
-            // 
-            // ViewTask
-            // 
-            this.ViewTask.Location = new System.Drawing.Point(917, 272);
-            this.ViewTask.Name = "ViewTask";
-            this.ViewTask.Size = new System.Drawing.Size(75, 23);
-            this.ViewTask.TabIndex = 6;
-            this.ViewTask.Text = "View Task";
-            this.ViewTask.UseVisualStyleBackColor = true;
-            this.ViewTask.Click += new System.EventHandler(this.ViewTask_Click);
             // 
             // TaskTitle
             // 
@@ -213,18 +140,90 @@
             this.TaskEndDate.ReadOnly = true;
             this.TaskEndDate.Width = 180;
             // 
+            // rbtnSkills
+            // 
+            this.rbtnSkills.AutoSize = true;
+            this.rbtnSkills.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnSkills.Location = new System.Drawing.Point(199, 37);
+            this.rbtnSkills.Name = "rbtnSkills";
+            this.rbtnSkills.Size = new System.Drawing.Size(95, 17);
+            this.rbtnSkills.TabIndex = 3;
+            this.rbtnSkills.Text = "Required Skills";
+            this.rbtnSkills.UseVisualStyleBackColor = true;
+            // 
+            // rbtnCompanies
+            // 
+            this.rbtnCompanies.AutoSize = true;
+            this.rbtnCompanies.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnCompanies.Location = new System.Drawing.Point(72, 37);
+            this.rbtnCompanies.Name = "rbtnCompanies";
+            this.rbtnCompanies.Size = new System.Drawing.Size(100, 17);
+            this.rbtnCompanies.TabIndex = 2;
+            this.rbtnCompanies.Text = "Company Name";
+            this.rbtnCompanies.UseVisualStyleBackColor = true;
+            // 
+            // rbtnTitle
+            // 
+            this.rbtnTitle.AutoSize = true;
+            this.rbtnTitle.Checked = true;
+            this.rbtnTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnTitle.Location = new System.Drawing.Point(6, 37);
+            this.rbtnTitle.Name = "rbtnTitle";
+            this.rbtnTitle.Size = new System.Drawing.Size(45, 17);
+            this.rbtnTitle.TabIndex = 1;
+            this.rbtnTitle.TabStop = true;
+            this.rbtnTitle.Text = "Title";
+            this.rbtnTitle.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbtnSkills);
+            this.groupBox1.Controls.Add(this.rbtnTitle);
+            this.groupBox1.Controls.Add(this.rbtnCompanies);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(122, 95);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(325, 84);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Search tasks based on:";
+            // 
+            // Back
+            // 
+            this.Back.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Back.Location = new System.Drawing.Point(122, 184);
+            this.Back.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Back.Name = "Back";
+            this.Back.Size = new System.Drawing.Size(90, 30);
+            this.Back.TabIndex = 5;
+            this.Back.Text = "Back";
+            this.Back.UseVisualStyleBackColor = true;
+            this.Back.Click += new System.EventHandler(this.Back_Click);
+            // 
+            // ViewTask
+            // 
+            this.ViewTask.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ViewTask.Location = new System.Drawing.Point(216, 184);
+            this.ViewTask.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ViewTask.Name = "ViewTask";
+            this.ViewTask.Size = new System.Drawing.Size(90, 30);
+            this.ViewTask.TabIndex = 6;
+            this.ViewTask.Text = "View Task";
+            this.ViewTask.UseVisualStyleBackColor = true;
+            this.ViewTask.Click += new System.EventHandler(this.ViewTask_Click);
+            // 
             // Search
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.ViewTask);
             this.Controls.Add(this.Back);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.SearchResultGrid);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.SearchBox);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Search";
             this.Text = "Search";
             ((System.ComponentModel.ISupportInitialize)(this.SearchResultGrid)).EndInit();

@@ -400,42 +400,5 @@ namespace P4Project.Frontend
             }
         }
         #endregion
-
-        //...................................................... MISS CLICKS REMOVE LATER .........................................................
-
-
-
-        #region DELETE THIS SHIT!
-        private void StudentProfileView_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void StudSkillList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void NameLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void StudentDescBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void EmailLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Education_Click(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
-
-
     }
 }

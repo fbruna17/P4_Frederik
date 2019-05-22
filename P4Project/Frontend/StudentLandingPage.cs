@@ -172,19 +172,5 @@ namespace P4Project.Frontend
             this.Close();
         }
         #endregion
-
-        #region DELETE THIS SHIT!
-        // DELETE
-        private void ApplicationView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-        //SetupImage er smidt ind i SetupForm! Det vil sige at SetupImage() er useless.
-        public void SetupImage()
-        {
-            var ProfilePicture = ThisStudent.ProfilePicture;
-            StudentPictureBox.ImageLocation = ProfilePicture;
-        }
-        #endregion
     }
 }

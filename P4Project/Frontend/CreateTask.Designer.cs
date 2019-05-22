@@ -105,7 +105,6 @@
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(173, 22);
             this.txtTitle.TabIndex = 1;
-            this.txtTitle.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // lblAppDeadline
             // 
@@ -379,7 +378,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "CreateTask";
             this.Text = "CreateTask";
-            this.Load += new System.EventHandler(this.CreateTask_Load);
             this.StateGroupBox.ResumeLayout(false);
             this.StateGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpDownHours)).EndInit();

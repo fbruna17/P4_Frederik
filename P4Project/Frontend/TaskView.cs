@@ -473,13 +473,5 @@ namespace P4Project.Frontend
             }
         }
         #endregion
-
-        //...................................................... MISS CLICKS REMOVE LATER .........................................................
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

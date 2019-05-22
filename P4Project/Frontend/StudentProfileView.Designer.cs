@@ -54,6 +54,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.StudentDescBox = new System.Windows.Forms.RichTextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.EditSkillsBox = new System.Windows.Forms.GroupBox();
+            this.SkillDropDown = new System.Windows.Forms.ComboBox();
+            this.RemoveSkill = new System.Windows.Forms.Button();
+            this.AddSkill = new System.Windows.Forms.Button();
             this.SkillSetGrid = new System.Windows.Forms.DataGridView();
             this.SkillName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Verified = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,19 +68,15 @@
             this.SMEName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CompletionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
-            this.EditSkillsBox = new System.Windows.Forms.GroupBox();
-            this.SkillDropDown = new System.Windows.Forms.ComboBox();
-            this.RemoveSkill = new System.Windows.Forms.Button();
-            this.AddSkill = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentPictureBox)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.EditSkillsBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SkillSetGrid)).BeginInit();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FormerTaskGrid)).BeginInit();
-            this.EditSkillsBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -95,7 +95,7 @@
             this.groupBox2.Controls.Add(this.StudentPictureBox);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(314, 173);
+            this.groupBox2.Size = new System.Drawing.Size(343, 173);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             // 
@@ -160,7 +160,6 @@
             this.EmailLabel.Name = "EmailLabel";
             this.EmailLabel.Size = new System.Drawing.Size(0, 13);
             this.EmailLabel.TabIndex = 4;
-            this.EmailLabel.Click += new System.EventHandler(this.EmailLabel_Click);
             // 
             // NameLabel
             // 
@@ -170,7 +169,6 @@
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(0, 13);
             this.NameLabel.TabIndex = 3;
-            this.NameLabel.Click += new System.EventHandler(this.NameLabel_Click);
             // 
             // StudentEmailLabel
             // 
@@ -234,9 +232,9 @@
             this.groupBox3.Controls.Add(this.StudentResumeLink);
             this.groupBox3.Controls.Add(this.StudentResumeLabel);
             this.groupBox3.Controls.Add(this.StudentEducationLabel);
-            this.groupBox3.Location = new System.Drawing.Point(332, 12);
+            this.groupBox3.Location = new System.Drawing.Point(361, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(270, 173);
+            this.groupBox3.Size = new System.Drawing.Size(241, 173);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             // 
@@ -250,7 +248,7 @@
             // 
             // ChoosePDFBtn
             // 
-            this.ChoosePDFBtn.Location = new System.Drawing.Point(131, 113);
+            this.ChoosePDFBtn.Location = new System.Drawing.Point(119, 113);
             this.ChoosePDFBtn.Name = "ChoosePDFBtn";
             this.ChoosePDFBtn.Size = new System.Drawing.Size(109, 23);
             this.ChoosePDFBtn.TabIndex = 10;
@@ -277,13 +275,12 @@
             this.EducationLabel.Name = "EducationLabel";
             this.EducationLabel.Size = new System.Drawing.Size(0, 13);
             this.EducationLabel.TabIndex = 3;
-            this.EducationLabel.Click += new System.EventHandler(this.Education_Click);
             // 
             // StudentResumeLink
             // 
             this.StudentResumeLink.AutoSize = true;
             this.StudentResumeLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StudentResumeLink.Location = new System.Drawing.Point(127, 81);
+            this.StudentResumeLink.Location = new System.Drawing.Point(116, 81);
             this.StudentResumeLink.Name = "StudentResumeLink";
             this.StudentResumeLink.Size = new System.Drawing.Size(113, 17);
             this.StudentResumeLink.TabIndex = 2;
@@ -339,7 +336,6 @@
             this.StudentDescBox.Size = new System.Drawing.Size(301, 126);
             this.StudentDescBox.TabIndex = 0;
             this.StudentDescBox.Text = "";
-            this.StudentDescBox.TextChanged += new System.EventHandler(this.StudentDescBox_TextChanged);
             // 
             // groupBox5
             // 
@@ -351,6 +347,51 @@
             this.groupBox5.Size = new System.Drawing.Size(269, 356);
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
+            // 
+            // EditSkillsBox
+            // 
+            this.EditSkillsBox.Controls.Add(this.SkillDropDown);
+            this.EditSkillsBox.Controls.Add(this.RemoveSkill);
+            this.EditSkillsBox.Controls.Add(this.AddSkill);
+            this.EditSkillsBox.Location = new System.Drawing.Point(12, 230);
+            this.EditSkillsBox.Margin = new System.Windows.Forms.Padding(2);
+            this.EditSkillsBox.Name = "EditSkillsBox";
+            this.EditSkillsBox.Padding = new System.Windows.Forms.Padding(2);
+            this.EditSkillsBox.Size = new System.Drawing.Size(245, 102);
+            this.EditSkillsBox.TabIndex = 9;
+            this.EditSkillsBox.TabStop = false;
+            this.EditSkillsBox.Visible = false;
+            // 
+            // SkillDropDown
+            // 
+            this.SkillDropDown.FormattingEnabled = true;
+            this.SkillDropDown.Location = new System.Drawing.Point(60, 59);
+            this.SkillDropDown.Margin = new System.Windows.Forms.Padding(2);
+            this.SkillDropDown.Name = "SkillDropDown";
+            this.SkillDropDown.Size = new System.Drawing.Size(126, 21);
+            this.SkillDropDown.TabIndex = 2;
+            // 
+            // RemoveSkill
+            // 
+            this.RemoveSkill.Location = new System.Drawing.Point(45, 20);
+            this.RemoveSkill.Margin = new System.Windows.Forms.Padding(2);
+            this.RemoveSkill.Name = "RemoveSkill";
+            this.RemoveSkill.Size = new System.Drawing.Size(74, 26);
+            this.RemoveSkill.TabIndex = 1;
+            this.RemoveSkill.Text = "Remove Skill";
+            this.RemoveSkill.UseVisualStyleBackColor = true;
+            this.RemoveSkill.Click += new System.EventHandler(this.RemoveSkill_Click);
+            // 
+            // AddSkill
+            // 
+            this.AddSkill.Location = new System.Drawing.Point(127, 20);
+            this.AddSkill.Margin = new System.Windows.Forms.Padding(2);
+            this.AddSkill.Name = "AddSkill";
+            this.AddSkill.Size = new System.Drawing.Size(74, 26);
+            this.AddSkill.TabIndex = 0;
+            this.AddSkill.Text = "Add Skill";
+            this.AddSkill.UseVisualStyleBackColor = true;
+            this.AddSkill.Click += new System.EventHandler(this.AddSkill_Click);
             // 
             // SkillSetGrid
             // 
@@ -456,51 +497,6 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Former Tasks";
             // 
-            // EditSkillsBox
-            // 
-            this.EditSkillsBox.Controls.Add(this.SkillDropDown);
-            this.EditSkillsBox.Controls.Add(this.RemoveSkill);
-            this.EditSkillsBox.Controls.Add(this.AddSkill);
-            this.EditSkillsBox.Location = new System.Drawing.Point(12, 230);
-            this.EditSkillsBox.Margin = new System.Windows.Forms.Padding(2);
-            this.EditSkillsBox.Name = "EditSkillsBox";
-            this.EditSkillsBox.Padding = new System.Windows.Forms.Padding(2);
-            this.EditSkillsBox.Size = new System.Drawing.Size(245, 102);
-            this.EditSkillsBox.TabIndex = 9;
-            this.EditSkillsBox.TabStop = false;
-            this.EditSkillsBox.Visible = false;
-            // 
-            // SkillDropDown
-            // 
-            this.SkillDropDown.FormattingEnabled = true;
-            this.SkillDropDown.Location = new System.Drawing.Point(60, 59);
-            this.SkillDropDown.Margin = new System.Windows.Forms.Padding(2);
-            this.SkillDropDown.Name = "SkillDropDown";
-            this.SkillDropDown.Size = new System.Drawing.Size(126, 21);
-            this.SkillDropDown.TabIndex = 2;
-            // 
-            // RemoveSkill
-            // 
-            this.RemoveSkill.Location = new System.Drawing.Point(45, 20);
-            this.RemoveSkill.Margin = new System.Windows.Forms.Padding(2);
-            this.RemoveSkill.Name = "RemoveSkill";
-            this.RemoveSkill.Size = new System.Drawing.Size(74, 26);
-            this.RemoveSkill.TabIndex = 1;
-            this.RemoveSkill.Text = "Remove Skill";
-            this.RemoveSkill.UseVisualStyleBackColor = true;
-            this.RemoveSkill.Click += new System.EventHandler(this.RemoveSkill_Click);
-            // 
-            // AddSkill
-            // 
-            this.AddSkill.Location = new System.Drawing.Point(127, 20);
-            this.AddSkill.Margin = new System.Windows.Forms.Padding(2);
-            this.AddSkill.Name = "AddSkill";
-            this.AddSkill.Size = new System.Drawing.Size(74, 26);
-            this.AddSkill.TabIndex = 0;
-            this.AddSkill.Text = "Add Skill";
-            this.AddSkill.UseVisualStyleBackColor = true;
-            this.AddSkill.Click += new System.EventHandler(this.AddSkill_Click);
-            // 
             // StudentProfileView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -513,7 +509,6 @@
             this.Controls.Add(this.groupBox2);
             this.Name = "StudentProfileView";
             this.Text = "StudentProfileView";
-            this.Load += new System.EventHandler(this.StudentProfileView_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentPictureBox)).EndInit();
@@ -523,11 +518,11 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.EditSkillsBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SkillSetGrid)).EndInit();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FormerTaskGrid)).EndInit();
-            this.EditSkillsBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

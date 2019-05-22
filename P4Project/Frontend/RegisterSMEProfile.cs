@@ -143,18 +143,5 @@ namespace P4Project
 
         }
         #endregion
-
-        //HUSK AT SLETTE DET HER PIS!
-        #region NOT USED! DELETE THIS SHIT!
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PictureBox1_SME_Click(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
     }
 }
