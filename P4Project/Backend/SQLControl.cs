@@ -743,11 +743,11 @@ namespace P4Project
 
                 while (reader.Read())
                 {
-                    int taskID = reader.GetInt32(0);
-                    int smeID = reader.GetInt32(1);
-                    string Title = reader.GetString(2);
-                    string Location = reader.GetString(3);
-                    int Hours = reader.GetInt32(4);
+                    int taskID = GetSafeIntMustNotBeNull(reader, 0);
+                    int smeID = GetSafeIntMustNotBeNull(reader, 1);
+                    string Title = GetSafeString(reader, 2);
+                    string Location = GetSafeString(reader, 3);
+                    int Hours = GetSafeInt(reader, 4);
                     DateTime ApplicationDeadline = reader.GetDateTime(5);
                     DateTime StartDate = reader.GetDateTime(6);
                     DateTime EstCompletionDate = reader.GetDateTime(7);
