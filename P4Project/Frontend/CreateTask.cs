@@ -49,7 +49,6 @@ namespace P4Project.Frontend
         // Constructer for when its Edit a task:
         public CreateTask(TaskDetailed thisTask, SMELoggedIn thisSME)
         {
-
             InitializeComponent();
             SQL = new SQLControl();
             InputValidation = new UserInputValidation();
@@ -74,7 +73,6 @@ namespace P4Project.Frontend
                 MessageBox.Show("An unknow error occured! Please contact system administrators!" + ex.Message);
             }
             #endregion
-
         }
 
         #endregion
@@ -93,7 +91,8 @@ namespace P4Project.Frontend
             ApplicationDeadlinePicker.Value = ThisTask.ApplicationDeadline;
             StartDeadlinePicker.Value = ThisTask.Startdate;
             CompDeadlinePicker.Value = ThisTask.EstCompletionDate;
-            foreach(Skill skill in ThisTask.RequiredSkills)
+            if (ThisTask.StateID == 1 || ThisTask.StateID == 2) Delete.Visible = true;
+            foreach (Skill skill in ThisTask.RequiredSkills)
             {
                 SkillSetGrid.Rows.Add(skill.Name);
             }
@@ -112,18 +111,17 @@ namespace P4Project.Frontend
         // Initialize SkillEditing:
         private void InitializeSkillEditing()
         {
-
             SkillDropDown.Items.Clear();
 
             SkillDropDown.Text = "Select a skill...";
             List<Skill> skills = SQL.FetchALLSkills();
-            if(ThisTask != null)
+            // Already picked skills are removed:
+            foreach (DataGridViewRow row in SkillSetGrid.Rows)
             {
-                foreach (Skill skill in ThisTask.RequiredSkills)
+                if (row.Cells[0].Value != null)
                 {
-                    skills.RemoveAll(a => a.ID == skill.ID);
+                    skills.RemoveAll(s => s.Name == row.Cells[0].Value.ToString());
                 }
-                if (ThisTask.StateID == 1) Delete.Visible = true;
             }
             foreach (Skill skill in skills)
             {
@@ -241,6 +239,7 @@ namespace P4Project.Frontend
             if (SkillDropDown.SelectedItem != null)
             {
                 SkillSetGrid.Rows.Add(SkillDropDown.SelectedItem.ToString());
+                InitializeSkillEditing();
             }
             else MessageBox.Show("Please select a skill from the dropdown to add.");
         }
@@ -259,13 +258,21 @@ namespace P4Project.Frontend
         {
             try
             {
-                DialogResult result = MessageBox.Show("Are you sure you want to delete this task? This action cannot be undone!", "Confirm Delete", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
+                if(PrivateStateRadio.Checked == true)
                 {
-                    SQL.DeleteTask(ThisTask.ID);
-                    MessageBox.Show("The Task has been deleted.");
-                    Close();
+                    DialogResult result = MessageBox.Show("Are you sure you want to delete this task? This action cannot be undone!", "Confirm Delete", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        SQL.DeleteTask(ThisTask.ID);
+                        MessageBox.Show("The Task has been deleted.");
+                        Close();
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("You most mark this task as \"Private\" before deleting!");
+                }
+
             }
             #region Exception Catching:
             catch(MySqlException ex)

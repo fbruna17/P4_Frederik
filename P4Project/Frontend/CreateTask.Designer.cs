@@ -226,7 +226,7 @@
             "Roskilde",
             "Remote Work"});
             this.listLocation.Location = new System.Drawing.Point(132, 66);
-            this.listLocation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listLocation.Margin = new System.Windows.Forms.Padding(4);
             this.listLocation.Name = "listLocation";
             this.listLocation.Size = new System.Drawing.Size(173, 24);
             this.listLocation.TabIndex = 2;
@@ -234,7 +234,7 @@
             // richTaskDesc
             // 
             this.richTaskDesc.Location = new System.Drawing.Point(16, 310);
-            this.richTaskDesc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTaskDesc.Margin = new System.Windows.Forms.Padding(4);
             this.richTaskDesc.Name = "richTaskDesc";
             this.richTaskDesc.Size = new System.Drawing.Size(289, 117);
             this.richTaskDesc.TabIndex = 4;
@@ -243,7 +243,7 @@
             // UpDownHours
             // 
             this.UpDownHours.Location = new System.Drawing.Point(132, 106);
-            this.UpDownHours.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UpDownHours.Margin = new System.Windows.Forms.Padding(4);
             this.UpDownHours.Name = "UpDownHours";
             this.UpDownHours.Size = new System.Drawing.Size(173, 22);
             this.UpDownHours.TabIndex = 3;
