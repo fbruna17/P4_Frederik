@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using P4Project.Backend.Classes;
 using P4Project.Backend.Recommendation;
+using P4Project.Exceptions;
 using MySql.Data.MySqlClient;
 
 namespace P4Project.Frontend
@@ -27,27 +28,41 @@ namespace P4Project.Frontend
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            SQLControl SQL = new SQLControl();
-            Query = SearchBox.Text;
-            SearchResultGrid.Rows.Clear();
-
-            // The results of all tasks are found:
-            taskResults = SQL.SearchTasks(Query, CheckSearchType());
-            // The commendation is initialized with the results and the Student:
-            RecMaker recommender = new RecMaker(ThisStudent, taskResults);
-            List<TaskRecommend> recTasks = recommender.RecommendTasks(true);
-
-            foreach (TaskSearched task in taskResults)
+            try
             {
-                List<TaskRecommend> tasks = recTasks.Where(t => t.ID == task.ID).ToList();
-                if (tasks.Count > 0)
+                var SQL = new SQLControl();
+                Query = SearchBox.Text;
+                SearchResultGrid.Rows.Clear();
+
+                // The results of all tasks are found:
+                taskResults = SQL.SearchTasks(Query, CheckSearchType());
+                // The commendation is initialized with the results and the Student:
+                RecMaker recommender = new RecMaker(ThisStudent, taskResults);
+                List<TaskRecommend> recTasks = recommender.RecommendTasks(true);
+                foreach (TaskSearched task in taskResults)
                 {
-                    TaskRecommend tTask = tasks[0];
-                    task.GetSMEName();
-                    SearchResultGrid.Rows.Add(task.Title, tTask.RecommendScore.ToString(), task.SMEName, task.ApplicationDeadline.ToShortDateString(), task.Startdate.ToShortDateString(), task.EstCompletionDate.ToShortDateString());
+                    List<TaskRecommend> tasks = recTasks.Where(t => t.ID == task.ID).ToList();
+                    if (tasks.Count > 0)
+                    {
+                        TaskRecommend tTask = tasks[0];
+                        task.GetSMEName();
+                        SearchResultGrid.Rows.Add(tTask.RecommendScore.ToString(), task.Title, task.SMEName, task.Hours, task.Location,
+                            task.ApplicationDeadline.ToShortDateString(), task.Startdate.ToShortDateString(), task.EstCompletionDate.ToShortDateString());
+                    }
+                }
+                if (SearchResultGrid.Rows.Count != 0)
+                {
+                    SearchResultGrid.Show();
+                }
+                else
+                {
+                    MessageBox.Show("No task matching your search was found.");
                 }
             }
-            SearchResultGrid.Visible = true;
+            catch (NoSearchResultsFoundException)
+            {
+
+            }
         }
 
         private int CheckSearchType()
