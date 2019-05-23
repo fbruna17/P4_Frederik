@@ -59,10 +59,18 @@ namespace P4Project.Frontend
                     MessageBox.Show("No task matching your search was found.");
                 }
             }
-            catch (NoSearchResultsFoundException)
+            #region Exception Catching:
+            catch (MySqlException ex)
             {
-
+                MessageBox.Show("There was an error when trying to fetch your search result! Please try again with another key word, or contact system administrators! " +
+                    "\n Error message: " + ex.Message);
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show("An unknown error occured while trying to fetch your search result! Please try again with another key word, or contact system administrators!" +
+                    "\n Error message: " + ex.Message);
+            }
+            #endregion
         }
 
         private int CheckSearchType()
@@ -95,9 +103,15 @@ namespace P4Project.Frontend
             {
                 thisTask = GetTask();
                 var tView = new TaskView(thisTask, ThisStudent);
-                Close();
+                Hide();
                 tView.ShowDialog();
+                Show();
 
+            }
+            #region Exception Cathcing:
+            catch(RecommendationException)
+            {
+                MessageBox.Show("There was an exception with getting your recommendation score affiliated with this task! Please contact system administrators!");
             }
             catch(MySqlException ex)
             {
@@ -107,19 +121,20 @@ namespace P4Project.Frontend
             {
                 MessageBox.Show("An unexpected error occured... Please Contact System Administrator! \n" + ex.Message);
             }
+            #endregion
         }
 
         private TaskDetailed GetTask()
         {
             SQLControl sql = new SQLControl();
-            string taskname = SearchResultGrid.SelectedCells[0].Value.ToString();
+            string taskname = SearchResultGrid.SelectedCells[1].Value.ToString();
             TaskSearched tTask = taskResults.Single(t => t.Title == taskname);
             TaskDetailed thisTask = sql.FetchTaskDetailed(tTask.ID);
-            if (int.TryParse(SearchResultGrid.SelectedCells[1].Value.ToString(), out int i))
+            if (int.TryParse(SearchResultGrid.SelectedCells[0].Value.ToString(), out int i))
             {
                 thisTask.RecScore = i;
             }
-            else throw new Exception();
+            else throw new RecommendationException();
             return thisTask;
         }
     }

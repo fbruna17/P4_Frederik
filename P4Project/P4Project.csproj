@@ -77,10 +77,10 @@
     <Compile Include="Exceptions\InvalidTaskTitleException.cs" />
     <Compile Include="Exceptions\InvalidUsernameException.cs" />
     <Compile Include="Exceptions\NoPasswordInputException.cs" />
-    <Compile Include="Exceptions\NoSearchResultsFoundException.cs" />
     <Compile Include="Exceptions\NoUsernameInputException.cs" />
     <Compile Include="Exceptions\PasswordsDoesNotMatchException.cs" />
     <Compile Include="Exceptions\PasswordToShortException.cs" />
+    <Compile Include="Exceptions\RecommendationException.cs" />
     <Compile Include="Exceptions\SMEUserDoesNotExistException.cs" />
     <Compile Include="Exceptions\UsernameAlreadyExistsException.cs" />
     <Compile Include="Frontend\CreateStudProfile.cs">
