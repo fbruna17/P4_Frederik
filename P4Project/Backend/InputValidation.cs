@@ -70,7 +70,7 @@ namespace P4Project
         }
         public void VerifyApplyDate(DateTime applydate, DateTime startdate, DateTime deadlinedate)
         {
-            if ((applydate < DateTime.Now) ||(applydate > startdate) || (applydate > deadlinedate)) throw new InvalidTaskApplyDateException(applydate);
+            if ((applydate < DateTime.Now) || (applydate > startdate) || (applydate > deadlinedate)) throw new InvalidTaskApplyDateException(applydate);
         }
         public void VerifyStartDate(DateTime startdate, DateTime deadlinedate, DateTime applydate)
         {

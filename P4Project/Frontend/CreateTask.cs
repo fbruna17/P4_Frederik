@@ -106,6 +106,9 @@ namespace P4Project.Frontend
         {
             listLocation.SelectedItem = "Aalborg";
             InitializeSkillEditing();
+            ApplicationDeadlinePicker.Value = DateTime.Now.AddDays(7);
+            StartDeadlinePicker.Value = DateTime.Now.AddDays(8);
+            CompDeadlinePicker.Value = DateTime.Now.AddDays(9);
         }
 
         // Initialize SkillEditing:
@@ -204,15 +207,15 @@ namespace P4Project.Frontend
             }
             catch (InvalidTaskApplyDateException ex)
             {
-                MessageBox.Show("Please enter a valid application date. Your input was: " + ex.input.ToShortDateString());
+                MessageBox.Show("Please enter a valid application date. The date most be atleast one day from today! Your input was: " + ex.input.ToShortDateString());
             }
             catch (InvalidTaskStartDateException ex)
             {
-                MessageBox.Show("Please enter a valid start date. Your input was: " + ex.input.ToShortDateString());
+                MessageBox.Show("Please enter a valid start date. The date most be atleast Application deadline! Your input was: " + ex.input.ToShortDateString());
             }
             catch (InvalidTaskDeadlineDateException ex)
             {
-                MessageBox.Show("Please enter a valid deadline date. Your input was: " + ex.input.ToShortDateString());
+                MessageBox.Show("Please enter a valid deadline date. The Deadline most atleast be the StartDate! Your input was: " + ex.input.ToShortDateString());
             }
             catch (InvalidTaskHoursException ex)
             {
