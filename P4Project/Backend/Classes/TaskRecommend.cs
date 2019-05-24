@@ -8,13 +8,11 @@ namespace P4Project.Backend.Classes
     {
         public List<Skill> RequiredSkills { get; }
         public int RecommendScore { get; set; }
-        public DateTime ApplicationDeadline { get; }
 
-        public TaskRecommend(TaskBase taskBase, List<Skill> requiredSkills, DateTime applicationDeadline) : base(taskBase.ID, taskBase.SMEID, taskBase.Title, taskBase.SMEName)
+        public TaskRecommend(TaskBase taskBase, List<Skill> requiredSkills) : base(taskBase.ID, taskBase.SMEID, taskBase.Title, taskBase.SMEName)
         {
             RequiredSkills = requiredSkills;
             RecommendScore = 0;
-            ApplicationDeadline = applicationDeadline;
         }
 
         // Method that returns the DataGridView to display information regarding the recommended task:

@@ -190,7 +190,6 @@ namespace P4Project.Frontend
                 TaskView preview = new TaskView(newTask, ThisSME, isUpdate);
                 Close();
                 preview.ShowDialog();
-
             }
             #region Exception Catching:
             catch (InvalidTaskTitleException ex)

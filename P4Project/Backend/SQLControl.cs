@@ -667,7 +667,7 @@ namespace P4Project
                 MySqlCommand cmd = new MySqlCommand
                 {
                     Connection = Connection,
-                    CommandText = "SELECT TaskID,Title,SMEID,Required_Skill,Application_Deadline FROM Task WHERE StateID = @StateID AND Application_Deadline >= @Now"
+                    CommandText = "SELECT TaskID,Title,SMEID,Required_Skill FROM Task WHERE StateID = @StateID AND Application_Deadline >= @Now"
                 };
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@StateID", 2);
@@ -675,7 +675,6 @@ namespace P4Project
                 var reader = cmd.ExecuteReader();
                 // A temp list is initialized to store the temp data:
                 var tempTaskList = new List<TaskBase>();
-                var applicationDeadlineList = new List<DateTime>();
                 // This list will contain ALL recquired skills for each task! Each element in the list will be the combined string of skill IDs:
                 List<string> recSkill = new List<string>();
 
@@ -685,7 +684,6 @@ namespace P4Project
                     string title = GetSafeString(reader, 1);
                     int smeID = GetSafeIntMustNotBeNull(reader, 2);
                     recSkill.Add(GetSafeString(reader, 3));
-                    applicationDeadlineList.Add(reader.GetDateTime(4));
                     // The data that has been read, is added too the temp list:
                     tempTaskList.Add(new TaskBase(taskID, smeID, title));
                 }
@@ -710,7 +708,7 @@ namespace P4Project
                     // A list of skills is made based on the list of Skill IDs:
                     List<Skill> skills = FetchSkillInfo(tRecSkillIDs);
                     // The task instance is made and added to the resultlist with the Application deadline:
-                    resultList.Add(new TaskRecommend(task, skills, applicationDeadlineList[i]));
+                    resultList.Add(new TaskRecommend(task, skills));
                     i++;
                 }
                 return resultList;
