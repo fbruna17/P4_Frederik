@@ -761,6 +761,7 @@ namespace P4Project
         }
 
         // A function that returns the SQL command for the function above:
+        // "SELECT DISTINCT ensures that if any duplicates are in the search query it will eliminate duplicates.
         private string SearchType(int i)
         {
             string Command = "";
@@ -768,16 +769,16 @@ namespace P4Project
             {
                 // Title:
                 case 1:
-                    Command = "SELECT TaskID,SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task WHERE StateID = @stateid AND Title LIKE @query";
+                    Command = "SELECT DISTINCT TaskID,SMEID,Title,Location,Hours,StartDate,Application_Deadline,Completion FROM Task WHERE StateID = @stateid AND Title LIKE @query";
                     break;
                 // SMEName:
                 case 2:
-                    Command = "SELECT Task.TaskID,Task.SMEID,Task.Title,Task.Location,Task.Hours,Task.StartDate,Task.Application_Deadline,Task.Completion FROM Task,SME " +
+                    Command = "SELECT DISTINCT Task.TaskID,Task.SMEID,Task.Title,Task.Location,Task.Hours,Task.StartDate,Task.Application_Deadline,Task.Completion FROM Task,SME " +
                         "WHERE Task.StateID = @stateid AND Task.SMEID = SME.SMEID AND SME.Name LIKE @query";
                     break;
                 // Name of required skill:
                 case 3:
-                    Command = "SELECT Task.TaskID,Task.SMEID,Task.Title,Task.Location,Task.Hours,Task.StartDate,Task.Application_Deadline,Task.Completion " +
+                    Command = "SELECT DISTINCT Task.TaskID,Task.SMEID,Task.Title,Task.Location,Task.Hours,Task.StartDate,Task.Application_Deadline,Task.Completion " +
                         "FROM Task,Skill WHERE Task.StateID = @stateid AND find_in_set(Skill.SkillID, Task.Required_Skill)>0 AND Skill.SkillName LIKE @query";
                     break;
             }
