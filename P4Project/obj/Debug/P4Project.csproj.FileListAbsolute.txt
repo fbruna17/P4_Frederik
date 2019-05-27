@@ -12,9 +12,6 @@ C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\Google.Protobuf.
 C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\MySql.Data.xml
 C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csproj.CopyComplete
 C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.RegisterSMEProfile.resources
-C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\P4Project.exe.config
-C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\P4Project.exe
-C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\P4Project.pdb
 C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\Google.Protobuf.dll
 C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\MySql.Data.xml
 C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csprojAssemblyReference.cache
@@ -23,8 +20,6 @@ C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Prope
 C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csproj.GenerateResource.cache
 C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csproj.CoreCompileInputs.cache
 C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.csproj.CopyComplete
-C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.exe
-C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.pdb
 C:\Users\Bruno\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\P4Project.exe.config
 C:\Users\Bruno\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\P4Project.exe
 C:\Users\Bruno\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\P4Project.pdb
@@ -117,3 +112,13 @@ C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.Fronte
 C:\Users\lappq\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.CreateStudProfile.resources
 C:\Users\Hammer\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.CreateStudProfile.resources
 C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\P4Project.CreateStudProfile.resources
+C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\BI404F19.exe.config
+C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\BI404F19.exe.manifest
+C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\BI404F19.application
+C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\BI404F19.exe
+C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\bin\Debug\BI404F19.pdb
+C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\BI404F19.TrustInfo.xml
+C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\BI404F19.exe.manifest
+C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\BI404F19.application
+C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\BI404F19.exe
+C:\Users\Martin\Documents\GitHub\P4_Frederik\P4Project\obj\Debug\BI404F19.pdb
